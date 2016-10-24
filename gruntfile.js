@@ -58,35 +58,8 @@ module.exports = function(grunt) {
                     {
                         flatten: true,
                         expand: true,
-                        src: ['app/public/assets/fonts/*'],
-                        dest: 'build/app/assets/fonts/'
-                    },
-                    {
-                        flatten: true,
-                        expand: true,
                         src: ['app/public/assets/img/*'],
                         dest: 'build/app/assets/img/'
-                    },
-                    {
-                        flatten: true,
-                        expand: true,
-                        src: ['app/public/assets/img/user/*'],
-                        dest: 'build/app/assets/img/user'
-                    },
-                    {
-                        flatten: true,
-                        expand: true,
-                        src: ['app/public/assets/img/icons/*'],
-                        dest: 'build/app/assets/img/icons'
-                    },
-                    {
-                        flatten: true,
-                        expand: true,
-                        src: [
-                            'bower_components/simple-line-icons/fonts/Simple-Line-Icons.woff',
-                            'bower_components/simple-line-icons/fonts/Simple-Line-Icons.ttf'
-                        ],
-                        dest: 'build/app/assets/fonts/'
                     }
                 ]
             },

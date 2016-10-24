@@ -44,27 +44,6 @@
                         allowAnonymous: false
                     }
                 })
-                .state('app.routing', {
-                    url: '/routing',
-                    templateUrl: 'views/routing.html',
-                    controller: 'routingController',
-                    access:{
-                        allowAnonymous: false
-                    }
-                })
-                .state('login', {
-                    url: '/login',
-                    templateUrl: 'views/login.html',
-                    controller: 'loginCtrl',
-                    access:{
-                        isFree: true
-                    }
-                })
-                .state('logout', {
-                    url: '/logout',
-                    templateUrl: 'views/logout.html',
-                    controller: 'logoutController'
-                });
 
         }])
         .config(['$tooltipProvider', function ($tooltipProvider) {
