@@ -1,0 +1,31 @@
+{
+  "name": "college",
+  "version": "0.0.1",
+  "authors": [
+    "GIT"
+  ],
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test"
+  ],
+  "dependencies": {
+    "angular": "~1.4.4",
+    "angular-animate": "~1.4.2",
+    "angular-bootstrap": "~0.13.0",
+    "angular-resource": "~1.4.0",
+    "angular-ui-router": "~0.2.15"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.4.3"
+  },
+  "resolutions": {
+    "angular": "1.5.5"
+  }
+}

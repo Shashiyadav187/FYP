@@ -8,7 +8,6 @@ var userSchema = new Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     admin: Boolean,
-    //test: {type: mongoose.Schema.Types.ObjectId, ref: 'Test'},
     created_at: Date,
     updated_at: Date
 });
