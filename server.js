@@ -64,7 +64,7 @@ app.use('/', web);
 
 // Register API routes
 app.use('/api/', api);
-app.use('/user/', users);
+app.use('/api/users/', users);
 
 //Serve app
 http.createServer(app).listen(config.web.port);
