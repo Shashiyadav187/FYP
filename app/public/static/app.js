@@ -37,12 +37,9 @@
                 })
                 .state('login',{
                     url: '/login',
-                    templateUrl: 'views/login.html'
+                    templateUrl: 'views/login.html',
                 })
 
-        }])
-        .config(['$tooltipProvider', function ($tooltipProvider) {
-            $tooltipProvider.options({appendToBody: true});
         }])
         .run(["$rootScope", "$state", "$stateParams", '$window', '$location',
             function ($rootScope, $state, $stateParams, $window, $location) {
@@ -68,7 +65,6 @@
                     version: "v0.0.1",
                     useFullLayout: false,
                     hiddenFooter: false,
-                    offsidebarOpen: false,
                     asideToggled: false,
                     viewAnimation: 'ng-fadeInUp'
                 };
