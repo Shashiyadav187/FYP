@@ -19,18 +19,12 @@
                     url: '/app',
                     abstract: true,
                     templateUrl: 'views/app.html',
-                    controller: 'appController',
-                    access:{
-                        allowAnonymous: false
-                    }
+                    controller: 'appController'
                 })
                 .state('app.home', {
                     url: '/home',
                     templateUrl: 'views/home.html',
-                    controller: 'homeController',
-                    access:{
-                        allowAnonymous: false
-                    }
+                    controller: 'homeController'
                 })
                 .state('app.error',{
                     url: '404',
@@ -39,10 +33,11 @@
                 .state('app.admin',{
                     url: '/admin',
                     templateUrl: 'views/admin.html',
-                    controller: 'adminController',
-                    access:{
-                        allowAnonymous: false
-                    }
+                    controller: 'adminController'
+                })
+                .state('login',{
+                    url: '/login',
+                    templateUrl: 'views/login.html'
                 })
 
         }])

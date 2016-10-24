@@ -3,7 +3,11 @@ var express = require('express'),
     config = require('./config')(),
     web = require('./app/routes/web'),
     http = require('http'),
-    mongoose   = require('mongoose');
+    mongoose   = require('mongoose'),
+    passport = require('passport'),
+    flash = require('connect-flash'),
+    session = require('express-session'),
+    cookieParser = require('cookie-parser');
 
 
 //Create the application
@@ -13,10 +17,33 @@ var User = require('./api/models/user');
 
 // API Routes
 var api = require('./api/routes/api');
+var users = require('./api/routes/users');
 
 app.use(express.static(__dirname + '/app'));
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 app.use(bodyParser.json());
+app.use(session({
+    secret: 'Blah',
+    saveUninitialized: true,
+    resave: true,
+    expires: 360000
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+// configure passport
+passport.serializeUser(function(user, done) {
+    console.log('serializing ' + user);
+    done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+    User.getUserById(id, function(err, user) {
+        console.log('deserializing  ' +  user);
+        done(err, user);
+    });
+});
 
 
 // Connect to MongoDB
@@ -37,6 +64,7 @@ app.use('/', web);
 
 // Register API routes
 app.use('/api/', api);
+app.use('/api/', users);
 
 //Serve app
 http.createServer(app).listen(config.web.port);
