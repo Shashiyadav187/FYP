@@ -37,7 +37,8 @@
                 })
                 .state('login',{
                     url: '/login',
-                    templateUrl: 'views/login.html',
+                    controller: 'TopNavbarController',
+                    templateUrl: 'views/login.html'
                 })
 
         }])
@@ -68,9 +69,6 @@
                     asideToggled: false,
                     viewAnimation: 'ng-fadeInUp'
                 };
-
-                if ($location.url() != '/logout') {
-                }
 
             }]);
 

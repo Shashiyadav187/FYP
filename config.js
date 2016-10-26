@@ -1,5 +1,5 @@
 module.exports = function(){
-    var port = 1349;
+    var port = 6969;
 
     switch(process.env.NODE_ENV){
         default:

@@ -31,6 +31,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 // configure passport
 passport.serializeUser(function(user, done) {
@@ -69,4 +70,4 @@ app.use('/api/users/', users);
 //Serve app
 http.createServer(app).listen(config.web.port);
 
-console.log('listening on:', config.web.port);
+console.log('The magic happens at ', config.web.port);

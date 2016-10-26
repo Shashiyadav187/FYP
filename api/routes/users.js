@@ -82,16 +82,24 @@ router.route('/remove')
         });
     });
 
-passport.use('local', new LocalStrategy(
-    function(username, password, done) {
+passport.use('local', new LocalStrategy({
+    passReqToCallback : true
+},
+    function(req, username, password, done) {
         User.findOne({ username: username }, function(err, user) {
-            if (err) { return done(err); }
-            if (!user) {
-                return done(null, false, { message: 'Incorrect username.' });
+
+            if (err) {
+                return done(err);
             }
+
+            if (!user) {
+                return done(null, false, {message: 'Invalid username'});
+            }
+
             if (!user.validPassword(password)) {
                 return done(null, false, { message: 'Incorrect password.' });
             }
+
             console.log(username + ' ' + password);
             return done(null, user);
         });
@@ -123,7 +131,7 @@ router.route('/login')
 router.route('/logout')
     .get(function(req, res){
         var name = req.user.username;
-        console.log('Logging out' + name);
+        console.log('Logging out ' + name);
         req.logout();
         res.redirect('/#/login');
     });
