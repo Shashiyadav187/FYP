@@ -204,7 +204,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-env');
 
     //Concat js and css files
-    grunt.registerTask('build-local', [
+    grunt.registerTask('build', [
         'clean',
         'env:local',
         'concat',

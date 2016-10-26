@@ -50,23 +50,10 @@
                 $rootScope.$storage = $window.localStorage;
 
                 $rootScope.app = {
-                    name: 'The College Experience',
+                    name: 'College Experience',
                     description: 'student website',
                     year: ((new Date()).getFullYear()),
-                    layout: {
-                        isFixed: true,
-                        isCollapsed: false,
-                        isBoxed: false,
-                        isRTL: false,
-                        horizontal: false,
-                        isFloat: false,
-                        asideHover: false,
-                        theme: null
-                    },
                     version: "v0.0.1",
-                    useFullLayout: false,
-                    hiddenFooter: false,
-                    asideToggled: false,
                     viewAnimation: 'ng-fadeInUp'
                 };
 
