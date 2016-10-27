@@ -1,11 +1,12 @@
 (function(){
     "use strict";
 
-    App.controller('homeController', ['$scope','$state',
+    App.controller('TopNavbarController', ['$scope','$state',
         function($scope, $state) {
 
-            $scope.welcome = "Hello and Welcome To The College Experience";
-
+            
+            $scope.something="say something";
+            
             $scope.loginLink = function() {
                 $state.go('login');
             };

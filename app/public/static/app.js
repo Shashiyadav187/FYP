@@ -19,18 +19,12 @@
                     url: '/app',
                     abstract: true,
                     templateUrl: 'views/app.html',
-                    controller: 'appController',
-                    access:{
-                        allowAnonymous: false
-                    }
+                    controller: 'appController'
                 })
                 .state('app.home', {
                     url: '/home',
                     templateUrl: 'views/home.html',
-                    controller: 'homeController',
-                    access:{
-                        allowAnonymous: false
-                    }
+                    controller: 'homeController'
                 })
                 .state('app.error',{
                     url: '404',
@@ -39,15 +33,14 @@
                 .state('app.admin',{
                     url: '/admin',
                     templateUrl: 'views/admin.html',
-                    controller: 'adminController',
-                    access:{
-                        allowAnonymous: false
-                    }
+                    controller: 'adminController'
+                })
+                .state('login',{
+                    url: '/login',
+                    controller: 'TopNavbarController',
+                    templateUrl: 'views/login.html'
                 })
 
-        }])
-        .config(['$tooltipProvider', function ($tooltipProvider) {
-            $tooltipProvider.options({appendToBody: true});
         }])
         .run(["$rootScope", "$state", "$stateParams", '$window', '$location',
             function ($rootScope, $state, $stateParams, $window, $location) {
@@ -57,29 +50,12 @@
                 $rootScope.$storage = $window.localStorage;
 
                 $rootScope.app = {
-                    name: 'The College Experience',
+                    name: 'College Experience',
                     description: 'student website',
                     year: ((new Date()).getFullYear()),
-                    layout: {
-                        isFixed: true,
-                        isCollapsed: false,
-                        isBoxed: false,
-                        isRTL: false,
-                        horizontal: false,
-                        isFloat: false,
-                        asideHover: false,
-                        theme: null
-                    },
                     version: "v0.0.1",
-                    useFullLayout: false,
-                    hiddenFooter: false,
-                    offsidebarOpen: false,
-                    asideToggled: false,
                     viewAnimation: 'ng-fadeInUp'
                 };
-
-                if ($location.url() != '/logout') {
-                }
 
             }]);
 

@@ -1,0 +1,51 @@
+.middle{
+    height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20em;
+    align-items: center;
+}
+#topnavbar{
+    background-color:#425563;
+    border:0;
+    width:100%;
+    margin:0;
+}
+#app-name{
+    padding:12% 0;
+    font-size: 22px;
+}
+.content-wrapper{
+    padding:0 10%;
+}
+/*.topnavbar .navbar-header{
+    padding: 0;
+}
+.topnavbar .navbar-nav > li > a,
+.topnavbar .navbar-nav > .open > a{
+    color: white;
+}
+
+.topnavbar .navbar-nav > li > a:hover,
+.topnavbar .navbar-nav > .open > a:hover,
+.topnavbar .navbar-nav > li > a:focus,
+.topnavbar .navbar-nav > .open > a:focus{
+    color: #C6C9CA;
+}
+
+.topnavbar-wrapper{
+    width:100%;
+    position:fixed;
+    top:0;
+    z-index: 121;
+}
+
+.content-wrapper{
+    margin-bottom: -120px;
+}
+.content-wrapper:after{
+    display:block;
+}
+.footer-wrapper, .content-wrapper:after{
+    height:120px;
+}*/

@@ -25,7 +25,8 @@ module.exports = function(grunt) {
             },
             css: {
                 src: [
-                    'app/public/assets/css/style.css'
+                    'app/public/assets/css/style.css',
+                    'app/public/assets/css/bootstrap.css'
                 ],
                 dest: 'build/app/assets/css/built.css'
             }
@@ -203,7 +204,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-env');
 
     //Concat js and css files
-    grunt.registerTask('build-local', [
+    grunt.registerTask('build', [
         'clean',
         'env:local',
         'concat',
