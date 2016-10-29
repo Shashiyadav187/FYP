@@ -3,8 +3,8 @@
     <h1><span class="fa fa-sign-in"></span> Log In</h1>
     <form method="post" action="/api/users/login">
         <div class="form-group">
-            <label class="control-label">Username</label>
-            <input type="text" name="username" class="form-control" required/>
+            <label class="control-label">Email</label>
+            <input type="text" name="email" class="form-control" required/>
         </div>
         <div class="form-group">
             <label class="control-label">Password</label>
@@ -16,6 +16,7 @@
     <hr>
 
     <!--<p>Need an account? <a href="/signup">Signup</a></p>-->
+    <a href="/api/users/auth/facebook" class="btn fb-button"><span class="fa fa-facebook"></span>  login with facebook</a>
 
 </div>
 <!--

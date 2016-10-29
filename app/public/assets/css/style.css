@@ -18,6 +18,14 @@
 .content-wrapper{
     padding:0 10%;
 }
+
+.fb-button{
+    background-color: #3b5998;
+    color:white;
+}
+.fb-button:hover{
+    background-color:#405e9e;
+}
 /*.topnavbar .navbar-header{
     padding: 0;
 }

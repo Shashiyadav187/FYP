@@ -4,11 +4,11 @@ var crypto = require('crypto');
 var passportLocalMongoose = require('passport-local-mongoose');
 
 var userSchema = new Schema({
-    firstName: String,
+    facebookID: String,
+    firstName:String,
     lastName: String,
-    email: String,
-    username: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
+    email:    String,
+    password: String,
     admin: Boolean,
     created_at: Date,
     updated_at: Date
