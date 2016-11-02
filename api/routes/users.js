@@ -12,6 +12,7 @@ var auth = jwt({
 var router = express.Router();
 
 router.use( function(req, res, next) {
+    res.locals.login = req.isAuthenticated();
     return next();
 
 });
