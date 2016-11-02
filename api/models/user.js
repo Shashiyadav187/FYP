@@ -1,26 +1,25 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var crypto = require('crypto');
+var bcrypt   = require('bcrypt-nodejs');
 var passportLocalMongoose = require('passport-local-mongoose');
 
 var userSchema = new Schema({
-    firstName: String,
+    facebookID: String,
+    firstName:String,
     lastName: String,
-    email: String,
-    username: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    admin: Boolean,
-    created_at: Date,
-    updated_at: Date
+    email:    String,
+    password: String,
+    admin: {type: Boolean, default: false}
 });
 
-userSchema.methods.setPassword = function(password){
-    this.salt = crypto.randomBytes(16).toString('hex');
-    this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
+// generating a hash
+userSchema.methods.generateHash = function(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
-userSchema.methods.validPassword = function(password){
-    return ( this.password === password );
+// checking if password is valid
+userSchema.methods.validPassword = function(password) {
+    return bcrypt.compareSync(password, this.password);
 };
 
 userSchema.plugin(passportLocalMongoose);

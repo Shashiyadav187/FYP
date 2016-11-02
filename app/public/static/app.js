@@ -40,6 +40,11 @@
                     controller: 'TopNavbarController',
                     templateUrl: 'views/login.html'
                 })
+                .state('signup',{
+                    url: '/signup',
+                    controller: 'SignupController',
+                    templateUrl: 'views/signup.html'
+                })
 
         }])
         .run(["$rootScope", "$state", "$stateParams", '$window', '$location',
