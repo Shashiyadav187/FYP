@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var crypto = require('crypto');
+var bcrypt   = require('bcrypt-nodejs');
 var passportLocalMongoose = require('passport-local-mongoose');
 
 var userSchema = new Schema({
@@ -9,18 +9,17 @@ var userSchema = new Schema({
     lastName: String,
     email:    String,
     password: String,
-    admin: Boolean,
-    created_at: Date,
-    updated_at: Date
+    admin: {type: Boolean, default: false}
 });
 
-userSchema.methods.setPassword = function(password){
-    this.salt = crypto.randomBytes(16).toString('hex');
-    this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
+// generating a hash
+userSchema.methods.generateHash = function(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
-userSchema.methods.validPassword = function(password){
-    return ( this.password === password );
+// checking if password is valid
+userSchema.methods.validPassword = function(password) {
+    return bcrypt.compareSync(password, this.password);
 };
 
 userSchema.plugin(passportLocalMongoose);

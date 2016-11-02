@@ -28,7 +28,7 @@ router.route('/', auth)
             res.json(users);
         });
     })
-    // Create a new User
+    /*// Create a new User
     .post(function(req, res) {
         var user = new User();
         user.firstName = req.body.firstName;
@@ -47,7 +47,7 @@ router.route('/', auth)
             }
         });
     })
-
+*/
     .get(function(req, res){
         //process.nextTick(function(){
         passport.authenticate('local', function(err, user, info){
@@ -96,6 +96,81 @@ passport.use('local', new LocalStrategy({
         });
     }
 ));
+passport.use('local-signup', new LocalStrategy({
+        // by default, local strategy uses username and password, we will override with email
+        usernameField : 'email',
+        passwordField : 'password',
+        passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
+    },
+    function(req, email, password, done) {
+        if (email)
+            email = email.toLowerCase(); // Use lower-case e-mails to avoid case-sensitive e-mail matching
+
+        // asynchronous
+        //process.nextTick(function() {
+        // if the user is not already logged in:
+        if (!req.user) {
+            User.findOne({ 'email' :  email }, function(err, user) {
+                // if there are any errors, return the error
+                if (err)
+                    return done(err);
+
+                // check to see if theres already a user with that email
+                if (user) {
+                    return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+                } else {
+
+                    // create the user
+                    var newUser            = new User();
+
+                    newUser.firstName = req.body.firstName;
+                    newUser.lastName = req.body.lastName;
+                    newUser.email    = email;
+                    newUser.password = newUser.generateHash(password);
+
+                    newUser.save(function(err) {
+                        if (err)
+                            return done(err);
+
+                        return done(null, newUser);
+                    });
+                }
+
+            });
+            // if the user is logged in but has no local account...
+        } else if ( !req.user.local.email ) {
+            // ...presumably they're trying to connect a local account
+            // BUT let's check if the email used to connect a local account is being used by another user
+            User.findOne({ 'local.email' :  email }, function(err, user) {
+                if (err)
+                    return done(err);
+
+                if (user) {
+                    return done(null, false, req.flash('loginMessage', 'That email is already taken.'));
+                    // Using 'loginMessage instead of signupMessage because it's used by /connect/local'
+                } else {
+                    var userB = req.user;
+                    userB.firstName = firstName;
+                    userB.lastName = lastName;
+                    userB.email = email;
+                    userB.password = userB.generateHash(password);
+                    userB.save(function (err) {
+                        if (err)
+                            return done(err);
+
+                        return done(null,userB);
+                    });
+                }
+            });
+        } else {
+            // user is logged in and already has a local account. Ignore signup. (You should log out before trying to create a new account, user!)
+            return done(null, req.user);
+        }
+
+        //});
+
+    }));
+
 passport.use(new FacebookStrategy({
 
         clientID: '1867416510155339',
@@ -216,6 +291,13 @@ router.route('/login')
                 failureFlash: true}
         )
     );
+
+router.route('/signup')
+    .post(passport.authenticate('local-signup', {
+        successRedirect : '/#/login', 
+        failureRedirect : '/#/signup',
+        failureFlash : true
+    }));
 
 router.route('/auth/facebook')
     .get(passport.authenticate('facebook', {scope: 'email'}));
