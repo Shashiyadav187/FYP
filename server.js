@@ -18,6 +18,8 @@ var User = require('./api/models/user');
 // API Routes
 var api = require('./api/routes/api');
 var users = require('./api/routes/users');
+var tests = require('./api/routes/tests');
+var questions =require('./api/routes/questions');
 
 app.use(express.static(__dirname + '/app'));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -66,6 +68,8 @@ app.use('/', web);
 // Register API routes
 app.use('/api/', api);
 app.use('/api/users/', users);
+app.use('/api/tests/', tests);
+app.use('/api/questions/', questions);
 
 //Serve app
 http.createServer(app).listen(config.web.port);

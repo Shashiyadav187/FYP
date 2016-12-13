@@ -45,6 +45,26 @@
                     controller: 'SignupController',
                     templateUrl: 'views/signup.html'
                 })
+                .state('app.testMenu',{
+                    url: '/testMenu',
+                    controller: 'TestMenuController',
+                    templateUrl: 'views/testMenu.html'
+                })
+                .state('app.careersTest',{
+                    url: '/careersTest',
+                    controller: 'CareersTestController',
+                    templateUrl: 'views/careersTest.html'
+                })
+                .state('app.logicalTest',{
+                    url: '/logicalTest',
+                    controller: 'LogicalTestController',
+                    templateUrl: 'views/logicalTest.html'
+                })
+                .state('app.numericalTest',{
+                    url: '/numericalTest',
+                    controller: 'NumericalTestController',
+                    templateUrl: 'views/numericalTest.html'
+                })
 
         }])
         .run(["$rootScope", "$state", "$stateParams", '$window', '$location',

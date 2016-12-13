@@ -31,6 +31,24 @@
 .fb-button:hover{
     background-color:#405e9e;
 }
+.main-menu-button{
+    padding-top:10%;
+    width:100%;
+    height: 200px;
+    border-radius: 2%;
+    border-style: solid;
+    text-align: center;
+    -webkit-transition-duration: 0.5s;
+}
+.main-menu-button:hover{
+    background-color: #425563;
+    color:white;
+    border-style: none;
+    content: 'Answer questions based on preferences to determine which are of work is best suited to your internests and personality';
+}
+.space{
+    padding-top:20px;
+}
 /*.topnavbar .navbar-header{
     padding: 0;
 }

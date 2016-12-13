@@ -14,14 +14,7 @@ module.exports = function(){
                     host: 'localhost',
                     database: 'college',
                     port: '27017'
-                }/*,
-                mail:{
-                    sender_email: 'thumphries5@hotmail.com',
-                    receiver_email: 'thumphries5@hotmail.com',
-                    it_admin: 'thumphries5@hotmail.com',
-                    host: 'smtp3.hpe.com',
-                    port: 25
-                }*/
+                }
             }
     }
 };
