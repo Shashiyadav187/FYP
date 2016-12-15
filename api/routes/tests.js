@@ -86,16 +86,15 @@ router.route('/current')
     });
 
 //Instantiating the Model - An instance of Model represents a mongodb document
-/*
-var question1 = new Question({
-    title: "Question1",
+/*var question1 = new Question({
+    title: "How big is the moon",
     options: {
-        option1 : "1",
-        option2 : "2",
-        option3 : "3",
-        option4 : "4"
+        option1 : "1000m",
+        option2 : "2000m",
+        option3 : "3000m",
+        option4 : "4000m"
     },
-    answer: "AnswerABCD"
+    answer: "none"
 });
 question1.save(function(err, res){
     if (err)
@@ -104,14 +103,14 @@ question1.save(function(err, res){
     console.log(res, 'question1 created');
 });
 var question2 = new Question({
-    title: "Something",
+    title: "How much is the moon",
     options: {
-        option1 : "1r134gg43",
-        option2 : "234",
-        option3 : "334gtf4f",
-        option4 : "4245g"
+        option1 : "5er",
+        option2 : "10er",
+        option3 : "20",
+        option4 : "more"
     },
-    answer: "AnswerehgrtgABCD"
+    answer: "option4"
 });
 question2.save(function(err, res){
     if (err)
@@ -121,9 +120,9 @@ question2.save(function(err, res){
 });
 
  var test1 = new Test({
- name:"Careers",
+ name:"Moon",
  duration: 10,
- number_questions: "10",
+ number_questions: "2",
      questions: ({
          question: [question1, question2]
      })
@@ -133,9 +132,8 @@ question2.save(function(err, res){
  test1.save(function(err, res){
  if (err)
  res.send(err);
- console.log(res, 'test1 created');
- });
-*/
+ console.log(res, 'test created');
+ });*/
 
 /*Test.findOne({}).populate('questions').exec(function(err, Test) {
     if(err)

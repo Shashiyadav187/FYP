@@ -5,7 +5,8 @@
         'ngAnimate',
         'ngResource',
         'ui.bootstrap',
-        'ui.router'
+        'ui.router',
+        'ng-backstretch'
     ])
         .config(['$stateProvider', '$locationProvider', '$urlRouterProvider', function ($stateProvider, $locationProvider, $urlRouterProvider) {
             $locationProvider.html5Mode(false);
@@ -37,7 +38,7 @@
                 })
                 .state('login',{
                     url: '/login',
-                    controller: 'TopNavbarController',
+                    controller: 'LoginController',
                     templateUrl: 'views/login.html'
                 })
                 .state('signup',{
