@@ -28,26 +28,7 @@ router.route('/', auth)
             res.json(users);
         });
     })
-    /*// Create a new User
-    .post(function(req, res) {
-        var user = new User();
-        user.firstName = req.body.firstName;
-        user.lastName = req.body.lastName;
-        user.email = req.body.email;
-        user.admin = req.body.admin;
 
-        user.setPassword(req.body.password);
-
-        user.save(function(err) {
-            if (err) {
-                res.send(err);
-            } else {
-                var token = user.generateJwt();
-                res.json({ status:200, message: 'user created!', 'token created':token});
-            }
-        });
-    })
-*/
     .get(function(req, res){
         //process.nextTick(function(){
         passport.authenticate('local', function(err, user, info){
@@ -329,7 +310,6 @@ router.route('/current')
  firstName: 'Test',
  lastName: 'McTester',
  email: 'test',
- username: 'test',
  password: 'test',
  admin: false,
  });

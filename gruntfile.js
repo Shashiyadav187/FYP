@@ -43,6 +43,12 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         flatten: true,
+                        src: ['app/public/components/**/**/*.html'],
+                        dest: 'build/app/views/'
+                    },
+                    {
+                        expand: true,
+                        flatten: true,
                         src: ['app/public/static/app.html'],
                         dest: 'build/app/views/'
                     }
@@ -85,10 +91,6 @@ module.exports = function(grunt) {
                     },
                     {
                         src: ['config.js'],
-                        dest: 'build/'
-                    },
-                    {
-                        src: ['mailer.js'],
                         dest: 'build/'
                     }
                 ]

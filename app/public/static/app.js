@@ -5,7 +5,8 @@
         'ngAnimate',
         'ngResource',
         'ui.bootstrap',
-        'ui.router'
+        'ui.router',
+        'ng-backstretch'
     ])
         .config(['$stateProvider', '$locationProvider', '$urlRouterProvider', function ($stateProvider, $locationProvider, $urlRouterProvider) {
             $locationProvider.html5Mode(false);
@@ -37,13 +38,33 @@
                 })
                 .state('login',{
                     url: '/login',
-                    controller: 'TopNavbarController',
+                    controller: 'LoginController',
                     templateUrl: 'views/login.html'
                 })
                 .state('signup',{
                     url: '/signup',
                     controller: 'SignupController',
                     templateUrl: 'views/signup.html'
+                })
+                .state('app.testMenu',{
+                    url: '/testMenu',
+                    controller: 'TestMenuController',
+                    templateUrl: 'views/testMenu.html'
+                })
+                .state('app.careersTest',{
+                    url: '/careersTest',
+                    controller: 'CareersTestController',
+                    templateUrl: 'views/careersTest.html'
+                })
+                .state('app.logicalTest',{
+                    url: '/logicalTest',
+                    controller: 'LogicalTestController',
+                    templateUrl: 'views/logicalTest.html'
+                })
+                .state('app.numericalTest',{
+                    url: '/numericalTest',
+                    controller: 'NumericalTestController',
+                    templateUrl: 'views/numericalTest.html'
                 })
 
         }])

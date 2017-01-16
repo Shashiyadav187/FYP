@@ -6,19 +6,19 @@
             </a>
         </div>
         <ul class="nav navbar-nav navbar-right">
-            <li>
+            <li ng-show="user.firstName!=null">
                 <a title="profile">
                     <span class="fa fa-user fa-1x"></span>
                     Welcome {{user.firstName}}
                 </a>
             </li>
-            <li ng-hide="">
+            <li ng-show="user.firstName!=null">
                 <a title="Logout" href="api/users/logout">
                     <span class="fa fa-sign-out fa-1x" aria-hidden="true"></span>
                     Logout
                 </a>
             </li>
-            <li ng-hide="">
+            <li ng-show="user.firstName==null">
                 <a title="Login" href="/#/login">
                     <span class="fa fa-sign-in fa-1x" aria-hidden="true"></span>
                     Login
