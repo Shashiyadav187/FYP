@@ -94,7 +94,8 @@ router.route('/current')
         option3 : "3000m",
         option4 : "4000m"
     },
-    answer: "none"
+    answer: "option1",
+    selected: false
 });
 question1.save(function(err, res){
     if (err)
@@ -110,7 +111,8 @@ var question2 = new Question({
         option3 : "20",
         option4 : "more"
     },
-    answer: "option4"
+    answer: "option4",
+    selected: false
 });
 question2.save(function(err, res){
     if (err)
