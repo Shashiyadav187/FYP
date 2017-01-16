@@ -203,7 +203,7 @@ button.btn:active:focus, button.btn.active:focus { outline: 0; opacity: 0.6; bac
 ::selection { background: #de995e; color: #fff; text-shadow: none; }
 /*----------------------------------------------- Login Page ------------------------------------------------------------------------*/
 /*----------------------------------------------- Test Page -------------------------------------------------------------------------*/
-.test-title{
+/*.test-title{
     text-align: center;
     size: 18px;
     padding-top: 4%;
@@ -235,14 +235,23 @@ button.btn:active:focus, button.btn.active:focus { outline: 0; opacity: 0.6; bac
 }
 .options-label{
     font-size: 15px;
-}
+}*/
 .right{
     margin-left:90%;
     margin-bottom:20%;
 }
+.answers{
+    padding: 15px 20px;
+    border-radius: 10px;
+    border: 1px solid #bbb;
+}
+.answers:hover{
+    cursor: pointer;
+}
 /*----------------------------------------------- Test Page -------------------------------------------------------------------------*/
 .footer{
 }
+
 /*.topnavbar .navbar-header{
     padding: 0;
 }

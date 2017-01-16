@@ -85,6 +85,13 @@ router.route('/current')
         res.json( { test: req.test });
     });
 
+router.route('/create')
+    .post(function(req,res){
+
+        }
+
+    );
+
 //Instantiating the Model - An instance of Model represents a mongodb document
 /*var question1 = new Question({
     title: "How big is the moon",
@@ -95,7 +102,7 @@ router.route('/current')
         option4 : "4000m"
     },
     answer: "option1",
-    selected: false
+    selected: null
 });
 question1.save(function(err, res){
     if (err)
@@ -112,7 +119,7 @@ var question2 = new Question({
         option4 : "more"
     },
     answer: "option4",
-    selected: false
+    selected: null
 });
 question2.save(function(err, res){
     if (err)
