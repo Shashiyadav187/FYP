@@ -42,7 +42,7 @@
     background-color: #425563;
     color:white;
     border-style: none;
-    content: 'Answer questions based on preferences to determine which are of work is best suited to your internests and personality';
+    cursor: pointer;
 }
 .space{
     padding-top:20px;
@@ -247,6 +247,21 @@ button.btn:active:focus, button.btn.active:focus { outline: 0; opacity: 0.6; bac
 }
 .answers:hover{
     cursor: pointer;
+}
+.image-answers{
+    cursor: pointer;
+    height: 350px;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.image-answers img{
+    width: 100%;
+    height: auto;
+}
+.image-selected{
+    border: 3px solid #56afdc;
 }
 /*----------------------------------------------- Test Page -------------------------------------------------------------------------*/
 .footer{

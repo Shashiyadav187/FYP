@@ -93,16 +93,22 @@ router.route('/create')
     );
 
 //Instantiating the Model - An instance of Model represents a mongodb document
-/*var question1 = new Question({
-    title: "How big is the moon",
-    options: {
-        option1 : "1000m",
-        option2 : "2000m",
-        option3 : "3000m",
-        option4 : "4000m"
-    },
+
+var question1 = new Question({
+    title: "Test images",
+    options: [
+ {
+ option: "http://www.planwallpaper.com/static/images/desktop-year-of-the-tiger-images-wallpaper.jpg",
+ },{
+ option: "http://www.w3schools.com/css/trolltunga.jpg",
+ },{
+ option: "http://assets.barcroftmedia.com.s3-website-eu-west-1.amazonaws.com/assets/images/recent-images-11.jpg",
+ },{
+ option: "http://i164.photobucket.com/albums/u8/hemi1hemi/COLOR/COL9-6.jpg",
+ }],
     answer: "option1",
-    selected: null
+    selected: null,
+    type: "image"
 });
 question1.save(function(err, res){
     if (err)
@@ -110,15 +116,21 @@ question1.save(function(err, res){
 
     console.log(res, 'question1 created');
 });
+/*
 var question2 = new Question({
     title: "How much is the moon",
-    options: {
-        option1 : "5er",
-        option2 : "10er",
-        option3 : "20",
-        option4 : "more"
-    },
+    options: [
+ {
+ option: "5er",
+ },{
+ option: "10er",
+ },{
+ option: "50",
+ },{
+ option: "Probably more",
+ }],
     answer: "option4",
+    type: "text",
     selected: null
 });
 question2.save(function(err, res){
@@ -142,7 +154,8 @@ question2.save(function(err, res){
  if (err)
  res.send(err);
  console.log(res, 'test created');
- });*/
+ });
+*/
 
 /*Test.findOne({}).populate('questions').exec(function(err, Test) {
     if(err)
