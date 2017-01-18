@@ -4,12 +4,12 @@ var Question = require('./question');
 
 var testSchema = new Schema({
     name: String,
-    duration: Number,
-    number_questions: Number,
-    questions: [{
-        question: {type: Schema.Types.Object, ref: 'Question'}
-    }],
-    result: Number
+    duration: {type: Number, default: null},
+    questions: [
+        question= {type: Schema.Types.Object, ref: 'Question'}
+    ],
+    result: Number,
+    answers: [Number]
 });
 
 

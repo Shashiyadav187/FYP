@@ -250,14 +250,15 @@ button.btn:active:focus, button.btn.active:focus { outline: 0; opacity: 0.6; bac
 }
 .image-answers{
     cursor: pointer;
-    height: 350px;
+    height: 300px;
     width: 100%;
-    overflow: hidden;
     border-radius: 10px;
     margin-bottom: 20px;
 }
 .image-answers img{
-    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 35%;
     height: auto;
 }
 .image-selected{
@@ -265,6 +266,9 @@ button.btn:active:focus, button.btn.active:focus { outline: 0; opacity: 0.6; bac
 }
 /*----------------------------------------------- Test Page -------------------------------------------------------------------------*/
 .footer{
+    position: relative;
+    height: 3em;
+    border-bottom: 3em;
 }
 
 /*.topnavbar .navbar-header{

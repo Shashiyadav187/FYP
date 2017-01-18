@@ -66,6 +66,11 @@
                     controller: 'NumericalTestController',
                     templateUrl: 'views/numericalTest.html'
                 })
+                .state('app.results',{
+                    url: '/results',
+                    controller: 'ResultsController',
+                    templateUrl: 'views/results.html'
+                })
 
         }])
         .run(["$rootScope", "$state", "$stateParams", '$window', '$location',
