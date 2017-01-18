@@ -54,7 +54,7 @@
                 .state('app.careersTest',{
                     url: '/careersTest',
                     controller: 'CareersTestController',
-                    templateUrl: 'views/careersTest.html'
+                    templateUrl: 'views/testTemplate.html'
                 })
                 .state('app.logicalTest',{
                     url: '/logicalTest',
