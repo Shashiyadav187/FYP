@@ -71,6 +71,11 @@
                     controller: 'ResultsController',
                     templateUrl: 'views/results.html'
                 })
+                .state('app.profile', {
+                    url: '/profile',
+                    controller: 'ProfileController',
+                    templateUrl: 'views/profile.html'
+                })
 
         }])
         .run(["$rootScope", "$state", "$stateParams", '$window', '$location',

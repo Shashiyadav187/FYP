@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt   = require('bcrypt-nodejs');
 var passportLocalMongoose = require('passport-local-mongoose');
+var Result = require('./result.js');
 
 var userSchema = new Schema({
     facebookID: String,
@@ -9,7 +10,8 @@ var userSchema = new Schema({
     lastName: String,
     email:    String,
     password: String,
-    admin: {type: Boolean, default: false}
+    admin: {type: Boolean, default: false},
+    results: [{type: Schema.Types.Object, ref: 'Result'}]
 });
 
 // generating a hash

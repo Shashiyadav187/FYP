@@ -1,0 +1,28 @@
+<h1 class="text-center">{{top}}</h1>
+<div class="container">
+    <div class="col-sm-6 col-sm-offset-3">
+        <div class="row bg-info">
+            <ul class="text-center list-unstyled">
+                <li>User profile photo here</li>
+                <li>First Name: {{user.firstName}} {{user.lastName}}</li>
+                <li>Email: {{user.email}}</li>
+            </ul>
+        </div>
+        <table class="table-responsive table-striped">
+            <thead class="table">
+                <tr>
+                    <th>Test Name</th>
+                    <th>Score</th>
+                    <th>Date Completed</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{user.test.name}}</td>
+                <td>{{user.test.score}}</td>
+                <td>{{user.test.completed}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

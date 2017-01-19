@@ -5,8 +5,8 @@
                 College Experience
             </a>
         </div>
-        <ul class="nav navbar-nav navbar-right">
-            <li ng-show="user.firstName!=null">
+        <ul class="nav navbar-nav navbar-right button-hover">
+            <li ng-show="user.firstName!=null" ng-click="userProfile()">
                 <a title="profile">
                     <span class="fa fa-user fa-1x"></span>
                     Welcome {{user.firstName}}

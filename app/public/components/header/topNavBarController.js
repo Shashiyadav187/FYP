@@ -1,8 +1,8 @@
 (function(){
     "use strict";
 
-    App.controller('TopNavbarController', ['$scope','$state','$http',
-        function($scope, $state, $http) {
+    App.controller('TopNavbarController', ['$scope','$state','UserService',
+        function($scope, $state, UserService) {
 
             $scope.user= null;
 
@@ -12,23 +12,21 @@
                 $state.go('login');
             };
 
-            $scope.getUser = function () {
-                $http({
-                    method: 'GET',
-                    url: '/api/users/current'
-                }).then(function successCallback(response) {
-                    console.log("Success");
-                    console.log(response);
-                    $scope.loggedIn = true;
-                    $scope.user = response.data.user;
-                }, function errorCallback(response) {
-                    console.log("Error");
-                    console.log(response);
-                    $scope.user = null;
-                });
-                return $scope.loggedIn = true;
+            $scope.getUser = function(){
+                UserService.getCurrentUser()
+                    .then(function (res) {
+                        console.log("Success----------------");
+                        $scope.user = res.data.user;
+                    }, function (err) {
+                        console.log('Get user Error ' + err);
+                        $scope.user = null;
+                    })
             };
             $scope.getUser();
+
+            $scope.userProfile = function(){
+                $state.go('app.profile');
+            }
 
         }]);
 })();

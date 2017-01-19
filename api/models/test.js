@@ -6,10 +6,11 @@ var testSchema = new Schema({
     name: String,
     duration: {type: Number, default: null},
     questions: [
-        question= {type: Schema.Types.Object, ref: 'Question'}
+        question = {type: Schema.Types.Object, ref: 'Question'}
     ],
     result: Number,
-    answers: [Number]
+    answers: [Number],
+    /*time : { type : Date, default: Date.now }*/
 });
 
 

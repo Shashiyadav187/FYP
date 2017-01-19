@@ -2,13 +2,17 @@
     <div ng-show="t.name == 'Spatial Reasoning'">
 
         <div class="test-title">
-            <h2>{{ t.name }}</h2>
+            <h3>{{ t.name }}</h3>
+            <!--<timer interval="1000"  countdown="300">{{countdown}}</timer>-->
         </div>
 
         <div class="row" ng-hide="resultsView">
+            <h3>
+                <timer countdown="300" autostart="true" max-time-unit="'second'" interval="1000">{{mminutes}} minute{{minutesS}}, {{sseconds}} second{{secondsS}}</timer>
+            </h3>
             <div class="row">
                 <div class="col-xs-8">
-                    <h3>Progress:</h3>
+                    <h4>Progress:</h4>
                     <div ng-repeat="q in t.questions">
                         <div class="btn-toolbar">
                             <button class="btn"
@@ -21,7 +25,7 @@
                 </div>
                 <div class="col-xs-4">
                     <div class="row">
-                        <h3>Legend:</h3>
+                        <h4>Legend:</h4>
                         <div class="col-sm-4">
                             <button class="btn btn-info">
                             </button>
@@ -88,9 +92,10 @@
         </div>
         <div ng-show="resultsView">
             <div class="row">
-                <h1>{{numCorrectAnswers}}/{{length}} Correct!</h1>
+                <h3>{{numCorrectAnswers}}/{{length}} Correct!</h3>
+                <h3>Percentage: {{percentage}}%</h3>
                 <div class="col-xs-8">
-                    <h3>Progress:</h3>
+                    <h4>Progress:</h4>
                     <div ng-repeat="q in t.questions">
                         <div class="btn-toolbar">
                             <button class="btn"
@@ -103,7 +108,7 @@
                 </div>
                 <div class="col-xs-4">
                     <div class="row">
-                        <h3>Legend:</h3>
+                        <h4>Legend:</h4>
                         <div class="col-sm-4">
                             <button class="btn btn-success">
                             </button>
@@ -151,45 +156,10 @@
                             </div>
                         </div>
                     </div>
-                    <!--
-                                        <div class="btn btn-warning" ng-click="next()">Continue</div>
-                    -->
+                    <div class="btn btn-primary" ng-click="save()">Save Results!</div>
+                    <div class="btn btn-warning" ng-click="finish()">Don't Save and Return</div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!--
-<div backstretch backstretch-images="'./assets/img/careers.jpg'"></div>
--->
-<!--<div class="quiz-section">
-
-    <header>
-        <div class="quiz-title">
-            <h1>Quiz: &nbsp; '{{ quizName }}'</h1>
-        </div>
-
-    </header>
-
-    <div class="challenge" >
-
-        <div class="question">
-            <h3>{{ challenge.index }}.) &nbsp; {{ challenge.question }}</h3>
-
-            <div ng-bind-html="challenge.details" class="details"></div>
-        </div>
-
-        <div ng-repeat="choice in challenge.choices" class="repeat-wrap">
-            <div class="input-group input-radio">
-                <input type="radio" name="choice" ng-model="challenge.selected" ng-value="{{ $index }}" id="{{ $index }}">
-                <label for="{{ $index }}" class="radio-label">{{ choice }}</label>
-            </div>
-        </div>
-
-        <div class="next-action clearfix">
-            <button ng-click="next()" class="btn btn-success pull-right blue-btn">{{ btnTitle }} &nbsp; <i class="icon-chevron-right"></i></button>
-        </div>
-
-    </div>
-
-</div>-->
