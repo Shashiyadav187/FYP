@@ -104,10 +104,11 @@ passport.use('local-signup', new LocalStrategy({
                     // create the user
                     var newUser            = new User();
 
-                    newUser.firstName = req.body.firstName;
-                    newUser.lastName = req.body.lastName;
-                    newUser.email    = email;
-                    newUser.password = newUser.generateHash(password);
+                    newUser.firstName   = req.body.firstName;
+                    newUser.lastName    = req.body.lastName;
+                    newUser.email       = email;
+                    newUser.profiler    = req.body.profiler;
+                    newUser.password    = newUser.generateHash(password);
 
                     newUser.save(function(err) {
                         if (err)
@@ -134,6 +135,7 @@ passport.use('local-signup', new LocalStrategy({
                     userB.firstName = firstName;
                     userB.lastName = lastName;
                     userB.email = email;
+                    userB.profiler = profiler;
                     userB.password = userB.generateHash(password);
                     userB.save(function (err) {
                         if (err)
@@ -275,7 +277,7 @@ router.route('/login')
 
 router.route('/signup')
     .post(passport.authenticate('local-signup', {
-        successRedirect : '/#/login', 
+        successRedirect : '/#/login',
         failureRedirect : '/#/signup',
         failureFlash : true
     }));
@@ -305,6 +307,42 @@ router.route('/current')
         console.log(req.user);
         res.json( { user: req.user });
     });
+
+router.route('/:email')
+    .get(function(req, res) {
+        User.findOne({'email': req.params.email}, function(err, user) {
+            if (err)
+                res.send(err);
+
+            res.json(user);
+        });
+    })
+
+    .post(function(req, res){
+        User.findOne({'email': req.params.email}, function (err, user) {
+            if(err)
+                res.send(err);
+
+            //console.log(JSON.stringify(req.body.results) + " : r.b.r, " + user + " : just user");
+            /*res.send(user);*/
+
+            user.results.push(req.body.results);
+            user.timeStamp = Date.now();
+            console.log(Date.now());
+
+            //
+            /*var array = req.params.results;
+             array.push(user.result);
+             console.log(array);*/
+            user.save(function(err){
+                if(err)
+                    res.send(err);
+
+                res.json({message: 'User updated!'});
+            })
+        })
+    });
+
 /*
  var user1 = new User({
  firstName: 'Test',

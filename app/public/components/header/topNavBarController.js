@@ -15,7 +15,6 @@
             $scope.getUser = function(){
                 UserService.getCurrentUser()
                     .then(function (res) {
-                        console.log("Success----------------");
                         $scope.user = res.data.user;
                     }, function (err) {
                         console.log('Get user Error ' + err);

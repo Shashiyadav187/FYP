@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 var Question = require('./question');
 
 var testSchema = new Schema({
+    testId:{type: String, unique: true},
     name: String,
     duration: {type: Number, default: null},
     questions: [

@@ -4,6 +4,8 @@
         function($scope, $state, UserService){
 
             $scope.user = null;
+            $scope.results = false;
+            $scope.courses = false;
 
             $scope.top = "Profile Page";
 
@@ -15,5 +17,15 @@
                 }, function(err){
                     console.log('Error here--------' + err);
                 });
+
+            $scope.showResults = function(){
+                $scope.results = true;
+                $scope.courses = false;
+            };
+            $scope.showCourses = function(){
+                $scope.courses = true;
+                $scope.results = false;
+
+            }
         }])
 })();

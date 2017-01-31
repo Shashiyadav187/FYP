@@ -45,8 +45,9 @@ router.route('/')
         });
     });
 
-router.route('/:testName')
+router.route('/name/:testName')
     .get(function (req, res) {
+        console.log("BEMI NAME");
         Test.findOne({'name' : req.params.testName}, function(err, test){
             if(err)
                 res.send(err);
@@ -54,31 +55,31 @@ router.route('/:testName')
         });
     });
 
-router.route('/:testId')
+router.route('/id/:testId')
 // Get a single test by id
     .get(function(req, res) {
-        Test.findById(req.params.testId, function(err, test) {
+        Test.findOne({'testId' : req.params.testId}, function(err, test) {
             if (err)
                 res.send(err);
 
             res.json(test);
-        });
-    })
+        })
+    });
 
     //Get and remove one test
-    .get(function(req, res) {
-        Test.findById(req.params.testId , function(err, test) {
-            if (err)
-                res.send(err);
-
-            test.remove(function(err) {
-                if (err)
-                    res.send(err);
-
-                res.json({ status:200, message: 'tests deleted!'});
-            });
-        });
-    });
+    // .get(function(req, res) {
+    //     Test.findById(req.params.id , function(err, test) {
+    //         if (err)
+    //             res.send(err);
+    //
+    //         test.remove(function(err) {
+    //             if (err)
+    //                 res.send(err);
+    //
+    //             res.json({ status:200, message: 'tests deleted!'});
+    //         });
+    //     });
+    // });
 router.route('/current')
     .get(function(req, res){
         console.log(req.test+' hello');

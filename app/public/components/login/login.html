@@ -1,87 +1,54 @@
-<!--<div class="col-md-4 "></div>
-<div class="col-md-4">
-    <div class="col-md-2"></div>
-    &lt;!&ndash;<div class="col-md-8 middleborder">
-        <h1><span class="fa fa-sign-in"></span> Log In</h1>
-        <form method="post" action="/api/users/login">
-            <div class="form-group">
-                <label class="control-label">Email</label>
-                &lt;!&ndash;<div class="input-group margin-bottom-sm">
-    <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
-    <input class="form-control" type="text" placeholder="Email address">
-  </div>&ndash;&gt;
-                <input type="text" name="email" placeholder="Email" class="form-control" required/>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Password</label>
-                <span class=" here fa fa-lock"></span>
-                <input type="password" name="password" class="form-control" />
-            </div>
-            <input type="submit" class="btn btn-warning" value="Log In" />
-        </form>
-
-      &lt;!&ndash;<hr>&ndash;&gt;
-        <p>Need an account? <a href="/#/signup">Signup</a></p>
-        <p><a href="/api/users/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span>  login with facebook</a></p>
-        <p><a href="/auth/twitter" class="btn btn-info"><span class="fa fa-twitter"></span> login with Twitter</a></p>
-        <p><a href="/auth/google" class="btn btn-danger"><span class="fa fa-google-plus"></span> login with Google+</a></p>
-    </div>&ndash;&gt;
-    <div class="col-md-2"></div>
-</div>
-<div class="col-md-4"></div>-->
-<!--
-<footer ng-include="'views/footer.html'"></footer>-->
-
-<!---------------------------------------------------------------------------------------------------------------------------------------->
-<div class="top-content">
-
-    <div class="inner-bg">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6 col-sm-offset-3 form-box">
-                    <div class="form-top">
-                        <div class="form-top-left">
-                            <h3>College Experience</h3>
-                            <p>Enter your username and password to log on:</p>
-                        </div>
-                        <div class="form-top-right">
-                            <i class="fa fa-lock"></i>
-                        </div>
-                    </div>
-                    <div class="form-bottom">
-                        <form method="post" action="/api/users/login" class="login-form">
-                            <div class="form-group">
-                                <label class="sr-only" for="email">Email</label>
-                                <input type="text" name="email" placeholder="Email..." class="form-username form-control" id="email" required>
+<div autoscroll="false">
+        <div class="inner-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3 form-box">
+                        <div class="form-top">
+                            <div class="form-top-left">
+                                <h3>College Experience</h3>
+                                <p>Enter your username and password to log on:</p>
                             </div>
-                            <div class="form-group">
-                                <label class="sr-only" for="password">Password</label>
-                                <input type="password" name="password" placeholder="Password..." class="form-password form-control" id="password" required>
+                            <div class="form-top-right">
+                                <i class="fa fa-lock"></i>
                             </div>
-                            <button type="submit" class="btn button">Sign in!</button>
-                        </form>
+                        </div>
+                        <div class="form-bottom">
+                            <form method="post" action="/api/users/login" class="login-form">
+                                <div class="form-group">
+                                    <label class="sr-only" for="email">Email</label>
+                                    <input type="text" name="email" placeholder="Email..." class="form-username form-control" id="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="password">Password</label>
+                                    <input type="password" name="password" placeholder="Password..." class="form-password form-control" id="password" required>
+                                </div>
+                                <button type="submit" class="btn button">Sign in!</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6 col-sm-offset-3 social-login">
-                    <h3>...or login with:</h3>
-                    <div class="social-login-buttons">
-                        <a class="btn btn-link-2" href="/api/users/auth/facebook">
-                            <i class="fa fa-facebook"></i> Facebook
-                        </a>
-                        <a class="btn btn-link-2" href="#">
-                            <i class="fa fa-twitter"></i> Twitter
-                        </a>
-                        <a class="btn btn-link-2" href="#">
-                            <i class="fa fa-google-plus"></i> Google Plus
-                        </a>
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <button class="btn button" ng-click="signup()">Sign up!</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3 social-login">
+                        <h3>...or login with:</h3>
+                        <div class="social-login-buttons">
+                            <a class="btn btn-link-2" href="/api/users/auth/facebook">
+                                <i class="fa fa-facebook"></i> Facebook
+                            </a>
+                            <a class="btn btn-link-2" href="#">
+                                <i class="fa fa-twitter"></i> Twitter
+                            </a>
+                            <a class="btn btn-link-2" href="#">
+                                <i class="fa fa-google-plus"></i> Google Plus
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
+    <div backstretch backstretch-images="images" backstretch-duration="6000" backstretch-fade="3"></div>
 </div>
-
-<div backstretch backstretch-images="images" backstretch-duration="6000" backstretch-fade="3"></div>

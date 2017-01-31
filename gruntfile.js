@@ -189,7 +189,8 @@ module.exports = function(grunt) {
                 files:['*.js', 'app/**/*.*', 'api/**/*.*', '!**/built.*'],
                 tasks: ['clean', 'concat', 'bower_concat', 'replace:local', 'copy'],
                 options: {
-                    interupt: true
+                    interupt: true,
+                    livereload: true
                 }
             }
         }

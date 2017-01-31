@@ -5,7 +5,7 @@ var router = express.Router();
 
 module.exports = router;
 
-// Define the question api middleware
+// Define the result api middleware
 router.use(function(req, res, next) {
     // TODO Sanity check
     next();
@@ -15,7 +15,7 @@ router.use(function(req, res, next) {
 router.route('/')
 // Get All Questions
     .get(function(req, res){
-        Question.find(function(err, result) {
+        Result.find(function(err, result) {
             if (err)
                 res.send(err);
 

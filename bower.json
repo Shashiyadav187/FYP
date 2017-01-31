@@ -21,7 +21,8 @@
     "angular-bootstrap": "latest",
     "angular-resource": "latest",
     "angular-ui-router": "latest",
-    "timer": "latest"
+    "timer": "latest",
+    "angular-modal-service": "^0.10.1"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.3"

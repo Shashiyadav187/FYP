@@ -6,7 +6,8 @@
         'ngResource',
         'ui.bootstrap',
         'ui.router',
-        'ng-backstretch'
+        'ng-backstretch',
+        'angularModalService'
     ])
         .config(['$stateProvider', '$locationProvider', '$urlRouterProvider', function ($stateProvider, $locationProvider, $urlRouterProvider) {
             $locationProvider.html5Mode(false);
