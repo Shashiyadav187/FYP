@@ -95,39 +95,40 @@ router.route('/create')
 
 //Instantiating the Model - An instance of Model represents a mongodb document
 
-/*var question1 = new Question({
-    title: "https://www.123test.com/spatial-reasoning-test/items//item1/uitgevouwen.png",
+/*
+var question1 = new Question({
+    title: "Careers Question 1",
     options: [
  {
- option: "https://www.123test.com/spatial-reasoning-test/items/item1/goed1.png",
+ option: "option1", weight:[1,1,4,3,2],
  },{
- option: "https://www.123test.com/spatial-reasoning-test/items/item1/goed2.png",
+ option: "option2", weight:[1,2,3,4,5],
  },{
- option: "https://www.123test.com/spatial-reasoning-test/items/item1/goed3.png",
+ option: "option3", weight:[1,3,4,2,1],
  },{
- option: "https://www.123test.com/spatial-reasoning-test/items/item1/fout.png",
+ option: "option4", weight:[1,0,1,1,2],
  }],
     answer: null,
     selected: null,
-    type: "image"
+    type: "text"
 });
 question1.save(function(err, res){
     if (err)
         console.log(err);
 
     console.log(res, 'question1 created');
-});*/
-/*var question2 = new Question({
+});
+var question2 = new Question({
     title: "How much is the moon",
     options: [
  {
- option: "5er",
+ option: "5er", weight:[0,1,2,3,4],
  },{
- option: "10er",
+ option: "10er", weight:[1,2,3,4,5],
  },{
- option: "50",
+ option: "50", weight:[1,1,4,3,2],
  },{
- option: "Probably more",
+ option: "Probably more", weight:[1,1,4,3,2],
  }],
     answer: "option4",
     type: "text",
@@ -138,8 +139,9 @@ question2.save(function(err, res){
         console.log(err);
 
     console.log(res, 'question2 created');
-});*/
+});
 
+*/
 
 /*
 var question1 = new Question({
@@ -362,23 +364,23 @@ question10.save(function(err, res){
 
     console.log(res, 'Q10 created');
 });
+ */
+/* var test1 = new Test({
+    name:"Careers Test",
+    duration: null,
+    answers: [],
+    questions: {
+        question: [question1, question2]
+    }
+});
 
- var test1 = new Test({
- name:"Spatial Reasoning",
- duration: null,
- answers: [1,0,2,2,0,3,1,3,2,0],
-     questions: {
-         question: [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10]
-     }
- });
+//Saving the model instance to the DB
+test1.save(function(err, res){
+    if (err)
+        res.send(err);
+    console.log(res, 'spatial test created');
+});*/
 
- //Saving the model instance to the DB
- test1.save(function(err, res){
- if (err)
- res.send(err);
- console.log(res, 'spatial test created');
- });
-*/
 
 
 

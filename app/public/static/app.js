@@ -52,20 +52,25 @@
                     controller: 'TestMenuController',
                     templateUrl: 'views/testMenu.html'
                 })
-                .state('app.careersTest',{
-                    url: '/careersTest',
-                    controller: 'CareersTestController',
+                .state('app.spatialTest',{
+                    url: '/spatialTest',
+                    controller: 'SpatialTestController',
                     templateUrl: 'views/testTemplate.html'
                 })
                 .state('app.logicalTest',{
                     url: '/logicalTest',
                     controller: 'LogicalTestController',
-                    templateUrl: 'views/logicalTest.html'
+                    templateUrl: 'views/testTemplate.html'
+                })
+                .state('app.logicalTest',{
+                    url: '/logicalTest',
+                    controller: 'LogicalTestController',
+                    templateUrl: 'views/testTemplate.html'
                 })
                 .state('app.numericalTest',{
                     url: '/numericalTest',
                     controller: 'NumericalTestController',
-                    templateUrl: 'views/numericalTest.html'
+                    templateUrl: 'views/testTemplate.html'
                 })
                 .state('app.results',{
                     url: '/results',

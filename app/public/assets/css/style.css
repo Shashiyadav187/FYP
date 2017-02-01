@@ -29,6 +29,7 @@
 .fb-button:hover{
     background-color:#405e9e;
 }
+/*----------------------------------------------- Main Menu -------------------------------------------------------------------------*/
 .main-menu-button{
     padding-top:10%;
     width:100%;
@@ -53,25 +54,42 @@
 .button-hover{
     cursor: pointer;
 }
-/*----------------------------------------------- Main Menu -------------------------------------------------------------------------*/
+.courses-section{
+    background-color: #71AAAB;
+    height: 500px;
+}
 .test-area{
     width:100%;
-    height: 50%;
+    height: 400px;
     cursor: pointer;
     overflow: hidden;
 }
 .break{
     margin-bottom: 250px;
+
 }
 .test-area img{
-    margin-top: 5%;
     width: 100%;
-    height: 50%;
+    height: 400px;
     opacity: 0.8;
     position: absolute;
 }
 .infront{
     position: relative;
+    color: white;
+    -webkit-text-stroke: 1px black;
+    font-weight: bolder;
+    margin-top: -150px;
+    cursor: pointer;
+    font-size: 40px;
+}
+.another-area{
+    padding-top: 60px;
+    height:250px;
+    width: 100%;
+    overflow: hidden;
+    background-color: lightblue;
+
 }
 
 /*----------------------------------------------- Main Menu -------------------------------------------------------------------------*/
@@ -323,9 +341,11 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
 }
 /*----------------------------------------------- Profile Page -------------------------------------------------------------------------*/
 .footer{
+    padding-top: 50px;
+    margin-bottom: -100px;
     position: relative;
     height: 3em;
-    border-bottom: 3em;
+    text-align: center;
 }
 
 /*.topnavbar .navbar-header{
