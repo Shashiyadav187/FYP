@@ -6,10 +6,5 @@
 
             $scope.displayMessage = "Hello Results Page";
 
-            $scope.display = function(){
-                console.log("Hello and test the results");
-            };
-
-            $scope.display();
         }]);
 })();

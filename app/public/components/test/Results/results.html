@@ -1,0 +1,12 @@
+<div ng-controller="ResultsController">
+    <h1>{{displayMessage}}</h1>
+    <div> {{array}}</div>
+
+    <div class="col-sm-8 col-sm-offset-2">
+        <canvas class="chart chart-bar" chart-data="data" chart-labels="labels"
+                 chart-click="onClick" chart-options="options"></canvas>
+    </div>
+    <div class="col-sm-2"></div>
+
+
+</div>

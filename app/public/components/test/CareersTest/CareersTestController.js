@@ -12,6 +12,8 @@
             $scope.error = false;
             $scope.finished = false;
             $scope.accessQuestion = [];
+            $scope.array = [];
+
 
             $scope.getTests = function(){
                 TestService.getTests()
@@ -82,33 +84,48 @@
                 $scope.setActiveQuestion();
             };
 
+            $scope.defineResult = function(currentAnswer){
+                var sectors = {
+                    "it":0,
+                    "construction":0,
+                    "healthcare":0,
+                    "business":0,
+                    "arts":0
+                };
+
+                sectors.it+=currentAnswer.weight[0];
+                sectors.construction+=currentAnswer.weight[1];
+                sectors.healthcare+=currentAnswer.weight[2];
+                sectors.business+=currentAnswer.weight[3];
+                sectors.arts+=currentAnswer.weight[4];
+
+                if($scope.array.length!=0){
+                    $scope.array[0].it+=sectors.it;
+                    $scope.array[0].construction+=sectors.construction;
+                    $scope.array[0].healthcare+=sectors.healthcare;
+                    $scope.array[0].business+=sectors.business;
+                    $scope.array[0].arts+=sectors.arts;
+                }else{
+                    $scope.array.push(sectors);
+                }
+                console.log(JSON.stringify($scope.array)+" array");
+
+            };
+
             $scope.selectAnswer = function(index){
                 $scope.tests[testIndex].questions[0].question[$scope.question_index].selected= index;
-                console.log($scope.tests[testIndex].questions[0].question[$scope.question_index].options[index].option);
-                $scope.accessQuestion += $scope.tests[testIndex].questions[0].question[$scope.question_index].options[index];
-
+                //console.log($scope.tests[testIndex].questions[0].question[$scope.question_index].options[index].option);
+                console.log(index);
             };
 
-            $scope.defineResult = function(currentAnswer){
-                var science = 0,
-                    it = 0,
-                    medicine = 0,
-                    business = 0,
-                    communication = 0;
-                var sectors = [science, it, medicine, business, communication];
-
-                for(var i = 0; i < sectors.length; i++){
-                    sectors[i] += currentAnswer.weight[i];
-                }
-                return sectors;
-            };
 
             $scope.markQuiz = function(){
+               // var length = $scope.tests[testIndex].questions[0].question.length;
                 for(var x = 0; x < $scope.tests[testIndex].questions[0].question.length; x++){
-                    //$scope.defineResult($scope.tests[testIndex].questions[0].question[x].selected);
-                   // console.log($scope.tests[testIndex].questions[0].question[x].);
-                    console.log($scope.accessQuestion);
+                    var index = $scope.tests[testIndex].questions[0].question[x].selected;
+                    $scope.defineResult($scope.tests[testIndex].questions[0].question[x].options[index]);
                 }
+                console.log("finished marking");
             };
 
             $scope.finaliseAnswers = function(){
@@ -116,7 +133,20 @@
                 $scope.numQuestionsAnswered = 0;
                 $scope.resultsView = true;
                 $scope.markQuiz();
-                $scope.length = $scope.tests[testIndex].questions[0].question.length;
+
+                $scope.labels = ["IT", "Construction", "Health Care", "Business", "Arts"];
+                $scope.options = {
+                    scales: {
+                        xAxes: [{
+                            stacked: true,
+                        }],
+                        yAxes: [{
+                            stacked: true
+                        }]
+                    }
+                };
+                $scope.data = [$scope.array[0].it, $scope.array[0].construction, $scope.array[0].healthcare, $scope.array[0].business, $scope.array[0].arts];
+
             };
 
 

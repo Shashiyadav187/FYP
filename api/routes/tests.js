@@ -80,6 +80,8 @@ router.route('/id/:testId')
     //         });
     //     });
     // });
+
+
 router.route('/current')
     .get(function(req, res){
         console.log(req.test+' hello');
@@ -95,253 +97,181 @@ router.route('/create')
 
 //Instantiating the Model - An instance of Model represents a mongodb document
 
-/*
-var question1 = new Question({
-    title: "Careers Question 1",
+var q1 = new Question({
+    title: "Would you like to work in an office?",
     options: [
  {
- option: "option1", weight:[1,1,4,3,2],
+ option: "Yes", weight:[5,1,2,5,2],
  },{
- option: "option2", weight:[1,2,3,4,5],
- },{
- option: "option3", weight:[1,3,4,2,1],
- },{
- option: "option4", weight:[1,0,1,1,2],
+ option: "No", weight:[0,4,3,0,3],
  }],
-    answer: null,
     selected: null,
     type: "text"
 });
-question1.save(function(err, res){
+q1.save(function(err, res){
     if (err)
         console.log(err);
 
     console.log(res, 'question1 created');
 });
-var question2 = new Question({
-    title: "How much is the moon",
+
+var q2 = new Question({
+    title: "Do you want to work with people?",
     options: [
  {
- option: "5er", weight:[0,1,2,3,4],
+ option: "Yes", weight:[2,4,3,4,4],
  },{
- option: "10er", weight:[1,2,3,4,5],
- },{
- option: "50", weight:[1,1,4,3,2],
- },{
- option: "Probably more", weight:[1,1,4,3,2],
+ option: "No", weight:[3,1,2,1,1],
  }],
-    answer: "option4",
     type: "text",
     selected: null
 });
-question2.save(function(err, res){
+q2.save(function(err, res){
     if (err)
         console.log(err);
 
     console.log(res, 'question2 created');
 });
 
-*/
+var q3 = new Question({
+    title: "Do you enjoy building things and working with your hands?",
+    options: [
+ {
+ option: "Yes", weight:[2,5,3,1,2],
+ },{
+ option: "No", weight:[3,0,2,4,3],
+ }],
+    type: "text",
+    selected: null
+});
+q3.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'question2 created');
+});
+var q4 = new Question({
+    title: "Are you creative, artistic and/or musical?",
+    options: [
+ {
+ option: "Yes", weight:[1,1,1,0,5],
+ },{
+ option: "No", weight:[4,4,4,5,0],
+ }],
+    type: "text",
+    selected: null
+});
+q4.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'question2 created');
+});
+var q5 = new Question({
+    title: "Do you like to hold presentations and to inform others?",
+    options: [
+ {
+ option: "Yes", weight:[3,1,2,4,4],
+ },{
+ option: "No", weight:[2,4,3,1,1],
+ }],
+    type: "text",
+    selected: null
+});
+q5.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'question2 created');
+});
+var q6 = new Question({
+    title: "Do you like to work with numbers?",
+    options: [
+ {
+ option: "Yes", weight:[5,3,1,4,1],
+ },{
+ option: "No", weight:[0,2,4,1,4],
+ }],
+    type: "text",
+    selected: null
+});
+q6.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'question2 created');
+});
+var q7 = new Question({
+    title: "Do you like to understand how things work?",
+    options: [
+ {
+ option: "Yes", weight:[5,4,2,4,1],
+ },{
+ option: "No", weight:[0,1,3,1,4],
+ }],
+    type: "text",
+    selected: null
+});
+q7.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'question2 created');
+});
+var q8 = new Question({
+    title: "Do you like helping people?",
+    options: [
+ {
+ option: "Yes", weight:[1,3,5,2,1],
+ },{
+ option: "No", weight:[4,2,0,3,4],
+ }],
+    type: "text",
+    selected: null
+});
+q8.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'question2 created');
+});
+var q9 = new Question({
+    title: "Do you like planning, organising and creating structure?",
+    options: [
+ {
+ option: "Yes", weight:[5,4,2,3,1],
+ },{
+ option: "No", weight:[0,1,3,2,4],
+ }],
+    type: "text",
+    selected: null
+});
+q9.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'question2 created');
+});
+/*var q10 = new Question({
+    title: "Do you enjoy reading, going to the theatre and museums etc?",
+    options: [
+ {
+ option: "Yes", weight:[1,0,1,3,5],
+ },{
+ option: "No", weight:[4,4,3,2,0],
+ }],
+    type: "text",
+    selected: null
+});
+q10.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'question2 created');
+});*/
+
 
 /*
-var question1 = new Question({
-    title: "https://www.123test.com/spatial-reasoning-test/items//item1/uitgevouwen.png",
-    options: [
-        {
-            option: "https://www.123test.com/spatial-reasoning-test/items/item1/goed1.png",
-        },{
-            option: "https://www.123test.com/spatial-reasoning-test/items/item1/fout.png",
-        },{
-            option: "https://www.123test.com/spatial-reasoning-test/items/item1/goed2.png",
-        },{
-            option: "https://www.123test.com/spatial-reasoning-test/items/item1/goed3.png",
-        }],
-    answer: null,
-    selected: null,
-    type: "image"
-});
-question1.save(function(err, res){
-    if (err)
-        console.log(err);
-
-    console.log(res, 'Q1 created');
-});
-var question2 = new Question({
-    title: "https://www.123test.com/spatial-reasoning-test/items//item2/uitgevouwen.png",
-    options: [
-        {
-            option: "https://www.123test.com/spatial-reasoning-test/items/item2/fout.png",
-        },{
-            option: "https://www.123test.com/spatial-reasoning-test/items/item2/goed1.png",
-        },{
-            option: "https://www.123test.com/spatial-reasoning-test/items/item2/goed2.png",
-        },{
-            option: "https://www.123test.com/spatial-reasoning-test/items/item2/goed3.png",
-        }],
-    answer: null,
-    selected: null,
-    type: "image"
-});
-question2.save(function(err, res){
-    if (err)
-        console.log(err);
-
-    console.log(res, 'Q2 created');
-});
-var question3 = new Question({
-    title: "https://www.123test.com/spatial-reasoning-test/items//item3/uitgevouwen.png",
-    options: [
-        {
-            option: "https://www.123test.com/spatial-reasoning-test/items/item3/goed1.png",
-        },{
-            option: "https://www.123test.com/spatial-reasoning-test/items/item3/goed2.png",
-        },{
-            option: "https://www.123test.com/spatial-reasoning-test/items/item3/fout.png",
-        },{
-            option: "https://www.123test.com/spatial-reasoning-test/items/item3/goed3.png",
-        }],
-    answer: null,
-    selected: null,
-    type: "image"
-});
-question3.save(function(err, res){
-    if (err)
-        console.log(err);
-
-    console.log(res, 'Q3 created');
-});
-var question4 = new Question({
-    title: "https://www.123test.com/spatial-reasoning-test/items//item4/uitgevouwen.png",
-    options: [
-        {
-            option: "https://www.123test.com/spatial-reasoning-test/items/item4/goed1.png",
-        },{
-            option: "https://www.123test.com/spatial-reasoning-test/items/item4/goed2.png",
-        },{
-            option: "https://www.123test.com/spatial-reasoning-test/items/item4/fout.png",
-        },{
-            option: "https://www.123test.com/spatial-reasoning-test/items/item4/goed3.png",
-        }],
-    answer: null,
-    selected: null,
-    type: "image"
-});
-question4.save(function(err, res){
-    if (err)
-        console.log(err);
-
-    console.log(res, 'Q4 created');
-});
-var question5 = new Question({
-    title: "https://www.123test.com/spatial-reasoning-test/items//item5/uitgevouwen.png",
-    options: [
-        {
-            option: "https://www.123test.com/spatial-reasoning-test/items/item5/fout.png",
-        },{
-            option: "https://www.123test.com/spatial-reasoning-test/items/item5/goed1.png",
-        },{
-            option: "https://www.123test.com/spatial-reasoning-test/items/item5/goed2.png",
-        },{
-            option: "https://www.123test.com/spatial-reasoning-test/items/item5/goed3.png",
-        }],
-    answer: null,
-    selected: null,
-    type: "image"
-});
-question5.save(function(err, res){
-    if (err)
-        console.log(err);
-
-    console.log(res, 'Q5 created');
-});
-var question6 = new Question({
-    title: "https://www.123test.com/spatial-reasoning-test/items//item6/uitgevouwen.png",
-    options: [
-        {
-            option: "https://www.123test.com/spatial-reasoning-test/items/item6/goed1.png",
-        },{
-            option: "https://www.123test.com/spatial-reasoning-test/items/item6/goed2.png",
-        },{
-            option: "https://www.123test.com/spatial-reasoning-test/items/item6/goed3.png",
-        },{
-            option: "https://www.123test.com/spatial-reasoning-test/items/item6/fout.png",
-        }],
-    answer: null,
-    selected: null,
-    type: "image"
-});
-question6.save(function(err, res){
-    if (err)
-        console.log(err);
-
-    console.log(res, 'Q6 created');
-});
-var question7 = new Question({
-    title: "https://www.123test.com/spatial-reasoning-test/items//item7/uitgevouwen.png",
-    options: [
-        {
-            option: "https://www.123test.com/spatial-reasoning-test/items/item7/goed1.png",
-        },{
-            option: "https://www.123test.com/spatial-reasoning-test/items/item7/fout.png",
-        },{
-            option: "https://www.123test.com/spatial-reasoning-test/items/item7/goed2.png",
-        },{
-            option: "https://www.123test.com/spatial-reasoning-test/items/item7/goed3.png",
-        }],
-    answer: null,
-    selected: null,
-    type: "image"
-});
-question7.save(function(err, res){
-    if (err)
-        console.log(err);
-
-    console.log(res, 'Q7 created');
-});
-var question8 = new Question({
-    title: "https://www.123test.com/spatial-reasoning-test/items//item8/uitgevouwen.png",
-    options: [
-        {
-            option: "https://www.123test.com/spatial-reasoning-test/items/item8/goed1.png",
-        },{
-            option: "https://www.123test.com/spatial-reasoning-test/items/item8/goed2.png",
-        },{
-            option: "https://www.123test.com/spatial-reasoning-test/items/item8/goed3.png",
-        },{
-            option: "https://www.123test.com/spatial-reasoning-test/items/item8/fout.png",
-        }],
-    answer: null,
-    selected: null,
-    type: "image"
-});
-question8.save(function(err, res){
-    if (err)
-        console.log(err);
-
-    console.log(res, 'Q8 created');
-});
-var question9 = new Question({
-    title: "https://www.123test.com/spatial-reasoning-test/items//item9/uitgevouwen.png",
-    options: [
-        {
-            option: "https://www.123test.com/spatial-reasoning-test/items/item9/goed1.png",
-        },{
-            option: "https://www.123test.com/spatial-reasoning-test/items/item9/goed2.png",
-        },{
-            option: "https://www.123test.com/spatial-reasoning-test/items/item9/fout.png",
-        }, {
-            option: "https://www.123test.com/spatial-reasoning-test/items/item9/goed3.png",
-        }],
-    answer: null,
-    selected: null,
-    type: "image"
-});
-question9.save(function(err, res){
-    if (err)
-        console.log(err);
-
-    console.log(res, 'Q9 created');
-});
 var question10 = new Question({
     title: "https://www.123test.com/spatial-reasoning-test/items//item10/uitgevouwen.png",
     options: [
@@ -365,12 +295,11 @@ question10.save(function(err, res){
     console.log(res, 'Q10 created');
 });
  */
-/* var test1 = new Test({
+ var test1 = new Test({
     name:"Careers Test",
     duration: null,
-    answers: [],
     questions: {
-        question: [question1, question2]
+        question: [q1,q2,q3,q4,q5,q6,q7,q8,q9]
     }
 });
 
@@ -379,7 +308,7 @@ test1.save(function(err, res){
     if (err)
         res.send(err);
     console.log(res, 'spatial test created');
-});*/
+});
 
 
 

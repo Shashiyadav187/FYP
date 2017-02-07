@@ -7,7 +7,8 @@
         'ui.bootstrap',
         'ui.router',
         'ng-backstretch',
-        'angularModalService'
+        'angularModalService',
+        'chart.js'
     ])
         .config(['$stateProvider', '$locationProvider', '$urlRouterProvider', function ($stateProvider, $locationProvider, $urlRouterProvider) {
             $locationProvider.html5Mode(false);
@@ -57,16 +58,16 @@
                     controller: 'SpatialTestController',
                     templateUrl: 'views/testTemplate.html'
                 })
-                .state('app.logicalTest',{
+                .state('app.careersTest',{
+                    url: '/careersTest',
+                    controller: 'CareersTestController',
+                    templateUrl: 'views/testTemplate.html'
+                })
+                /*.state('app.logicalTest',{
                     url: '/logicalTest',
                     controller: 'LogicalTestController',
                     templateUrl: 'views/testTemplate.html'
-                })
-                .state('app.logicalTest',{
-                    url: '/logicalTest',
-                    controller: 'LogicalTestController',
-                    templateUrl: 'views/testTemplate.html'
-                })
+                })*/
                 .state('app.numericalTest',{
                     url: '/numericalTest',
                     controller: 'NumericalTestController',
