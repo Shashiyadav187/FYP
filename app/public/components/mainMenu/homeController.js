@@ -18,5 +18,8 @@
                 './assets/img/laptop.in.use.png',
 
             ];
+            $scope.coursesLink=function(){
+                $state.go('app.courses');
+            }
         }]);
 })();

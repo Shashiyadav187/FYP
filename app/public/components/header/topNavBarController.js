@@ -7,10 +7,12 @@
             $scope.user= null;
 
             $scope.loggedIn = false;
-            
+
             $scope.loginLink = function() {
                 $state.go('login');
             };
+
+
 
             $scope.getUser = function(){
                 UserService.getCurrentUser()

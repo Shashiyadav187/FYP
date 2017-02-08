@@ -79,14 +79,18 @@
                     controller: 'ProfileController',
                     templateUrl: 'views/profile.html'
                 })
+                .state('app.courses', {
+                    url: '/courses',
+                    controller: 'CoursesController',
+                    templateUrl: 'views/courses.html'
+                })
+
 
         }])
         .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider){
             cfpLoadingBarProvider.includeSpinner = false;
             cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
-/*
             cfpLoadingBarProvider.spinnerTemplate = '<div><span class="fa fa-spinner fa-3x"></div>';
-*/
         }])
         .run(["$rootScope", "$state", "$stateParams", '$window', '$location',
             function ($rootScope, $state, $stateParams, $window, $location) {

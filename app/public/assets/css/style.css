@@ -323,8 +323,24 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
 }
 /*----------------------------------------------- Test Page -------------------------------------------------------------------------*/
 /*----------------------------------------------- Profile Page -------------------------------------------------------------------------*/
-.bg-info{
 
+.profile-box-first{
+    box-shadow: 0 0 0 1px rgba(0,0,0,.1), 0 2px 3px rgba(0,0,0,.2);
+}
+.profile-box{
+    margin: 0 0 16px;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    color: #84878a;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    height: 100%;
+    max-height: 100%;
 }
 /*.photo{
     margin-top: 25px;
@@ -337,11 +353,27 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
     margin: 20px;
 }
 .profile-photo{
-    margin-top: 25px;
-    /*border: 2px solid black;*/
     border-radius: 50%;
-    height: 190px;
-    margin-bottom: 50px;
+    height: 176.66px;
+}
+.outside-box-profile {
+    background-color: rgba(243,246,248,.94);
+    border: 4px solid #fff;
+    box-sizing: content-box;
+    margin: auto;
+    position: relative;
+    width: 180px;
+}
+.outside-box-profile {
+    box-shadow: inset 0 1.5px 3px 0 rgba(0,0,0,.15), 0 1.5px 3px 0 rgba(0,0,0,.15);
+}
+.circle{
+    border: 3px solid transparent;
+    border-radius: 50%;
+}
+.circle {
+    width: 176.66px;
+    height: 176.66px;
 }
 /*----------------------------------------------- Profile Page -------------------------------------------------------------------------*/
 /*----------------------------------------------- Results Page -------------------------------------------------------------------------*/
@@ -349,6 +381,34 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
     text-transform: uppercase;
 }
 /*----------------------------------------------- Results Page -------------------------------------------------------------------------*/
+/*----------------------------------------------- Course Page -------------------------------------------------------------------------*/
+/*.course-box{
+border: 1px solid blue;
+    box-shadow: #1b1b1b;
+}*/
+.filters-area{
+    height: 100%;
+}
+.course-box-first{
+    box-shadow: 0 0 0 1px rgba(0,0,0,.1), 0 2px 3px rgba(0,0,0,.2);
+}
+.course-box{
+    margin: 0 0 16px;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    color: #84878a;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    height: 100%;
+    max-height: 100%;
+}
+/*----------------------------------------------- Course Page -------------------------------------------------------------------------*/
+
 .footer{
     padding-top: 50px;
     margin-bottom: -100px;
