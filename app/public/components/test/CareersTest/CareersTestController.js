@@ -136,18 +136,38 @@
 
                 $scope.labels = ["IT", "Construction", "Health Care", "Business", "Arts"];
                 $scope.options = {
+                    responsive: true,
                     scales: {
                         xAxes: [{
-                            stacked: true,
+                            stacked: false,
                         }],
                         yAxes: [{
-                            stacked: true
+                            ticks: {
+                                beginAtZero:true
+                            }
                         }]
                     }
                 };
                 $scope.data = [$scope.array[0].it, $scope.array[0].construction, $scope.array[0].healthcare, $scope.array[0].business, $scope.array[0].arts];
 
+                /*var largest = Math.max.apply(Math, $scope.data);
+                console.log(largest);*/
+                console.log($scope.data);
+                var temp = 0;
+                for(var i =0; i<=$scope.data.length; i++){
+                    if($scope.data[i] > temp){
+                        temp = $scope.data[i];
+                    }
+                }
+
+                console.log($scope.data.indexOf(temp));
+                var position = $scope.data.indexOf(temp);
+                console.log(Object.keys($scope.array[0])[position]);
+                $scope.recommendation = Object.keys($scope.array[0])[position];
+
+
             };
+
 
 
         }])

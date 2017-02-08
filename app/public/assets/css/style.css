@@ -29,6 +29,10 @@
 .fb-button:hover{
     background-color:#405e9e;
 }
+#loading-bar .bar {
+    position: relative;
+    height:4px;
+}
 /*----------------------------------------------- Main Menu -------------------------------------------------------------------------*/
 .main-menu-button{
     padding-top:10%;
@@ -340,6 +344,11 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
     margin-bottom: 50px;
 }
 /*----------------------------------------------- Profile Page -------------------------------------------------------------------------*/
+/*----------------------------------------------- Results Page -------------------------------------------------------------------------*/
+.results-title{
+    text-transform: uppercase;
+}
+/*----------------------------------------------- Results Page -------------------------------------------------------------------------*/
 .footer{
     padding-top: 50px;
     margin-bottom: -100px;

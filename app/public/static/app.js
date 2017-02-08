@@ -8,7 +8,8 @@
         'ui.router',
         'ng-backstretch',
         'angularModalService',
-        'chart.js'
+        'chart.js',
+        'angular-loading-bar'
     ])
         .config(['$stateProvider', '$locationProvider', '$urlRouterProvider', function ($stateProvider, $locationProvider, $urlRouterProvider) {
             $locationProvider.html5Mode(false);
@@ -63,11 +64,6 @@
                     controller: 'CareersTestController',
                     templateUrl: 'views/testTemplate.html'
                 })
-                /*.state('app.logicalTest',{
-                    url: '/logicalTest',
-                    controller: 'LogicalTestController',
-                    templateUrl: 'views/testTemplate.html'
-                })*/
                 .state('app.numericalTest',{
                     url: '/numericalTest',
                     controller: 'NumericalTestController',
@@ -84,6 +80,13 @@
                     templateUrl: 'views/profile.html'
                 })
 
+        }])
+        .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider){
+            cfpLoadingBarProvider.includeSpinner = false;
+            cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
+/*
+            cfpLoadingBarProvider.spinnerTemplate = '<div><span class="fa fa-spinner fa-3x"></div>';
+*/
         }])
         .run(["$rootScope", "$state", "$stateParams", '$window', '$location',
             function ($rootScope, $state, $stateParams, $window, $location) {

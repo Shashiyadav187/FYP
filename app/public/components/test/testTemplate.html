@@ -136,15 +136,6 @@
                                         <div ng-repeat=" q in t.questions">
                                             <div ng-repeat="ques in q.question">
                                                 <div ng-if="resultsActiveQuestion == $index">
-                                                    <!--<div ng-if="ques.type === 'text'">
-                                                        <h3 class="question"> &nbsp; {{$index + 1}})&nbsp; {{ques.title}}</h3>
-                                                        <div class="col-sm-3" ng-repeat="op in ques.options">
-                                                            <h4 class="answers" ng-if="ques.type === 'text'"
-                                                                ng-class="{'bg-success': $index === correct}">
-                                                                {{ op.option }}
-                                                            </h4>
-                                                        </div>
-                                                    </div>-->
                                                     <div ng-if="ques.type === 'image'">
                                                         <h3 class="image-question"> &nbsp; {{$index + 1}})&nbsp;
                                                             <img ng-src="{{ques.title}}">

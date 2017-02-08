@@ -96,7 +96,7 @@ router.route('/create')
     );
 
 //Instantiating the Model - An instance of Model represents a mongodb document
-
+/*
 var q1 = new Question({
     title: "Would you like to work in an office?",
     options: [
@@ -251,7 +251,7 @@ q9.save(function(err, res){
         console.log(err);
 
     console.log(res, 'question2 created');
-});
+});*/
 /*var q10 = new Question({
     title: "Do you enjoy reading, going to the theatre and museums etc?",
     options: [
@@ -295,7 +295,7 @@ question10.save(function(err, res){
     console.log(res, 'Q10 created');
 });
  */
- var test1 = new Test({
+ /*var test1 = new Test({
     name:"Careers Test",
     duration: null,
     questions: {
@@ -308,7 +308,7 @@ test1.save(function(err, res){
     if (err)
         res.send(err);
     console.log(res, 'spatial test created');
-});
+});*/
 
 
 
