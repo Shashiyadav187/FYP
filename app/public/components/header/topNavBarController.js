@@ -5,6 +5,7 @@
         function($scope, $state, UserService) {
 
             $scope.user= null;
+            $scope.clicked = false;
 
             $scope.loggedIn = false;
 
@@ -12,6 +13,9 @@
                 $state.go('login');
             };
 
+            $scope.courses = function() {
+                $state.go('app.courses');
+            };
 
 
             $scope.getUser = function(){

@@ -100,7 +100,7 @@
                 $rootScope.$storage = $window.localStorage;
 
                 $rootScope.app = {
-                    name: 'College Experience',
+                    name: 'UnisEx',
                     description: 'student website',
                     year: ((new Date()).getFullYear()),
                     version: "v0.0.1",
