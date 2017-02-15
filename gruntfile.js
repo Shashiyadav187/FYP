@@ -26,7 +26,7 @@ module.exports = function(grunt) {
             css: {
                 src: [
                     'app/public/assets/css/style.css',
-                    'app/public/assets/css/bootstrap.css'
+                    'app/public/assets/css/bootstrap.css',
                 ],
                 dest: 'build/app/assets/css/built.css'
             }
@@ -189,7 +189,8 @@ module.exports = function(grunt) {
                 files:['*.js', 'app/**/*.*', 'api/**/*.*', '!**/built.*'],
                 tasks: ['clean', 'concat', 'bower_concat', 'replace:local', 'copy'],
                 options: {
-                    interupt: true
+                    interupt: true,
+                    livereload: true
                 }
             }
         }

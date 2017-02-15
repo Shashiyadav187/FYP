@@ -1,0 +1,165 @@
+<div class="content-wrapper">
+    <div ng-repeat="t in tests">
+        <div ng-show="t.name == testName">
+
+            <div class="test-title">
+                <h3>{{ t.name }}</h3>
+                <!--<timer interval="1000"  countdown="300">{{countdown}}</timer>-->
+            </div>
+
+            <div class="row" ng-hide="resultsView">
+                <h3>
+                    <!--
+                                        <timer countdown="300" autostart="true" max-time-unit="'second'" interval="1000">{{mminutes}} minute{{minutesS}}, {{sseconds}} second{{secondsS}}</timer>
+                    -->
+                </h3>
+                <div class="row">
+                    <div class="col-xs-8">
+                        <h4>Progress:</h4>
+                        <div ng-repeat="q in t.questions">
+                            <div class="btn-toolbar">
+                                <button class="btn"
+                                        ng-repeat="qs in q.question"
+                                        ng-class="{'btn-info': qs.selected !== null, 'btn-danger': qs.selected === null}"
+                                        ng-click="setActiveQuestion($index)">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="row">
+                            <h4>Legend:</h4>
+                            <div class="col-sm-4">
+                                <button class="btn btn-info">
+                                </button>
+                                <p>Answered</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <button class="btn btn-danger">
+                                </button>
+                                <p>Unanswered</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="alert alert-danger" ng-show="error">
+                        Error! You have not answered all of the questions!
+                        <button class="close" ng-click="error = false">&times</button>
+                    </div>
+                    <div class="well well-sm" ng-hide="finished">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="row">
+                                    <div ng-repeat=" q in t.questions">
+                                        <div ng-repeat="ques in q.question">
+                                            <div ng-if="question_index == $index">
+                                                <div ng-if="ques.type === 'text'">
+                                                    <h3 class="question"> &nbsp; {{$index + 1}})&nbsp; {{ques.title}}</h3>
+                                                    <div class="col-sm-3" ng-repeat="op in ques.options">
+                                                        <h4 class="answers" ng-if="ques.type === 'text'"
+                                                            ng-class="{'bg-info': $index === ques.selected}"
+                                                            ng-click="selectAnswer($index)">
+                                                            {{ op.option }}
+                                                        </h4>
+                                                    </div>
+                                                </div>
+                                                <div ng-if="ques.type === 'image'">
+                                                    <h3 class="image-question"> &nbsp; {{$index + 1}})&nbsp; <img ng-src="{{ques.title}}"></h3>
+                                                    <div class="col-sm-3" ng-repeat="op in ques.options">
+                                                        <h4 class="image-answers"
+                                                            ng-click="selectAnswer($index)"
+                                                            ng-class="{'bg-info': $index === ques.selected}">
+                                                            <img ng-src="{{op.option}}" >
+                                                        </h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn btn-warning" ng-click="next()">Continue</div>
+                    </div>
+                    <div class="well well-sm" ng-show="finished">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h3>Are you sure you want to submit your answers?</h3>
+                                <button class="btn btn-success" ng-click="finaliseAnswers()">Yes</button>
+                                <button class="btn btn-danger" ng-click="finished = false">No</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="resultsView">
+                <div ng-hide="t.name == 'Careers Test'">
+                    <div ng-show="resultsView">
+                        <div class="row">
+                            <h3>{{numCorrectAnswers}}/{{length}} Correct!</h3>
+                            <h3>Percentage: {{percentage}}%</h3>
+                            <div class="col-xs-8">
+                                <h4>Progress:</h4>
+                                <div ng-repeat="q in t.questions">
+                                    <div class="btn-toolbar">
+                                        <button class="btn"
+                                                ng-repeat="qs in q.question"
+                                                ng-class="{'btn-success': qs.correct , 'btn-danger': !qs.correct}"
+                                                ng-click="setResultsActiveQuestion($index)">
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="row">
+                                    <h4>Legend:</h4>
+                                    <div class="col-sm-4">
+                                        <button class="btn btn-success">
+                                        </button>
+                                        <p>Correct</p>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <button class="btn btn-danger">
+                                        </button>
+                                        <p>Incorrect</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="well well-sm">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="row">
+                                            <div ng-repeat=" q in t.questions">
+                                                <div ng-repeat="ques in q.question">
+                                                    <div ng-if="resultsActiveQuestion == $index">
+                                                        <div ng-if="ques.type === 'image'">
+                                                            <h3 class="image-question"> &nbsp; {{$index + 1}})&nbsp;
+                                                                <img ng-src="{{ques.title}}">
+                                                            </h3>
+                                                            <div class="col-sm-3" ng-repeat="op in ques.options">
+                                                                <h4 class="image-answers"
+                                                                    ng-class="correctAnswer($index)">
+                                                                    <img ng-src="{{op.option}}" >
+                                                                </h4>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn btn-primary" ng-click="save()">Save Results!</div>
+                                <div class="btn btn-warning" ng-click="finish()">Don't Save and Return</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="btn btn-default" href="/#/app/testMenu">Back</a>
+</div>

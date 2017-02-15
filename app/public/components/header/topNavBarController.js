@@ -1,34 +1,37 @@
 (function(){
     "use strict";
 
-    App.controller('TopNavbarController', ['$scope','$state','$http',
-        function($scope, $state, $http) {
+    App.controller('TopNavbarController', ['$scope','$state','UserService',
+        function($scope, $state, UserService) {
 
             $scope.user= null;
+            $scope.clicked = false;
 
             $scope.loggedIn = false;
-            
+
             $scope.loginLink = function() {
                 $state.go('login');
             };
 
-            $scope.getUser = function () {
-                $http({
-                    method: 'GET',
-                    url: '/api/users/current'
-                }).then(function successCallback(response) {
-                    console.log("Success");
-                    console.log(response);
-                    $scope.loggedIn = true;
-                    $scope.user = response.data.user;
-                }, function errorCallback(response) {
-                    console.log("Error");
-                    console.log(response);
-                    $scope.user = null;
-                });
-                return $scope.loggedIn = true;
+            $scope.courses = function() {
+                $state.go('app.courses');
+            };
+
+
+            $scope.getUser = function(){
+                UserService.getCurrentUser()
+                    .then(function (res) {
+                        $scope.user = res.data.user;
+                    }, function (err) {
+                        console.log('Get user Error ' + err);
+                        $scope.user = null;
+                    })
             };
             $scope.getUser();
+
+            $scope.userProfile = function(){
+                $state.go('app.profile');
+            }
 
         }]);
 })();

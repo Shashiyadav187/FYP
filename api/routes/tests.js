@@ -45,8 +45,9 @@ router.route('/')
         });
     });
 
-router.route('/:testName')
+router.route('/name/:testName')
     .get(function (req, res) {
+        console.log("BEMI NAME");
         Test.findOne({'name' : req.params.testName}, function(err, test){
             if(err)
                 res.send(err);
@@ -54,88 +55,263 @@ router.route('/:testName')
         });
     });
 
-router.route('/:testId')
+router.route('/id/:testId')
 // Get a single test by id
     .get(function(req, res) {
-        Test.findById(req.params.testId, function(err, test) {
+        Test.findOne({'testId' : req.params.testId}, function(err, test) {
             if (err)
                 res.send(err);
 
             res.json(test);
-        });
-    })
+        })
+    });
 
     //Get and remove one test
-    .get(function(req, res) {
-        Test.findById(req.params.testId , function(err, test) {
-            if (err)
-                res.send(err);
+    // .get(function(req, res) {
+    //     Test.findById(req.params.id , function(err, test) {
+    //         if (err)
+    //             res.send(err);
+    //
+    //         test.remove(function(err) {
+    //             if (err)
+    //                 res.send(err);
+    //
+    //             res.json({ status:200, message: 'tests deleted!'});
+    //         });
+    //     });
+    // });
 
-            test.remove(function(err) {
-                if (err)
-                    res.send(err);
 
-                res.json({ status:200, message: 'tests deleted!'});
-            });
-        });
-    });
 router.route('/current')
     .get(function(req, res){
         console.log(req.test+' hello');
         res.json( { test: req.test });
     });
 
+router.route('/create')
+    .post(function(req,res){
+
+        }
+
+    );
+
 //Instantiating the Model - An instance of Model represents a mongodb document
-/*var question1 = new Question({
-    title: "How big is the moon",
-    options: {
-        option1 : "1000m",
-        option2 : "2000m",
-        option3 : "3000m",
-        option4 : "4000m"
-    },
-    answer: "option1",
-    selected: false
+/*
+var q1 = new Question({
+    title: "Would you like to work in an office?",
+    options: [
+ {
+ option: "Yes", weight:[5,1,2,5,2],
+ },{
+ option: "No", weight:[0,4,3,0,3],
+ }],
+    selected: null,
+    type: "text"
 });
-question1.save(function(err, res){
+q1.save(function(err, res){
     if (err)
         console.log(err);
 
     console.log(res, 'question1 created');
 });
-var question2 = new Question({
-    title: "How much is the moon",
-    options: {
-        option1 : "5er",
-        option2 : "10er",
-        option3 : "20",
-        option4 : "more"
-    },
-    answer: "option4",
-    selected: false
+
+var q2 = new Question({
+    title: "Do you want to work with people?",
+    options: [
+ {
+ option: "Yes", weight:[2,4,3,4,4],
+ },{
+ option: "No", weight:[3,1,2,1,1],
+ }],
+    type: "text",
+    selected: null
 });
-question2.save(function(err, res){
+q2.save(function(err, res){
     if (err)
         console.log(err);
 
     console.log(res, 'question2 created');
 });
 
- var test1 = new Test({
- name:"Moon",
- duration: 10,
- number_questions: "2",
-     questions: ({
-         question: [question1, question2]
-     })
- });
+var q3 = new Question({
+    title: "Do you enjoy building things and working with your hands?",
+    options: [
+ {
+ option: "Yes", weight:[2,5,3,1,2],
+ },{
+ option: "No", weight:[3,0,2,4,3],
+ }],
+    type: "text",
+    selected: null
+});
+q3.save(function(err, res){
+    if (err)
+        console.log(err);
 
- //Saving the model instance to the DB
- test1.save(function(err, res){
- if (err)
- res.send(err);
- console.log(res, 'test created');
- });*/
+    console.log(res, 'question2 created');
+});
+var q4 = new Question({
+    title: "Are you creative, artistic and/or musical?",
+    options: [
+ {
+ option: "Yes", weight:[1,1,1,0,5],
+ },{
+ option: "No", weight:[4,4,4,5,0],
+ }],
+    type: "text",
+    selected: null
+});
+q4.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'question2 created');
+});
+var q5 = new Question({
+    title: "Do you like to hold presentations and to inform others?",
+    options: [
+ {
+ option: "Yes", weight:[3,1,2,4,4],
+ },{
+ option: "No", weight:[2,4,3,1,1],
+ }],
+    type: "text",
+    selected: null
+});
+q5.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'question2 created');
+});
+var q6 = new Question({
+    title: "Do you like to work with numbers?",
+    options: [
+ {
+ option: "Yes", weight:[5,3,1,4,1],
+ },{
+ option: "No", weight:[0,2,4,1,4],
+ }],
+    type: "text",
+    selected: null
+});
+q6.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'question2 created');
+});
+var q7 = new Question({
+    title: "Do you like to understand how things work?",
+    options: [
+ {
+ option: "Yes", weight:[5,4,2,4,1],
+ },{
+ option: "No", weight:[0,1,3,1,4],
+ }],
+    type: "text",
+    selected: null
+});
+q7.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'question2 created');
+});
+var q8 = new Question({
+    title: "Do you like helping people?",
+    options: [
+ {
+ option: "Yes", weight:[1,3,5,2,1],
+ },{
+ option: "No", weight:[4,2,0,3,4],
+ }],
+    type: "text",
+    selected: null
+});
+q8.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'question2 created');
+});
+var q9 = new Question({
+    title: "Do you like planning, organising and creating structure?",
+    options: [
+ {
+ option: "Yes", weight:[5,4,2,3,1],
+ },{
+ option: "No", weight:[0,1,3,2,4],
+ }],
+    type: "text",
+    selected: null
+});
+q9.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'question2 created');
+});*/
+/*var q10 = new Question({
+    title: "Do you enjoy reading, going to the theatre and museums etc?",
+    options: [
+ {
+ option: "Yes", weight:[1,0,1,3,5],
+ },{
+ option: "No", weight:[4,4,3,2,0],
+ }],
+    type: "text",
+    selected: null
+});
+q10.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'question2 created');
+});*/
+
+
+/*
+var question10 = new Question({
+    title: "https://www.123test.com/spatial-reasoning-test/items//item10/uitgevouwen.png",
+    options: [
+        {
+            option: "https://www.123test.com/spatial-reasoning-test/items/item10/fout.png",
+        }, {
+            option: "https://www.123test.com/spatial-reasoning-test/items/item10/goed1.png",
+        },{
+            option: "https://www.123test.com/spatial-reasoning-test/items/item10/goed2.png",
+        },{
+            option: "https://www.123test.com/spatial-reasoning-test/items/item10/goed3.png",
+        }],
+    answer: null,
+    selected: null,
+    type: "image"
+});
+question10.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'Q10 created');
+});
+ */
+ /*var test1 = new Test({
+    name:"Careers Test",
+    duration: null,
+    questions: {
+        question: [q1,q2,q3,q4,q5,q6,q7,q8,q9]
+    }
+});
+
+//Saving the model instance to the DB
+test1.save(function(err, res){
+    if (err)
+        res.send(err);
+    console.log(res, 'spatial test created');
+});*/
+
+
+
 
 /*Test.findOne({}).populate('questions').exec(function(err, Test) {
     if(err)

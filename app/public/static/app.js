@@ -6,7 +6,11 @@
         'ngResource',
         'ui.bootstrap',
         'ui.router',
-        'ng-backstretch'
+        'ng-backstretch',
+        'angularModalService',
+        'chart.js',
+        'angular-loading-bar',
+        'angularUtils.directives.dirPagination'
     ])
         .config(['$stateProvider', '$locationProvider', '$urlRouterProvider', function ($stateProvider, $locationProvider, $urlRouterProvider) {
             $locationProvider.html5Mode(false);
@@ -51,22 +55,46 @@
                     controller: 'TestMenuController',
                     templateUrl: 'views/testMenu.html'
                 })
+                .state('app.spatialTest',{
+                    url: '/spatialTest',
+                    controller: 'SpatialTestController',
+                    templateUrl: 'views/testTemplate.html'
+                })
                 .state('app.careersTest',{
                     url: '/careersTest',
                     controller: 'CareersTestController',
-                    templateUrl: 'views/careersTest.html'
-                })
-                .state('app.logicalTest',{
-                    url: '/logicalTest',
-                    controller: 'LogicalTestController',
-                    templateUrl: 'views/logicalTest.html'
+                    templateUrl: 'views/testTemplate.html'
                 })
                 .state('app.numericalTest',{
                     url: '/numericalTest',
                     controller: 'NumericalTestController',
-                    templateUrl: 'views/numericalTest.html'
+                    templateUrl: 'views/testTemplate.html'
+                })
+                .state('app.results',{
+                    url: '/results/:sectorsArray/:graphData',
+                    controller: 'ResultsController',
+                    templateUrl: 'views/results.html',
+                    params:{
+                        'sectorsArray': ''
+                    }
+                })
+                .state('app.profile', {
+                    url: '/profile',
+                    controller: 'ProfileController',
+                    templateUrl: 'views/profile.html'
+                })
+                .state('app.courses', {
+                    url: '/courses',
+                    controller: 'CoursesController',
+                    templateUrl: 'views/courses.html'
                 })
 
+
+        }])
+        .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider){
+            cfpLoadingBarProvider.includeSpinner = false;
+            cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
+            cfpLoadingBarProvider.spinnerTemplate = '<div><span class="fa fa-spinner fa-3x"></div>';
         }])
         .run(["$rootScope", "$state", "$stateParams", '$window', '$location',
             function ($rootScope, $state, $stateParams, $window, $location) {
@@ -76,7 +104,7 @@
                 $rootScope.$storage = $window.localStorage;
 
                 $rootScope.app = {
-                    name: 'College Experience',
+                    name: 'UnisEx',
                     description: 'student website',
                     year: ((new Date()).getFullYear()),
                     version: "v0.0.1",

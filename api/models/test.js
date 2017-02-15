@@ -3,13 +3,15 @@ var Schema = mongoose.Schema;
 var Question = require('./question');
 
 var testSchema = new Schema({
+    testId:{type: String, unique: true},
     name: String,
-    duration: Number,
-    number_questions: Number,
-    questions: [{
-        question: {type: Schema.Types.Object, ref: 'Question'}
-    }],
-    result: Number
+    duration: {type: Number, default: null},
+    questions: [
+        question = {type: Schema.Types.Object, ref: 'Question'}
+    ],
+    result: Number,
+    answers: [Number],
+    /*time : { type : Date, default: Date.now }*/
 });
 
 

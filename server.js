@@ -20,6 +20,8 @@ var api = require('./api/routes/api');
 var users = require('./api/routes/users');
 var tests = require('./api/routes/tests');
 var questions =require('./api/routes/questions');
+var results = require('./api/routes/results');
+var courses  = require('./api/routes/courses');
 
 app.use(express.static(__dirname + '/app'));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -70,6 +72,8 @@ app.use('/api/', api);
 app.use('/api/users/', users);
 app.use('/api/tests/', tests);
 app.use('/api/questions/', questions);
+app.use('/api/results/', results);
+app.use('/api/courses/', courses);
 
 //Serve app
 http.createServer(app).listen(config.web.port);

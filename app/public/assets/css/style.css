@@ -3,25 +3,16 @@
     height: 200px;
     align-items: center;
 }
-#topnavbar{
-    background-color:#de995e;
-    border:0;
-    width:100%;
-    margin:0;
-}
+
 #welcome-name{
     padding-top: 20px;
     font-size: 20px;
     color: white;
 }
-#app-name{
-    padding:12% 0;
-    font-size: 22px;
-}
+
 .content-wrapper{
     padding:0 10%;
 }
-
 .fb-button{
     background-color: #3b5998;
     color:white;
@@ -44,14 +35,187 @@
     border-style: none;
     content: 'Answer questions based on preferences to determine which are of work is best suited to your internests and personality';
 }
-.space{
-    padding-top:20px;
+#loading-bar .bar {
+    position: relative;
+    height:4px;
 }
-.red{
-    background-color: red;
+/*----------------------------------------------- Main Menu -------------------------------------------------------------------------*/
+/*----------------------------------------------- Test Area -------------------------------------------------------------------------*/
+
+
+/*----------------------------------------------- Test Area -------------------------------------------------------------------------*/
+
+/*----------------------------------------------- Navigation Menu -------------------------------------------------------------------------*/
+#topnavbar{
+    background-color:#2D2E2F;
+    color: white;
 }
+#title{
+    color: #2F96E8;
+}
+.blue{
+    color: #2F96E8;
+}
+.nav-btn-custom {
+    cursor: pointer;
+    /*
+    margin-right: 25px !important;
+    */
+    font-size: 15px !important;
+}
+.nav-btn-custom:after {
+    display: block;
+    height: 5px;
+    width: 0;
+    background-color: #2F96E8;
+    content: "";
+    transition: width 1s;
+}
+.nav-btn-custom:hover {
+    background-color: #424243;
+    color: #2F96E8;
+}
+.nav-btn-custom:hover:after {
+    width: 100%;
+}
+.nav-btn-custom img{
+    height:20px;
+    width:20px;
+    border-radius: 50%;
+}
+.navbar-brand{
+    font-size: 30px !important;
+}/*
+.nav-title{
+    font-size: 30px !important;
+}*/
+.navbar-custom{
+    border-radius: 0 !important;
+    margin-bottom: 0 !important;
+    border: 0 !important;
+}
+#fa-icon-custom{
+    color:#de995e;
+    font-size: 18px !important;
+}
+#fa-icon-customA{
+    color:#de995e;
+    font-size: 18px !important;
+}
+#fa-icon-customB{
+    color:#de995e;
+    font-size: 18px !important;
+}
+#fa-icon-customC{
+    color:#de995e;
+    font-size: 18px !important;
+}
+/*----------------------------------------------- Navigation Menu -------------------------------------------------------------------------*/
+
+.courses-section{
+    background-color: #71AAAB;
+    height: 500px;
+}
+.break{
+    margin-bottom: 250px;
+
+}
+img{
+    width: 100%;
+    height: 600px;
+    opacity: 0.8;
+    overflow: hidden;
+    cursor: pointer;
+    left: 0;
+}
+.infront{
+    position: relative;
+    color: white;
+    margin-top: -150px;
+    cursor: pointer;
+    font-size: 30px !important;
+    border-radius: 30% !important;
+}
+.main-menu-title {
+    position: relative;
+    color: white;
+    font-size: 50px;
+    margin: -76px 40px 0 40px;
+    top:-370px;
+    text-align: center;
+    border-radius: 25px;
+    background: rgba(0, 0, 0, 0.75);
+}
+#bannerSignup.blue {
+    width: 301px;
+    border: 1px solid #2990ea;
+    border-radius: 44px;
+    color: #fff;
+    background: #2990ea;
+    box-shadow: inset 0 0 0 2px #2990ea;
+    transition: .75s cubic-bezier(0.19,1,.22,1);
+}
+#bannerSignup {
+    margin-right: 100px;
+    display: block;
+    font-size: 24px;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: .025em;
+    height: 59px;
+    line-height: 59px;
+    text-align: center;
+    margin-top: -100px;
+}
+#bannerSignup:hover {
+    transform: scale(1.1);
+}
+.title{
+    margin-top: 25px;
+    font-size: 35px;
+    color: #27365F;
+    text-align: center;
+    margin-bottom: 25px
+}
+.course-title{
+    font-size: 15px;
+    color: #393C52;
+}
+.course-box-first{
+    box-shadow: 0 0 0 1px rgba(0,0,0,.1), 0 2px 3px rgba(0,0,0,.2);
+}
+.course-box{
+    margin: 0 0 16px;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    color: #84878a;
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    max-height: 100%;
+}
+.course-icon{
+    padding-top: 15px;
+    font-size: 160px !important;
+    color: #2F96E8;
+
+}
+.course-filler{
+
+}
+.middle-about{
+    background-color: #262431;
+    height: 400px;
+    width: 100%;
+    max-height: 100%;
+}
+.top-content{
+    height:50px;
+}
+/*----------------------------------------------- Main Menu -------------------------------------------------------------------------*/
 /*----------------------------------------------- Login Page ------------------------------------------------------------------------*/
-/*button.btn {
+button.btn.button {
     height: 50px;
     margin: 0;
     padding: 0 20px;
@@ -68,14 +232,13 @@
     -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
     -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
 }
-button.btn:hover { opacity: 0.6; color: #fff; }
+button.btn.button:hover { opacity: 0.6; color: #fff; }
 
-button.btn:active { outline: 0; opacity: 0.6; color: #fff; -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; }*/
+button.btn.button:active { outline: 0; opacity: 0.6; color: #fff; -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; }
 
-/*
-button.btn:focus { outline: 0; opacity: 0.6; background: #de995e; color: #fff; }
+button.btn.button:focus { outline: 0; opacity: 0.6; background: #de995e; color: #fff; }
 
-button.btn:active:focus, button.btn.active:focus { outline: 0; opacity: 0.6; background: #de995e; color: #fff; }
+button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0.6; background: #de995e; color: #fff; }
 
 .btn-link-1 {
     display: inline-block;
@@ -90,11 +253,12 @@ button.btn:active:focus, button.btn.active:focus { outline: 0; opacity: 0.6; bac
     -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
 }
 .btn-link-1:hover, .btn-link-1:focus, .btn-link-1:active { outline: 0; opacity: 0.6; color: #fff; }
-*/
+/*
 
 .btn-link-1.btn-link-1-facebook { background: #4862a3; }
 .btn-link-1.btn-link-1-twitter { background: #55acee; }
 .btn-link-1.btn-link-1-google-plus { background: #dd4b39; }
+*/
 
 .btn-link-1 i {
     padding-right: 5px;
@@ -117,38 +281,28 @@ button.btn:active:focus, button.btn.active:focus { outline: 0; opacity: 0.6; bac
     -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
 }
 .btn-link-2:hover, .btn-link-2:focus,
-.btn-link-2:active, .btn-link-2:active:focus { outline: 0; opacity: 0.6; background: rgba(0, 0, 0, 0.3); color: #fff; }
+.btn-link-2:active, .btn-link-2:active:focus {
+    outline: 0; opacity: 0.6;
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+}
+
 .inner-bg {
-    padding: 100px 0 170px 0;
+    overflow: hidden;
 }
-
-.top-content .text {
-    color: #fff;
-}
-
-.top-content .text h1 { color: #fff; }
-
-.top-content .description {
-    margin: 20px 0 10px 0;
-}
-
-.top-content .description p { opacity: 0.8; }
-
-.top-content .description a {
-    color: #fff;
-}
-.top-content .description a:hover,
-.top-content .description a:focus { border-bottom: 1px dotted #fff; }
 
 .form-box {
-    margin-top: 35px;
+    margin-top: 6%;
+    width: 80%;
+    height: 80%;
+
 }
 
 .form-top {
     overflow: hidden;
     padding: 0 25px 15px 25px;
     background: #fff;
-    -moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px 0 0;
     text-align: left;
 }
 
@@ -203,7 +357,7 @@ button.btn:active:focus, button.btn.active:focus { outline: 0; opacity: 0.6; bac
 ::selection { background: #de995e; color: #fff; text-shadow: none; }
 /*----------------------------------------------- Login Page ------------------------------------------------------------------------*/
 /*----------------------------------------------- Test Page -------------------------------------------------------------------------*/
-.test-title{
+/*.test-title{
     text-align: center;
     size: 18px;
     padding-top: 4%;
@@ -235,15 +389,237 @@ button.btn:active:focus, button.btn.active:focus { outline: 0; opacity: 0.6; bac
 }
 .options-label{
     font-size: 15px;
-}
+}*/
 .right{
     margin-left:90%;
     margin-bottom:20%;
 }
-/*----------------------------------------------- Test Page -------------------------------------------------------------------------*/
-.footer{
+.answers{
+    padding: 15px 20px;
+    border-radius: 10px;
+    border: 1px solid #bbb;
 }
-/*.topnavbar .navbar-header{
+.answers:hover{
+    cursor: pointer;
+}
+.image-question img{
+    height:200px;
+    width:auto;
+}
+.image-answers{
+    cursor: pointer;
+    height: 150px;
+    width: 100%;
+    border-radius: 10px;
+    margin: 0 5% 10%;
+}
+.image-answers img{
+    margin-left:30%;
+    margin-right: 30%;
+    margin-top: 9%;
+    height: 70%;
+    width: auto;
+    position: relative;
+}
+.image-selected{
+    border: 3px solid #56afdc;
+}
+/*----------------------------------------------- Test Page -------------------------------------------------------------------------*/
+/*----------------------------------------------- Profile Page -------------------------------------------------------------------------*/
+
+.profile-box-first{
+    box-shadow: 0 0 0 1px rgba(0,0,0,.1), 0 2px 3px rgba(0,0,0,.2);
+}
+.profile-box{
+    margin: 0 0 16px;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    color: #84878a;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    height: 100%;
+    max-height: 100%;
+}
+/*.photo{
+    margin-top: 25px;
+    border: 2px solid black;
+    border-radius: 50%;
+    height: 190px;
+    margin-bottom: 50px;
+}*/
+.sizing{
+    margin: 20px;
+}
+.profile-photo{
+    border-radius: 50%;
+    height: 176.66px;
+}
+.outside-box-profile {
+    background-color: rgba(243,246,248,.94);
+    border: 4px solid #fff;
+    box-sizing: content-box;
+    margin: auto;
+    position: relative;
+    width: 180px;
+}
+.outside-box-profile {
+    box-shadow: inset 0 1.5px 3px 0 rgba(0,0,0,.15), 0 1.5px 3px 0 rgba(0,0,0,.15);
+}
+.circle{
+    border: 3px solid transparent;
+    border-radius: 50%;
+}
+.circle {
+    width: 176.66px;
+    height: 176.66px;
+}
+/*----------------------------------------------- Profile Page -------------------------------------------------------------------------*/
+/*----------------------------------------------- Results Page -------------------------------------------------------------------------*/
+.results-title{
+    text-transform: uppercase;
+}
+.chart{
+    padding: 30px 20px 50px 20px;
+}
+/*----------------------------------------------- Results Page -------------------------------------------------------------------------*/
+/*----------------------------------------------- Course Page -------------------------------------------------------------------------*/
+/*.course-box{
+border: 1px solid blue;
+    box-shadow: #1b1b1b;
+}*/
+.filters-area{
+    height: 100%;
+}
+.courses-box-first{
+    box-shadow: 0 0 0 1px rgba(0,0,0,.1), 0 2px 3px rgba(0,0,0,.2);
+}
+.courses-box{
+    margin: 0 0 12px;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    color: #84878a;
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    max-height: 100%;
+}
+.courses-top {
+    overflow: visible;
+    padding: 0 25px 10px 25px;
+    text-align: left;
+    height: 70px;
+    background: #eee;
+}
+
+.courses-top-left {
+    float: left;
+    width: 75%;
+    padding-top: 5px;
+}
+
+.courses-top-left { margin-top: 0; }
+.courses-top-right {
+    float: left;
+    width: 25%;
+    padding-top: 5px;
+    font-size: 10px;
+    text-align: right;
+}
+
+.courses-bottom {
+    padding: 5px 0 0 5px;
+    text-align: left;
+    height: 30px;
+}
+
+.courses-bottom-left  {
+    float:left;
+    width:80%;
+}
+.course-bottom-right{
+    float:left;
+    width: 10%;
+    text-align:right;
+
+}
+.course-image{
+    height:25px;
+    width: 25px;
+    padding: 0 0 5px 5px;
+}
+.filter-college{
+    cursor: pointer;
+    padding: 5px 5px;
+    transition: background-color 0.5s ease;
+}
+.filter-college:hover{
+    /*
+    background-color: #e3e5e6;
+    */
+    background-color: #f1f1f1
+}
+.filter-clear{
+    cursor: pointer;
+    padding: 5px 5px;
+    background-color: #84878a;
+}
+.dropbtn {
+    color: white;
+    padding: 3px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    width: 200px;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #f1f1f1
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    background-color: #f9f9f9;
+    width: 200px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: #f1f1f1}
+
+.show {display:block;}
+
+/*----------------------------------------------- Course Page -------------------------------------------------------------------------*/
+
+/*.footer {
+    position: absolute !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    padding: 1rem !important;
+    background-color: #efefef;
+    text-align: center;
+}*/
+
+/*
+.topnavbar .navbar-header{
     padding: 0;
 }
 .topnavbar .navbar-nav > li > a,
@@ -264,13 +640,14 @@ button.btn:active:focus, button.btn.active:focus { outline: 0; opacity: 0.6; bac
     top:0;
     z-index: 121;
 }
+*/
 
-.content-wrapper{
+.cntent-wrapper{
     margin-bottom: -120px;
 }
-.content-wrapper:after{
+.cntent-wrapper:after{
     display:block;
 }
-.footer-wrapper, .content-wrapper:after{
+.footer-wrapper, .cntent-wrapper:after{
     height:120px;
-}*/
+}
