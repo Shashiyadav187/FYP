@@ -6,8 +6,9 @@ var courseSchema = new Schema({
     duration: String,
     title: String,
     college: String,
-    sectors: [String],
-    points: String
+    sector: String,
+    points: String,
+    quickSearch: String
 });
 
 var Course = mongoose.model('Course', courseSchema);

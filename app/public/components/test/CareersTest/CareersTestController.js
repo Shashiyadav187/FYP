@@ -13,6 +13,7 @@
             $scope.finished = false;
             $scope.accessQuestion = [];
             $scope.array = [];
+            $scope.resultsPage = false;
 
 
             $scope.getTests = function(){
@@ -120,7 +121,7 @@
 
 
             $scope.markQuiz = function(){
-               // var length = $scope.tests[testIndex].questions[0].question.length;
+                // var length = $scope.tests[testIndex].questions[0].question.length;
                 for(var x = 0; x < $scope.tests[testIndex].questions[0].question.length; x++){
                     var index = $scope.tests[testIndex].questions[0].question[x].selected;
                     $scope.defineResult($scope.tests[testIndex].questions[0].question[x].options[index]);
@@ -134,39 +135,22 @@
                 $scope.resultsView = true;
                 $scope.markQuiz();
 
-                $scope.labels = ["IT", "Construction", "Health Care", "Business", "Arts"];
-                $scope.options = {
-                    responsive: true,
-                    scales: {
-                        xAxes: [{
-                            stacked: false,
-                        }],
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero:true
-                            }
-                        }]
-                    }
-                };
-                $scope.data = [$scope.array[0].it, $scope.array[0].construction, $scope.array[0].healthcare, $scope.array[0].business, $scope.array[0].arts];
 
-                /*var largest = Math.max.apply(Math, $scope.data);
-                console.log(largest);*/
-                console.log($scope.data);
-                var temp = 0;
-                for(var i =0; i<=$scope.data.length; i++){
-                    if($scope.data[i] > temp){
-                        temp = $scope.data[i];
-                    }
-                }
-
-                console.log($scope.data.indexOf(temp));
-                var position = $scope.data.indexOf(temp);
-                console.log(Object.keys($scope.array[0])[position]);
-                $scope.recommendation = Object.keys($scope.array[0])[position];
-
+                $state.go('app.results',{
+                        sectorsArray: JSON.stringify($scope.array)
+                    });
 
             };
+/*
+
+            $scope.goToResultsPage = function () {
+              $state.go('app.results')
+            };
+*/
+
+            $scope.fillResultsPage = function(){
+
+            }
 
 
 

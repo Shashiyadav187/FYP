@@ -29,8 +29,9 @@ router.route('/')
         course.course_id = req.body.course_id;
         course.duration = req.body.duration;
         course.college = req.body.college;
-        course.sectors = req.body.sectors;
+        course.sector = req.body.sector;
         course.points = req.body.points;
+        course.quickSearch = req.body.quickSearch;
 
         course.save(function(err) {
             if (err) {
@@ -39,6 +40,24 @@ router.route('/')
                 res.json({ status:200, message: 'course created!'});
             }
         });
+    });
+/*   .get(function(req, res) {
+ User.findOne({'email': req.params.email}, function(err, user) {
+ if (err)
+ res.send(err);
+
+ res.json(user);
+ });
+ })*/
+router.route('/:sector')
+    .get(function(req, res){
+        Course.findOne({'sector': req.params.sector}, function(err, course){
+            console.log("getting in");
+            console.log("check"+ req.params.sector);
+            if(err)
+                res.send(err);
+            res.json(course)
+        })
     });
 /*
 var c1 = new Course({

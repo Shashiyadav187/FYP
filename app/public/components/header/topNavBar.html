@@ -8,20 +8,29 @@
         <ul class="nav navbar-nav navbar-right">
             <li ng-show="user.firstName!=null" class="nav-btn-custom" ng-click="userProfile()">
                 <a title="profile">
-                    <span class="fa fa-user fa-1x"></span>
-                    {{user.firstName}}
+                    <img ng-src="{{user.profiler}}">
                 </a>
             </li>
-            <li ng-show="user.firstName!=null" class="nav-btn-custom">
-                <a title="Logout" href="api/users/logout">
-                    <span class="fa fa-sign-out fa-1x" aria-hidden="true"></span>
-                    Logout
+
+            <li class="nav-btn-custom">
+                <a title="View Tests" href="/#/app/testMenu" id="fa-icon-customB">
+                    <span class="fa fa-pencil fa-1x" aria-hidden="true"></span>
+
+                </a>
+            </li>
+            <li class="nav-btn-custom">
+                <a title="Search Courses" href="/#/app/courses" id="fa-icon-customC">
+                    <span class="fa fa-search fa-1x" aria-hidden="true"></span>
+                </a>
+            </li>
+            <li ng-show="user.firstName!=null" class="nav-btn-custom" >
+                <a title="Logout" href="api/users/logout" id="fa-icon-custom">
+                    <span class="fa fa-sign-out fa-1x"  aria-hidden="true"></span>
                 </a>
             </li>
             <li ng-show="user.firstName==null" class="nav-btn-custom">
-                <a title="Login" href="/#/login">
+                <a title="Login" href="/#/login" id="fa-icon-customA">
                     <span class="fa fa-sign-in fa-1x" aria-hidden="true"></span>
-                    Login
                 </a>
             </li>
         </ul>

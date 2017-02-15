@@ -24,7 +24,8 @@
     "timer": "latest",
     "angular-modal-service": "^0.10.1",
     "angular-chart.js": "^1.1.1",
-    "angular-loading-bar": "^0.9.0"
+    "angular-loading-bar": "^0.9.0",
+    "angularUtils-pagination": "angular-utils-pagination#^0.11.1"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.3"

@@ -1,28 +1,95 @@
-<!--
-<button ng-click="createCourses(courses)">button</button>
--->
+
 <div class="modal-body row">
 
-    <div class="col-sm-3">
+    <div class="col-sm-2">
         <input
                 type="text"
                 placeholder="Search..."
-                ng-model="search">
-    </div>
-    <div class="col-sm-9">
-        <div ng-repeat="course in courses | filter:search">
-            <div class="col-sm-3 text-center">
-                <div class="courses-box-first">
-                    <div class="course-box">
-                        <div class="course-title">
-                            {{course.title}}
+                ng-model="searchBar">
+        <div class="filter-college" ng-click="clearAll()">Clear All</div>
+
+        <div class="dropdown">
+            <button ng-click="myFunction()" class="dropbtn">College<i class="fa fa-angle-down text-right"></i></button>
+            <div id="collegeDropdown" class="dropdown-content">
+                <div class="filter-college">
+                    <input type="checkbox" ng-model="types.UCD">
+                    University College Dublin
+                </div>
+                <div class="filter-college">
+                    <input type="checkbox" ng-model="types.DIT" >
+                    Dublin Institute of Technology
+                </div>
+                <div class="filter-college">
+                    <input type="checkbox" ng-model="types.TCD" >
+                    Trinity College
+                </div>
+            </div>
+            <div class="dropdown">
+                <button ng-click="mySectorFunction()" class="dropbtn">Area of expertise<i class="fa fa-angle-down"></i></button>
+                <div id="sectorDropdown" class="dropdown-content">
+                    <div class="filter-college">
+                        <input type="checkbox" ng-model="searches.cs">
+                        Computer Science
+                    </div>
+                    <div class="filter-college" ng-click="search='Engineering and Construction'">
+                        <input type="checkbox" ng-model="searches.ec">
+                        Engineering and Construction
+                    </div>
+                    <div class="filter-college" ng-click="search='Medicine and Science'">
+                        <input type="checkbox" ng-model="searches.ms">
+                        Medicine and Science
+                    </div>
+                    <div class="filter-college" ng-click="search='Business and Management'">
+                        <input type="checkbox" ng-model="searches.bm">
+                        Business and Management
+                    </div>
+                    <div class="filter-college" ng-click="search='Education and Arts'">
+                        <input type="checkbox" ng-model="searches.ea">
+                        Education and Arts
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button ng-click="myPointsFunction()" class="dropbtn">Points<i class="fa fa-angle-down text-right"></i></button>
+                    <div id="pointsDropdown" class="dropdown-content">
+                        <div class="filter-college">
+                            Min points:<input type="text" min="0" max ng-model="min_points" />
                         </div>
-                        <div class="course-college">
-                            {{course.college}}
+                        <div class="filter-college">
+                            Max points:<input type="text" max="775" ng-model="max_points" />
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+<!--
+                <button ng-click="createCourses(courses)">button</button>
+-->
+
+    </div>
+    <div class="col-sm-10">
+        <div dir-paginate="course in courses | filter:searchBar | sectorFilter:searches | filter:ageFilter | customFilter:types | itemsPerPage: 16 "><!--rangeFilter:'course.points'--><!--byCourse:courseFilter -->
+            <div class="col-sm-3 text-center">
+                <div class="courses-box-first">
+                    <div class="courses-box">
+
+                        <div class="courses-top">
+                            <div class="courses-top-left">
+                                {{course.title}}
+                            </div>
+                            <div class="courses-top-right">
+                                {{course.points}}
+                            </div>
+                        </div>
+                        <div class="courses-bottom">
+                            <div class="courses-bottom-left">
+                                {{course.college}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <dir-pagination-controls></dir-pagination-controls>
     </div>
 </div>
