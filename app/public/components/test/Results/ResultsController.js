@@ -13,6 +13,7 @@
                 })
             }*/
             $scope.labels = ["IT", "Construction", "Health Care", "Business", "Arts"];
+            $scope.colours = ['#97BBCD','#66BB6A','#F7464A','#46BFBD','#FDB45C'];
             $scope.options = {
                 responsive: true,
                 scales: {

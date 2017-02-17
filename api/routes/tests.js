@@ -88,16 +88,8 @@ router.route('/current')
         res.json( { test: req.test });
     });
 
-router.route('/create')
-    .post(function(req,res){
-
-        }
-
-    );
-
 //Instantiating the Model - An instance of Model represents a mongodb document
-/*
-var q1 = new Question({
+/*var q1 = new Question({
     title: "Would you like to work in an office?",
     options: [
  {
@@ -114,7 +106,6 @@ q1.save(function(err, res){
 
     console.log(res, 'question1 created');
 });
-
 var q2 = new Question({
     title: "Do you want to work with people?",
     options: [
@@ -132,14 +123,13 @@ q2.save(function(err, res){
 
     console.log(res, 'question2 created');
 });
-
 var q3 = new Question({
-    title: "Do you enjoy building things and working with your hands?",
+    title: "Do you enjoy and working with your hands?",
     options: [
  {
- option: "Yes", weight:[2,5,3,1,2],
+ option: "Yes", weight:[2,5,4,1,2],
  },{
- option: "No", weight:[3,0,2,4,3],
+ option: "No", weight:[3,0,1,4,3],
  }],
     type: "text",
     selected: null
@@ -171,9 +161,9 @@ var q5 = new Question({
     title: "Do you like to hold presentations and to inform others?",
     options: [
  {
- option: "Yes", weight:[3,1,2,4,4],
+ option: "Yes", weight:[1,0,2,4,4],
  },{
- option: "No", weight:[2,4,3,1,1],
+ option: "No", weight:[4,5,3,1,1],
  }],
     type: "text",
     selected: null
@@ -251,6 +241,142 @@ q9.save(function(err, res){
         console.log(err);
 
     console.log(res, 'question2 created');
+});
+var q10 = new Question({
+    title: "Do you enjoy reading, going to the theatre and museums etc?",
+    options: [
+ {
+ option: "Yes", weight:[1,0,1,3,5],
+ },{
+ option: "No", weight:[4,4,3,2,0],
+ }],
+    type: "text",
+    selected: null
+});
+q10.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'question2 created');
+});
+var q11 = new Question({
+    title: "Do you enjoy building things?",
+    options: [
+ {
+ option: "Yes", weight:[2,5,1,1,2] ,
+ },{
+ option: "No", weight:[3,0,4,4,3],
+ }],
+    type: "text",
+    selected: null
+});
+q11.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'question2 created');
+});
+var q12 = new Question({
+    title: "Can you easily explain complex situations to people?",
+    options: [
+ {
+ option: "Yes", weight:[5,1,2,3,0],
+ },{
+ option: "No", weight:[0,4,3,2,5],
+ }],
+    type: "text",
+    selected: null
+});
+q12.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'question2 created');
+});
+var q13 = new Question({
+    title: "Do you enjoy working with computers?",
+    options: [
+ {
+ option: "Yes", weight:[5,3,2,4,1],
+ },{
+ option: "No", weight:[0,2,3,1,4],
+ }],
+    type: "text",
+    selected: null
+});
+q13.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'question2 created');
+});
+var q14 = new Question({
+    title: "Are you passionate about information and communication?",
+    options: [
+ {
+ option: "Yes", weight:[3,2,2,5,1],
+ },{
+ option: "No", weight:[2,2,3,0,4],
+ }],
+    type: "text",
+    selected: null
+});
+q14.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'question2 created');
+});
+var q15 = new Question({
+    title: "Do you like to write?",
+    options: [
+ {
+ option: "Yes", weight:[1,0,2,5,4],
+ },{
+ option: "No", weight:[4,5,3,0,1],
+ }],
+    type: "text",
+    selected: null
+});
+q15.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'question2 created');
+});
+var q16 = new Question({
+    title: "Are you interested in the human body?",
+    options: [
+ {
+ option: "Yes", weight:[0,0,5,0,0],
+ },{
+ option: "No", weight:[5,5,0,5,5],
+ }],
+    type: "text",
+    selected: null
+});
+q16.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'question2 created');
+});
+var q17 = new Question({
+    title: "Do you like researching things?",
+    options: [
+ {
+ option: "Yes", weight:[4,2,4,4,0],
+ },{
+ option: "No", weight:[1,3,1,1,5],
+ }],
+    type: "text",
+    selected: null
+});
+q17.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'question2 created');
 });*/
 /*var q10 = new Question({
     title: "Do you enjoy reading, going to the theatre and museums etc?",
@@ -295,19 +421,20 @@ question10.save(function(err, res){
     console.log(res, 'Q10 created');
 });
  */
- /*var test1 = new Test({
+
+/* var test1 = new Test({
     name:"Careers Test",
     duration: null,
     questions: {
-        question: [q1,q2,q3,q4,q5,q6,q7,q8,q9]
+        question: [q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16,q17]
     }
 });
 
 //Saving the model instance to the DB
 test1.save(function(err, res){
     if (err)
-        res.send(err);
-    console.log(res, 'spatial test created');
+        console.log(err);
+    console.log(res, 'careers test created');
 });*/
 
 

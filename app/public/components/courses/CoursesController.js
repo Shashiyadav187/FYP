@@ -7,6 +7,13 @@
             $scope.courses = null;
             $scope.min = 0;
             $scope.max = 0;
+            $scope.ditPhoto = false;
+            $scope.ucdPhoto = false;
+            $scope.tcdPhoto = false;
+            $scope.openPoints = false;
+            $scope.openColleges = false;
+            $scope.openSectors = false;
+
 
             $scope.getCourses = function(){
                 CourseService.getCourses()
@@ -62,11 +69,13 @@
                         console.log("Not found college error");
                     }}};
 
-            $scope.myFunction = function () {
+            $scope.collegeFunction = function () {
                 angular.element(document.querySelector('#collegeDropdown').classList.toggle('show'));
+
             };
             $scope.mySectorFunction = function () {
                 angular.element(document.querySelector('#sectorDropdown').classList.toggle('show'));
+
             };
             $scope.myPointsFunction = function () {
                 angular.element(document.querySelector('#pointsDropdown').classList.toggle('show'));
@@ -74,19 +83,9 @@
 
 
 
-            /*$scope.filterFn = function(course, min, max){
-             if(course.points > min && course.points < max){
-             return course;
-             }
-             };*/
-
             $scope.ageFilter = function(course){
                 return(course.points >= $scope.min_points && course.points <= $scope.max_points);
             };
-
-            /*$scope.searchSector = function(course){
-
-             };*/
 
             $scope.clearAll = function(){
                 $scope.types = {UCD: false, TCD:false, DIT:false};
@@ -94,20 +93,53 @@
                 $scope.min_points = 0;
                 $scope.max_points = 775;
                 $scope.searchBar = "";
-                window.onclick = function(event) {
-                    if (!event.target.matches('.dropbtn')) {
 
-                        var dropdowns = document.getElementsByClassName("dropdown-content");
-                        for (var i = 0; i < dropdowns.length; i++) {
-                            var openDropdown = dropdowns[i];
-                            if (openDropdown.classList.contains('show')) {
-                                openDropdown.classList.remove('show');
-                            }
-                        }
+                /* window.onclick = function(event) {
+                 if (!event.target.matches('.dropbtn')) {
+
+                 var dropdowns = document.getElementsByClassName("dropdown-content");
+                 for (var i = 0; i < dropdowns.length; i++) {
+                 var openDropdown = dropdowns[i];
+                 if (openDropdown.classList.contains('show')) {
+                 openDropdown.classList.remove('show');
+                 }
+                 }
+                 }
+                 };*/
+            };
+
+
+            $scope.collegeCourse = function(courses){
+                $scope.collegePhoto = null;
+                //console.log($scope.courses + " scope.courses here");
+                //console.log(courses + " courses here");
+                angular.forEach(courses, function (course) {
+                    if(course.college == "University College Dublin"){
+                        $scope.collegePhoto = "UCD";
+                    }else if(course.college == "Trinity College"){
+                        $scope.collegePhoto = "TCD";
+                    }else if(courses.college == "Dublin Institute of Technology"){
+                        $scope.collegePhoto = "DIT";
+                    } else{
+                        $scope.collegePhoto= "didnt work";
+                    }
+                });
+                
+                $scope.myFunction = function (course, i) {
+                    if(course.college == "University College Dublin"){
+                        $scope.collegePhoto = "UCD";
+                    }else if(course.college == "Trinity College"){
+                        $scope.collegePhoto = "TCD";
+                    }else if(courses.college == "Dublin Institute of Technology"){
+                        $scope.collegePhoto = "DIT";
+                    } else{
+                        $scope.collegePhoto= "didnt work";
                     }
                 };
             };
-
+/*
+            $scope.collegeCourse();
+*/
             $scope.types = {UCD: false, TCD:false, DIT:false};
             $scope.searches = {cs:false, ec:false, ms:false, bm:false, ea:false};
             $scope.min_points = 0;
@@ -129,7 +161,6 @@
                             filtered.push(course);
                         }
                     });
-
                     return filtered;
                 }
             };
