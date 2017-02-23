@@ -1,8 +1,8 @@
 (function(){
     'use strict';
 
-    App.controller('CoursesController', [ '$scope', '$state','CourseService','$http',
-        function($scope, $state, CourseService, $http){
+    App.controller('CoursesController', [ '$scope', '$state','CourseService','$http','courseModalService',
+        function($scope, $state, CourseService, $http, courseModalService){
 
             $scope.courses = null;
             $scope.min = 0;
@@ -144,6 +144,30 @@
             $scope.searches = {cs:false, ec:false, ms:false, bm:false, ea:false};
             $scope.min_points = 0;
             $scope.max_points = 775;
+
+            $scope.displayCourse = function (c) {
+
+                /*if(c.college == 'Dublin Institute of Technology'){
+                    var colImg = '../img/dit-bg.jpg';
+                } else if(c.college == 'University College Dublin'){
+                    colImg = '../img/ucd-bg.jpg';
+                } else if(c.college == 'Trinity College Dublin'){
+                    colImg = '/img/tcd-bg-jpg';
+                }*/
+
+                var modalOptions = {
+                    closeButtonText:'Cancel',
+                    actionButtonText: 'OK',
+                    image: '',
+                    course: c.title,
+                    code: c.course_id,
+                    college: c.college,
+                    points: c.points,
+                    sector: c.sector
+                };
+
+                courseModalService.showModal({}, modalOptions)
+            }
         }])
 
         .filter('customFilter', function() {

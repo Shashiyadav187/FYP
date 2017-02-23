@@ -7,6 +7,7 @@ var Course = require('./course.js');
 
 var userSchema = new Schema({
     profiler: {type: String, default: "https://www.iconexperience.com/_img/o_collection_png/green_dark_grey/512x512/plain/user.png"},
+    backgroundPhoto: {type: String, default: "http://www.planwallpaper.com/static/images/recycled_texture_background_by_sandeep_m-d6aeau9_PZ9chud.jpg"},
     facebookID: String,
     firstName:String,
     lastName: String,

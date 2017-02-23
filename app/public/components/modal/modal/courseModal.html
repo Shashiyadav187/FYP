@@ -1,0 +1,33 @@
+
+<div class="modal-content">
+    <div class="modal-header">
+        <!-- more usage of angular data binding -->
+        <h2>{{modalOptions.course}}</h2>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-xs-8 col-xs-offset-2">
+                <!-- ng-src used again instead of src -->
+                <!--
+                                        <img ng-src="{{modalOptions.image}}" class="img-rounded img-responsive">
+                -->
+            </div>
+        </div>
+        <div class="row top-buffer">
+            <div class="col-md-6">
+                <!-- angular data binding -->
+                <p><strong>Course Code: </strong>{{modalOptions.code}}</p>
+                <p><strong>College: </strong>{{modalOptions.college}}</p>
+                <p><strong>Points: </strong>{{modalOptions.points}}</p>
+                <p><strong>Sector: </strong>{{modalOptions.sector}}</p>
+
+            </div>
+            <div class="col-xs-12 top-buffer">
+                <!-- angular data binding and data-dismiss for bootstrap -->
+                <!--<p>{{list.activeTurtle.description}}</p>-->
+                <button class="btn btn-default"
+                        data-ng-click="modalOptions.close()">{{modalOptions.closeButtonText}}</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -9,19 +9,6 @@
 
             $scope.top = "Profile Page";
 
-            /*angular.element(document).ready(function() {
-                jQuery('.tabs .tab-links a').on('click', function(e)  {
-                    var currentAttrValue = jQuery(this).attr('href');
-
-                    // Show/Hide Tabs
-                    jQuery('.tabs ' + currentAttrValue).show().siblings().hide();
-
-                    // Change/remove current tab to active
-                    jQuery(this).parent('li').addClass('active').siblings().removeClass('active');
-
-                    e.preventDefault();
-                });
-            });*/
 
             UserService.getCurrentUser()
                 .then(function(res){
@@ -38,7 +25,12 @@
             $scope.showCourses = function(){
                 $scope.courses = true;
                 $scope.results = false;
+            };
 
-            }
+            $scope.images = [
+                './assets/img/1.jpg',
+                './assets/img/2.jpg',
+                './assets/img/3.jpg'
+            ];
         }])
 })();
