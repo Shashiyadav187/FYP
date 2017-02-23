@@ -1,0 +1,40 @@
+<div class="modal-header">
+    <h3>{{modalOptions.headerText}}</h3>
+</div>
+<div class="modal-body">
+    <p><b>Rules: </b>  {{modalOptions.bodyText}}</p>
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <td>
+                Questions
+            </td>
+            <td>
+                {{modalOptions.numQuestions}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Pass percentage
+            </td>
+            <td>
+                {{modalOptions.passPercentage}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Time Limit
+            </td>
+            <td>
+                {{modalOptions.timeLimit}}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-default"
+            data-ng-click="modalOptions.close()">{{modalOptions.closeButtonText}}</button>
+    <button class="btn btn-warning"
+            data-ng-click="modalOptions.ok()">{{modalOptions.actionButtonText}}</button>
+</div>

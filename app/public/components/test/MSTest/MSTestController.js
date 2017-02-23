@@ -1,31 +1,31 @@
 (function(){
     'use strict';
 
-    App.controller('CareersTestController', [ '$scope', '$state','TestService',
+    App.controller('MSTestController', [ '$scope', '$state','TestService',
         function($scope, $state, TestService){
 
-            $scope.testName = 'Careers Test';
+            $scope.testName = 'Medicine & Science Test';
             $scope.tests = null;
-            var testIndex = 3;
+            var testIndex = 1;
             $scope.question_index = 0;
             $scope.numQuestionsAnswered = 0;
             $scope.error = false;
             $scope.finished = false;
-            $scope.accessQuestion = [];
             $scope.array = [];
             $scope.resultsPage = false;
-
 
             $scope.getTests = function(){
                 TestService.getTests()
                     .then(function (res) {
                         $scope.tests = res.data;
+                        console.log("tests gathered");
                     }, function (err) {
                         console.log('Get tests Error ' + err);
                         $scope.tests = null;
                     })
             };
             $scope.getTests();
+
 
 
             $scope.setActiveQuestion = function(i){
@@ -59,6 +59,9 @@
                 //For loop added to loop through all questions and recount questions
                 //that have been answered. This avoids infinite loops.
 
+                if($scope.numQuestionsAnswered >= length){
+                    $scope.finished = true;
+                }
                 for(var x = 0; x < length; x++){
                     if($scope.tests[testIndex].questions[0].question[$scope.question_index].selected !== null){
                         $scope.numQuestionsAnswered++;
@@ -87,25 +90,16 @@
 
             $scope.defineResult = function(currentAnswer){
                 var sectors = {
-                    "it":0,
-                    "construction":0,
-                    "healthcare":0,
-                    "business":0,
-                    "arts":0
+                    "science":0,
+                    "medicine":0
                 };
 
-                sectors.it+=currentAnswer.weight[0];
-                sectors.construction+=currentAnswer.weight[1];
-                sectors.healthcare+=currentAnswer.weight[2];
-                sectors.business+=currentAnswer.weight[3];
-                sectors.arts+=currentAnswer.weight[4];
+                sectors.science+=currentAnswer.weight[0];
+                sectors.medicine+=currentAnswer.weight[1];
 
                 if($scope.array.length!=0){
-                    $scope.array[0].it+=sectors.it;
-                    $scope.array[0].construction+=sectors.construction;
-                    $scope.array[0].healthcare+=sectors.healthcare;
-                    $scope.array[0].business+=sectors.business;
-                    $scope.array[0].arts+=sectors.arts;
+                    $scope.array[0].science+=sectors.science;
+                    $scope.array[0].medicine+=sectors.medicine;
                 }else{
                     $scope.array.push(sectors);
                 }
@@ -137,22 +131,9 @@
 
 
                 $state.go('app.results',{
-                        sectorsArray: JSON.stringify($scope.array)
-                    });
+                    sectorsArray: JSON.stringify($scope.array)
+                });
 
             };
-/*
-
-            $scope.goToResultsPage = function () {
-              $state.go('app.results')
-            };
-*/
-
-            $scope.fillResultsPage = function(){
-
-            }
-
-
-
-        }])
+        }]);
 })();

@@ -7,7 +7,6 @@
         'ui.bootstrap',
         'ui.router',
         'ng-backstretch',
-        'angularModalService',
         'chart.js',
         'angular-loading-bar',
         'angularUtils.directives.dirPagination'
@@ -87,6 +86,16 @@
                     url: '/courses',
                     controller: 'CoursesController',
                     templateUrl: 'views/courses.html'
+                })
+                .state('app.msTest', {
+                    url: '/msTest',
+                    controller: 'MSTestController',
+                    templateUrl: 'views/testTemplate.html'
+                })
+                .state('app.ecTest', {
+                    url: '/ecTest',
+                    controller: 'ECTestController',
+                    templateUrl: 'views/testTemplate.html'
                 })
 
 

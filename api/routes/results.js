@@ -27,6 +27,7 @@ router.route('/')
         var result = new Result();
         result.testName = req.body.testName;
         result.score = req.body.score;
+        result.recommend = req.body.recommend;
         result.timeStamp = req.body.timeStamp;
 
         result.save(function(err) {
@@ -39,22 +40,19 @@ router.route('/')
     });
 
 /*
- var user2 = new User({
- firstName:"Database",
- lastName: "Test",
- email: "thumphries5@hotmail.com",
- username: 'test',
- password:'test',
- admin: false
+ var result = new User({
+ testName:"Careers Test",
+ score: null,
+ recommend: "Computer Science"
  });
 
- user2.save(function(err, res){
+result.save(function(err, res){
  if (err)
  res.send(err);
- console.log(res, 'user2 created');
+ console.log(res, 'result created');
  });
- */
 
+*/
 
 
 module.exports = router;

@@ -1,8 +1,8 @@
 (function(){
     "use strict";
 
-    App.controller('SpatialTestController', ['$scope','$state','$http','UserService','$timeout','ModalService',
-        function($scope, $state, $http, UserService, $timeout, ModalService) {
+    App.controller('SpatialTestController', ['$scope','$state','$http','UserService','$timeout',
+        function($scope, $state, $http, UserService, $timeout) {
 
             $scope.testName = 'Spatial Reasoning';
             $scope.tests = null;
@@ -139,7 +139,7 @@
                 }
             };
 
-            $scope.finish = function(){
+          /*  $scope.finish = function(){
                 ModalService.showModal({
                     templateUrl: 'views/modal.html',
                     controller: "ModalController"
@@ -150,7 +150,7 @@
                     });
                 });
 
-            };
+            };*/
 
 
 
@@ -199,7 +199,7 @@
             };
 
             $scope.addResultToUser = function(result, email){
-                $http.post('/api/users/'+ JSON.parse(email), {
+                $http.post('/api/users/pushResult/'+ JSON.parse(email), {
                     results: JSON.parse(result),
                 })
                     .success(function(data, status, header, config){
