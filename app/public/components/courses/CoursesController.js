@@ -1,8 +1,8 @@
 (function(){
     'use strict';
 
-    App.controller('CoursesController', [ '$scope', '$state','CourseService','$http','courseModalService',
-        function($scope, $state, CourseService, $http, courseModalService){
+    App.controller('CoursesController', [ '$scope', '$state','CourseService','$http','courseModalService','$timeout',
+        function($scope, $state, CourseService, $http, courseModalService, $timeout){
 
             $scope.courses = null;
             $scope.min = 0;
@@ -13,6 +13,7 @@
             $scope.openPoints = false;
             $scope.openColleges = false;
             $scope.openSectors = false;
+            $scope.arrayCourses = [];
 
 
             $scope.getCourses = function(){
@@ -28,46 +29,46 @@
             };
             $scope.getCourses();
 
-            $scope.createCourses = function(coursesArray){
-                console.log("clicked");
-                console.log(coursesArray.courses.length);
-                for(var i = 0; i<coursesArray.courses.length; i++){
-                    if(coursesArray.courses[i].institution.title == "University College Dublin" ||
-                        coursesArray.courses[i].institution.title == "Trinity College" ||
-                        coursesArray.courses[i].institution.title == "Dublin Institute of Technology"){
+            /*   $scope.createCourses = function(coursesArray){
+             console.log("clicked");
+             console.log(coursesArray.courses.length);
+             for(var i = 0; i<coursesArray.courses.length; i++){
+             if(coursesArray.courses[i].institution.title == "University College Dublin" ||
+             coursesArray.courses[i].institution.title == "Trinity College" ||
+             coursesArray.courses[i].institution.title == "Dublin Institute of Technology"){
 
-                        if(coursesArray.courses[i].topics.main_topic != "Sociology and Social Care" ||
-                            coursesArray.courses[i].topics.main_topic != "Psychology and Law" ||
-                            coursesArray.courses[i].topics.main_topic != "History and Politics"){
+             if(coursesArray.courses[i].topics.main_topic != "Sociology and Social Care" ||
+             coursesArray.courses[i].topics.main_topic != "Psychology and Law" ||
+             coursesArray.courses[i].topics.main_topic != "History and Politics"){
 
-                            if(coursesArray.courses[i].points != null && coursesArray.courses[i].points != ""
-                                &&  coursesArray.courses[i].points != "#+matric") {
+             if(coursesArray.courses[i].points != null && coursesArray.courses[i].points != ""
+             &&  coursesArray.courses[i].points != "#+matric") {
 
-                                $http.post('/api/courses', {
-                                    title: coursesArray.courses[i].title,
-                                    course_id: coursesArray.courses[i].course_id,
-                                    duration: coursesArray.courses[i].duration,
-                                    college: coursesArray.courses[i].institution.title,
-                                    points: coursesArray.courses[i].points,
-                                    sector: coursesArray.courses[i].topics.main_topic,
-                                    quickSearch: coursesArray.courses[i].search_aid
-                                })
-                                    .success(function (data, status, header, config) {
-                                        if (data.success) {
-                                            console.log(data);
-                                        } else {
-                                            console.log("Success :)");
-                                        }
-                                    });
-                            } else {
-                                console.log("has no points");
-                            }
-                        } else {
-                            console.log("Not found sector error");
-                        }
-                    } else {
-                        console.log("Not found college error");
-                    }}};
+             $http.post('/api/courses', {
+             title: coursesArray.courses[i].title,
+             course_id: coursesArray.courses[i].course_id,
+             duration: coursesArray.courses[i].duration,
+             college: coursesArray.courses[i].institution.title,
+             points: coursesArray.courses[i].points,
+             sector: coursesArray.courses[i].topics.main_topic,
+             quickSearch: coursesArray.courses[i].search_aid
+             })
+             .success(function (data, status, header, config) {
+             if (data.success) {
+             console.log(data);
+             } else {
+             console.log("Success :)");
+             }
+             });
+             } else {
+             console.log("has no points");
+             }
+             } else {
+             console.log("Not found sector error");
+             }
+             } else {
+             console.log("Not found college error");
+             }}};*/
 
             $scope.collegeFunction = function () {
                 angular.element(document.querySelector('#collegeDropdown').classList.toggle('show'));
@@ -84,7 +85,7 @@
 
 
             $scope.ageFilter = function(course){
-                return(course.points >= $scope.min_points && course.points <= $scope.max_points);
+                return(course.points[0] >= $scope.min_points && course.points[0] <= $scope.max_points);
             };
 
             $scope.clearAll = function(){
@@ -124,7 +125,7 @@
                         $scope.collegePhoto= "didnt work";
                     }
                 });
-                
+
                 $scope.myFunction = function (course, i) {
                     if(course.college == "University College Dublin"){
                         $scope.collegePhoto = "UCD";
@@ -137,23 +138,15 @@
                     }
                 };
             };
-/*
-            $scope.collegeCourse();
-*/
+            /*
+             $scope.collegeCourse();
+             */
             $scope.types = {UCD: false, TCD:false, DIT:false};
             $scope.searches = {cs:false, ec:false, ms:false, bm:false, ea:false};
             $scope.min_points = 0;
             $scope.max_points = 775;
 
             $scope.displayCourse = function (c) {
-
-                /*if(c.college == 'Dublin Institute of Technology'){
-                    var colImg = '../img/dit-bg.jpg';
-                } else if(c.college == 'University College Dublin'){
-                    colImg = '../img/ucd-bg.jpg';
-                } else if(c.college == 'Trinity College Dublin'){
-                    colImg = '/img/tcd-bg-jpg';
-                }*/
 
                 var modalOptions = {
                     closeButtonText:'Cancel',
@@ -163,11 +156,104 @@
                     code: c.course_id,
                     college: c.college,
                     points: c.points,
-                    sector: c.sector
+                    sector: c.sector,
+                    thesis: c.thesis,
+                    portfolio: c.portfolio,
+                    erasmus: c.erasmus,
+                    placement: c.placement,
+                    externalLink: c.externalLink
                 };
 
                 courseModalService.showModal({}, modalOptions)
+            };
+
+/*
+            $scope.getMoreDetailedCourse = function (ca) {
+
+                /!*
+                 console.log(ca.length);
+                 *!/
+                var id = null;
+                for(var i = 110; i < 165; i++){
+                    id = ca[i].course_id;
+
+                    CourseService.getCourse(id)
+                        .then(function (res) {
+                            $scope.definedCourses = res.data;
+                            $scope.arrayCourses.push($scope.definedCourses);
+                            console.log($scope.arrayCourses);
+                        }, function (err) {
+                            console.log(err + "error here");
+                        })
+                }
+
+                function addToCourse(courses){
+                    for(var t = 0; t<courses.length; t++){
+                        /!*
+
+                         console.log(courses[t].courses[0].course_id);
+                         console.log(JSON.parse(courses[t].courses[0].course_id));
+                         *!/
+                        if(courses[t].courses[0].points_history.length<=1){
+                            $http.post('/api/courses/pushCourse/'+ courses[t].courses[0].course_id, {
+                                externalLink: courses[t].courses[0].external_link.external_link,
+                                erasmus: courses[t].courses[0].has_erasmus,
+                                placement: courses[t].courses[0].has_placement,
+                                portfolio: courses[t].courses[0].has_portfolio,
+                                thesis: courses[t].courses[0].has_thesis,
+                                points: [courses[t].courses[0].points_history[0].points]
+                            })
+                                .success(function(data, status, header, config){
+                                    if(data.success){
+                                        //console.log(data);
+                                        console.log("Failure possibly");
+                                    } else {
+                                        console.log("Success---------- Possibly"+data);
+                                        $state.go('app.home');
+                                    }
+
+                                });
+                        } else {
+                            $http.post('/api/courses/pushCourse/' + courses[t].courses[0].course_id, {
+                                externalLink: courses[t].courses[0].external_link.external_link,
+                                erasmus: courses[t].courses[0].has_erasmus,
+                                placement: courses[t].courses[0].has_placement,
+                                portfolio: courses[t].courses[0].has_portfolio,
+                                thesis: courses[t].courses[0].has_thesis,
+                                points: [courses[t].courses[0].points_history[0].points, courses[t].courses[0].points_history[1].points]
+                            })
+                                .success(function (data, status, header, config) {
+                                    if (data.success) {
+                                        //console.log(data);
+                                        console.log("Failure possibly");
+                                    } else {
+                                        console.log("Success---------- Possibly" + data);
+                                        $state.go('app.home');
+                                    }
+
+                                });
+                        }
+                    }
+                }
+                $timeout( function(){
+                        addToCourse($scope.arrayCourses)},
+                    5000);
+                /!*function second() {
+                 for(var j = 55; j < 110; j++){
+                 id = ca[j].course_id;
+
+                 CourseService.getCourse(id)
+                 .then(function (res) {
+                 $scope.definedCourses = res.data;
+                 console.log($scope.definedCourses);
+                 }, function (err) {
+                 console.log(err + "error here");
+                 })
+                 }
+                 }*!/
             }
+*/
+
         }])
 
         .filter('customFilter', function() {

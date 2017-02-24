@@ -1,11 +1,30 @@
 (function(){
     'use strict';
-    App.controller('ProfileController',['$scope', '$state','UserService',
-        function($scope, $state, UserService){
+    App.controller('ProfileController',['$scope', '$state','UserService','$timeout','$window',
+        function($scope, $state, UserService, $timeout, $window){
 
             $scope.user = null;
             $scope.results = false;
             $scope.courses = false;
+         /*   var _startCountdown = function(){
+                var timerCount = 300;
+
+                var countDown = function () {
+                    if (timerCount < 0) {
+                        //Any desired function upon countdown end.
+                       // $window.close();
+                        alert('finished');
+                    } else {
+                        $scope.countDownLeft = timerCount;
+                        $scope.countdownMins = $scope.countDownLeft%60;
+                        timerCount--;
+                        $timeout(countDown, 1000);
+                    }
+                };
+                $scope.countDownLeft = timerCount;
+                countDown();
+            };
+            _startCountdown();*/
 
             $scope.top = "Profile Page";
 

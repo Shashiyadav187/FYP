@@ -59,13 +59,40 @@ router.route('/:sector')
             res.json(course)
         })
     });
+router.route('/pushCourse/:course_id')
+    .post(function(req, res){
+        Course.findOne({'course_id': req.params.course_id}, function (err, course) {
+            console.log("getting in here");
+            if(err)
+                res.send(err);
+
+            //console.log(JSON.stringify(req.body.results) + " : r.b.r, " + user + " : just user");
+            /*res.send(user);*/
+
+            course.points = req.body.points;
+            course.externalLink = req.body.externalLink;
+            course.erasmus = req.body.erasmus;
+            course.placement = req.body.placement;
+            course.portfolio = req.body.portfolio;
+            course.thesis = req.body.thesis;
+            console.log("here");
+
+            course.save(function(err){
+                if(err)
+                    res.send(err);
+
+                res.json({message: 'Course updated!'});
+            })
+        })
+    });
+
 /*
-var c1 = new Course({
-title: "Business Computing",
-    course_id: "dt354",
-    duration: "4",
-    college: "Dublin Institute of Technology",
-    points: "365"
+ var c1 = new Course({
+ title: "Business Computing",
+ course_id: "dt354",
+ duration: "4",
+ college: "Dublin Institute of Technology",
+ points: "365"
  });
  c1.save(function(err, res){
  if (err)

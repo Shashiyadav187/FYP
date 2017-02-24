@@ -18,7 +18,12 @@
                 code: 'Course Code',
                 college: 'College Title',
                 points: 'Course Points',
-                sector: 'Course Sector'
+                sector: 'Course Sector',
+                thesis: 'Thesis Option',
+                erasmus: 'Erasmus Option',
+                portfolio: 'portfolio',
+                placement: 'Placement',
+                externalLink: 'External Link'
             };
 
             this.showModal = function (customModalDefaults, customModalOptions) {

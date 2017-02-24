@@ -21,6 +21,9 @@
             $scope.result = null;
             $scope.user = null;
 
+            $scope.CountdownFinished = function () {
+                alert('Finished');
+            };
             $scope.getTest = function () {
                 $http({
                     method: 'GET',

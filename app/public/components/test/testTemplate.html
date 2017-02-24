@@ -4,14 +4,14 @@
 
             <div class="test-title">
                 <h2>{{ t.name }}</h2>
-                <!--<timer interval="1000"  countdown="300">{{countdown}}</timer>-->
+<!--
+                <timer interval="1000" max-time-unit="'minute'" countdown="63">{{minutes}} Mins {{sseconds}} Seconds</timer>
+-->
             </div>
 
             <div class="row" ng-hide="resultsView">
-                <h3>
-                    <!--
-                                        <timer countdown="300" autostart="true" max-time-unit="'second'" interval="1000">{{mminutes}} minute{{minutesS}}, {{sseconds}} second{{secondsS}}</timer>
-                    -->
+                <h3 ng-hide="t.name== 'Careers Test'">
+                    <timer interval="1000" max-time-unit="'minute'" countdown="300" finish-callback="CountdownFinished()">{{minutes}} Mins {{sseconds}} Seconds</timer>
                 </h3>
                 <div class="row">
                     <div class="col-xs-8">
