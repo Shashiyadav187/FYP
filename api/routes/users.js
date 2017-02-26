@@ -369,6 +369,15 @@ router.route('/:email')
             res.json(user);
         });
     });
+router.route('/:email')
+    .put(function(req, res) {
+        User.findOne({'email': req.params.email}, function(err, user) {
+            if (err)
+                res.send(err);
+
+            res.json(user);
+        });
+    });
 
 
 

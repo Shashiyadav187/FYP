@@ -161,7 +161,8 @@
                     portfolio: c.portfolio,
                     erasmus: c.erasmus,
                     placement: c.placement,
-                    externalLink: c.externalLink
+                    externalLink: c.externalLink,
+                    duration: c.duration
                 };
 
                 courseModalService.showModal({}, modalOptions)

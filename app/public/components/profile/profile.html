@@ -52,22 +52,20 @@
                                 <md-content class="md-padding">
                                     <h1 class="md-display-2">Spatial Test Results</h1>
                                     <table class="table table-striped">
-                                        <thead class="thead-default">
-                                        <tr>
-                                            <th></th>
-                                            <th></th>
+                                        <thead>
+                                        <tr class="text-center">
                                             <th>Test Name</th>
                                             <th>Score</th>
                                             <th>Date Completed</th>
+                                            <th>Remove</th>
                                         </tr>
                                         </thead>
-                                        <tbody class ="tbody" ng-repeat="result in user.results">
-                                        <tr ng-show="result.testName == 'Spatial Reasoning'">
-                                            <td></td>
-                                            <td></td>
+                                        <tbody ng-repeat="result in user.results">
+                                        <tr ng-show="result.testName == 'Spatial Reasoning'" class="text-center">
                                             <td>{{result.testName}}</td>
                                             <td>{{result.score}}</td>
-                                            <td>{{result.timeStamp}}</td>
+                                            <td>{{result.timeStamp | date : "hh:mm d MMM, yy" }}</td>
+                                            <td class="delete-icon fa fa-times" ng-click="removeFromDB(result)"></td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -92,7 +90,7 @@
                                             <td></td>
                                             <td>{{result.testName}}</td>
                                             <td>{{result.recommend}}</td>
-                                            <td>{{result.timeStamp}}</td>
+                                            <td>{{result.timeStamp | date : "hh:mm d-MMM-yy" }}</td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -117,7 +115,7 @@
                                             <td></td>
                                             <td>{{result.testName}}</td>
                                             <td>{{result.score}}</td>
-                                            <td>{{result.timeStamp}}</td>
+                                            <td>{{result.timeStamp| date : "hh:mm d-MMM-yy" }}</td>
                                         </tr>
                                         </tbody>
                                     </table>

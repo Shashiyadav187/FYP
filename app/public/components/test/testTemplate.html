@@ -4,9 +4,9 @@
 
             <div class="test-title">
                 <h2>{{ t.name }}</h2>
-<!--
-                <timer interval="1000" max-time-unit="'minute'" countdown="63">{{minutes}} Mins {{sseconds}} Seconds</timer>
--->
+                <!--
+                                <timer interval="1000" max-time-unit="'minute'" countdown="63">{{minutes}} Mins {{sseconds}} Seconds</timer>
+                -->
             </div>
 
             <div class="row" ng-hide="resultsView">
@@ -54,7 +54,7 @@
                         Error! You have not answered all of the questions!
                         <button class="close" ng-click="error = false">&times</button>
                     </div>
-                    <div class="well well-sm" ng-hide="finished">
+                    <div class="well well-sm">
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="row">
@@ -87,17 +87,26 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="btn btn-warning" ng-click="next()">Continue</div>
+                        <div ng-show="continue == false">
+                            <div class="btn btn-warning next-button" ng-click="next()">
+                                Continue
+                            </div>
+                        </div>
+                        <div ng-show="continue == true">
+                            <div class="btn btn-info next-button" ng-click="finaliseAnswers()">
+                                Finish
+                            </div>
+                        </div>
                     </div>
-                    <div class="well well-sm" ng-show="finished">
+                    <!--<div class="well well-sm" ng-show="finished">
                         <div class="row">
                             <div class="col-xs-12">
                                 <h3>Are you sure you want to submit your answers?</h3>
                                 <button class="btn btn-success" ng-click="finaliseAnswers()">Yes</button>
-                                <button class="btn btn-danger" ng-click="finished == false">No</button>
+                                <button class="btn btn-danger" ng-click="finished = false">No</button>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
             <div ng-show="resultsView">
@@ -159,8 +168,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="btn btn-primary" ng-click="save()">Save Results!</div>
-                                <div class="btn btn-warning" ng-click="finish()">Don't Save and Return</div>
+                                <div ng-show="user.firstName != null">
+                                    <div class="btn btn-primary" ng-click="save()">Save Results!</div>
+                                    <div class="btn btn-warning" ng-click="finish()">Don't Save and Return</div>
+                                </div>
+                                <div ng-show="user.firstName == null">
+                                    <div class="btn btn-warning" ng-click="finish()">Return</div>
+                                </div>
                             </div>
                         </div>
                     </div>

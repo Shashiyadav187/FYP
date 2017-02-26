@@ -51,5 +51,25 @@
                 './assets/img/2.jpg',
                 './assets/img/3.jpg'
             ];
-        }])
+
+            $scope.removeFromDB = function(result){
+                var index = $scope.user.results.indexOf(result);
+                console.log(index);
+                console.log($scope.user.results[index]);
+                delete $scope.user.results[index];
+
+                UserService.updateUser($scope.user)
+                    .then(function (res) {
+                        $scope.user = res.data;
+                            console.log("Success "+$scope.user);
+                    }, function (err) {
+                        console.log(err);
+                    })
+            };
+        }]);
+        /*.filter('currentdate',['$filter',  function(userDate, $filter) {
+            return function() {
+                return $filter('date')(userDate, 'yyyy-MM-dd HH:mm');
+            };
+        }])*/
 })();

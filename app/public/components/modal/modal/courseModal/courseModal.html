@@ -1,0 +1,116 @@
+
+<div class="modal-content">
+    <div class="modal-header" ng-class="{'csColour':modalOptions.sector =='Computer Science',
+                         'ecColour':modalOptions.sector =='Engineering and Construction',
+                         'msColour':modalOptions.sector =='Medicine and Science',
+                         'bmColour':modalOptions.sector =='Business and Management',
+                         'eaColour':modalOptions.sector =='Education and Arts'}">
+        <div class="courses-top">
+            <div class="courses-modal-top-left">
+                {{modalOptions.code}}
+
+            </div>
+            <div class="courses-modal-top-right">
+                {{modalOptions.points[0]}}
+            </div>
+        </div>
+        <!-- more usage of angular data binding -->
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+                <div class="course-modal-box">
+                    <div class="courses-modal-middle bgIcon"
+                         ng-class="{'ditIcon': modalOptions.college == 'Dublin Institute of Technology',
+                        'ucdIcon': modalOptions.college == 'University College Dublin',
+                        'tcdIcon': modalOptions.college == 'Trinity College'}">
+
+                        <div class="modal-middle-left">
+                            {{modalOptions.college}}
+                        </div>
+                        <div class="modal-middle-right">
+                            <img src="../.././assets/img/dit-logo.png">
+                        </div>
+                    </div>
+                    <div class="courses-modal-middle-bottom">
+                        {{modalOptions.course}}
+                    </div>
+                    <div class="courses-modal-bottom"
+                         ng-class="{'mcsColour':modalOptions.sector =='Computer Science',
+                         'mecColour':modalOptions.sector =='Engineering and Construction',
+                         'mmsColour':modalOptions.sector =='Medicine and Science',
+                         'mbmColour':modalOptions.sector =='Business and Management',
+                         'meaColour':modalOptions.sector =='Education and Arts'}">
+                        <div>
+                            <div class="modal-info-row">
+                                <div class="col-sm-6">
+                                <span><i class="fa fa-globe"></i>
+                                    Erasmus: </span> {{modalOptions.erasmus}}
+                                </div>
+                                <div class="col-sm-6">
+                                <span><i class="fa fa fa-book"></i>
+                                    Thesis: </span> {{modalOptions.thesis}}
+                                </div>
+                            </div>
+                            <div class="modal-info-row">
+                                <div class="col-sm-6">
+                                <span><i class="fa fa-archive"></i>
+                                    Portfolio: </span> {{modalOptions.portfolio}}
+                                </div>
+                                <div class="col-sm-6">
+                                <span><i class="fa fa-briefcase"></i>
+                                    Placement: </span> {{modalOptions.placement}}
+                                </div>
+                            </div>
+                            <div class="modal-info-row">
+                                <div class="col-sm-6">
+                                <span><i class="fa fa-calendar"></i>
+                                    Duration: </span>{{modalOptions.duration}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row top-buffer">
+                <div class="col-md-8 col-sm-offset-2">
+                    <!-- angular data binding -->
+                    <div>View more details from this course >><a href="{{modalOptions.externalLink}}">here</a><<</div>
+                </div>
+                <div class="col-xs-12">
+                    <button class="btn comment-button col-sm-8 col-sm-offset-2"
+                            ng-click="showReview = !showReview"
+                            ng-class="{'cs-comment-button':modalOptions.sector =='Computer Science',
+                         'ec-comment-button':modalOptions.sector =='Engineering and Construction',
+                         'ms-comment-button':modalOptions.sector =='Medicine and Science',
+                         'bm-comment-button':modalOptions.sector =='Business and Management',
+                         'ea-comment-button':modalOptions.sector =='Education and Arts'}">
+                        Add a review <b class="fa fa fa-comment-o"></b>
+                    </button>
+                    <div ng-show="showReview">
+                        <div class="col-sm-8 col-sm-offset-2">
+                            <label>Comment Review:</label>
+                            <textarea type="text"
+                                      class="commentInput"
+                                      placeholder="Add a comment..."
+                                      rows="10"
+                                      cols="50"
+                                      ng-model="commentBody">
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer"
+         ng-class="{'csColour':modalOptions.sector =='Computer Science',
+                         'ecColour':modalOptions.sector =='Engineering and Construction',
+                         'msColour':modalOptions.sector =='Medicine and Science',
+                         'bmColour':modalOptions.sector =='Business and Management',
+                         'eaColour':modalOptions.sector =='Education and Arts'}">
+        <span class="modal-center">{{modalOptions.sector}}</span>
+        <button class="btn btn-default"
+                data-ng-click="modalOptions.close()">{{modalOptions.closeButtonText}}</button>
+    </div>
+</div>

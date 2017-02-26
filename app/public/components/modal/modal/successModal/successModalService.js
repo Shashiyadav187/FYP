@@ -1,29 +1,20 @@
 (function(){
     "use strict";
 
-    App.service('courseModalService', ['$uibModal',
+    App.service('successModalService', ['$uibModal',
         function ($uibModal) {
 
             var modalDefaults = {
                 backdrop: true,
                 keyboard: true,
                 modalFade: true,
-                templateUrl: '/views/courseModal.html'
+                templateUrl: '/views/successModal.html'
             };
 
             var modalOptions = {
-                closeButtonText:'Cancel',
-                actionButtonText: 'OK',
-                course: 'Course Title',
-                code: 'Course Code',
-                college: 'College Title',
-                points: 'Course Points',
-                sector: 'Course Sector',
-                thesis: 'Thesis Option',
-                erasmus: 'Erasmus Option',
-                portfolio: 'portfolio',
-                placement: 'Placement',
-                externalLink: 'External Link'
+                actionButtonText:'Cancel',
+                headerText: 'Results Saved',
+                bodyText: 'Go to the your profile page to view saved test results'
             };
 
             this.showModal = function (customModalDefaults, customModalOptions) {
