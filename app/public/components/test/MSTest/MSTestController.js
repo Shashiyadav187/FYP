@@ -94,8 +94,8 @@
                     "medicine":0
                 };
 
-                sectors.science+=currentAnswer.weight[0];
-                sectors.medicine+=currentAnswer.weight[1];
+                sectors.science+=currentAnswer.weight[1];
+                sectors.medicine+=currentAnswer.weight[0];
 
                 if($scope.array.length!=0){
                     $scope.array[0].science+=sectors.science;

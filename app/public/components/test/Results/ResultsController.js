@@ -1,8 +1,8 @@
 (function(){
     'use strict';
 
-    App.controller('ResultsController',['$scope', '$state', '$stateParams','UserService','$http','$timeout',
-        function($scope, $state, $stateParams, UserService, $http, $timeout){
+    App.controller('ResultsController',['$scope', '$state', '$stateParams','UserService','$http','$timeout','successModalService',
+        function($scope, $state, $stateParams, UserService, $http, $timeout, successModalService){
 
             $scope.user = null;
             $scope.takeTest = false;
@@ -138,7 +138,16 @@
                             console.log("Failure possibly");
                         } else {
                             console.log("Success---------- Possibly"+data);
-                            $state.go('app.home');
+
+                            var modalOptions = {
+                                actionButtonText:'Continue',
+                                headerText: 'Careers Test Results Saved'
+                            };
+
+                            successModalService.showModal({}, modalOptions)
+                                .then(function () {
+                                    $state.go('app.home');
+                                });
                         }
 
                     });

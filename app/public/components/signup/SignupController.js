@@ -18,9 +18,14 @@
                             console.log(data, status, header, config);
                             $state.go('login');
                         }
-
                     });
             };
+
+            $scope.images = [
+                './assets/img/1.jpg',
+                './assets/img/2.jpg',
+                './assets/img/3.jpg'
+            ];
 
         }]);
 })();

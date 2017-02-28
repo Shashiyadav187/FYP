@@ -14,7 +14,7 @@
             $scope.accessQuestion = [];
             $scope.array = [];
             $scope.resultsPage = false;
-
+            $scope.continue = false;
 
             $scope.getTests = function(){
                 TestService.getTests()
@@ -52,30 +52,22 @@
             };
 
             $scope.next = function(){
-                // set quizLength variable to keep code clean
                 var length = $scope.tests[testIndex].questions[0].question.length;
-
                 $scope.numQuestionsAnswered = 0;
-                //For loop added to loop through all questions and recount questions
-                //that have been answered. This avoids infinite loops.
 
                 for(var x = 0; x < length; x++){
                     if($scope.tests[testIndex].questions[0].question[$scope.question_index].selected !== null){
                         $scope.numQuestionsAnswered++;
                         if($scope.numQuestionsAnswered >= length){
-                            // final check to ensure all questions are actuall answered
                             for(var i = 0; i < length; i++){
-                                /*
-                                 * if find a question that is not answered, set it to
-                                 * active question then return from this function
-                                 * to ensure finalise flag is not set
-                                 */
                                 if($scope.tests[testIndex].questions[0].question[i].selected === null){
                                     $scope.setActiveQuestion(i);
                                     return;
                                 }
                             }
-                            // set finalise flag and remove any existing warnings
+                            if($scope.numQuestionsAnswered == length){
+                                $scope.continue = true;
+                            }
                             $scope.error = false;
                             $scope.finished = true;
                             return;
@@ -131,28 +123,17 @@
 
             $scope.finaliseAnswers = function(){
                 $scope.finished = true;
-                $scope.numQuestionsAnswered = 0;
                 $scope.resultsView = true;
                 $scope.markQuiz();
-
 
                 $state.go('app.results',{
                         sectorsArray: JSON.stringify($scope.array)
                     });
 
             };
-/*
 
-            $scope.goToResultsPage = function () {
-              $state.go('app.results')
-            };
-*/
-
-            $scope.fillResultsPage = function(){
-
+            $scope.finish = function () {
+                $state.go('app.home');
             }
-
-
-
         }])
 })();

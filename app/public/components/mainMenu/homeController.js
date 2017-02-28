@@ -4,7 +4,6 @@
     App.controller('homeController', ['$scope','$state','$http',
         function($scope, $state, $http) {
 
-            $scope.welcome = "Hello and Welcome To The College Experience";
 
             $scope.loginLink = function() {
                 $state.go('login');
@@ -15,11 +14,14 @@
             };
 
             $scope.images = [
-                './assets/img/laptop.in.use.png',
-
+                './assets/img/laptop.in.use.png'
             ];
             $scope.coursesLink=function(){
                 $state.go('app.courses');
+            };
+
+            $scope.register = function(){
+                $state.go('signup');
             }
         }]);
 })();

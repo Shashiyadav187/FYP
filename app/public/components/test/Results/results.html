@@ -8,7 +8,7 @@
     </div>
 </div>
 <div class="col-sm-2"></div>
-<button class="btn btn-default" ng-click="saveResult()">Save Result</button>
+<button ng-show="user.firstName != null" class="btn btn-default" ng-click="saveResult()">Save Result</button>
 <h1 class="results-title col-sm-4 col-sm-offset-4" >{{recommendation}}</h1>
 <div class="col-sm-4"></div>
 
