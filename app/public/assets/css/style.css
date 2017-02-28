@@ -58,10 +58,7 @@ button:focus {
 }
 /*----------------------------------------------- Main Menu -------------------------------------------------------------------------*/
 /*----------------------------------------------- Test Area -------------------------------------------------------------------------*/
-
-
 /*----------------------------------------------- Test Area -------------------------------------------------------------------------*/
-
 /*----------------------------------------------- Navigation Menu -------------------------------------------------------------------------*/
 #topnavbar{
     background-color:#2D2E2F;
@@ -188,11 +185,11 @@ button:focus {
     transform: scale(1.1);
 }
 .title{
-    margin-top: 25px;
+    padding-top:5px;
     font-size: 35px;
-    color: #27365F;
+    color: white;
     text-align: center;
-    margin-bottom: 25px
+    margin-bottom: 20px
 }
 .course-title{
     font-size: 15px;
@@ -212,11 +209,23 @@ button:focus {
     height: 300px;
     max-height: 100%;
 }
-.course-icon{
-    padding-top: 15px;
-    font-size: 160px !important;
+.course-blue-icon{
+    padding: 15px 0 20px 25px;
+    font-size: 130px !important;
     color: #2F96E8;
-
+}
+.course-orange-icon{
+    padding: 15px 0 20px 25px;
+    font-size: 130px !important;
+    color: #de995e;
+}
+.middle-about p{
+    color:white;
+    font-size: 19px;
+}
+.middle-about p .body-text{
+    padding-top:3px;
+    font-size: 14px !important;
 }
 .course-filler{
 
@@ -227,8 +236,20 @@ button:focus {
     width: 100%;
     max-height: 100%;
 }
+.middle-about{
+    background-color: #262431;
+    height: 400px;
+    width: 100%;
+    max-height: 100%;
+}
 .top-content{
-    height:50px;
+    height:15px;
+}
+.border-left{
+    border-left:3px solid #2F96E8;
+}
+.border-middle-left{
+    border-left:3px solid #de995e;
 }
 /*----------------------------------------------- Main Menu -------------------------------------------------------------------------*/
 /*----------------------------------------------- Login Page ------------------------------------------------------------------------*/
@@ -244,14 +265,14 @@ button.btn.button {
     font-weight: 300;
     line-height: 50px;
     color: #fff;
-    -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+    border-radius: 4px;
     text-shadow: none;
-    -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
-    -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
+    box-shadow: none;
+    transition: all .3s;
 }
 button.btn.button:hover { opacity: 0.6; color: #fff; }
 
-button.btn.button:active { outline: 0; opacity: 0.6; color: #fff; -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; }
+button.btn.button:active { outline: 0; opacity: 0.6; color: #fff; box-shadow: none; }
 
 button.btn.button:focus { outline: 0; opacity: 0.6; background: #de995e; color: #fff; }
 
@@ -269,13 +290,11 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
     color: #fff;
     -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
 }
-.btn-link-1:hover, .btn-link-1:focus, .btn-link-1:active { outline: 0; opacity: 0.6; color: #fff; }
-/*
+.btn-link-1:hover, .btn-link-1:focus, .btn-link-1:active {
+    outline: 0;
+    opacity: 0.6;
+    color: #fff; }
 
-.btn-link-1.btn-link-1-facebook { background: #4862a3; }
-.btn-link-1.btn-link-1-twitter { background: #55acee; }
-.btn-link-1.btn-link-1-google-plus { background: #dd4b39; }
-*/
 
 .btn-link-1 i {
     padding-right: 5px;
@@ -295,7 +314,7 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
     font-weight: 300;
     line-height: 16px;
     color: #fff;
-    -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+    border-radius: 4px;
 }
 .btn-link-2:hover, .btn-link-2:focus,
 .btn-link-2:active, .btn-link-2:active:focus {
@@ -310,11 +329,10 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
 
 .form-box {
     margin-top: 6%;
-    width: 80%;
-    height: 80%;
+    width: 300px;
+    height: 325px;
 
 }
-
 .form-top {
     overflow: hidden;
     padding: 0 25px 15px 25px;
@@ -322,13 +340,11 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
     border-radius: 4px 4px 0 0;
     text-align: left;
 }
-
 .form-top-left {
     float: left;
     width: 75%;
     padding-top: 25px;
 }
-
 .form-top-left h3 { margin-top: 0; }
 .form-top-right {
     float: left;
@@ -343,7 +359,7 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
 .form-bottom {
     padding: 25px 25px 30px 25px;
     background: #eee;
-    -moz-border-radius: 0 0 4px 4px; -webkit-border-radius: 0 0 4px 4px; border-radius: 0 0 4px 4px;
+    border-radius: 0 0 4px 4px;
     text-align: left;
 }
 
@@ -372,40 +388,17 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
 }
 ::-moz-selection { background: #de995e; color: #fff; text-shadow: none; }
 ::selection { background: #de995e; color: #fff; text-shadow: none; }
+.signup{
+    margin-top: 6%;
+    margin-left: -15px;
+    background-color: red;
+    height:325px;
+}
 /*----------------------------------------------- Login Page ------------------------------------------------------------------------*/
 /*----------------------------------------------- Test Page -------------------------------------------------------------------------*/
 .test-title{
     text-align: center;
 }
-/*
-.challenge {
-    background-color: #E0E0E0;
-    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
-    margin-bottom : 60px;
-    border-radius: 10px;
-    width: 70%;
-    margin-left:15%;
-}
-.challenge .question {
-    padding: 10px 20px;
-    color: #1e347b;
-}
-.challenge .question h3 {
-    color: #3498db;
-    padding-bottom: 15px;
-    font-size: 19px;
-    font-weight: 500;
-}
-.repeat-wrap {
-    padding: 1px 20px 2px 25px;
-    border-left: 5px solid transparent;
-}
-.options{
-    padding-left: 50px;
-}
-.options-label{
-    font-size: 15px;
-}*/
 .right{
     margin-left:90%;
     margin-bottom:20%;
@@ -449,8 +442,6 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
     position:relative;
     background: #F5F7FA;
 }
-/*#fff*/
-/*#84878a*/
 .profile-box{
     margin: 0 0 16px;
     background: #84878a;
@@ -471,16 +462,10 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
 }
 .profile-photo{
     border-radius: 50%;
-    height: 176.66px;
-    /*
-    margin-top: -50px;
-    */
+    height: 177px;
 }
 .outside-box-profile {
     background-color: rgba(243,246,248,.94);
-    /*
-    border: 4px solid #fff;
-    */
     box-sizing: content-box;
     margin: auto;
     position: relative;
@@ -495,12 +480,9 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
     border-radius: 50%;
 }
 .circle {
-    width: 176.66px;
-    height: 176.66px;
+    width: 1767px;
+    height: 177px;
 }
-/*.profile-background{
-    height: 300px;
-}*/
 .profile-background img{
     height:220px;
     width:100%;
@@ -511,23 +493,6 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
 .delete-icon{
     color: red;
 }
-/*
-.tabsdemoDynamicHeight md-content {
-    background-color: transparent !important; }
-.tabsdemoDynamicHeight md-content md-tabs {
-    background: #f6f6f6;
-    border: 1px solid #e1e1e1; }
-.tabsdemoDynamicHeight md-content md-tabs md-tabs-wrapper {
-    background: white; }
-.tabsdemoDynamicHeight md-content h1:first-child {
-    margin-top: 0; }
-*/
-
-
-/*
-Copyright 2016 Google Inc. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that can be foundin the LICENSE file at http://material.angularjs.org/HEAD/license.
-*/
 /*----------------------------------------------- Profile Page -------------------------------------------------------------------------*/
 /*----------------------------------------------- Results Page -------------------------------------------------------------------------*/
 .results-title{
@@ -538,10 +503,6 @@ Use of this source code is governed by an MIT-style license that can be foundin 
 }
 /*----------------------------------------------- Results Page -------------------------------------------------------------------------*/
 /*----------------------------------------------- Course Page -------------------------------------------------------------------------*/
-/*.course-box{
-border: 1px solid blue;
-    box-shadow: #1b1b1b;
-}*/
 .filters-area{
     height: 100%;
 }
@@ -577,9 +538,6 @@ border: 1px solid blue;
     float: left;
     width: 25%;
     padding-top: 5px;
-    /*
-    font-size: 10px;
-    */
     text-align: right;
 }
 .courses-middle{
@@ -632,9 +590,6 @@ border: 1px solid blue;
     transition: background-color 0.5s ease;
 }
 .filter-college:hover{
-    /*
-    background-color: #e3e5e6;
-    */
     background-color: #f1f1f1
 }
 .filter-clear{
@@ -650,33 +605,27 @@ border: 1px solid blue;
     cursor: pointer;
     width: 200px;
 }
-
 .dropbtn:hover, .dropbtn:focus {
     background-color: #f1f1f1
 }
-
 .dropdown {
     position: relative;
     display: inline-block;
 }
-
 .dropdown-content {
     display: none;
     background-color: #f9f9f9;
     width: 200px;
     overflow: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
-
 .dropdown-content a {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
 }
-
 .dropdown a:hover {background-color: #f1f1f1}
-
 .show {display:block;}
 .csColour{
     background-color: #97BBCD;
@@ -703,15 +652,9 @@ border: 1px solid blue;
 background-image:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)), url("../img/dit-bg.jpg");
 }
 .ucdIcon{
-    /*
-    background-image: url("../img/ucd-icon.png");
-    */
     background-image: linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),url("../img/ucd-bg.jpg");
 }
 .tcdIcon{
-    /*
-    background-image: url("../img/tcd-icon.png");
-    */
     background-image:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)), url("../img/tcd-bg.jpg");
 }
 .bgIcon{
@@ -722,41 +665,6 @@ background-image:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)), url("../img/dit
     width:50px;
 }
 /*----------------------------------------------- Course Page -------------------------------------------------------------------------*/
-
-/*.footer {
-    position: absolute !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    padding: 1rem !important;
-    background-color: #efefef;
-    text-align: center;
-}*/
-
-/*
-.topnavbar .navbar-header{
-    padding: 0;
-}
-.topnavbar .navbar-nav > li > a,
-.topnavbar .navbar-nav > .open > a{
-    color: white;
-}
-
-.topnavbar .navbar-nav > li > a:hover,
-.topnavbar .navbar-nav > .open > a:hover,
-.topnavbar .navbar-nav > li > a:focus,
-.topnavbar .navbar-nav > .open > a:focus{
-    color: #C6C9CA;
-}
-
-.topnavbar-wrapper{
-    width:100%;
-    position:fixed;
-    top:0;
-    z-index: 121;
-}
-*/
-
 .cntent-wrapper{
     margin-bottom: -120px;
 }
@@ -773,7 +681,6 @@ background-image:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)), url("../img/dit
     padding-top: 5px;
     font-size: 20px;
 }
-
 .courses-modal-top-left { margin-top: 0; }
 .courses-modal-top-right {
     font-size: 20px;

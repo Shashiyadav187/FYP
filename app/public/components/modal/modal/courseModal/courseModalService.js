@@ -49,8 +49,9 @@
                         $scope.modalOptions = tempModalOptions;
                         $scope.modalOptions.ok = function (result) {
                             $uibModalInstance.close(result);
+                            console.log($scope.commentBody);
                         };
-                        $scope.modalOptions.close = function (result) {
+                        $scope.modalOptions.close = function () {
                             $uibModalInstance.dismiss('cancel');
                         };
                     }

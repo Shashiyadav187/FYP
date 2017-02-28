@@ -14,11 +14,14 @@
             };
 
             $scope.images = [
-                './assets/img/laptop.in.use.png',
-
+                './assets/img/laptop.in.use.png'
             ];
             $scope.coursesLink=function(){
                 $state.go('app.courses');
+            };
+
+            $scope.register = function(){
+                $state.go('signup');
             }
         }]);
 })();
