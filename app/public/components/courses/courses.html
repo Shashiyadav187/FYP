@@ -62,9 +62,9 @@
             </div>
         </div>
 
-        <!--
-                        <button ng-click="createCourses(courses)">button</button>
-        -->
+<!--
+                        <button ng-click="getMoreDetailedCourse(courses)">more detailed courses</button>
+-->
 
     </div>
 <!--
@@ -73,7 +73,7 @@
     <div class="col-sm-10">
         <div dir-paginate="course in courses | filter:searchBar | sectorFilter:searches | filter:ageFilter | customFilter:types | itemsPerPage: 12 "><!--rangeFilter:'course.points'--><!--byCourse:courseFilter -->
             <div class="col-sm-3 text-center">
-                <div class="courses-box-first">
+                <div ng-click="displayCourse(course)" class="courses-box-first">
                     <div class="courses-box"
                          ng-class="{'csColour':course.sector =='Computer Science',
                          'ecColour':course.sector =='Engineering and Construction',
@@ -86,7 +86,7 @@
 
                             </div>
                             <div class="courses-top-right">
-                                {{course.points}}
+                                {{course.points[0]}}
                             </div>
                         </div>
                         <div class="courses-middle bgIcon"

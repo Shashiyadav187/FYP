@@ -7,7 +7,6 @@
             TestService.getTests()
                 .then(function(res){
                     $scope.tests = res.data;
-                    console.log($scope.tests);
                 }, function (err) {
                     console.log(err);
                 });
@@ -17,7 +16,8 @@
                     closeButtonText:'Cancel',
                     actionButtonText: 'Take Test',
                     headerText: $scope.tests[0].name+' Rules',
-                    bodyText: 'One of the answers does not match the question. Find the mismatched pattern',
+                    bodyText: "One of the answers does not match the question. Find the mismatched pattern. Once you press " +
+                    "'Take Test' the timer will start",
                     numQuestions: $scope.tests[0].questions[0].question.length,
                     passPercentage: '80%',
                     timeLimit: '5 Mins'

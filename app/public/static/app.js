@@ -9,7 +9,8 @@
         'ng-backstretch',
         'chart.js',
         'angular-loading-bar',
-        'angularUtils.directives.dirPagination'
+        'angularUtils.directives.dirPagination',
+        'timer'
     ])
         .config(['$stateProvider', '$locationProvider', '$urlRouterProvider', function ($stateProvider, $locationProvider, $urlRouterProvider) {
             $locationProvider.html5Mode(false);
@@ -105,8 +106,8 @@
             cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
             cfpLoadingBarProvider.spinnerTemplate = '<div><span class="fa fa-spinner fa-3x"></div>';
         }])
-        .run(["$rootScope", "$state", "$stateParams", '$window', '$location',
-            function ($rootScope, $state, $stateParams, $window, $location) {
+        .run(["$rootScope", "$state", "$stateParams", '$window',
+            function ($rootScope, $state, $stateParams, $window) {
 
                 $rootScope.$state = $state;
                 $rootScope.$stateParams = $stateParams;

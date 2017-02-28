@@ -1,7 +1,12 @@
+<div class="profile-background">
+    <img ng-src="{{user.backgroundPhoto}}">
+</div>
+<!--
+<button class="btn custButton">Change background</button>
+-->
 <div class="container">
-    <div class="col-sm-6 col-sm-offset-3">
-
-        <div class="sizing">
+    <div class="col-sm-8 col-sm-offset-2">
+        <div class="sizing-top">
             <div class="profile-box-first">
                 <div class="profile-box-">
                     <div class="sizing">
@@ -24,7 +29,8 @@
                 </div>
             </div>
         </div>
-
+        <!--<h1>{{countDownLeft}}</h1>countdown
+        <h1>{{countdownMins}}</h1>countMins%-->
 
         <div class="row">
             <div class="col-sm-3 col-sm-offset-3 text-center">
@@ -36,35 +42,87 @@
         </div>
     </div>
 
-    <div ng-if="results">
-        <div class="tabs">
-            <ul class="tab-links">
-                <li class="active">
-                    <a href="#tab1">Tab #1</a></li>
-                <li><a href="#tab2">Tab #2</a></li>
-                <li><a href="#tab3">Tab #3</a></li>
-                <li><a href="#tab4">Tab #4</a></li>
-            </ul>
-
-            <div class="tab-content">
-                <div id="tab1" class="tab active">
-                    <p>Tab #1 content goes here!</p>
-                    <p>Donec pulvinar neque sed semper lacinia. Curabitur lacinia ullamcorper nibh; quis imperdiet velit eleifend ac. Donec blandit mauris eget aliquet lacinia! Donec pulvinar massa interdum risus ornare mollis.</p>
-                </div>
-
-                <div id="tab2" class="tab">
-                    <p>Tab #2 content goes here!</p>
-                    <p>Donec pulvinar neque sed semper lacinia. Curabitur lacinia ullamcorper nibh; quis imperdiet velit eleifend ac. Donec blandit mauris eget aliquet lacinia! Donec pulvinar massa interdum risus ornare mollis. In hac habitasse platea dictumst. Ut euismod tempus hendrerit. Morbi ut adipiscing nisi. Etiam rutrum sodales gravida! Aliquam tellus orci, iaculis vel.</p>
-                </div>
-
-                <div id="tab3" class="tab">
-                    <p>Tab #3 content goes here!</p>
-                    <p>Donec pulvinar neque sed semper lacinia. Curabitur lacinia ullamcorper nibh; quis imperdiet velit eleifend ac. Donec blandit mauris eget aliquet lacinia! Donec pulvinar massa interdum ri.</p>
-                </div>
-
-                <div id="tab4" class="tab">
-                    <p>Tab #4 content goes here!</p>
-                    <p>Donec pulvinar neque sed semper lacinia. Curabitur lacinia ullamcorper nibh; quis imperdiet velit eleifend ac. Donec blandit mauris eget aliquet lacinia! Donec pulvinar massa interdum risus ornare mollis. In hac habitasse platea dictumst. Ut euismod tempus hendrerit. Morbi ut adipiscing nisi. Etiam rutrum sodales gravida! Aliquam tellus orci, iaculis vel.</p>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div ng-if="results">
+                <div ng-cloak="" class="tabsdemoDynamicHeight">
+                    <md-content>
+                        <md-tabs md-dynamic-height="" md-border-bottom="">
+                            <md-tab label="Spatial">
+                                <md-content class="md-padding">
+                                    <h1 class="md-display-2">Spatial Test Results</h1>
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr class="text-center">
+                                            <th>Test Name</th>
+                                            <th>Score</th>
+                                            <th>Date Completed</th>
+                                            <th>Remove</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody ng-repeat="result in user.results">
+                                        <tr ng-show="result.testName == 'Spatial Reasoning'" class="text-center">
+                                            <td>{{result.testName}}</td>
+                                            <td>{{result.score}}</td>
+                                            <td>{{result.timeStamp | date : "hh:mm d MMM, yy" }}</td>
+                                            <td class="delete-icon fa fa-times" ng-click="removeFromDB(result)"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </md-content>
+                            </md-tab>
+                            <md-tab label="Careers">
+                                <md-content class="md-padding">
+                                    <h1 class="md-display-2">Careers Test Results</h1>
+                                    <table class="table table-striped">
+                                        <thead class="thead-default">
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th>Test Name</th>
+                                            <th>Score</th>
+                                            <th>Date Completed</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class ="tbody" ng-repeat="result in user.results">
+                                        <tr  ng-show="result.testName == 'Careers Test'">
+                                            <td></td>
+                                            <td></td>
+                                            <td>{{result.testName}}</td>
+                                            <td>{{result.recommend}}</td>
+                                            <td>{{result.timeStamp | date : "hh:mm d-MMM-yy" }}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </md-content>
+                            </md-tab>
+                            <md-tab label="Numerical">
+                                <md-content class="md-padding">
+                                    <h1 class="md-display-2">Numerical Test Results</h1>
+                                    <table class="table table-striped">
+                                        <thead class="thead-default">
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th>Test Name</th>
+                                            <th>Score</th>
+                                            <th>Date Completed</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class ="tbody" ng-repeat="result in user.results">
+                                        <tr ng-show="result.testName == 'Numerical Reasoning'">
+                                            <td></td>
+                                            <td></td>
+                                            <td>{{result.testName}}</td>
+                                            <td>{{result.score}}</td>
+                                            <td>{{result.timeStamp| date : "hh:mm d-MMM-yy" }}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </md-content>
+                            </md-tab>
+                        </md-tabs>
+                    </md-content>
                 </div>
             </div>
         </div>
