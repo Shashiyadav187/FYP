@@ -6,7 +6,7 @@
 
             $scope.testName = 'Careers Test';
             $scope.tests = null;
-            var testIndex = 1;
+            var testIndex = 3;
             $scope.question_index = 0;
             $scope.numQuestionsAnswered = 0;
             $scope.error = false;

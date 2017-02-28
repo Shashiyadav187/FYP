@@ -28,6 +28,7 @@
     border-style: solid;
     text-align: center;
     -webkit-transition-duration: 0.5s;
+    cursor:pointer;
 }
 .main-menu-button:hover{
     background-color: #425563;
@@ -120,7 +121,7 @@
     margin-bottom: 250px;
 
 }
-img{
+#bg img{
     width: 100%;
     height: 600px;
     opacity: 0.8;
@@ -357,11 +358,10 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
 ::selection { background: #de995e; color: #fff; text-shadow: none; }
 /*----------------------------------------------- Login Page ------------------------------------------------------------------------*/
 /*----------------------------------------------- Test Page -------------------------------------------------------------------------*/
-/*.test-title{
+.test-title{
     text-align: center;
-    size: 18px;
-    padding-top: 4%;
 }
+/*
 .challenge {
     background-color: #E0E0E0;
     -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
@@ -478,6 +478,61 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
     width: 176.66px;
     height: 176.66px;
 }
+.tabs {
+    width:100%;
+    display:inline-block;
+}
+
+/*----- Tab Links -----*/
+/* Clearfix */
+.tab-links:after {
+    display:block;
+    clear:both;
+    content:'';
+}
+
+.tab-links li {
+    margin:0px 5px;
+    float:left;
+    list-style:none;
+}
+
+.tab-links a {
+    padding:9px 15px;
+    display:inline-block;
+    border-radius:3px 3px 0px 0px;
+    background:#7FB5DA;
+    font-size:16px;
+    font-weight:600;
+    color:#4c4c4c;
+    transition:all linear 0.15s;
+}
+
+.tab-links a:hover {
+    background:#a7cce5;
+    text-decoration:none;
+}
+
+li.active a, li.active a:hover {
+    background:#fff;
+    color:#4c4c4c;
+}
+
+/*----- Content of Tabs -----*/
+.tab-content {
+    padding:15px;
+    border-radius:3px;
+    box-shadow:-1px 1px 1px rgba(0,0,0,0.15);
+    background:#fff;
+}
+
+.tab {
+    display:none;
+}
+
+.tab.active {
+    display:block;
+}
 /*----------------------------------------------- Profile Page -------------------------------------------------------------------------*/
 /*----------------------------------------------- Results Page -------------------------------------------------------------------------*/
 .results-title{
@@ -497,24 +552,23 @@ border: 1px solid blue;
 }
 .courses-box-first{
     box-shadow: 0 0 0 1px rgba(0,0,0,.1), 0 2px 3px rgba(0,0,0,.2);
+    border-radius: 4px;
 }
 .courses-box{
     margin: 0 0 12px;
-    background: #fff;
     border-radius: 4px;
     box-shadow: 0 1px 1px rgba(0,0,0,.05);
     color: #84878a;
     display: flex;
     flex-direction: column;
-    height: 100px;
+    height: 230px;
     max-height: 100%;
 }
 .courses-top {
     overflow: visible;
     padding: 0 25px 10px 25px;
     text-align: left;
-    height: 70px;
-    background: #eee;
+    height: 40px;
 }
 
 .courses-top-left {
@@ -528,10 +582,34 @@ border: 1px solid blue;
     float: left;
     width: 25%;
     padding-top: 5px;
+    /*
     font-size: 10px;
+    */
     text-align: right;
 }
-
+.courses-middle{
+    height:80px;
+    padding: 5px 0 0 5px;
+    font-size: 20px;
+    width:100%;
+}
+.middle-left{
+    width:60%;
+    float: left;
+}
+.middle-right{
+    width: 40%;
+    float:left;
+    text-align: center;
+}
+.courses-middle-bottom{
+    height:80px;
+    padding: 10px 5px;
+    font-size: 20px;
+    color: black;
+    background-color: #f1f1f1;
+    overflow:hidden;
+}
 .courses-bottom {
     padding: 5px 0 0 5px;
     text-align: left;
@@ -605,7 +683,49 @@ border: 1px solid blue;
 .dropdown a:hover {background-color: #f1f1f1}
 
 .show {display:block;}
+.csColour{
+    background-color: #97BBCD;
+    color:white;
+}
+.ecColour{
+    background-color: #66BB6A;
+    color:white;
+}
+.msColour{
+    background-color: #F7464A;
+    color:white;
+}
+.bmColour{
+    background-color: #46BFBD;
+    color:white;
+}
+.eaColour{
+    background-color: #FDB45C;
+    color:white;
+}
+.ditIcon{
 
+background-image:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)), url("../img/dit-bg.jpg");
+}
+.ucdIcon{
+    /*
+    background-image: url("../img/ucd-icon.png");
+    */
+    background-image: linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),url("../img/ucd-bg.jpg");
+}
+.tcdIcon{
+    /*
+    background-image: url("../img/tcd-icon.png");
+    */
+    background-image:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)), url("../img/tcd-bg.jpg");
+}
+.bgIcon{
+    background-position: center center;
+    background-size: cover;
+}
+.middle-right img{
+    width:50px;
+}
 /*----------------------------------------------- Course Page -------------------------------------------------------------------------*/
 
 /*.footer {

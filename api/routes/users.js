@@ -308,16 +308,7 @@ router.route('/current')
         res.json( { user: req.user });
     });
 
-router.route('/:email')
-    .get(function(req, res) {
-        User.findOne({'email': req.params.email}, function(err, user) {
-            if (err)
-                res.send(err);
-
-            res.json(user);
-        });
-    })
-
+router.route('/pushResult/:email')
     .post(function(req, res){
         User.findOne({'email': req.params.email}, function (err, user) {
             if(err)
@@ -342,6 +333,44 @@ router.route('/:email')
             })
         })
     });
+
+router.route('/pushCourse/:email')
+    .post(function(req, res){
+        User.findOne({'email': req.params.email}, function (err, user) {
+            if(err)
+                res.send(err);
+
+            //console.log(JSON.stringify(req.body.results) + " : r.b.r, " + user + " : just user");
+            /*res.send(user);*/
+
+            user.courses.push(req.body.courses);
+            user.timeStamp = Date.now();
+            console.log(Date.now());
+
+            //
+            /*var array = req.params.results;
+             array.push(user.result);
+             console.log(array);*/
+            user.save(function(err){
+                if(err)
+                    res.send(err);
+
+                res.json({message: 'User updated!'});
+            })
+        })
+    });
+
+router.route('/:email')
+    .get(function(req, res) {
+        User.findOne({'email': req.params.email}, function(err, user) {
+            if (err)
+                res.send(err);
+
+            res.json(user);
+        });
+    });
+
+
 
 /*
  var user1 = new User({

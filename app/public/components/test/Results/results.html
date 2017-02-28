@@ -3,14 +3,16 @@
 -->
 <div class="chart">
     <div class="col-sm-8 col-sm-offset-2">
-        <canvas class="chart chart-bar" chart-data="data" chart-labels="labels"
-                chart-click="onClick" chart-options="options"></canvas>
+        <canvas id="myChart" class="chart chart-bar" chart-data="data" chart-labels="labels"
+                chart-colors="colours" chart-click="onClick" chart-options="options"></canvas>
     </div>
 </div>
 <div class="col-sm-2"></div>
-
+<button class="btn btn-default" ng-click="saveResult()">Save Result</button>
 <h1 class="results-title col-sm-4 col-sm-offset-4" >{{recommendation}}</h1>
 <div class="col-sm-4"></div>
+
+<div ng-show="takeTest == true" class="btn btn-default" ng-click="takeAnotherTest()">Take another test</div>
 
 <h2 class="col-sm-10 col-sm-offset-1">About {{recommendation}}</h2>
 

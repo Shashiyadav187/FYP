@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 var bcrypt   = require('bcrypt-nodejs');
 var passportLocalMongoose = require('passport-local-mongoose');
 var Result = require('./result.js');
+var Course = require('./course.js');
 
 var userSchema = new Schema({
     profiler: {type: String, default: "https://www.iconexperience.com/_img/o_collection_png/green_dark_grey/512x512/plain/user.png"},
@@ -12,7 +13,8 @@ var userSchema = new Schema({
     email:    String,
     password: String,
     admin: {type: Boolean, default: false},
-    results: [{type: Schema.Types.Object, ref: 'Result'}]
+    results: [{type: Schema.Types.Object, ref: 'Result'}],
+    courses: [{type: Schema.Types.Object, ref: 'Course'}]
 });
 
 // generating a hash
