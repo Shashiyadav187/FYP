@@ -2,6 +2,7 @@ var express = require('express');
 var config = require('../../config')();
 var Course = require('../models/course');
 var router = express.Router();
+var Comment = require('../models/comment');
 
 module.exports = router;
 
@@ -59,6 +60,14 @@ router.route('/:sector')
             res.json(course)
         })
     });
+router.route('/currentCourse/:course_id')
+    .get(function(req, res){
+        Course.findOne({'course_id': req.params.course_id}, function(err, course){
+            if(err)
+                res.send(err);
+            res.json(course)
+        })
+    });
 router.route('/pushCourse/:course_id')
     .post(function(req, res){
         Course.findOne({'course_id': req.params.course_id}, function (err, course) {
@@ -85,7 +94,20 @@ router.route('/pushCourse/:course_id')
             })
         })
     });
+router.route('/addComment/:course_id')
+    .post(function(req, res){
+        Course.findOne({'course_id': req.params.course_id}, function(err, course){
+            console.log("getting in");
+                course.comments.push(req.body.comments);
 
+            course.save(function(err){
+                if(err)
+                    res.send(err);
+
+                res.json({message: 'Course updated!'});
+            })
+        })
+    });
 /*
  var c1 = new Course({
  title: "Business Computing",

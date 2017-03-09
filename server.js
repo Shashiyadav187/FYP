@@ -22,6 +22,8 @@ var tests = require('./api/routes/tests');
 var questions =require('./api/routes/questions');
 var results = require('./api/routes/results');
 var courses  = require('./api/routes/courses');
+var sectors  = require('./api/routes/sectors');
+var comments  = require('./api/routes/comments');
 
 app.use(express.static(__dirname + '/app'));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -74,6 +76,8 @@ app.use('/api/tests/', tests);
 app.use('/api/questions/', questions);
 app.use('/api/results/', results);
 app.use('/api/courses/', courses);
+app.use('/api/sectors/', sectors);
+app.use('/api/comments/', comments);
 
 //Serve app
 http.createServer(app).listen(config.web.port);

@@ -1,6 +1,6 @@
 var express = require('express');
 var config = require('../../config')();
-var Result = require('../models/result');
+var Comment = require('../models/comment');
 var router = express.Router();
 
 
@@ -14,26 +14,26 @@ router.use(function(req, res, next) {
 router.route('/')
 // Get All Questions
     .get(function(req, res){
-        Result.find(function(err, result) {
+        Comment.find(function(err, comment) {
             if (err)
                 res.send(err);
 
-            res.json(result);
+            res.json(comment);
         });
     })
-    // Create a new User
+    // Create a new Comment
     .post(function(req, res) {
-        var result = new Result();
-        result.testName = req.body.testName;
-        result.score = req.body.score;
-        result.recommend = req.body.recommend;
-        result.timeStamp = req.body.timeStamp;
+        var comment = new Comment();
+        comment.timeStamp = Date.now();
+        comment.text = req.body.text;
+        comment.user = req.body.user;
+        comment.course = req.body.course;
 
-        result.save(function(err) {
+        comment.save(function(err) {
             if (err) {
                 res.send(err);
             } else {
-                res.json({ status:200, message: 'result created!'});
+                res.json({ status:200, message: 'comment created!'});
             }
         });
     });
@@ -45,13 +45,13 @@ router.route('/')
  recommend: "Computer Science"
  });
 
-result.save(function(err, res){
+ result.save(function(err, res){
  if (err)
  res.send(err);
  console.log(res, 'result created');
  });
 
-*/
+ */
 
 
 module.exports = router;

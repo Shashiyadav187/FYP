@@ -9,6 +9,9 @@ var auth = jwt({
     secret: 'MY_SECRET',
     userProperty: 'payload'
 });
+/*
+ var mailer = require('../u');
+ */
 var router = express.Router();
 
 router.use( function(req, res, next) {
@@ -64,7 +67,7 @@ passport.use('local', new LocalStrategy({
                 }
 
                 if (!user) {
-                    return done(null, false, {message: 'Invalid username'});
+                    return done(null, false, { message: 'Invalid username'});
                 }
 
                 if (!user.validPassword(password)) {
@@ -237,34 +240,7 @@ passport.use(new FacebookStrategy({
         });
 
     }));
-/*--------------------------------------------------------------------------------------------------*/
-/*router.route('/remove')
- //Get and remove users
- .get(function(req, res) {
- User.find(function(err, user) {
- if (err)
- res.send(err);
 
- user.remove(function(err) {
- if (err)
- res.send(err);
-
- res.json({ status:200, message: 'user deleted!'});
- });
- });
- });
-
- router.route('update')
- // Get a single user and update their info
- .get(function(req, res) {
- User.findById(req.params.userId, req.params.user, function(err, user) {
- if (err)
- res.send(err);
-
- res.json(user);
- });
- });*/
-/*--------------------------------------------------------------------------------------------------*/
 router.route('/login')
     .post(
         passport.authenticate('local',
@@ -342,21 +318,49 @@ router.route('/pushCourse/:email')
 
             //console.log(JSON.stringify(req.body.results) + " : r.b.r, " + user + " : just user");
             /*res.send(user);*/
+            if(user.courses.length > 0){
+                for(var i =0; i<user.courses.length; i++) {
+                    if(user.courses[i] == req.body.course){
+                        res.json({message: 'Course Already Saved!'});
+                        res.send("Saved previously");
+                        return;
+                    } else{
+                        user.courses.push(req.body.courses);
+                        user.timeStamp = Date.now();
+                        user.save(function(err){
+                            if(err)
+                                res.send(err);
 
+                            res.json({message: 'User updated!'});
+                        })
+                    }
+                }
+            }else{
+                user.courses.push(req.body.courses);
+                user.timeStamp = Date.now();
+                user.save(function(err){
+                    if(err)
+                        res.send(err);
+
+                    res.json({message: 'User updated!'});
+                })
+
+            }
+/*
             user.courses.push(req.body.courses);
             user.timeStamp = Date.now();
-            console.log(Date.now());
+            console.log(Date.now());*/
 
             //
             /*var array = req.params.results;
              array.push(user.result);
              console.log(array);*/
-            user.save(function(err){
+          /*  user.save(function(err){
                 if(err)
                     res.send(err);
 
                 res.json({message: 'User updated!'});
-            })
+            })*/
         })
     });
 
@@ -369,15 +373,24 @@ router.route('/:email')
             res.json(user);
         });
     });
-router.route('/:email')
-    .put(function(req, res) {
-        User.findOne({'email': req.params.email}, function(err, user) {
-            if (err)
-                res.send(err);
+/*router.route('/pushCourse/:email')
+ .post(function(req, res) {
+ User.findOne({'email': req.params.email}, function(err, user) {
+ if (err)
+ res.send(err);
+ else {
+ user.firstName = req.body.firstName;
+ user.lastName = req.body.lastName;
+ user.email = req.body.email;
+ user.profiler = req.body.profiler;
+ user.backgroundPhoto = req.body.backgroundPhoto;
+ user.courses.push(req.body.courses);
+ user.results.push(req.body.results);
+ console.log("success");
+ }
 
-            res.json(user);
-        });
-    });
+ });
+ });*/
 
 
 

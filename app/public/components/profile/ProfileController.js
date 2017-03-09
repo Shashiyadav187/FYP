@@ -5,26 +5,18 @@
 
             $scope.user = null;
             $scope.results = false;
-            $scope.courses = false;
-         /*   var _startCountdown = function(){
-                var timerCount = 300;
+            $scope.coursesTab = false;
 
-                var countDown = function () {
-                    if (timerCount < 0) {
-                        //Any desired function upon countdown end.
-                       // $window.close();
-                        alert('finished');
-                    } else {
-                        $scope.countDownLeft = timerCount;
-                        $scope.countdownMins = $scope.countDownLeft%60;
-                        timerCount--;
-                        $timeout(countDown, 1000);
-                    }
-                };
-                $scope.countDownLeft = timerCount;
-                countDown();
-            };
-            _startCountdown();*/
+            /*$('#myTab a').click(function (e) {
+                e.preventDefault();
+                $(this).tab('show')
+            });*/
+/*
+
+            $(function () {
+                $('#myTab a:last').tab('show')
+            });
+*/
 
             $scope.top = "Profile Page";
 
@@ -39,10 +31,10 @@
 
             $scope.showResults = function(){
                 $scope.results = true;
-                $scope.courses = false;
+                $scope.coursesTab = false;
             };
             $scope.showCourses = function(){
-                $scope.courses = true;
+                $scope.coursesTab = true;
                 $scope.results = false;
             };
 
@@ -66,10 +58,48 @@
                         console.log(err);
                     })
             };
-        }]);
-        /*.filter('currentdate',['$filter',  function(userDate, $filter) {
-            return function() {
-                return $filter('date')(userDate, 'yyyy-MM-dd HH:mm');
+        }])
+        .directive('tab', function() {
+            return {
+                restrict: 'E',
+                transclude: true,
+                template: '<div role="tabpanel" ng-show="active" ng-transclude></div>',
+                require: '^tabset',
+                scope: {
+                    heading: '@'
+                },
+                link: function (scope, elem, attr, tabsetCtrl) {
+                    scope.active = false;
+                    tabsetCtrl.addTab(scope);
+                }
             };
-        }])*/
+        })
+        .directive('tabset', function() {
+            return {
+                restrict: 'E',
+                transclude: true,
+                templateUrl: 'views/tabset.html',
+                bindToController: true,
+                controllerAs: 'tabset',
+                controller: function () {
+                    var self= this;
+                    self.tabs = [];
+                    self.addTab  =function addTab(tab) {
+                        self.tabs.push(tab);
+
+                        if(self.tabs.length == 1){
+                            tab.active = true;
+                        }
+                    };
+                    self.select = function (selectedTab) {
+                      angular.forEach(self.tabs, function (tab) {
+                          if(tab.active && tab !== selectedTab){
+                              tab.active = false;
+                          }
+                      });
+                        selectedTab.active = true;
+                    }
+                }
+            };
+        })
 })();

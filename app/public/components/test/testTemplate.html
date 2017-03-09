@@ -10,8 +10,15 @@
             </div>
 
             <div class="row" ng-hide="resultsView">
-                <h3 ng-hide="t.name== 'Careers Test'">
+
+                <h3 ng-show="t.name== 'Spatial Reasoning'">
                     <timer interval="1000" max-time-unit="'minute'" countdown="300" finish-callback="CountdownFinished()">{{minutes}} Mins {{sseconds}} Seconds</timer>
+                </h3>
+                <h3 ng-show="t.name== 'Careers Test'">
+                    <timer interval="1000" max-time-unit="'minute'" countdown="1200" finish-callback="CountdownFinished()">{{minutes}} Mins {{sseconds}} Seconds</timer>
+                </h3>
+                <h3 ng-show="t.name== 'Logical Number Series Test'">
+                    <timer interval="1000" max-time-unit="'minute'" countdown="1200" finish-callback="CountdownFinished()">{{minutes}} Mins {{sseconds}} Seconds</timer>
                 </h3>
                 <div class="row">
                     <div class="col-xs-8">
@@ -22,7 +29,7 @@
                             </div>
                             <div ng-hide="t.name == 'Careers Test'">
                                 <div class="btn-toolbar">
-                                    <button class="btn"
+                                    <button class="btn " id="btn-custom"
                                             ng-repeat="qs in q.question"
                                             ng-class="{'btn-info': qs.selected !== null, 'btn-danger': qs.selected === null}"
                                             ng-click="setActiveQuestion($index)">
@@ -98,15 +105,6 @@
                             </div>
                         </div>
                     </div>
-                    <!--<div class="well well-sm" ng-show="finished">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <h3>Are you sure you want to submit your answers?</h3>
-                                <button class="btn btn-success" ng-click="finaliseAnswers()">Yes</button>
-                                <button class="btn btn-danger" ng-click="finished = false">No</button>
-                            </div>
-                        </div>
-                    </div>-->
                 </div>
             </div>
             <div ng-show="resultsView">
@@ -162,14 +160,25 @@
                                                                 </h4>
                                                             </div>
                                                         </div>
+                                                        <div ng-if="ques.type === 'text'">
+                                                            <h3 class="question"> &nbsp; {{$index + 1}})&nbsp;
+                                                                {{ques.title}}
+                                                            </h3>
+                                                            <div class="col-sm-3" ng-repeat="op in ques.options">
+                                                                <h4 class="answers"
+                                                                    ng-class="correctAnswer($index)">
+                                                                    {{op.option}}
+                                                                </h4>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div ng-show="user.firstName != null">
-                                    <div class="btn btn-primary" ng-click="save()">Save Results!</div>
+                                <div ng-hide="user.firstName == null">
+                                    <div class="btn btn-primary" ng-click="createResult()">Save Results!</div>
                                     <div class="btn btn-warning" ng-click="finish()">Don't Save and Return</div>
                                 </div>
                                 <div ng-show="user.firstName == null">

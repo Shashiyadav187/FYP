@@ -93,8 +93,8 @@ button:focus {
     width: 100%;
 }
 .nav-btn-custom img{
-    height:20px;
-    width:20px;
+    height:23px;
+    width:23px;
     border-radius: 50%;
 }
 .navbar-brand{
@@ -357,7 +357,7 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
 }
 
 .form-bottom {
-    padding: 25px 25px 30px 25px;
+    padding: 25px 25px 10px 25px;
     background: #eee;
     border-radius: 0 0 4px 4px;
     text-align: left;
@@ -433,9 +433,15 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
 .image-selected{
     border: 3px solid #56afdc;
 }
+#btn-custom{
+    padding: .5rem 1.5rem !important;
+}
 /*----------------------------------------------- Test Page -------------------------------------------------------------------------*/
 /*----------------------------------------------- Profile Page -------------------------------------------------------------------------*/
 
+.tab_active{
+    border-bottom: 2px solid red;
+}
 .profile-box-first{
     box-shadow: 0 0 0 1px rgba(0,0,0,.1), 0 2px 3px rgba(0,0,0,.2);
     margin-top: 80px;
@@ -480,7 +486,7 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
     border-radius: 50%;
 }
 .circle {
-    width: 1767px;
+    width: 177px;
     height: 177px;
 }
 .profile-background img{
@@ -503,6 +509,11 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
 }
 /*----------------------------------------------- Results Page -------------------------------------------------------------------------*/
 /*----------------------------------------------- Course Page -------------------------------------------------------------------------*/
+.title-bar {
+    height:50px;
+    text-align: center;
+    font-size: 30px;
+}
 .filters-area{
     height: 100%;
 }
@@ -519,26 +530,35 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
     flex-direction: column;
     height: 230px;
     max-height: 100%;
+    cursor:pointer;
 }
 .courses-top {
     overflow: visible;
     padding: 0 25px 10px 25px;
     text-align: left;
     height: 40px;
+    width:100%;
 }
 
 .courses-top-left {
     float: left;
-    width: 75%;
+    width: 40%;
     padding-top: 5px;
 }
 
 .courses-top-left { margin-top: 0; }
-.courses-top-right {
+.courses-top-middle{
     float: left;
-    width: 25%;
+    padding-top: 5px;
+    width:30%;
+    text-align:center;
+}
+.courses-top-right {
+    float:right;
+    width: 30%;
     padding-top: 5px;
     text-align: right;
+
 }
 .courses-middle{
     height:80px;
@@ -649,7 +669,7 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
 }
 .ditIcon{
 
-background-image:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)), url("../img/dit-bg.jpg");
+    background-image:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)), url("../img/dit-bg.jpg");
 }
 .ucdIcon{
     background-image: linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),url("../img/ucd-bg.jpg");
@@ -774,7 +794,7 @@ background-image:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)), url("../img/dit
     font-size: 15px;
 }
 .ec-comment-button{
-    color: #66BB6A;
+    color: #66BB6A ;
     border: 2px solid #66BB6A;
 }
 .ec-comment-button:hover{

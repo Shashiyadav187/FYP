@@ -1,3 +1,8 @@
+<div class="title-bar" ng-class="{'csColour':sectorName =='Computer Science',
+                         'ecColour':sectorName =='Engineering and Construction',
+                         'msColour':sectorName =='Medicine and Science',
+                         'bmColour':sectorName =='Business and Management',
+                         'eaColour':sectorName =='Education and Arts'}">{{sectorName}}</div>
 <div class="modal-body">
 
     <div class="col-sm-2">
@@ -6,7 +11,6 @@
                 placeholder="Search..."
                 ng-model="searchBar">
         <div class="filter-college" ng-click="clearAll()">Clear All</div>
-
         <div class="dropdown">
             <button ng-click="collegeFunction(); openColleges = !openColleges " class="dropbtn">College<i class="text-right fa" ng-class="{'fa-angle-down':openColleges == false, 'fa-angle-up':openColleges == true}"></i></button>
             <div id="collegeDropdown" class="dropdown-content">
@@ -24,48 +28,21 @@
                 </div>
             </div>
             <div class="dropdown">
-                <button ng-click="mySectorFunction(); openSectors = !openSectors" class="dropbtn">Area of expertise<i class="text-right fa" ng-class="{'fa-angle-down':openSectors == false, 'fa-angle-up':openSectors == true}"></i></button>
-                <div id="sectorDropdown" class="dropdown-content">
-                    <div class="filter-college" ng-click="search='Computer Science'">
-                        <input type="checkbox" ng-model="searches.cs">
-                        Computer Science
+                <button ng-click="myPointsFunction(); openPoints = !openPoints" class="dropbtn">Points<i class="text-right fa" ng-class="{'fa-angle-down':openPoints == false, 'fa-angle-up':openPoints == true}"></i></button>
+                <div id="pointsDropdown" class="dropdown-content">
+                    <div class="filter-college">
+                        Min points:<input type="text" min="0" max ng-model="min_points" />
                     </div>
-                    <div class="filter-college" ng-click="search='Engineering and Construction'">
-                        <input type="checkbox" ng-model="searches.ec">
-                        Engineering and Construction
-                    </div>
-                    <div class="filter-college" ng-click="search='Medicine and Science'">
-                        <input type="checkbox" ng-model="searches.ms">
-                        Medicine and Science
-                    </div>
-                    <div class="filter-college" ng-click="search='Business and Management'">
-                        <input type="checkbox" ng-model="searches.bm">
-                        Business and Management
-                    </div>
-                    <div class="filter-college" ng-click="search='Education and Arts'">
-                        <input type="checkbox" ng-model="searches.ea">
-                        Education and Arts
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <button ng-click="myPointsFunction(); openPoints = !openPoints" class="dropbtn">Points<i class="text-right fa" ng-class="{'fa-angle-down':openPoints == false, 'fa-angle-up':openPoints == true}"></i></button>
-                    <div id="pointsDropdown" class="dropdown-content">
-                        <div class="filter-college">
-                            Min points:<input type="text" min="0" max ng-model="min_points" />
-                        </div>
-                        <div class="filter-college">
-                            Max points:<input type="text" max="775" ng-model="max_points" />
-                        </div>
+                    <div class="filter-college">
+                        Max points:<input type="text" max="775" ng-model="max_points" />
                     </div>
                 </div>
             </div>
         </div>
-<!--
-                        <button ng-click="getMoreDetailedCourse(courses)">more detailed courses</button>
--->
     </div>
-    <div class="col-sm-10">
-        <div dir-paginate="course in courses | filter:searchBar | sectorFilter:searches | filter:ageFilter | customFilter:types | itemsPerPage: 12 "><!--rangeFilter:'course.points'--><!--byCourse:courseFilter -->
+
+    <div class="col-sm-10"><!-- filter:searchBar |filter:ageFilter | customFilter:types | -->
+        <div dir-paginate="course in courses | filter:searchBar | filter:ageFilter | customFilter:types | filter:sectorName | itemsPerPage: 12 ">
             <div class="col-sm-3 text-center">
                 <div class="courses-box-first">
                     <div class="courses-box"
@@ -77,21 +54,20 @@
                         <div class="courses-top">
                             <div class="courses-top-left">
                                 {{course.course_id}}
+
                             </div>
                             <div class="courses-top-middle">
                                 {{course.points[0]}}
                             </div>
                             <div class="courses-top-right">
-                                <i class="fa" data-ng-click="saveCourseToUser(course)"
-                                ng-class="{'fa-bookmark': hasSaved == true,
-                                           'fa-bookmark-o': hasSaved == false}"></i>
+                                <i class="material-icons" data-ng-click="saveCourseToUser(course)">bookmark</i>
                             </div>
                         </div>
                         <div ng-click="displayCourse(course)" >
                             <div class="courses-middle bgIcon"
                                  ng-class="{'ditIcon': course.college == 'Dublin Institute of Technology',
-                        'ucdIcon': course.college == 'University College Dublin',
-                        'tcdIcon': course.college == 'Trinity College'}">
+                                            'ucdIcon': course.college == 'University College Dublin',
+                                            'tcdIcon': course.college == 'Trinity College'}">
                                 <div class="middle-left">{{course.college}}</div>
                                 <div class="middle-right">
                                     <img src="../.././assets/img/dit-logo.png">

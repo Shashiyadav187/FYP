@@ -19,7 +19,7 @@
                     bodyText: "One of the answers does not match the question. Find the mismatched pattern. Once you press " +
                     "'Take Test' the timer will start",
                     numQuestions: $scope.tests[0].questions[0].question.length,
-                    passPercentage: '80%',
+                    passPercentage: '70%',
                     timeLimit: '5 Mins'
                 };
 
@@ -37,7 +37,7 @@
                     headerText: $scope.tests[3].name+' Rules',
                     bodyText: 'Answer questions based on preference to receive the sector we recommend you enter',
                     numQuestions: $scope.tests[3].questions[0].question.length,
-                    timeLimit: 'Unlimited'
+                    timeLimit: '20 Mins'
                 };
 
                 tableModalService.showModal({}, modalOptions)
@@ -49,11 +49,11 @@
             $scope.numericalLink = function() {var modalOptions = {
                 closeButtonText: 'Cancel',
                 actionButtonText: 'Take Test',
-                headerText: $scope.tests[1].name+' Rules',
-                bodyText: 'Calculate the answers against the clock',
-                numQuestions: $scope.tests[1].questions[0].question.length,
-                passPercentage: '80%',
-                timeLimit: 'Not Long'
+                headerText: $scope.tests[4].name+' Rules',
+                bodyText: 'Look carefully for the pattern, and then choose which pair of numbers comes next.',
+                numQuestions: $scope.tests[4].questions[0].question.length,
+                passPercentage: '70%',
+                timeLimit: '10 Mins'
             };
 
                 tableModalService.showModal({}, modalOptions)

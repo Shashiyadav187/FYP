@@ -134,7 +134,6 @@
                 })
                     .success(function(data, status, header, config){
                         if(data.success){
-                            //console.log(data);
                             console.log("Failure possibly");
                         } else {
                             console.log("Success---------- Possibly"+data);
@@ -159,7 +158,13 @@
                 } else if ($scope.testType = "ms"){
                     $state.go('app.msTest');
                 }
+            };
 
+            $scope.definedCourses = function(){
+                console.log($scope.recommendation+" ---sectorName here");
+                $state.go('app.definedCourses',{
+                    sectorName: JSON.stringify($scope.recommendation)
+                });
             };
 
             $scope.saveResult = function(){
