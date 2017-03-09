@@ -13,6 +13,7 @@
             $scope.finished = false;
             $scope.array = [];
             $scope.resultsPage = false;
+            $scope.continue= false;
 
             $scope.getTests = function(){
                 TestService.getTests()
@@ -66,21 +67,15 @@
                     if($scope.tests[testIndex].questions[0].question[$scope.question_index].selected !== null){
                         $scope.numQuestionsAnswered++;
                         if($scope.numQuestionsAnswered >= length){
-                            // final check to ensure all questions are actuall answered
                             for(var i = 0; i < length; i++){
-                                /*
-                                 * if find a question that is not answered, set it to
-                                 * active question then return from this function
-                                 * to ensure finalise flag is not set
-                                 */
                                 if($scope.tests[testIndex].questions[0].question[i].selected === null){
                                     $scope.setActiveQuestion(i);
                                     return;
                                 }
+                            }if($scope.numQuestionsAnswered == length){
+                                $scope.continue = true;
                             }
-                            // set finalise flag and remove any existing warnings
                             $scope.error = false;
-                            $scope.finished = true;
                             return;
                         }
                     }

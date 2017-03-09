@@ -13,7 +13,7 @@
 
             var modalOptions = {
                 actionButtonText:'Cancel',
-                headerText: 'Results Saved',
+                headerText: 'Saved',
                 bodyText: 'Go to the your profile page to view saved test results'
             };
 

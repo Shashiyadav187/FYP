@@ -3,7 +3,6 @@ var config = require('../../config')();
 var Question = require('../models/question');
 var router = express.Router();
 
-module.exports = router;
 
 // Define the question api middleware
 router.use(function(req, res, next) {

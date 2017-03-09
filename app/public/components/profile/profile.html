@@ -45,131 +45,102 @@
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
             <div ng-if="results">
-                <div ng-cloak="" class="tabsdemoDynamicHeight">
-                    <md-content>
-                        <md-tabs md-dynamic-height="" md-border-bottom="">
-                            <md-tab label="Spatial">
-                                <md-content class="md-padding">
-                                    <h1 class="md-display-2">Spatial Test Results</h1>
-                                    <table class="table table-striped">
-                                        <thead>
-                                        <tr class="text-center">
-                                            <th>Test Name</th>
-                                            <th>Score</th>
-                                            <th>Date Completed</th>
-                                            <th>Remove</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody ng-repeat="result in user.results">
-                                        <tr ng-show="result.testName == 'Spatial Reasoning'" class="text-center">
-                                            <td>{{result.testName}}</td>
-                                            <td>{{result.score}}</td>
-                                            <td>{{result.timeStamp | date : "hh:mm d MMM, yy" }}</td>
-                                            <td class="delete-icon fa fa-times" ng-click="removeFromDB(result)"></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </md-content>
-                            </md-tab>
-                            <md-tab label="Careers">
-                                <md-content class="md-padding">
-                                    <h1 class="md-display-2">Careers Test Results</h1>
-                                    <table class="table table-striped">
-                                        <thead class="thead-default">
-                                        <tr>
-                                            <th></th>
-                                            <th></th>
-                                            <th>Test Name</th>
-                                            <th>Score</th>
-                                            <th>Date Completed</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody class ="tbody" ng-repeat="result in user.results">
-                                        <tr  ng-show="result.testName == 'Careers Test'">
-                                            <td></td>
-                                            <td></td>
-                                            <td>{{result.testName}}</td>
-                                            <td>{{result.recommend}}</td>
-                                            <td>{{result.timeStamp | date : "hh:mm d-MMM-yy" }}</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </md-content>
-                            </md-tab>
-                            <md-tab label="Numerical">
-                                <md-content class="md-padding">
-                                    <h1 class="md-display-2">Numerical Test Results</h1>
-                                    <table class="table table-striped">
-                                        <thead class="thead-default">
-                                        <tr>
-                                            <th></th>
-                                            <th></th>
-                                            <th>Test Name</th>
-                                            <th>Score</th>
-                                            <th>Date Completed</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody class ="tbody" ng-repeat="result in user.results">
-                                        <tr ng-show="result.testName == 'Numerical Reasoning'">
-                                            <td></td>
-                                            <td></td>
-                                            <td>{{result.testName}}</td>
-                                            <td>{{result.score}}</td>
-                                            <td>{{result.timeStamp| date : "hh:mm d-MMM-yy" }}</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </md-content>
-                            </md-tab>
-                        </md-tabs>
-                    </md-content>
-                </div>
+                <tabset>
+                    <tab heading="Spatial">
+                        <table class="table table-striped">
+                            <thead class="thead-default">
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th>Test Name</th>
+                                <th>Score</th>
+                                <th>Date Completed</th>
+                            </tr>
+                            </thead>
+                            <tbody class ="tbody" ng-repeat="result in user.results">
+                            <tr ng-show="result.testName == 'Spatial Reasoning'">
+                                <td></td>
+                                <td></td>
+                                <td>{{result.testName}}</td>
+                                <td>{{result.score}}</td>
+                                <td>{{result.timeStamp | date : "hh:mm d MMM, yy" }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </tab>
+                    <tab heading="Careers">
+                        <table class="table table-striped">
+                            <thead class="thead-default">
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th>Test Name</th>
+                                <th>Recommendation</th>
+                                <th>Date Completed</th>
+                            </tr>
+                            </thead>
+                            <tbody class ="tbody" ng-repeat="result in user.results">
+                            <tr  ng-show="result.testName == 'Careers Test'">
+                                <td></td>
+                                <td></td>
+                                <td>{{result.testName}}</td>
+                                <td>{{result.recommend}}</td>
+                                <td>{{result.timeStamp | date : "hh:mm d MMM, yy" }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </tab>
+                    <tab heading="Number Series">
+                        <table class="table table-striped">
+                            <thead class="thead-default">
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th>Test Name</th>
+                                <th>Score</th>
+                                <th>Date Completed</th>
+                            </tr>
+                            </thead>
+                            <tbody class ="tbody" ng-repeat="result in user.results">
+                            <tr  ng-show="result.testName == 'Logical Number Series Test'">
+                                <td></td>
+                                <td></td>
+                                <td>{{result.testName}}</td>
+                                <td>{{result.score}}</td>
+                                <td>{{result.timeStamp | date : "hh:mm d MMM, yy" }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </tab>
+                </tabset>
             </div>
         </div>
     </div>
 
-
-    <!--<div class="row">
+    <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
-            <div ng-if="results">
-                <table class="table table-striped">
-                    <thead class="thead-default">
-                    <tr>
-                        <th></th>
-                        <th></th>
-                        <th>Test Name</th>
-                        <th>Score</th>
-                        <th>Date Completed</th>
-                    </tr>
-                    </thead>
-                    <tbody class ="tbody" ng-repeat="result in user.results">
-                    <tr class="">
-                        <td></td>
-                        <td></td>
-                        <td>{{result.testName}}</td>
-                        <td>{{result.score}}</td>
-                        <td>{{result.timeStamp}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div ng-if="courses">
-                <table class="table table-striped">
-                    <thead class="thead-deafult">
-                    <tr>
-                        <th>Course Name</th>
-                        <th>College</th>
-                        <th>Points</th>
-                    </tr>
-                    </thead>
-                    <tbody class="">
-                    <tr>
-
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+            <tabset>
+                <tab heading="Courses">
+                    <div ng-if="coursesTab">
+                        <table class="table table-striped">
+                            <thead class="thead-deafult">
+                            <tr>
+                                <th>Course Name</th>
+                                <th>College</th>
+                                <th>Points</th>
+                            </tr>
+                            </thead>
+                            <tbody ng-repeat="course in user.courses">
+                            <tr>
+                                <td>{{course.title}}</td>
+                                <td>{{course.college}}</td>
+                                <td>{{course.points[0]}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </tab>
+            </tabset>
         </div>
-    </div>-->
+    </div>
 </div>

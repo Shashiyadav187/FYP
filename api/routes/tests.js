@@ -6,7 +6,6 @@ var Question = require('../models/question');
 
 var router = express.Router();
 
-module.exports = router;
 
 
 // Define the test api middleware
@@ -413,36 +412,348 @@ q20.save(function(err, res){
 
 */
 
+/*
 
-/*var question10 = new Question({
-    title: "https://www.123test.com/spatial-reasoning-test/items//item10/uitgevouwen.png",
+var q1 = new Question({
+    title: "42 40 38 35 33 31 28",
     options: [
         {
-            option: "https://www.123test.com/spatial-reasoning-test/items/item10/fout.png",
+            option: "25 22",
         }, {
-            option: "https://www.123test.com/spatial-reasoning-test/items/item10/goed1.png",
+            option: "26 23",
         },{
-            option: "https://www.123test.com/spatial-reasoning-test/items/item10/goed2.png",
+            option: "26 24",
         },{
-            option: "https://www.123test.com/spatial-reasoning-test/items/item10/goed3.png",
+            option: "25 23",
         }],
     answer: null,
     selected: null,
-    type: "image"
+    type: "text"
 });
-question10.save(function(err, res){
+q1.save(function(err, res){
     if (err)
         console.log(err);
 
     console.log(res, 'Q10 created');
-});*/
+});
+var q2 = new Question({
+    title: "6 10 14 18 22 26 30",
+    options: [
+        {
+            option: "34 38",
+        }, {
+            option: "34 36",
+        },{
+            option: "38 42",
+        },{
+            option: "33 37",
+        }],
+    answer: null,
+    selected: null,
+    type: "text"
+});
+q2.save(function(err, res){
+    if (err)
+        console.log(err);
 
-/*var test1 = new Test({
-    name:"Careers Test",
+    console.log(res, 'Q10 created');
+});
+var q3 = new Question({
+    title: "8 12 9 13 10 14 11",
+    options: [
+        {
+            option: "14 11",
+        }, {
+            option: "15 12",
+        },{
+            option: "8 15",
+        },{
+            option: "15 19",
+        }],
+    answer: null,
+    selected: null,
+    type: "text"
+});
+q3.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'Q10 created');
+});
+var q4 = new Question({
+    title: "36 31 29 24 22 17 15",
+    options: [
+        {
+            option: "13 11",
+        }, {
+            option: "10 5",
+        },{
+            option: "10 8",
+        },{
+            option: "12 7",
+        }],
+    answer: null,
+    selected: null,
+    type: "text"
+});
+q4.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'Q10 created');
+});
+var q5 = new Question({
+    title: "3 5 35 10 12 35 17",
+    options: [
+        {
+            option: "22 35",
+        }, {
+            option: "35 19",
+        },{
+            option: "19 24",
+        },{
+            option: "19 35",
+        }],
+    answer: null,
+    selected: null,
+    type: "text"
+});
+q5.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'Q10 created');
+});
+var q6 = new Question({
+    title: "13 29 15 26 17 23 19",
+    options: [
+        {
+            option: "21 23",
+        }, {
+            option: "20 21",
+        },{
+            option: "20 17",
+        },{
+            option: "25 27",
+        }],
+    answer: null,
+    selected: null,
+    type: "text"
+});
+q6.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'Q10 created');
+});
+var q7 = new Question({
+    title: "14 14 26 26 38 38 50",
+    options: [
+        {
+            option: "60 72",
+        }, {
+            option: "50 72",
+        },{
+            option: "62 62",
+        },{
+            option: "50 62",
+        }],
+    answer: null,
+    selected: null,
+    type: "text"
+});
+q7.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'Q10 created');
+});
+var q8 = new Question({
+    title: "44 41 38 35 32 29 26",
+    options: [
+        {
+            option: "24 21",
+        }, {
+            option: "22 19",
+        },{
+            option: "29 32",
+        },{
+            option: "23 20",
+        }],
+    answer: null,
+    selected: null,
+    type: "text"
+});
+q8.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'Q10 created');
+});
+var q9 = new Question({
+    title: "34 30 26 22 18 14 10",
+    options: [
+        {
+            option: "6 2",
+        }, {
+            option: "6 4",
+        },{
+            option: "14 18",
+        },{
+            option: "4 0",
+        }],
+    answer: null,
+    selected: null,
+    type: "text"
+});
+q9.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'Q10 created');
+});
+var q10 = new Question({
+    title: "32 31 32 29 32 27 32",
+    options: [
+        {
+            option: "25 32",
+        }, {
+            option: "31 32",
+        },{
+            option: "29 32",
+        },{
+            option: "25 30",
+        }],
+    answer: null,
+    selected: null,
+    type: "text"
+});
+q10.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'Q10 created');
+});
+var q11 = new Question({
+    title: "7 9 66 12 14 66 17",
+    options: [
+        {
+            option: "66 19",
+        }, {
+            option: "19 66",
+        },{
+            option: "19 22",
+        },{
+            option: "20 66",
+        }],
+    answer: null,
+    selected: null,
+    type: "text"
+});
+q11.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'Q10 created');
+});
+var q12 = new Question({
+    title: "3 8 10 15 17 22 24",
+    options: [
+        {
+            option: "26 28",
+        }, {
+            option: "29 34",
+        },{
+            option: "29 31",
+        },{
+            option: "26 31",
+        }],
+    answer: null,
+    selected: null,
+    type: "text"
+});
+q12.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'Q10 created');
+});
+var q13 = new Question({
+    title: "4 7 26 10 13 20 16",
+    options: [
+        {
+            option: "14 4",
+        }, {
+            option: "14 17",
+        },{
+            option: "18 14",
+        },{
+            option: "19 14",
+        }],
+    answer: null,
+    selected: null,
+    type: "text"
+});
+q13.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'Q10 created');
+});
+var q14 = new Question({
+    title: "32 29 26 23 20 17 14",
+    options: [
+        {
+            option: "11 8",
+        }, {
+            option: "12 8",
+        },{
+            option: "11 7",
+        },{
+            option: "10 9",
+        }],
+    answer: null,
+    selected: null,
+    type: "text"
+});
+q14.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'Q10 created');
+});
+var q15 = new Question({
+    title: "16 26 56 36 46 68 56",
+    options: [
+        {
+            option: "80 66",
+        }, {
+            option: "64 82",
+        },{
+            option: "66 80",
+        },{
+            option: "78 68",
+        }],
+    answer: null,
+    selected: null,
+    type: "text"
+});
+q15.save(function(err, res){
+    if (err)
+        console.log(err);
+
+    console.log(res, 'Q10 created');
+});
+*/
+
+/*
+var test1 = new Test({
+    name:"Logical Number Series Test",
     duration: null,
-    testId: 'careers1234',
+    testId: 'numbers1234',
+    answers: [2,0,1,2,3,1,3,3,0,0,1,2,3,0,2],
     questions: {
-        question: [q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16,q17,q18,q19,q20]
+        question: [q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15]
     }
 });
 
@@ -450,8 +761,9 @@ question10.save(function(err, res){
 test1.save(function(err, res){
     if (err)
         console.log(err);
-    console.log(res, 'ec test created');
-});*/
+    console.log(res, 'Logical Number Series Test created');
+});
+*/
 
 
 /*,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16,q17*!/
