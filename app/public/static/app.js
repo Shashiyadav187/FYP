@@ -9,8 +9,7 @@
         'ng-backstretch',
         'chart.js',
         'angular-loading-bar',
-        'angularUtils.directives.dirPagination',
-        'timer'
+        'angularUtils.directives.dirPagination'
     ])
         .config(['$stateProvider', '$locationProvider', '$urlRouterProvider', function ($stateProvider, $locationProvider, $urlRouterProvider) {
             $locationProvider.html5Mode(false);
