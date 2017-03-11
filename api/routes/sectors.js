@@ -56,79 +56,84 @@ router.route('/')
  }]
  });*/
 
-/*var sector = new Sector({
- title:"Computer Science",
- description: "Computer Science is the study of computers and computational systems. Unlike electrical and computer" +
- " engineers, computer scientists deal mostly with software and software systems; this includes their theory, design," +
- " development, and application.",
- jobLinks: [],
- searchable: "cs",
- averagePay: 0,
- jobs:[{
- title: "Network Architect",
- desc: "These professionals design, build and maintain a variety of data communication networks, from expansive" +
- " cloud infrastructures to smaller intranets",
- salary: 100240,
- sal: 7.9,
- jm: 4,
- fg: 6,
- s: 4,
- wlb: 4
- },{
- title: "Database Administrator",
- desc: "Database administrators are relied on as the guardians of data, implementing security measures to ensure" +
- " sensitive data is safe",
- salary: 81710,
- sal: 7.1,
- jm: 6,
- fg: 6,
- s: 4,
- wlb: 6
- },{
- title: "IT Manager",
- desc: "IT Managers deliver short- and long-term visions for the company's technology needs and goals.",
- salary: 131600,
- sal: 9.1,
- jm: 6,
- fg: 6,
- s: 2,
- wlb: 4
- },{
- title: "Software Developer",
- desc: "IT Managers deliver short- and long-term visions for the company's technology needs and goals.",
- salary: 98260,
- sal: 7.8,
- jm: 6,
- fg: 8,
- s: 6,
- wlb: 8
- }
- ]
- });*/
+/*
+var sector = new Sector({
+    title:"Education & Arts",
+    description: "Teaching is the process of attending to people’s needs, experiences and feelings, and making specific" +
+    " interventions to help them learn particular things. Arts is an expression of emotion which inclu",
+    jobLinks: [],
+    searchable: "ea",
+    averagePay: 0,
+    jobs:[{
+        title: "Primary School Teacher",
+        desc: "Primary School Teachers are knowledgeable about a variety of subjects, as many design lesson plans across " +
+        "subjects to teach their students the basics of reading, writing and mathematics. ",
+        salary: 54890,
+        sal: 5.9,
+        jm: 4,
+        fg: 8,
+        s: 4,
+        wlb: 4
+    },{
+        title: "Health Educator",
+        desc: "health educator includes assessing the needs of his or her community; developing effective programs" +
+        " or curriculum to address those needs and physically teaching them",
+        salary: 51960,
+        sal: 5.7,
+        jm: 6,
+        fg: 4,
+        s: 4,
+        wlb: 6
+    },{
+        title: "Art Director",
+        desc: "Art Directors produce artwork for advertising campaigns, magazines, television shows, films, websites or" +
+        " products, often in charge of a design team to meet clients objectives",
+        salary: 89760,
+        sal: 7.5,
+        jm: 4,
+        fg: 4,
+        s: 4,
+        wlb: 4
+    },{
+        title: "Actor",
+        desc: "An actors job is to interpret a writer's script and portray different characters on the stage or on" +
+        " the screen to a watching public",
+        salary: 39236,
+        sal: 5,
+        jm: 4,
+        fg: 4,
+        s: 4,
+        wlb: 4
+    }
+    ]
+});
+*/
 
 /*var sector = new Sector({
- title:"Computer Science",
- description: "",
- jobLinks: ["",""],
- searchable: "cs",
- averagePay: 0,
- jobs:[{
- title: "",
- desc: "",
- salalary: 0,
- sal: 0,
- jm: 0,
- fg: 0,
- s: 0,
- wlb: 0
- }]
- });*/
+    title:"Computer Science",
+    description: "",
+    jobLinks: ["",""],
+    searchable: "cs",
+    averagePay: 0,
+    jobs:[{
+        title: "",
+        desc: "",
+        salalary: 0,
+        sal: 0,
+        jm: 0,
+        fg: 0,
+        s: 0,
+        wlb: 0
+    }]
+});*/
 
-/*sector.save(function(err, res){
- if (err)
- res.send(err);
- console.log(res, 'sector created');
- });*/
+/*
+sector.save(function(err, res){
+    if (err)
+        res.send(err);
+    console.log(res, 'sector ecuation and arts created');
+});
+*/
 
 
 

@@ -507,6 +507,57 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
 .chart{
     padding: 30px 20px 50px 20px;
 }
+.job-box{
+    width:100%;
+    height: 170px;
+    padding: 5px;
+    overflow: visible;
+}
+.job-left{
+    width:60%;
+    float:left;
+}
+.job-right{
+    width:40%;
+    float:left;
+    text-align: right;
+    padding: 25px 25px 0 25px;
+}
+.job-title{
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+.rating-box{
+    width:100%;
+    height: 130px;
+}
+.thin-bar.makeBlue{
+    padding-top:5px;
+    background-color: blue;
+    width:100%;
+    height:5px;
+    border-radius: 15px;
+}
+.thin-bar{
+    background-color: #eee;
+}
+.progress-title{
+    margin-top: -17px;
+    margin-right:10px;
+    color: #5D9CEC;
+}
+.progress-title-right{
+    text-align: right;
+}
+.progress-title-left{
+    float:left;
+    text-align: left;
+}
+.score{
+    font-size: 20px;
+    font-weight: 800;
+}
 /*----------------------------------------------- Results Page -------------------------------------------------------------------------*/
 /*----------------------------------------------- Course Page -------------------------------------------------------------------------*/
 .title-bar {
