@@ -5,6 +5,8 @@
 
             var baseUrl = 'https://api.unibrowse.ie/api/courses';
 
+            var uniBrowseUrl = "https://api.unibrowse.ie/api/homepage"
+
             var apiUrl = 'api/courses';
 
             this.getCourses = function(){

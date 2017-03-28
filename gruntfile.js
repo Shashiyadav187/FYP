@@ -122,7 +122,8 @@ module.exports = function(grunt) {
                 node: true,
                 globals: {
                     'angular': true,
-                    'console': false
+                    'console': false,
+                    '$': false
                 }
             }
         },

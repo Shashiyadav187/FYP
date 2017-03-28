@@ -1,13 +1,13 @@
 /* Angle Template Code */
 (function(){
     "use strict";
-    App.controller('appController',['$rootScope', '$scope', '$state', '$window', '$timeout', '$location',
-        function($rootScope, $scope, $state, $window, $timeout, $location) {
+    App.controller('appController',['$rootScope',
+        function($rootScope) {
             // Setup the layout mode
             
             // Hook not found
             $rootScope.$on('$stateNotFound',
-                function(event, unfoundState, fromState, fromParams) {
+                function(event, unfoundState) {
                     console.log(unfoundState.to); // "lazy.state"
                     console.log(unfoundState.toParams); // {a:1, b:2}
                     console.log(unfoundState.options); // {inherit:false} + default options

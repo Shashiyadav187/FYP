@@ -14,7 +14,7 @@ var sectorSchema = new Schema({
         sal: Number,
         jm: Number,
         fg: Number,
-        stress: Number,
+        s: Number,
         wlb: Number
     }]
 });

@@ -97,6 +97,14 @@
                     controller: 'ECTestController',
                     templateUrl: 'views/testTemplate.html'
                 })
+                .state('app.definedCourses',{
+                    url: '/definedCourses/:sectorName',
+                    controller: 'DefinedCoursesController',
+                    templateUrl: 'views/definedCourses.html',
+                    params:{
+                        'sectorName': ''
+                    }
+                })
 
 
         }])

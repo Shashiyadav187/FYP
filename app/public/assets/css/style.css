@@ -504,18 +504,24 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
 .results-title{
     text-transform: uppercase;
 }
+.card-title{
+    font-size: 30px;
+    padding: 10px;
+    text-align: center;
+}
 .chart{
     padding: 30px 20px 50px 20px;
 }
 .job-box{
     width:100%;
-    height: 170px;
+    height: 200px;
     padding: 5px;
     overflow: visible;
 }
 .job-left{
     width:60%;
     float:left;
+    padding-left: 15px;
 }
 .job-right{
     width:40%;
@@ -530,7 +536,7 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
 }
 .rating-box{
     width:100%;
-    height: 130px;
+    height: 150px;
 }
 .thin-bar.makeBlue{
     padding-top:5px;

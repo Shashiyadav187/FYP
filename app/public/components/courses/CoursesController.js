@@ -29,7 +29,6 @@
             };
             $scope.getCourses();
 
-            /*
              $scope.createCourses = function(coursesArray){
              console.log("clicked");
              console.log(coursesArray.courses.length);
@@ -70,7 +69,6 @@
              } else {
              console.log("Not found college error");
              }}};
-             */
 
             $scope.collegeFunction = function () {
                 angular.element(document.querySelector('#collegeDropdown').classList.toggle('show'));
