@@ -191,11 +191,11 @@ passport.use(new FacebookStrategy({
                                 return done(err);
                             }
 
-                            console.log('user saved' + user);
+                            /*console.log('user saved' + user);*/
                             return done(null, user);
                         });
 
-                        console.log('user found and returned' + user);
+                        /*console.log('user found and returned' + user);*/
                         return done(null, user); // user found, return that user
                     } else {
                         // if there is no user, create them
@@ -280,7 +280,7 @@ router.route('/logout')
 
 router.route('/current')
     .get(function(req, res){
-        console.log(req.user);
+        /*console.log(req.user);*/
         res.json( { user: req.user });
     });
 
@@ -373,6 +373,17 @@ router.route('/:email')
             res.json(user);
         });
     });
+
+router.route('/getUserById/:_id')
+    .get(function(req, res) {
+        User.findOne({'_id': req.params._id}, function(err, user) {
+            if (err)
+                res.send(err);
+
+            res.json(user);
+        });
+    });
+
 /*router.route('/pushCourse/:email')
  .post(function(req, res) {
  User.findOne({'email': req.params.email}, function(err, user) {

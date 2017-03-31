@@ -15,7 +15,7 @@ var userSchema = new Schema({
     password: String,
     admin: {type: Boolean, default: false},
     results: [{type: Schema.Types.Object, ref: 'Result'}],
-    courses: [{type: Schema.Types.Object, ref: 'Course'}]
+    courses: [{type: Schema.Types.Object, ref: 'Course'}],
 });
 
 // generating a hash

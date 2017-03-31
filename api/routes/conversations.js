@@ -1,0 +1,68 @@
+var express = require('express');
+var config = require('../../config')();
+var Conversation = require('../models/conversation');
+var router = express.Router();
+
+
+// Define the result api middleware
+router.use(function(req, res, next) {
+    // TODO Sanity check
+    next();
+});
+
+
+router.route('/')
+// Get All Conversation
+    .get(function(req, res){
+        Conversation.find(function(err, conversation) {
+            if (err)
+                res.send(err);
+
+            res.json(conversation);
+        });
+    })
+    // Create a new Conversation
+    .post(function(req, res) {
+        var conversation = new Conversation();
+        conversation.timeStamp = Date.now();
+        conversation.user1Id = req.body.user1Id;
+        conversation.user2Id = req.body.user2Id;
+
+        conversation.save(function(err) {
+            if (err) {
+                res.send(err);
+            } else {
+                res.json({ status:200, message: 'conversation created!', data: conversation});
+            }
+        });
+    });
+router.route('/:_id')
+    .post(function (req, res) {
+        Conversation.findOne({'_id': req.params._id}, function (err, conversation) {
+                if(err)
+                    res.send(err);
+                else{
+                    conversation.messages.push(req.body.message);
+                    console.log("message added to conv");
+
+                    conversation.save(function (err) {
+                        if(err)
+                            res.send(err);
+                        else
+                            res.json({message: 'conversation saved', data:conversation});
+                    })
+                }
+            }
+        )}
+    ).get(function (req, res) {
+    Conversation.findOne({'_id': req.params._id},
+        function (err, conversation) {
+            if(err)
+                res.send(err);
+            else
+                res.send(conversation)
+        }
+    )}
+);
+
+module.exports = router;

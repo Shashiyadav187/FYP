@@ -1,0 +1,21 @@
+<h1 class="text-center">Chat functionality</h1>
+<h2 class="text-center">Hey {{currentUser.firstName}}, you're now chatting with {{friend.firstName}}</h2>
+<div>Your friend:{{friend.firstName}}+ {{friend.lastName}}</div>
+<div>You: {{currentUser.firstName}}+ {{currentUser.lastName}}</div>
+<div class="col-sm-6 col-sm-offset-3">
+    <div class="bg-info">
+        <div ng-repeat="message in conversation.messages">
+            <!--<div ng-if="message.senderId==currentUser._id">
+                <div class="text-left">
+                    {{message.timeStamp}}.{{message.body}}
+                </div>
+            </div>-->
+            {{message.timeStamp | date:'hh:mm'}}.{{message.body}}
+        </div>
+    </div>
+    <footer class="card-footer">
+        <input ng-model="body" title="Message">
+        <button class="btn btn-amber" ng-click="sendMessage()">Send</button>
+    </footer>
+{{conversation}}
+</div>

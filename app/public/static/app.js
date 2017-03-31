@@ -105,6 +105,14 @@
                         'sectorName': ''
                     }
                 })
+                .state('app.chat',{
+                    url: '/chat/:id',
+                    controller: 'ChatController',
+                    templateUrl: 'views/chat.html',
+                    params:{
+                        'id': ''
+                    }
+                })
 
 
         }])

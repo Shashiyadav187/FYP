@@ -24,6 +24,8 @@ var results = require('./api/routes/results');
 var courses  = require('./api/routes/courses');
 var sectors  = require('./api/routes/sectors');
 var comments  = require('./api/routes/comments');
+var conversations  = require('./api/routes/conversations');
+var messages  = require('./api/routes/messages');
 
 app.use(express.static(__dirname + '/app'));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -41,13 +43,13 @@ app.use(flash());
 
 // configure passport
 passport.serializeUser(function(user, done) {
-    console.log('serializing ' + user);
+    /*console.log('serializing ' + user);*/
     done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
     User.getUserById(id, function(err, user) {
-        console.log('deserializing  ' +  user);
+        /*console.log('deserializing  ' +  user);*/
         done(err, user);
     });
 });
@@ -78,6 +80,8 @@ app.use('/api/results/', results);
 app.use('/api/courses/', courses);
 app.use('/api/sectors/', sectors);
 app.use('/api/comments/', comments);
+app.use('/api/conversations/', conversations);
+app.use('/api/messages/', messages);
 
 //Serve app
 http.createServer(app).listen(config.web.port);

@@ -7,11 +7,15 @@
         </div>
         <ul class="nav navbar-nav navbar-right">
             <li ng-show="user.firstName!=null" class="nav-btn-custom">
+                <a title="chat" ng-click="chatModal()">
+                    <span class="fa fa-comments fa-2x"></span>
+                </a>
+            </li>
+            <li ng-show="user.firstName!=null" class="nav-btn-custom">
                 <a title="profile" href="/#/app/profile">
                     <img ng-src="{{user.profiler}}">
                 </a>
             </li>
-
             <li class="nav-btn-custom">
                 <a title="View Tests" href="/#/app/testMenu" id="fa-icon-customB">
                     <span class="fa fa-pencil fa-1x" aria-hidden="true"></span>

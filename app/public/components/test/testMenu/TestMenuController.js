@@ -26,7 +26,6 @@
                 tableModalService.showModal({}, modalOptions)
                     .then(function () {
                         $state.go('app.spatialTest');
-
                     });
             };
 

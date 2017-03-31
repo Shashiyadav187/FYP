@@ -13,13 +13,13 @@
             return $http.get(baseUrl + '/current');
         };
 
-        this.getUserById = function(id){
-            return $http.get(baseUrl + '/' + id);
+        this.getById = function(id){
+            return $http.get(baseUrl + '/getUserById/' + id);
         };
 
-        this.addUser = function(user){
+        /*this.addUser = function(user){
             return $http.post(baseUrl + '/'+ user);
-        };
+        };*/
 
         this.updateUser = function(user){
             return $http.put(baseUrl, + '/' + user.id, user);

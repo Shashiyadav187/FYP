@@ -1,0 +1,10 @@
+<div class="modal-header">
+    <h3>{{modalOptions.headerText}}</h3>
+</div>
+<div class="modal-body">
+    <div ng-hide="currentUser.email == user.email" ng-repeat="user in users">
+        <div class="text-center">
+            <a data-ng-click="chatTo(user)">{{user.firstName}} {{user.lastName}}</a>
+        </div>
+    </div>
+</div>

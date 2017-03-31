@@ -1,8 +1,8 @@
 (function(){
     "use strict";
 
-    App.controller('TopNavbarController', ['$scope','$state','UserService',
-        function($scope, $state, UserService) {
+    App.controller('TopNavbarController', ['$scope','$state','UserService','ChatModalService',
+        function($scope, $state, UserService, ChatModalService) {
 
             $scope.user= null;
             $scope.clicked = false;
@@ -31,6 +31,10 @@
 
             $scope.userProfile = function(){
                 $state.go('app.profile');
+            };
+
+            $scope.chatModal = function () {
+                ChatModalService.showModal();
             }
 
         }]);
