@@ -26,6 +26,7 @@ var sectors  = require('./api/routes/sectors');
 var comments  = require('./api/routes/comments');
 var conversations  = require('./api/routes/conversations');
 var messages  = require('./api/routes/messages');
+var notifications  = require('./api/routes/notifications');
 
 app.use(express.static(__dirname + '/app'));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -82,6 +83,7 @@ app.use('/api/sectors/', sectors);
 app.use('/api/comments/', comments);
 app.use('/api/conversations/', conversations);
 app.use('/api/messages/', messages);
+app.use('/api/notifications/', notifications);
 
 //Serve app
 http.createServer(app).listen(config.web.port);

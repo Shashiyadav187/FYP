@@ -108,55 +108,32 @@
                     testName: 'Careers Test',
                     recommend: $scope.recommendation,
                     timeStamp: Date.now()
+                }).then(function (res) {
+                    $scope.result = res.data.result;
+                    console.log(res.data);
+                }).catch(function (err) {
+                    console.log("error: "+err)
                 })
-                    .success(function(data, status, header, config){
-                        if(data.success){
-                            console.log(data);
-                        } else {
-                            console.log("Success :)");
-                        }
-                    });
             };
 
-            $scope.getResult = function () {
-                $http({
-                    method: 'GET',
-                    url: '/api/results'
-                }).then(function successCallback(response) {
-                    var length = (response.data.length - 1);
-                    console.log("Success");
-                    //console.log("response.data[length] is:" + response.data[length]);
-                    $scope.result = response.data[length];
-                    console.log($scope.result);
-                }, function errorCallback(response) {
-                    console.log("Error");
-                    console.log(response);
-                    $scope.result = null;
-                });
-            };
 
             $scope.addRecommendationToUser = function(result, email){
                 $http.post('/api/users/pushResult/'+ JSON.parse(email), {
                     results: JSON.parse(result),
+                }).then(function (res) {
+                        console.log("Success addResToUser");
+                        var modalOptions = {
+                            actionButtonText:'Continue',
+                            headerText: 'Careers Test Results Saved'
+                        };
+
+                        successModalService.showModal({}, modalOptions)
+                            .then(function () {
+                                $state.go('app.home');
+                            });
+                    }).catch(function (err) {
+                        console.log("Error addedResToUser: "+err);
                 })
-                    .success(function(data, status, header, config){
-                        if(data.success){
-                            console.log("Failure possibly");
-                        } else {
-                            console.log("Success---------- Possibly"+data);
-
-                            var modalOptions = {
-                                actionButtonText:'Continue',
-                                headerText: 'Careers Test Results Saved'
-                            };
-
-                            successModalService.showModal({}, modalOptions)
-                                .then(function () {
-                                    $state.go('app.home');
-                                });
-                        }
-
-                    });
             };
 
             $scope.takeAnotherTest = function(){
@@ -178,7 +155,6 @@
 
                 $scope.getUser();
                 $scope.createResult();
-                $scope.getResult();
                 $timeout( function(){
                     $scope.addRecommendationToUser(JSON.stringify($scope.result), JSON.stringify($scope.user.email));
                 }, 2000);

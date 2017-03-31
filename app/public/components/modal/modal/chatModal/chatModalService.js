@@ -33,14 +33,7 @@
                 angular.extend(tempModalOptions, modalOptions, customModalOptions);
 
                 if (!tempModalDefaults.controller) {
-                    tempModalDefaults.controller = function ($scope, $uibModalInstance, UserService, $state) {
-                        $scope.chatTo =function (user) {
-                            console.log(user._id+" _id");
-                            $state.go('app.chat',{
-                                id : user._id
-                            });
-                            $uibModalInstance.close();
-                        };
+                    tempModalDefaults.controller = function ($scope, $uibModalInstance, UserService, $state, $http) {
                         UserService.getCurrentUser()
                             .then(function (res) {
                                 $scope.currentUser = res.data.user;
@@ -57,6 +50,26 @@
                             }).catch(function (err) {
                             console.log(err+" err");
                         });
+
+                        $scope.chatTo =function (user) {
+                            console.log(user._id+" _id");
+                            $state.go('app.chat',{
+                                id : user._id
+                            });
+                                $http.post('/api/notifications/',{
+                                    senderId: $scope.currentUser._id,
+                                    receiverId: user._id,
+                                    timeStamp: Date.now(),
+                                    message: $scope.currentUser.firstName+" "+
+                                        $scope.currentUser.lastName+" has sent you a chat request",
+                                    seen: false
+                                }).then(function (res) {
+                                    console.log("Success "+res);
+                                }).catch(function (err) {
+                                    console.log("Failed: "+err);
+                                });
+                            $uibModalInstance.close();
+                        };
 
                         $scope.modalOptions = tempModalOptions;
                         $scope.modalOptions.ok = function (result) {

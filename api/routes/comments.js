@@ -33,7 +33,7 @@ router.route('/')
             if (err) {
                 res.send(err);
             } else {
-                res.json({ status:200, message: 'comment created!'});
+                res.json({ status:200, message: 'comment created!', comment: comment});
             }
         });
     });

@@ -72,7 +72,6 @@
 
             $scope.collegeFunction = function () {
                 angular.element(document.querySelector('#collegeDropdown').classList.toggle('show'));
-
             };
             $scope.mySectorFunction = function () {
                 angular.element(document.querySelector('#sectorDropdown').classList.toggle('show'));
