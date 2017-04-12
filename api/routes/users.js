@@ -191,11 +191,11 @@ passport.use(new FacebookStrategy({
                                 return done(err);
                             }
 
-                            /*console.log('user saved' + user);*/
+                            console.log('user saved' + user);
                             return done(null, user);
                         });
 
-                        /*console.log('user found and returned' + user);*/
+                        console.log('user found and returned' + user);
                         return done(null, user); // user found, return that user
                     } else {
                         // if there is no user, create them

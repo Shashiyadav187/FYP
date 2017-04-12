@@ -35,10 +35,11 @@
             };
 
             $scope.chatModal = function () {
-                ChatModalService.showModal();
+                //ChatModalService.showModal();
+                $state.go('app.chat');
             };
 
-            $interval(function () {
+            /*$interval(function () {
             while(userFound) {
                 $http.get('api/notifications/' + $scope.user._id)
                     .then(function (res) {
@@ -49,7 +50,7 @@
                         console.log("no notifications");
                     })
             }
-            }, 8000)
+            }, 8000)*/
 
         }]);
 })();

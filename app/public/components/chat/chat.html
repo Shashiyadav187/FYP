@@ -1,21 +1,56 @@
-<h1 class="text-center">Chat functionality</h1>
-<h2 class="text-center">Hey {{currentUser.firstName}}, you're now chatting with {{friend.firstName}}</h2>
-<div>Your friend:{{friend.firstName}}+ {{friend.lastName}}</div>
-<div>You: {{currentUser.firstName}}+ {{currentUser.lastName}}</div>
-<div class="col-sm-6 col-sm-offset-3">
-    <div class="bg-info">
-        <div ng-repeat="message in conversation.messages">
-            <!--<div ng-if="message.senderId==currentUser._id">
-                <div class="text-left">
-                    {{message.timeStamp}}.{{message.body}}
+<div class="col-sm-9">
+    <!-- <h1 class="text-center">Chat functionality</h1>-->
+    <div class="col-sm-offset-3 bg-info">
+        <h2 class="text-center">Hey {{currentUser.firstName}}, you're now chatting with {{friend.firstName}}</h2>
+        <div class="repeat-scroll">
+            <ul scroll-glue ng-repeat="message in conversation.messages | orderBy:'timestamp'" class="chat-line">
+                <li>
+                    <div ng-if="message.senderId==currentUser._id">
+                        <div class="your-message">
+                            <!--{{message.timeStamp | date:'hh:mm'}}.-->
+                            {{message.body}}
+                            <div class="chat-image">
+                                <img ng-src="{{currentUser.profiler}}">
+                            </div>
+
+
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div ng-if="message.receiverId==currentUser._id">
+                        <div class="friend-message">
+                            <!--{{message.timeStamp | date:'hh:mm'}}.-->
+                            <div class="chat-image">
+                                <img ng-src="{{friend.profiler}}">
+                            </div>
+                            {{message.body}}
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <footer class="card-footer">
+            <input ng-model="body" title="Message">
+            <button class="btn btn-amber" ng-click="sendMessage()">Send</button>
+        </footer>
+        <!--{{conversation}}-->
+    </div>
+</div>
+<div class="col-sm-3">
+    <div class="bg-danger">
+        <div class="modal-body">
+            <div ng-hide="currentUser.email == user.email" ng-repeat="user in users">
+                <div class="text-center">
+                    <a data-ng-click="chatTo(user)">{{user.firstName}} {{user.lastName}}</a>
                 </div>
-            </div>-->
-            {{message.timeStamp | date:'hh:mm'}}.{{message.body}}
+            </div>
         </div>
     </div>
-    <footer class="card-footer">
-        <input ng-model="body" title="Message">
-        <button class="btn btn-amber" ng-click="sendMessage()">Send</button>
-    </footer>
-{{conversation}}
+    <table>
+        <tr ng-repeat="c in revelvantConversations">
+            <th ng-click="joinConversation(c._id)"><button class="btn btn-default">Conversation</button></th>
+
+        </tr>
+    </table>
 </div>

@@ -25,8 +25,8 @@ router.route('/')
     .post(function(req, res) {
         var conversation = new Conversation();
         conversation.timeStamp = Date.now();
-        conversation.user1Id = req.body.user1Id;
-        conversation.user2Id = req.body.user2Id;
+        conversation.user1 = req.body.user1;
+        conversation.user2 = req.body.user2;
 
         conversation.save(function(err) {
             if (err) {
@@ -54,7 +54,8 @@ router.route('/:_id')
                 }
             }
         )}
-    ).get(function (req, res) {
+    )
+    .get(function (req, res) {
     Conversation.findOne({'_id': req.params._id},
         function (err, conversation) {
             if(err)
