@@ -32,100 +32,102 @@
         <!--<h1>{{countDownLeft}}</h1>countdown
         <h1>{{countdownMins}}</h1>countMins%-->
 
-        <div class="row">
-            <div class="col-sm-3 col-sm-offset-3 text-center">
-                <div class="btn btn-info" ng-click="showResults()">Results</div>
-            </div>
-            <div class="col-sm-3 text-center">
-                <div class="btn btn-info" ng-click="showCourses()">Courses</div>
-            </div>
-        </div>
     </div>
-       <!-- <ul class="nav nav-tabs" id="myTab">
-            <li class="active"><a data-target="#home" data-toggle="tab">Home</a></li>
-            <li><a data-target="#profile">Profile</a></li>
-            <li><a data-target="#messages">Messages</a></li>
-            <li><a data-target="#settings">Settings</a></li>
-        </ul>
+    <!-- <ul class="nav nav-tabs" id="myTab">
+         <li class="active"><a data-target="#home" data-toggle="tab">Home</a></li>
+         <li><a data-target="#profile">Profile</a></li>
+         <li><a data-target="#messages">Messages</a></li>
+         <li><a data-target="#settings">Settings</a></li>
+     </ul>
 
-        <div class="tab-content">
-            <div class="tab-pane active" id="home" data-toggle="tab">home</div>
-            <div class="tab-pane" id="profile" data-toggle="tab">profile</div>
-            <div class="tab-pane" id="messages" data-toggle="tab">messages</div>
-            <div class="tab-pane" id="settings" data-toggle="tab">settings</div>
-        </div>-->
+     <div class="tab-content">
+         <div class="tab-pane active" id="home" data-toggle="tab">home</div>
+         <div class="tab-pane" id="profile" data-toggle="tab">profile</div>
+         <div class="tab-pane" id="messages" data-toggle="tab">messages</div>
+         <div class="tab-pane" id="settings" data-toggle="tab">settings</div>
+     </div>-->
 
     <div class="row">
-        <div class="col-sm-8 col-sm-offset-2">
-            <div ng-if="results">
-                <tabset>
-                    <tab heading="Spatial">
-                        <table class="table table-striped">
-                            <thead class="thead-default">
-                            <tr>
-                                <th></th>
-                                <th></th>
-                                <th>Test Name</th>
-                                <th>Score</th>
-                                <th>Date Completed</th>
-                            </tr>
-                            </thead>
-                            <tbody class ="tbody" ng-repeat="result in user.results">
-                            <tr ng-show="result.testName == 'Spatial Reasoning'">
-                                <td></td>
-                                <td></td>
-                                <td>{{result.testName}}</td>
-                                <td>{{result.score}}</td>
-                                <td>{{result.timeStamp | date : "hh:mm d MMM, yy" }}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </tab>
-                    <tab heading="Careers">
-                        <table class="table table-striped">
-                            <thead class="thead-default">
-                            <tr>
-                                <th></th>
-                                <th></th>
-                                <th>Test Name</th>
-                                <th>Recommendation</th>
-                                <th>Date Completed</th>
-                            </tr>
-                            </thead>
-                            <tbody class ="tbody" ng-repeat="result in user.results">
-                            <tr  ng-show="result.testName == 'Careers Test'">
-                                <td></td>
-                                <td></td>
-                                <td>{{result.testName}}</td>
-                                <td>{{result.recommend}}</td>
-                                <td>{{result.timeStamp | date : "hh:mm d MMM, yy" }}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </tab>
-                    <tab heading="Number Series">
-                        <table class="table table-striped">
-                            <thead class="thead-default">
-                            <tr>
-                                <th></th>
-                                <th></th>
-                                <th>Test Name</th>
-                                <th>Score</th>
-                                <th>Date Completed</th>
-                            </tr>
-                            </thead>
-                            <tbody class ="tbody" ng-repeat="result in user.results">
-                            <tr  ng-show="result.testName == 'Logical Number Series Test'">
-                                <td></td>
-                                <td></td>
-                                <td>{{result.testName}}</td>
-                                <td>{{result.score}}</td>
-                                <td>{{result.timeStamp | date : "hh:mm d MMM, yy" }}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </tab>
-                </tabset>
+        <div class="card card-primary">
+            <div class="card-block">
+                <div class="col-sm-3 col-sm-offset-3 text-center">
+                    <div class="btn btn-info" ng-click="showResults()">Results</div>
+                </div>
+                <div class="col-sm-3 text-center">
+                    <div class="btn btn-info" ng-click="showCourses()">Courses</div>
+                </div>
+                <div class="col-sm-8 col-sm-offset-2">
+                    <div ng-if="results">
+                        <tabset>
+                            <tab heading="Spatial">
+                                <table class="table table-striped">
+                                    <thead class="thead-default">
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th>Test Name</th>
+                                        <th>Score</th>
+                                        <th>Date Completed</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class ="tbody" ng-repeat="result in user.results">
+                                    <tr ng-show="result.testName == 'Spatial Reasoning'">
+                                        <td></td>
+                                        <td></td>
+                                        <td>{{result.testName}}</td>
+                                        <td>{{result.score}}</td>
+                                        <td>{{result.timeStamp | date : "hh:mm d MMM, yy" }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </tab>
+                            <tab heading="Careers">
+                                <table class="table table-striped">
+                                    <thead class="thead-default">
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th>Test Name</th>
+                                        <th>Recommendation</th>
+                                        <th>Date Completed</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class ="tbody" ng-repeat="result in user.results">
+                                    <tr  ng-show="result.testName == 'Careers Test'">
+                                        <td></td>
+                                        <td></td>
+                                        <td>{{result.testName}}</td>
+                                        <td>{{result.recommend}}</td>
+                                        <td>{{result.timeStamp | date : "hh:mm d MMM, yy" }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </tab>
+                            <tab heading="Number Series">
+                                <table class="table table-striped">
+                                    <thead class="thead-default">
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th>Test Name</th>
+                                        <th>Score</th>
+                                        <th>Date Completed</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class ="tbody" ng-repeat="result in user.results">
+                                    <tr  ng-show="result.testName == 'Logical Number Series Test'">
+                                        <td></td>
+                                        <td></td>
+                                        <td>{{result.testName}}</td>
+                                        <td>{{result.score}}</td>
+                                        <td>{{result.timeStamp | date : "hh:mm d MMM, yy" }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </tab>
+                        </tabset>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -157,4 +159,51 @@
         </div>
     </div>
 </div>
-</div>
+
+<!--TODO: pills-->
+<!--
+<div class="container">
+    <h2>Dynamic Tabs</h2>
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#home">Home</a></li>
+        <li><a>Menu 1</a></li>
+        <li><a href="#menu2">Menu 2</a></li>
+        <li><a href="#menu3">Menu 3</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="home" class="tab-pane fade in active">
+            <h3>HOME</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+        <div id="menu1" class="tab-pane fade">
+            <h3>Menu 1</h3>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+        <div id="menu2" class="tab-pane fade">
+            <h3>Menu 2</h3>
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+        </div>
+        <div id="menu3" class="tab-pane fade">
+            <h3>Menu 3</h3>
+            <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        </div>
+    </div>
+</div>-->
+
+<!--TODO:dropdown-->
+<!--<div class="container">
+        <h2>Dropdown Example</h2>
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">
+                Dropdown Example
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">HTML</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CSS</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
+            </ul>
+        </div><br>
+    </div>-->

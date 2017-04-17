@@ -1,5 +1,4 @@
 (function(){
-    'use strict';
     App.controller('ProfileController',['$scope', '$state','UserService','$timeout','$window',
         function($scope, $state, UserService, $timeout, $window){
 
@@ -7,16 +6,17 @@
             $scope.results = false;
             $scope.coursesTab = false;
 
-            /*$('#myTab a').click(function (e) {
-                e.preventDefault();
-                $(this).tab('show')
+            //dropdown
+            /*$(document).ready(function(){
+                $(".dropdown-toggle").dropdown();
             });*/
-/*
 
-            $(function () {
-                $('#myTab a:last').tab('show')
+            //pills
+            $(document).ready(function(){
+                $(".nav-tabs a").click(function(){
+                    $(this).tab('show');
+                });
             });
-*/
 
             $scope.top = "Profile Page";
 

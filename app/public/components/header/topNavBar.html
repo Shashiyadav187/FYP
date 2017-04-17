@@ -7,10 +7,20 @@
         </div>
         <ul class="nav navbar-nav navbar-right">
             <li ng-show="currentUser.firstName!=null" class="nav-btn-custom">
-                <a title="chat" ng-click="chatModal()">
-                    <span class="fa fa-comments fa-1x"></span>
-                </a>
+                <div class="dropdown1">
+                    <a class="dropbtn1">
+                        <span class="fa fa-comments fa-2x"></span>
+                    </a>
+                    <div class="dropdown-content1">
+                        <div ng-repeat="n in relevantNotifications">
+                        <a>{{n.message}}</a>
+                        </div>
+                    </div>
+                </div>
             </li>
+                <!--<a title="chat" ng-click="chatModal()">
+                    <span class="fa fa-comments fa-1x"></span>
+                </a>-->
             <li ng-show="currentUser.firstName!=null" class="nav-btn-custom">
                 <a title="profile" href="/#/app/profile">
                     <img ng-src="{{currentUser.profiler}}">
@@ -41,18 +51,3 @@
     </div>
 </nav>
 <div id="loading-bar-container"></div>
-<!--<div class="container">
-    <h2>Dropdown Example</h2>
-    <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">Dropdown Example
-            <span class="caret"></span></button>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">HTML</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CSS</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
-            <li role="presentation" class="divider"></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
-        </ul>
-    </div><br>
-    <p><strong>Note:</strong> The data-toggle="dropdown" attribute is required regardless of whether you call the dropdown() method.</p>
-</div>-->

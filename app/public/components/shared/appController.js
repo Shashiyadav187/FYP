@@ -1,6 +1,5 @@
 /* Angle Template Code */
 (function(){
-    "use strict";
     App.controller('appController',['$rootScope','UserService',
         function($rootScope, UserService) {
             // Setup the layout mode
@@ -20,7 +19,7 @@
 
             UserService.getCurrentUser()
                 .then(function (res) {
-                    console.log("inside appController ");
+                    //console.log("inside appController ");
                     $rootScope.currentUser = res.data.user;
                 }, function (err) {
                     console.log('Get user Error ' + err);

@@ -39,16 +39,38 @@ router.route('/')
             }
         });
     });
-router.route('/:_id')
+router.route('/getByUser/:id')
+  /*  .get(function (req, res) {
+        //console.log("inside notification api");
+        Notification.find(function (err, notification) {
+                if(err) {
+                    console.log("inside notification api");
+                    res.send(err);
+                } else {
+                    console.log("inside notification api");
+                    res.send(notification);
+                }
+            }
+        )}
+    );*/
+router.route('/:id')
     .get(function (req, res) {
-        Notification.findOne({'_id': req.params.receiverId},
-        function (err, notification) {
-            if(err)
-                res.send(err);
-            else
-                res.send(notification)
-        }
-    )}
-);
+        console.log("inside remove api");
+        Notification.findByIdAndRemove({'id' : req.params._id},
+            function (err, notification) {
+                if(err)
+                    res.send(err);
+                else {
+                    notification.save(function (err, res) {
+                        if(err)
+                            res.send(err)
+                        else
+                            notification.remove().exec();
+                    })
+                }
+
+            }
+        )
+    });
 
 module.exports = router;

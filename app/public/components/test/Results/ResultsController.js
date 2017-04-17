@@ -1,9 +1,10 @@
 (function(){
     'use strict';
 
-    App.controller('ResultsController',['$scope', '$state', '$stateParams','$rootScope','$http','$timeout','successModalService',
-        function($scope, $state, $stateParams, $rootScope, $http, $timeout, successModalService){
+    App.controller('ResultsController',['$scope', '$state', '$stateParams','UserService','$http','$timeout','successModalService',
+        function($scope, $state, $stateParams, UserService, $http, $timeout, successModalService){
 
+            $scope.user = null;
             $scope.takeTest = false;
             $scope.testType = null;
             /*
@@ -94,14 +95,14 @@
             }
             console.log($stateParams.sectorsArray, 'resultsController');
 
-            /*$scope.getUser = function() {
+            $scope.getUser = function() {
                 UserService.getCurrentUser()
                     .then(function (res) {
                         $scope.user = res.data.user;
                     }, function (err) {
                         console.log(err);
                     });
-            };*/
+            };
             $scope.createResult = function(){
                 $http.post('/api/results', {
                     testName: 'Careers Test',
@@ -155,7 +156,7 @@
                 $scope.getUser();
                 $scope.createResult();
                 $timeout( function(){
-                    $scope.addRecommendationToUser(JSON.stringify($scope.result), JSON.stringify($rootScope.currentUser.email));
+                    $scope.addRecommendationToUser(JSON.stringify($scope.result), JSON.stringify($scope.user.email));
                 }, 2000);
             };
 

@@ -704,6 +704,46 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
 }
 .dropdown a:hover {background-color: #f1f1f1}
 .show {display:block;}
+.dropbtn1 {
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown1 {
+    height:30px;
+    padding-top:10px;
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content1 {
+    right: 1px;
+    margin-top: 6px;
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content1 a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content1 a:hover {background-color: #f1f1f1}
+
+.dropdown1:hover .dropdown-content1 {
+    display: block;
+    transition: 1s;
+}
+
 .csColour{
     background-color: #97BBCD;
     color:white;

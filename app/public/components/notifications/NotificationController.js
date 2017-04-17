@@ -1,7 +1,7 @@
 (function () {
     'use strict';
-    App.controller('NotificationController', ['$scope','$http','UserService','$state',
-        function ($scope, $http, UserService, $state){
+    App.controller('NotificationController', ['$scope','$http','UserService','$state','successModalService',
+        function ($scope, $http, UserService, $state, successModalService){
 
             $scope.relevantNotifications = [];
 
@@ -26,11 +26,36 @@
                     console.log("error " + err);
                 });
 
+            /*$http.get('/api/notifications/getByUser/'+$scope.currentUser._id)
+             .then(function (res) {
+             $scope.relevantNotifications.push(res.data);
+             console.log("convs: "+$scope.relevantNotifications)
+             })
+             .catch(function (err) {
+             console.log("Error: "+err);
+             });*/
+
             $scope.accept = function (convId) {
                 console.log("conversationId:"+convId);
                 $state.go('app.chat',{
                     id: convId
                 });
+            };
+            $scope.decline = function (convId) {
+                console.log("conversationId:"+convId);
+                $http.get('/api/conversations/'+convId)
+                    .then(function (res) {
+                        console.log("Delete result " + res.data);
+                        var modalOptions = {
+                            actionButtonText: 'Continue',
+                            headerText: 'Conversation Declined'
+                        };
+
+                        successModalService.showModal({}, modalOptions);
+                    })
+                    .catch(function (err) {
+                        console.log("Error declining "+err);
+                    })
             }
         }
     ])

@@ -4,10 +4,11 @@
     App.controller('TopNavbarController', ['$scope','$state','UserService','ChatModalService','$http','$timeout','$interval','$rootScope',
         function($scope, $state, UserService, ChatModalService, $http, $interval,$rootScope) {
 
-            $scope.user= null;
+            $scope.currentUser= null;
             $scope.clicked = false;
             $scope.open = false;
             $scope.loggedIn = false;
+            $scope.relevantNotifications = [];
             var userFound = false;
             //console.log("current user here:" ,$rootScope.currentUser);
 
@@ -23,11 +24,11 @@
             $scope.getUser = function(){
                 UserService.getCurrentUser()
                     .then(function (res) {
-                        $scope.user = res.data.user;
+                        $scope.currentUser = res.data.user;
                         userFound = true;
                     }, function (err) {
                         console.log('Get user Error ' + err);
-                        $scope.user = null;
+                        $scope.currentUser = null;
                     })
             };
             $scope.getUser();
@@ -42,7 +43,7 @@
             };
 
             $scope.logout = function () {
-                $scope.user.status = false;
+                $scope.currentUser.status = false;
                 $http.get('/api/users/logout')
                     .then(function (res) {
                         console.log("Success logout",res);
@@ -53,9 +54,7 @@
                     })
             };
 
-            $(document).ready(function(){
-                $(".dropdown-toggle").dropdown();
-            });
+
 
             /*$scope.chatDropdown = function () {
                 angular.element(document.getElementById("myDropdown").classList.toggle("show"));
@@ -66,18 +65,20 @@
                     $scope.user.status = true;
                 }
             }, 7000);*/
-            /*$interval(function () {
-            while(userFound) {
-                $http.get('api/notifications/' + $scope.user._id)
+            $interval(function () {
+                $http.get('/api/notifications')
                     .then(function (res) {
-                        console.log(res);
-                        $scope.notification = res.data;
+                        $scope.allNotifications = res.data;
+                        for(var i = 0; i< $scope.allNotifications.length; i++){
+                            if($scope.currentUser._id == $scope.allNotifications[i].receiverId)
+                                $scope.relevantNotifications.push($scope.allNotifications[i])
+                        }
+                        console.log("notifications:" +res.data)
                     })
                     .catch(function (err) {
-                        console.log("no notifications");
-                    })
-            }
-            }, 8000)*/
+                        console.log("error " + err);
+                    });
+            }, 7000);
 
         }]);
 })();
