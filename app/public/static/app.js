@@ -114,6 +114,11 @@
                         'id': ''
                     }
                 })
+                .state('app.notifications',{
+                    url: '/notifications',
+                    controller: 'NotificationController',
+                    templateUrl: 'views/notifications.html'
+                });
 
 
         }])

@@ -17,6 +17,10 @@
             return $http.get(baseUrl + '/getUserById/' + id);
         };
 
+        this.loginUser = function (username, password) {
+            return $http.post(baseUrl + '/login', username, password)
+        };
+
         /*this.addUser = function(user){
             return $http.post(baseUrl + '/'+ user);
         };*/

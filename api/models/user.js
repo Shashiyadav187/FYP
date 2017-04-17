@@ -16,6 +16,7 @@ var userSchema = new Schema({
     admin: {type: Boolean, default: false},
     results: [{type: Schema.Types.Object, ref: 'Result'}],
     courses: [{type: Schema.Types.Object, ref: 'Course'}],
+    status: {type: Boolean, default: false}
 });
 
 // generating a hash

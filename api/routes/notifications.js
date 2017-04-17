@@ -27,6 +27,7 @@ router.route('/')
         notification.timeStamp = Date.now();
         notification.senderId = req.body.senderId;
         notification.receiverId = req.body.receiverId;
+        notification.conversationId = req.body.conversationId;
         notification.seen = req.body.seen;
         notification.message = req.body.message;
 

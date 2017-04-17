@@ -5,6 +5,7 @@ var notificationSchema = new Schema({
     timeStamp : Date,
     senderId: {type: String, ref: 'User'},
     receiverId: {type: String, ref: 'User'},
+    conversationId: {type: String, ref: 'Conversation'},
     message: String ,
     seen: Boolean
 });

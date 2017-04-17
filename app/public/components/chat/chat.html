@@ -1,7 +1,54 @@
-<div class="col-sm-9">
-    <!-- <h1 class="text-center">Chat functionality</h1>-->
-    <div class="col-sm-offset-3 bg-info">
-        <h2 class="text-center">Hey {{currentUser.firstName}}, you're now chatting with {{friend.firstName}}</h2>
+<div class="container">
+    <div class="col-sm-3 contact-list">
+        <br />
+        <br />
+        <ul ng-repeat="c in relevantConversations">
+            <li>
+                <div ng-if="currentUser._id == c.user1._id">
+
+                    <div class="contact-profiler" ng-click="joinConversation(c._id)">
+                        <div class="alignment">
+                            <img ng-src="{{c.user2.profiler}}">
+                        </div>
+                        <div class="user-info">
+                            <div class="contact-name">
+                                {{c.user2.firstName}} {{c.user2.lastName}}
+                            </div>
+                            <div class="online-icon"
+                                 ng-class="{'not-online': c.user2.status  == false ,
+                            'is-online': c.user2.status == true}"></div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div ng-if="currentUser._id == c.user2._id">
+                    <div class="contact-profiler" ng-click="joinConversation(c._id)">
+                        <div class="alignment">
+                            <img ng-src="{{c.user1.profiler}}">
+                        </div>
+                        <div class="user-info">
+                            <div class="contact-name">
+                                {{c.user1.firstName}} {{c.user1.lastName}}
+                            </div>
+                            <div class="online-icon"
+                                 ng-class="{'not-online': c.user1.status  == false ,
+                            'is-online': c.user1.status == true}"></div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div ng-repeat="u in users">
+            <button ng-click="sendInvitation(u)">Chat to {{u.lastName}}</button>
+        </div>
+    </div>
+    <div class="col-sm-8 chat-background">
+        <div class="modal-header">
+            <div class="chat-profiler">
+                <img ng-src="{{friend.profiler}}">{{friend.firstName}} {{friend.lastName}}
+            </div>
+        </div>
         <div class="repeat-scroll">
             <ul scroll-glue ng-repeat="message in conversation.messages | orderBy:'timestamp'" class="chat-line">
                 <li>
@@ -12,8 +59,6 @@
                             <div class="chat-image">
                                 <img ng-src="{{currentUser.profiler}}">
                             </div>
-
-
                         </div>
                     </div>
                 </li>
@@ -31,26 +76,9 @@
             </ul>
         </div>
         <footer class="card-footer">
-            <input ng-model="body" title="Message">
+            <textarea ng-model="body" class="form-control" rows="2" ></textarea>
             <button class="btn btn-amber" ng-click="sendMessage()">Send</button>
         </footer>
         <!--{{conversation}}-->
     </div>
-</div>
-<div class="col-sm-3">
-    <div class="bg-danger">
-        <div class="modal-body">
-            <div ng-hide="currentUser.email == user.email" ng-repeat="user in users">
-                <div class="text-center">
-                    <a data-ng-click="chatTo(user)">{{user.firstName}} {{user.lastName}}</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <table>
-        <tr ng-repeat="c in revelvantConversations">
-            <th ng-click="joinConversation(c._id)"><button class="btn btn-default">Conversation</button></th>
-
-        </tr>
-    </table>
 </div>

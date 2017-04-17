@@ -1,8 +1,8 @@
 /* Angle Template Code */
 (function(){
     "use strict";
-    App.controller('appController',['$rootScope',
-        function($rootScope) {
+    App.controller('appController',['$rootScope','UserService',
+        function($rootScope, UserService) {
             // Setup the layout mode
             
             // Hook not found
@@ -18,6 +18,14 @@
                     console.log(error);
                 });
 
+            UserService.getCurrentUser()
+                .then(function (res) {
+                    console.log("inside appController ");
+                    $rootScope.currentUser = res.data.user;
+                }, function (err) {
+                    console.log('Get user Error ' + err);
+                    $rootScope.user = null;
+                })
 
         }]);
 })();

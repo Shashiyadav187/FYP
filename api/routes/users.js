@@ -316,51 +316,15 @@ router.route('/pushCourse/:email')
             if(err)
                 res.send(err);
 
-            //console.log(JSON.stringify(req.body.results) + " : r.b.r, " + user + " : just user");
-            /*res.send(user);*/
-            if(user.courses.length > 0){
-                for(var i =0; i<user.courses.length; i++) {
-                    if(user.courses[i] == req.body.course){
-                        res.json({message: 'Course Already Saved!'});
-                        res.send("Saved previously");
-                        return;
-                    } else{
-                        user.courses.push(req.body.courses);
-                        user.timeStamp = Date.now();
-                        user.save(function(err){
-                            if(err)
-                                res.send(err);
-
-                            res.json({message: 'User updated!'});
-                        })
-                    }
-                }
-            }else{
-                user.courses.push(req.body.courses);
-                user.timeStamp = Date.now();
-                user.save(function(err){
-                    if(err)
-                        res.send(err);
-
-                    res.json({message: 'User updated!'});
-                })
-
-            }
-/*
+            console.log(req.body.courses);
             user.courses.push(req.body.courses);
-            user.timeStamp = Date.now();
-            console.log(Date.now());*/
 
-            //
-            /*var array = req.params.results;
-             array.push(user.result);
-             console.log(array);*/
-          /*  user.save(function(err){
+            user.save(function(err){
                 if(err)
                     res.send(err);
 
                 res.json({message: 'User updated!'});
-            })*/
+            })
         })
     });
 

@@ -4,7 +4,7 @@
         function ($scope, UserService, $stateParams, $http, $interval) {
 
             var id = $stateParams.id;
-            console.log(id);
+            console.log("conversation Id "+id);
 
             $scope.conversation = {};
             $scope.relevantConversations = [];
@@ -13,6 +13,7 @@
             UserService.getCurrentUser()
                 .then(function (res) {
                     $scope.currentUser = res.data.user;
+                    //$scope.currentUser.status = true;
                     console.log($scope.currentUser);
                 }, function (err) {
                     console.log('Get user Error ' + err);
@@ -28,21 +29,36 @@
             });
 
 
-            /*$scope.chatTo =function (user) {
-             //console.log(user._id+" _id");
-             $http.post('/api/notifications/',{
-             senderId: $scope.currentUser._id,
-             receiverId: user._id,
-             timeStamp: Date.now(),
-             message: $scope.currentUser.firstName+" "+
-             $scope.currentUser.lastName+" has sent you a chat request",
-             seen: false
-             }).then(function (res) {
-             console.log("Success "+res);
-             }).catch(function (err) {
-             console.log("Failed: "+err);
-             });
-             };*/
+            $scope.sendInvitation =function (user) {
+                //console.log(user._id+" _id");
+                $http.post('/api/conversations/', {
+                    user1: $scope.currentUser,
+                    user2: user,
+                    timeStamp: Date.now()
+                }).then(function (res) {
+                    console.log("result conv: " + res.data.data.conversation);
+                    console.log("result: " + res.data.data);
+                    $scope.conversation = res.data.data;
+
+                    $http.post('/api/notifications/',{
+                        senderId: $scope.currentUser._id,
+                        receiverId: user._id,
+                        conversationId : $scope.conversation._id,
+                        timeStamp: Date.now(),
+                        message: $scope.currentUser.firstName+" "+
+                        $scope.currentUser.lastName+" has sent you a chat request",
+                        seen: false
+                    }).then(function (res) {
+                        console.log("Success "+res);
+                    }).catch(function (err) {
+                        console.log("Failed: "+err);
+                    });
+                    console.log($scope.conversation._id);
+                }).catch(function (err) {
+                    console.log("err: " + err);
+                    //$scope.conversation = null;
+                });
+            };
 
             $scope.joinConversation =function (convId) {
                 console.log(convId);
@@ -52,8 +68,10 @@
                         console.log(res.data);
                         if ($scope.currentUser._id == $scope.conversation.user1._id){
                             $scope.friend = $scope.conversation.user2;
+                            $scope.conversation.user1.status = true;
                         }  else {
                             $scope.friend = $scope.conversation.user1;
+                            $scope.conversation.user2.status = true;
                         }
                         console.log(res);
                     })
@@ -62,17 +80,39 @@
                     })
             };
 
+
+            if(id != null) {
+                console.log("Inside if statement");
+                $scope.joinConversation(id);
+            }
+
             $scope.chatTo = function (user) {
                 $scope.friend = user;
                 var loop = false;
-                for (var i = 0; i < $scope.relevantConversations.length; i++) {
-                    if (user._id == $scope.relevantConversations[i].user1._id || user._id == $scope.relevantConversations[i].user2._id) {
-                        $scope.conversation = $scope.relevantConversations[i];
-                        loop = false;
-                        break;
-                    } else {
-                        loop = true;
+                if($scope.relevantConversations.length > 0){
+                    for (var i = 0; i < $scope.relevantConversations.length; i++) {
+                        if (user._id == $scope.relevantConversations[i].user1._id || user._id == $scope.relevantConversations[i].user2._id) {
+                            $scope.conversation = $scope.relevantConversations[i];
+                            loop = false;
+                            break;
+                        } else {
+                            loop = true;
+                        }
                     }
+                }else{
+                    console.log("curr: " + $scope.currentUser.lastName, " user2: " + user.lastName);
+                    $http.post('/api/conversations/', {
+                        user1: $scope.currentUser,
+                        user2: user,
+                        timeStamp: Date.now()
+                    }).then(function (res) {
+                        console.log("result: " + res.data.data);
+                        $scope.conversation = res.data.data;
+                        console.log($scope.conversation._id);
+                    }).catch(function (err) {
+                        console.log("err: " + err);
+                        //$scope.conversation = null;
+                    });
                 }
                 if(loop) {
                     console.log("curr: " + $scope.currentUser.lastName, " user2: " + user.lastName);
@@ -81,10 +121,9 @@
                         user2: user,
                         timeStamp: Date.now()
                     }).then(function (res) {
-                        console.log("result: " + res.data);
+                        console.log("result: " + res.data.data);
                         $scope.conversation = res.data.data;
                         console.log($scope.conversation._id);
-                        //console.log($scope.conversation.message)
                     }).catch(function (err) {
                         console.log("err: " + err);
                         //$scope.conversation = null;
@@ -93,17 +132,18 @@
                 }
             };
 
+
             /*$interval(function () {
-                console.log($scope.conversation._id);
-                $http.get('/api/conversations/'+$scope.conversation._id)
-                    .then(function (res) {
-                        $scope.conversation = res.data;
-                        console.log("res.data in get: "+res.data);
-                    })
-                    .catch(function (err) {
-                        console.log(err);
-                    })
-            }, 5000);*/
+             console.log($scope.conversation._id);
+             $http.get('/api/conversations/'+$scope.conversation._id)
+             .then(function (res) {
+             $scope.conversation = res.data;
+             console.log("res.data in get: "+res.data);
+             })
+             .catch(function (err) {
+             console.log(err);
+             })
+             }, 5000);*/
 
             $http.get('/api/conversations/')
                 .then(function (res) {

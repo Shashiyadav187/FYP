@@ -29,46 +29,46 @@
             };
             $scope.getCourses();
 
-             $scope.createCourses = function(coursesArray){
-             console.log("clicked");
-             console.log(coursesArray.courses.length);
-             for(var i = 0; i<coursesArray.courses.length; i++){
-             if(coursesArray.courses[i].institution.title == "University College Dublin" ||
-             coursesArray.courses[i].institution.title == "Trinity College" ||
-             coursesArray.courses[i].institution.title == "Dublin Institute of Technology"){
+            $scope.createCourses = function(coursesArray){
+                console.log("clicked");
+                console.log(coursesArray.courses.length);
+                for(var i = 0; i<coursesArray.courses.length; i++){
+                    if(coursesArray.courses[i].institution.title == "University College Dublin" ||
+                        coursesArray.courses[i].institution.title == "Trinity College" ||
+                        coursesArray.courses[i].institution.title == "Dublin Institute of Technology"){
 
-             if(coursesArray.courses[i].topics.main_topic != "Sociology and Social Care" ||
-             coursesArray.courses[i].topics.main_topic != "Psychology and Law" ||
-             coursesArray.courses[i].topics.main_topic != "History and Politics"){
+                        if(coursesArray.courses[i].topics.main_topic != "Sociology and Social Care" ||
+                            coursesArray.courses[i].topics.main_topic != "Psychology and Law" ||
+                            coursesArray.courses[i].topics.main_topic != "History and Politics"){
 
-             if(coursesArray.courses[i].points != null && coursesArray.courses[i].points != ""
-             &&  coursesArray.courses[i].points != "#+matric") {
+                            if(coursesArray.courses[i].points != null && coursesArray.courses[i].points != ""
+                                &&  coursesArray.courses[i].points != "#+matric") {
 
-             $http.post('/api/courses', {
-             title: coursesArray.courses[i].title,
-             course_id: coursesArray.courses[i].course_id,
-             duration: coursesArray.courses[i].duration,
-             college: coursesArray.courses[i].institution.title,
-             points: coursesArray.courses[i].points,
-             sector: coursesArray.courses[i].topics.main_topic,
-             quickSearch: coursesArray.courses[i].search_aid
-             })
-             .success(function (data, status, header, config) {
-             if (data.success) {
-             console.log(data);
-             } else {
-             console.log("Success :)");
-             }
-             });
-             } else {
-             console.log("has no points");
-             }
-             } else {
-             console.log("Not found sector error");
-             }
-             } else {
-             console.log("Not found college error");
-             }}};
+                                $http.post('/api/courses', {
+                                    title: coursesArray.courses[i].title,
+                                    course_id: coursesArray.courses[i].course_id,
+                                    duration: coursesArray.courses[i].duration,
+                                    college: coursesArray.courses[i].institution.title,
+                                    points: coursesArray.courses[i].points,
+                                    sector: coursesArray.courses[i].topics.main_topic,
+                                    quickSearch: coursesArray.courses[i].search_aid
+                                })
+                                    .success(function (data, status, header, config) {
+                                        if (data.success) {
+                                            console.log(data);
+                                        } else {
+                                            console.log("Success :)");
+                                        }
+                                    });
+                            } else {
+                                console.log("has no points");
+                            }
+                        } else {
+                            console.log("Not found sector error");
+                        }
+                    } else {
+                        console.log("Not found college error");
+                    }}};
 
             $scope.collegeFunction = function () {
                 angular.element(document.querySelector('#collegeDropdown').classList.toggle('show'));
@@ -156,100 +156,136 @@
             };
 
 
-/*
-            $scope.getMoreDetailedCourse = function (ca) {
+            /*
+             $scope.getMoreDetailedCourse = function (ca) {
 
 
-                var id = null;
-                for(var i = 165; i < 220; i++){
-                    id = ca[i].course_id;
+             var id = null;
+             for(var i = 165; i < 220; i++){
+             id = ca[i].course_id;
 
-                    CourseService.getCourse(id)
-                        .then(function (res) {
-                            $scope.definedCourses = res.data;
-                            $scope.arrayCourses.push($scope.definedCourses);
-                            console.log($scope.arrayCourses);
-                        }, function (err) {
-                            console.log(err + "error here");
-                        })
-                }
+             CourseService.getCourse(id)
+             .then(function (res) {
+             $scope.definedCourses = res.data;
+             $scope.arrayCourses.push($scope.definedCourses);
+             console.log($scope.arrayCourses);
+             }, function (err) {
+             console.log(err + "error here");
+             })
+             }
 
-                function addToCourse(courses){
-                    for(var t = 0; t<courses.length; t++){
-                        /!*
+             function addToCourse(courses){
+             for(var t = 0; t<courses.length; t++){
+             /!*
 
-                         console.log(courses[t].courses[0].course_id);
-                         console.log(JSON.parse(courses[t].courses[0].course_id));
-                         *!/
-                        if(courses[t].courses[0].points_history.length<=1){
-                            $http.post('/api/courses/pushCourse/'+ courses[t].courses[0].course_id, {
-                                externalLink: courses[t].courses[0].external_link.external_link,
-                                erasmus: courses[t].courses[0].has_erasmus,
-                                placement: courses[t].courses[0].has_placement,
-                                portfolio: courses[t].courses[0].has_portfolio,
-                                thesis: courses[t].courses[0].has_thesis,
-                                points: [courses[t].courses[0].points_history[0].points]
-                            })
-                                .success(function(data, status, header, config){
-                                    if(data.success){
-                                        //console.log(data);
-                                        console.log("Failure possibly");
-                                    } else {
-                                        console.log("Success---------- Possibly"+data);
-                                        $state.go('app.home');
-                                    }
+             console.log(courses[t].courses[0].course_id);
+             console.log(JSON.parse(courses[t].courses[0].course_id));
+             *!/
+             if(courses[t].courses[0].points_history.length<=1){
+             $http.post('/api/courses/pushCourse/'+ courses[t].courses[0].course_id, {
+             externalLink: courses[t].courses[0].external_link.external_link,
+             erasmus: courses[t].courses[0].has_erasmus,
+             placement: courses[t].courses[0].has_placement,
+             portfolio: courses[t].courses[0].has_portfolio,
+             thesis: courses[t].courses[0].has_thesis,
+             points: [courses[t].courses[0].points_history[0].points]
+             })
+             .success(function(data, status, header, config){
+             if(data.success){
+             //console.log(data);
+             console.log("Failure possibly");
+             } else {
+             console.log("Success---------- Possibly"+data);
+             $state.go('app.home');
+             }
 
-                                });
-                        } else {
-                            $http.post('/api/courses/pushCourse/' + courses[t].courses[0].course_id, {
-                                externalLink: courses[t].courses[0].external_link.external_link,
-                                erasmus: courses[t].courses[0].has_erasmus,
-                                placement: courses[t].courses[0].has_placement,
-                                portfolio: courses[t].courses[0].has_portfolio,
-                                thesis: courses[t].courses[0].has_thesis,
-                                points: [courses[t].courses[0].points_history[0].points, courses[t].courses[0].points_history[1].points]
-                            })
-                                .success(function (data, status, header, config) {
-                                    if (data.success) {
-                                        //console.log(data);
-                                        console.log("Failure possibly");
-                                    } else {
-                                        console.log("Success---------- Possibly" + data);
-                                        $state.go('app.home');
-                                    }
+             });
+             } else {
+             $http.post('/api/courses/pushCourse/' + courses[t].courses[0].course_id, {
+             externalLink: courses[t].courses[0].external_link.external_link,
+             erasmus: courses[t].courses[0].has_erasmus,
+             placement: courses[t].courses[0].has_placement,
+             portfolio: courses[t].courses[0].has_portfolio,
+             thesis: courses[t].courses[0].has_thesis,
+             points: [courses[t].courses[0].points_history[0].points, courses[t].courses[0].points_history[1].points]
+             })
+             .success(function (data, status, header, config) {
+             if (data.success) {
+             //console.log(data);
+             console.log("Failure possibly");
+             } else {
+             console.log("Success---------- Possibly" + data);
+             $state.go('app.home');
+             }
 
-                                });
-                        }
-                    }
-                }
-                $timeout( function(){
-                        addToCourse($scope.arrayCourses)},
-                    5000);
+             });
+             }
+             }
+             }
+             $timeout( function(){
+             addToCourse($scope.arrayCourses)},
+             5000);
 
-            };
-*/
+             };
+             */
 
             $scope.saveCourseToUser = function (c) {
+                var breakout= false;
                 UserService.getCurrentUser()
                     .then(function (res) {
                         console.log("Get user success");
                         $scope.user = res.data.user;
-                        $http.post('api/users/pushCourse/'+$scope.user.email,{
-                            courses: c
-                        }).success(function(data){
-                            console.log("post to user success "+data);
-                            var modalOptions = {
-                                actionButtonText:'Continue',
-                                headerText: c.title+' has been saved',
-                                bodyText: 'Go to your profile page to view your saved courses'
-                            };
+                        if($scope.user.courses.length > 0 ){
+                            for(var i =0; i<$scope.user.courses.length; i++) {
+                                if ($scope.user.courses[i]._id == c._id) {
+                                    var modalOptions = {
+                                        actionButtonText: 'Continue',
+                                        headerText: c.title + ' has already been saved',
+                                        bodyText: 'Go to your profile page to view your saved courses'
+                                    };
 
-                            successModalService.showModal({}, modalOptions);
-                        }).error(function (data, status) {
-                            console.log("Error posting to user "+data+ " status: "+status);
-                        })
+                                    successModalService.showModal({}, modalOptions);
+                                    breakout = false;
+                                    break;
+                                } else {
+                                    breakout = true;
+                                }
+                            }
+                        }else{
+                            $http.post('api/users/pushCourse/' + $scope.user.email, {
+                                courses: c
+                            }).then(function (res) {
+                                console.log("post to user success " + res);
+                                var modalOptions = {
+                                    actionButtonText: 'Continue',
+                                    headerText: c.title + ' has been saved',
+                                    bodyText: 'Go to your profile page to view your saved courses'
+                                };
 
-                    }, function(err, status){
+                                successModalService.showModal({}, modalOptions);
+                            }).catch(function (data, status) {
+                                console.log("Error posting to user " + data + " status: " + status);
+                            })
+                        }
+                        if(breakout)
+                            $http.post('api/users/pushCourse/' + $scope.user.email, {
+                                courses: c
+                            }).then(function (res) {
+                                console.log("post to user success " + res);
+                                var modalOptions = {
+                                    actionButtonText: 'Continue',
+                                    headerText: c.title + ' has been saved',
+                                    bodyText: 'Go to your profile page to view your saved courses'
+                                };
+
+
+                                successModalService.showModal({}, modalOptions);
+                            }).catch(function (data, status) {
+                                console.log("Error posting to user " + data + " status: " + status);
+                            })
+
+                    })
+                    .catch(function(err, status){
                         console.log("Get user error: "+err+ " status: "+status);
                     })
             }

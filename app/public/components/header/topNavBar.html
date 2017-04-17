@@ -6,14 +6,14 @@
             </a>
         </div>
         <ul class="nav navbar-nav navbar-right">
-            <li ng-show="user.firstName!=null" class="nav-btn-custom">
+            <li ng-show="currentUser.firstName!=null" class="nav-btn-custom">
                 <a title="chat" ng-click="chatModal()">
                     <span class="fa fa-comments fa-1x"></span>
                 </a>
             </li>
-            <li ng-show="user.firstName!=null" class="nav-btn-custom">
+            <li ng-show="currentUser.firstName!=null" class="nav-btn-custom">
                 <a title="profile" href="/#/app/profile">
-                    <img ng-src="{{user.profiler}}">
+                    <img ng-src="{{currentUser.profiler}}">
                 </a>
             </li>
             <li class="nav-btn-custom">
@@ -27,12 +27,12 @@
                     <span class="fa fa-search fa-1x" aria-hidden="true"></span>
                 </a>
             </li>
-            <li ng-show="user.firstName!=null" class="nav-btn-custom" >
-                <a title="Logout" href="api/users/logout" id="fa-icon-custom">
+            <li ng-show="currentUser.firstName!=null" class="nav-btn-custom" >
+                <a title="Logout" ng-click="logout()" id="fa-icon-custom">
                     <span class="fa fa-sign-out fa-1x"  aria-hidden="true"></span>
                 </a>
             </li>
-            <li ng-show="user.firstName==null" class="nav-btn-custom">
+            <li ng-show="currentUser.firstName==null" class="nav-btn-custom">
                 <a title="Login" href="/#/login" id="fa-icon-customA">
                     <span class="fa fa-sign-in fa-1x" aria-hidden="true"></span>
                 </a>
@@ -40,4 +40,19 @@
         </ul>
     </div>
 </nav>
-</div><div id="loading-bar-container"></div>
+<div id="loading-bar-container"></div>
+<!--<div class="container">
+    <h2>Dropdown Example</h2>
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">Dropdown Example
+            <span class="caret"></span></button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">HTML</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CSS</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
+            <li role="presentation" class="divider"></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
+        </ul>
+    </div><br>
+    <p><strong>Note:</strong> The data-toggle="dropdown" attribute is required regardless of whether you call the dropdown() method.</p>
+</div>-->
