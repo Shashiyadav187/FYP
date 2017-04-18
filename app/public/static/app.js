@@ -5,12 +5,12 @@
         'ngAnimate',
         'ngResource',
         'ui.bootstrap',
+        'firebase',
         'ui.router',
         'ng-backstretch',
         'chart.js',
         'angular-loading-bar',
-        'angularUtils.directives.dirPagination',
-        'ngScrollGlue'
+        'angularUtils.directives.dirPagination'
     ])
         .config(['$stateProvider', '$locationProvider', '$urlRouterProvider', function ($stateProvider, $locationProvider, $urlRouterProvider) {
             $locationProvider.html5Mode(false);
@@ -119,6 +119,17 @@
                     controller: 'NotificationController',
                     templateUrl: 'views/notifications.html'
                 });
+// Firebase connection
+
+            var configData = {
+                apiKey: "AIzaSyBT3-RmrTaIIMNRs9lKBPXReCIWNQQXXxU",
+                authDomain: "unisexp-a1b2d.firebaseapp.com",
+                databaseURL: "https://unisexp-a1b2d.firebaseio.com",
+                projectId: "unisexp-a1b2d",
+                storageBucket: "unisexp-a1b2d.appspot.com",
+                messagingSenderId: "175197150875"
+            };
+            firebase.initializeApp(configData);
 
 
         }])
@@ -135,7 +146,7 @@
                 $rootScope.$storage = $window.localStorage;
 
                 $rootScope.app = {
-                    name: 'UnisEx',
+                    name: 'ofCourse',
                     description: 'student website',
                     year: ((new Date()).getFullYear()),
                     version: "v0.0.1",

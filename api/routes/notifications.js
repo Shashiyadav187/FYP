@@ -14,11 +14,11 @@ router.use(function(req, res, next) {
 router.route('/')
 // Get All Notification
     .get(function(req, res){
-        Notification.find(function(err, notification) {
+        Notification.find(function(err, notifications) {
             if (err)
                 res.send(err);
 
-            res.json(notification);
+            res.json(notifications);
         });
     })
     // Create a new Notification
@@ -39,34 +39,33 @@ router.route('/')
             }
         });
     });
-router.route('/getByUser/:id')
-  /*  .get(function (req, res) {
-        //console.log("inside notification api");
-        Notification.find(function (err, notification) {
+router.route('/remove/:id')
+    .get(function (req, res) {
+        Notification.findOne({'id': req.params._id}, function (err, notification) {
                 if(err) {
-                    console.log("inside notification api");
                     res.send(err);
                 } else {
                     console.log("inside notification api");
+                    notification.remove();
                     res.send(notification);
                 }
             }
         )}
-    );*/
-router.route('/:id')
+    );
+router.route('/findByUser/:id')
     .get(function (req, res) {
-        console.log("inside remove api");
-        Notification.findByIdAndRemove({'id' : req.params._id},
-            function (err, notification) {
+        var id = req.params.id;
+        var myNotifications = [];
+        Notification.find(function (err, notifications) {
                 if(err)
                     res.send(err);
                 else {
-                    notification.save(function (err, res) {
-                        if(err)
-                            res.send(err)
-                        else
-                            notification.remove().exec();
-                    })
+                    for(var i = 0; i < notifications.length; i++){
+                        if(id == notifications[i].receiverId) {
+                            myNotifications.push(notifications[i]);
+                        }
+                    }
+                    res.send(myNotifications);
                 }
 
             }

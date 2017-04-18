@@ -118,16 +118,25 @@
             </div>
         </div>
     </div>
+
     <div class="modal-footer"
          ng-class="{'csColour':modalOptions.sector =='Computer Science',
                          'ecColour':modalOptions.sector =='Engineering and Construction',
                          'msColour':modalOptions.sector =='Medicine and Science',
                          'bmColour':modalOptions.sector =='Business and Management',
                          'eaColour':modalOptions.sector =='Education and Arts'}">
-        <span class="modal-center">{{modalOptions.sector}}</span>
-        <button class="btn btn-default waves-effect"
-                data-ng-click="modalOptions.close()">{{modalOptions.closeButtonText}}</button>
-        <button class="btn btn-default waves-effect"
-                data-ng-click="modalOptions.ok(modalOptions.code, commentBody )">{{modalOptions.actionButtonText}}</button>
+        <div class="total-footer">
+            <div class="footer-course-name">
+                <span class="modal-center">{{modalOptions.sector}}</span>
+            </div>
+            <div class="footer-buttons">
+                <button class="btn btn-default waves-effect btn-sm"
+                        data-ng-click="modalOptions.close()">{{modalOptions.closeButtonText}}
+                </button>
+                <button class="btn btn-default waves-effect btn-sm"
+                        data-ng-click="modalOptions.ok(modalOptions.code, commentBody )">{{modalOptions.actionButtonText}}
+                </button>
+            </div>
+        </div>
     </div>
 </div>

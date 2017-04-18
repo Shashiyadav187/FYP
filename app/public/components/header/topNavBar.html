@@ -2,25 +2,38 @@
     <div class="content-wrapper">
         <div class="navbar-header">
             <a class="navbar-brand" title="home"  href="#">
-                <span class="fa fa-graduation-cap"></span>Unis<i class="blue">Ex</i>
+                <span class="fa fa-graduation-cap"></span>of<span class="title-blue">Course</span>
             </a>
         </div>
         <ul class="nav navbar-nav navbar-right">
             <li ng-show="currentUser.firstName!=null" class="nav-btn-custom">
                 <div class="dropdown1">
                     <a class="dropbtn1">
-                        <span class="fa fa-comments fa-2x"></span>
+                        <span ng-class="{ 'fa-stack has-badge': notifications.length > 0 }" data-count="{{notifications.length}}">
+                          <i class="fa fa-comments fa-stack-2x fa-inverse"></i>
+                        </span>
+
+                        <!--<span class="fa fa-comments fa-2x"></span>-->
                     </a>
                     <div class="dropdown-content1">
-                        <div ng-repeat="n in relevantNotifications">
-                        <a>{{n.message}}</a>
+                        <div ng-repeat="n in notifications">
+                            <div ng-if="notifications.length < 1">
+                                You will receive your notifications here
+                            </div>
+                            <a>{{n.message}}
+                                <div class="btn-group-xs">
+                                    <button class="btn btn-info btn-xs" ng-click="accept(n.conversationId)">Accept</button>
+                                    <button class="btn btn-danger btn-xs" ng-click="decline(n.conversationId, n._id)">Decline</button>
+                                </div>
+                            </a>
                         </div>
+                        <div class="btn btn-amber btn-sm" style="width:100%;margin:0;border-radius:0;" ng-click="chatModal()">Go To Chat</div>
                     </div>
                 </div>
             </li>
-                <!--<a title="chat" ng-click="chatModal()">
-                    <span class="fa fa-comments fa-1x"></span>
-                </a>-->
+            <!--<a title="chat" ng-click="chatModal()">
+                <span class="fa fa-comments fa-1x"></span>
+            </a>-->
             <li ng-show="currentUser.firstName!=null" class="nav-btn-custom">
                 <a title="profile" href="/#/app/profile">
                     <img ng-src="{{currentUser.profiler}}">

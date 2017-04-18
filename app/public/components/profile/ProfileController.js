@@ -1,6 +1,6 @@
 (function(){
-    App.controller('ProfileController',['$scope', '$state','UserService','$timeout','$window',
-        function($scope, $state, UserService, $timeout, $window){
+    App.controller('ProfileController',['$scope', '$state','UserService','$timeout','$window','$http','profileImageModalService',
+        function($scope, $state, UserService, $timeout, $window, $http, profileImageModalService){
 
             $scope.user = null;
             $scope.results = false;
@@ -58,6 +58,82 @@
                         console.log(err);
                     })
             };
+            $scope.editProfilePhoto = function () {
+                var modalOptions = {
+                    closeButtonText:'Cancel',
+                    actionButtonText: 'OK',
+                    headerText: 'Select a photo'
+                };
+                profileImageModalService.showModal({}, modalOptions);
+            };
+
+            /*$scope.fileSelected = function (element) {
+                var file = element.files[0];
+                var storageRef = firebase.storage().ref('users/' + '/' + $scope.user._id + '/profileImages/' + file.name);
+                var state = storageRef.put(file);
+                state.on('state_changed',
+                    function progress(snapshot) {
+                    },
+
+                    function error(err) {
+                    },
+
+                    function complete() {
+                        var imageUrl = state.snapshot.downloadURL;
+                        $scope.user.imageUrl = imageUrl;
+                        console.log($scope.user.imageUrl, 'imageUrl');
+                        //add code to persist the imageUrl to db
+                        if($scope.user.accountType === 'Student'){
+                            $http.post('/api/users/updateProfileImage', $scope.user )
+                                .then(function (response) {
+                                    if (response.status = 200){
+                                        if(response.data !=""){
+                                            $scope.user = response.data;
+                                            console.log("image updated!");
+                                        }
+                                    }
+                                }).catch('Didnt work');
+                        }
+                    }
+
+                );
+
+            };*/
+
+            /*
+            $scope.fileSelected = function (element) {
+                var file = element.files[0];
+                var storageRef = firebase.storage().ref('users/' + $scope.user._id + '/' + file.name);
+                var state = storageRef.put(file);
+                state.on('state_changed',
+                    function progress(snapshot) {
+                    },
+
+                    function error(err) {
+                    },
+
+                    function complete() {
+                        var imageUrl = state.snapshot.downloadURL;
+                        $scope.user.imageUrl = imageUrl;
+                        console.log($scope.user.imageUrl, 'imageUrl');
+                        //add code to persist the imageUrl to db
+                        if($scope.user.accountType === 'Student'){
+                            $http.post('/api/users/updateProfileImage', $scope.user )
+                                .then(function (response) {
+                                    if (response.status = 200){
+                                        if(response.data !=""){
+                                            $scope.user = response.data;
+                                            console.log("image updated!");
+                                        }
+                                    }
+                                }).catch('Didnt work');
+                        }
+                    }
+
+                );
+
+            };*/
+
         }])
         .directive('tab', function() {
             return {

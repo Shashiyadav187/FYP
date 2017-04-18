@@ -1,8 +1,8 @@
 (function(){
     "use strict";
 
-    App.controller('TopNavbarController', ['$scope','$state','UserService','ChatModalService','$http','$timeout','$interval','$rootScope',
-        function($scope, $state, UserService, ChatModalService, $http, $interval,$rootScope) {
+    App.controller('TopNavbarController', ['$scope','$state','UserService','ChatModalService','$http','$interval','successModalService',
+        function($scope, $state, UserService, ChatModalService, $http, $interval, successModalService) {
 
             $scope.currentUser= null;
             $scope.clicked = false;
@@ -10,7 +10,6 @@
             $scope.loggedIn = false;
             $scope.relevantNotifications = [];
             var userFound = false;
-            //console.log("current user here:" ,$rootScope.currentUser);
 
             $scope.loginLink = function() {
                 $state.go('login');
@@ -38,7 +37,6 @@
             };
 
             $scope.chatModal = function () {
-                //ChatModalService.showModal();
                 $state.go('app.chat');
             };
 
@@ -55,30 +53,54 @@
             };
 
 
-
-            /*$scope.chatDropdown = function () {
-                angular.element(document.getElementById("myDropdown").classList.toggle("show"));
-            };*/
-
             /*$interval(function () {
                 if ($scope.user.firstName != null) {
                     $scope.user.status = true;
                 }
             }, 7000);*/
-            $interval(function () {
-                $http.get('/api/notifications')
+
+            $scope.accept = function (convId) {
+                console.log("conversationId:"+convId);
+                $state.go('app.chat',{
+                    id: convId
+                });
+            };
+
+            $scope.decline = function (convId, notId) {
+                console.log("conversationId:"+convId);
+                $http.get('/api/conversations/remove/'+convId)
                     .then(function (res) {
-                        $scope.allNotifications = res.data;
-                        for(var i = 0; i< $scope.allNotifications.length; i++){
-                            if($scope.currentUser._id == $scope.allNotifications[i].receiverId)
-                                $scope.relevantNotifications.push($scope.allNotifications[i])
-                        }
+                        console.log("Delete result " + res.data);
+                        $http.get('/api/notifications/remove/'+notId)
+                            .then(function (res) {
+                                console.log("Result :", res);
+                                var modalOptions = {
+                                    actionButtonText: 'Continue',
+                                    headerText: 'Conversation Declined'
+                                };
+                                successModalService.showModal({}, modalOptions);
+                            })
+                            .catch(function (err) {
+                                console.log("Error removing the notification", err);
+                            })
+
+                    })
+                    .catch(function (err) {
+                        console.log("Error declining "+err);
+                    })
+            };
+
+
+            /*$interval(function () {
+                $http.get('/api/notifications/findByUser/'+$scope.currentUser._id)
+                    .then(function (res) {
+                        $scope.notifications = res.data;
                         console.log("notifications:" +res.data)
                     })
                     .catch(function (err) {
                         console.log("error " + err);
                     });
-            }, 7000);
+            }, 7000);*/
 
         }]);
 })();

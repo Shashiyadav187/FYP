@@ -9,6 +9,7 @@
             $scope.conversation = {};
             $scope.relevantConversations = [];
             $scope.friend = {};
+            $scope.noUser = true;
 
             UserService.getCurrentUser()
                 .then(function (res) {
@@ -39,7 +40,7 @@
                     console.log("result conv: " + res.data.data.conversation);
                     console.log("result: " + res.data.data);
                     $scope.conversation = res.data.data;
-
+                    console.log("Post Conversation: "+ $scope.conversation);
                     $http.post('/api/notifications/',{
                         senderId: $scope.currentUser._id,
                         receiverId: user._id,
@@ -61,28 +62,33 @@
             };
 
             $scope.joinConversation =function (convId) {
-                console.log(convId);
-                $http.get('/api/conversations/'+convId)
-                    .then(function (res) {
-                        $scope.conversation = res.data;
-                        console.log(res.data);
-                        if ($scope.currentUser._id == $scope.conversation.user1._id){
-                            $scope.friend = $scope.conversation.user2;
-                            $scope.conversation.user1.status = true;
-                        }  else {
-                            $scope.friend = $scope.conversation.user1;
-                            $scope.conversation.user2.status = true;
-                        }
-                        console.log(res);
-                    })
-                    .catch(function (err) {
-                        console.log(err);
-                    })
+                if(convId == null || convId == ""){
+                    $scope.noUser = true;
+                }else {
+                    $scope.noUser = false;
+                    console.log(convId);
+                    $http.get('/api/conversations/' + convId)
+                        .then(function (res) {
+                            $scope.conversation = res.data;
+                            console.log(res.data);
+                            if ($scope.currentUser._id == $scope.conversation.user1._id) {
+                                $scope.friend = $scope.conversation.user2;
+                                $scope.conversation.user1.status = true;
+                            } else {
+                                $scope.friend = $scope.conversation.user1;
+                                $scope.conversation.user2.status = true;
+                            }
+                            console.log(res);
+                        })
+                        .catch(function (err) {
+                            console.log(err);
+                        })
+                }
             };
 
 
             if(id != null) {
-                console.log("Inside if statement");
+                console.log("Inside if statement with id: "+id);
                 $scope.joinConversation(id);
             }
 
@@ -132,18 +138,24 @@
                 }
             };
 
+            if($scope.noUser){
+                $scope.disabled = true;
+                $scope.conversation = {
+
+                }
+            }
 
             /*$interval(function () {
-             console.log($scope.conversation._id);
-             $http.get('/api/conversations/'+$scope.conversation._id)
-             .then(function (res) {
-             $scope.conversation = res.data;
-             console.log("res.data in get: "+res.data);
-             })
-             .catch(function (err) {
-             console.log(err);
-             })
-             }, 5000);*/
+                console.log($scope.conversation._id);
+                $http.get('/api/conversations/'+$scope.conversation._id)
+                    .then(function (res) {
+                        $scope.conversation = res.data;
+                        console.log("res.data in get: "+res.data);
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                    })
+            }, 5000);*/
 
             $http.get('/api/conversations/')
                 .then(function (res) {

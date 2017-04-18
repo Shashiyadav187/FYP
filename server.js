@@ -9,7 +9,6 @@ var express = require('express'),
     session = require('express-session'),
     cookieParser = require('cookie-parser');
 
-
 //Create the application
 var app = express();
 
@@ -55,7 +54,6 @@ passport.deserializeUser(function(id, done) {
     });
 });
 
-
 // Connect to MongoDB
 mongoose.connect('mongodb://' + config.db.host + ':'
     + config.db.port + '/'
@@ -69,6 +67,20 @@ mongoose.connect('mongodb://' + config.db.host + ':'
         }
     }
 );
+
+// // Firebase connection
+//
+// var configData = {
+//     apiKey: "AIzaSyBT3-RmrTaIIMNRs9lKBPXReCIWNQQXXxU",
+//     authDomain: "unisexp-a1b2d.firebaseapp.com",
+//     databaseURL: "https://unisexp-a1b2d.firebaseio.com",
+//     projectId: "unisexp-a1b2d",
+//     storageBucket: "unisexp-a1b2d.appspot.com",
+//     messagingSenderId: "175197150875"
+// };
+// firebase.initializeApp(configData);
+
+// console.log("firebase: "+firebase);
 // Register web app routes
 app.use('/', web);
 

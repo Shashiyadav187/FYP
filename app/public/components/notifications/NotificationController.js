@@ -35,12 +35,13 @@
              console.log("Error: "+err);
              });*/
 
-            $scope.accept = function (convId) {
+            /*$scope.accept = function (convId) {
                 console.log("conversationId:"+convId);
                 $state.go('app.chat',{
                     id: convId
                 });
             };
+
             $scope.decline = function (convId) {
                 console.log("conversationId:"+convId);
                 $http.get('/api/conversations/'+convId)
@@ -56,7 +57,7 @@
                     .catch(function (err) {
                         console.log("Error declining "+err);
                     })
-            }
+            }*/
         }
     ])
 })();
