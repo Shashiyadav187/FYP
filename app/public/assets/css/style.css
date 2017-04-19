@@ -78,6 +78,7 @@ button:focus {
 #topnavbar{
     background-color:#2D2E2F;
     color: white;
+    z-index: 999;
 }
 #title{
     color: #2F96E8;
@@ -141,7 +142,6 @@ button:focus {
     font-size: 18px !important;
 }
 /*----------------------------------------------- Navigation Menu -------------------------------------------------------------------------*/
-
 .courses-section{
     background-color: #71AAAB;
     height: 500px;
@@ -454,6 +454,9 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
 }
 /*----------------------------------------------- Test Page -------------------------------------------------------------------------*/
 /*----------------------------------------------- Profile Page -------------------------------------------------------------------------*/
+.custButton{
+    z-index:99 !important;
+}
 .custom-pills{
 
 }
@@ -487,9 +490,30 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
 .photo{
     cursor: pointer;
 }
+.profile-edit{
+    float: right;
+    font-size: 20px;
+    color: #00b3ee;
+    cursor: pointer;
+    padding: 8px;
+}
+.card-name{
+    font-size: 20px !important;
+    float:right;
+    text-align: right !important;
+    color: #00b3ee;
+    cursor: pointer;
+}
+.card-name:hover{
+    color: #2d5a77;
+}
+.profile-edit:hover{
+    color: #2d5a77;
+}
 .profile-photo{
     border-radius: 50%;
     height: 177px;
+    width: 177px;
 }
 .outside-box-profile {
     background-color: rgba(243,246,248,.94);
@@ -511,7 +535,7 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
     height: 177px;
 }
 .profile-background img{
-    height:220px;
+    height:270px;
     width:100%;
     overflow: hidden;
     position: absolute;
@@ -519,6 +543,11 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
 }
 .delete-icon{
     color: red;
+}
+.recently-viewed-box{
+    margin-top: 20px;
+    background-color: rgba(243,246,248,.94);
+    opacity: 1;
 }
 /*----------------------------------------------- Profile Page -------------------------------------------------------------------------*/
 /*----------------------------------------------- Results Page -------------------------------------------------------------------------*/
@@ -1032,24 +1061,23 @@ textarea{
     overflow-y: scroll;
 }
 /* Let's get this party started */
-/*::-webkit-scrollbar {
-    width: 12px;
+::-webkit-scrollbar {
+    width: 8px;
 }
 
-!* Track *!
+/* Track */
 ::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
     -webkit-border-radius: 10px;
     border-radius: 10px;
 }
 
-!* Handle *!
+/* Handle */
 ::-webkit-scrollbar-thumb {
     -webkit-border-radius: 10px;
     border-radius: 10px;
-    background: rgba(255,0,0,0.8);
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
-}*/
+}
 .chat-line{
     clear: both;
 }

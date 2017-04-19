@@ -289,18 +289,9 @@ router.route('/pushResult/:email')
         User.findOne({'email': req.params.email}, function (err, user) {
             if(err)
                 res.send(err);
-
-            //console.log(JSON.stringify(req.body.results) + " : r.b.r, " + user + " : just user");
-            /*res.send(user);*/
-
             user.results.push(req.body.results);
             user.timeStamp = Date.now();
             console.log(Date.now());
-
-            //
-            /*var array = req.params.results;
-             array.push(user.result);
-             console.log(array);*/
             user.save(function(err){
                 if(err)
                     res.send(err);
@@ -347,20 +338,67 @@ router.route('/getUserById/:_id')
             res.json(user);
         });
     });
+
+router.route('/removeResult/:_id')
+    .get(function(req, res) {
+        User.findOne({'_id': req.params._id}, function(err, user) {
+            if (err)
+                res.send(err);
+            else{
+                console.log(req.body.results);
+                res.json(user);
+            }
+        });
+    });
+
+router.route('/removeCourse/:_id/:courseId')
+    .get(function(req, res) {
+        var courseId = req.params.courseId;
+        var id = req.params._id;
+        User.findById(id, function(err, user) {
+            console.log("course id: "+courseId);
+            console.log("user is : "+user.courses);
+            if (err)
+                res.send(err);
+            else {
+                for(var i = 0; i < user.courses.length; i++){
+                    if(user.courses[i]._id == courseId){
+                        user.courses[i].remove();
+                    }
+                }
+                res.json(user);
+            }
+        });
+    });
+
 router.route('/updateUser/:_id')
     .post(function(req, res) {
         User.findOne({'_id': req.params._id}, function(err, user) {
             if (err)
                 res.send(err);
             else {
-                console.log("user here: "+user.email);
-                console.log("req.body.user here: "+ req.body.email);
-                user.firstName = req.body.firstName;
-                user.lastName = req.body.lastName;
-                user.email = req.body.email;
                 user.profiler = req.body.profiler;
                 user.backgroundPhoto = req.body.backgroundPhoto;
-                user.status = req.body.status;
+
+                user.save(function(err){
+                    if(err)
+                        res.send(err);
+
+                    res.json({message: 'User updated!'});
+                });
+            }
+
+        });
+    });
+
+router.route('/updateViewed/:_id')
+    .post(function(req, res) {
+        User.findOne({'_id': req.params._id}, function(err, user) {
+            if (err)
+                res.send(err);
+            else {
+                console.log("body of recently viewed+ "+ req.body.recentlyViewed);
+                user.recentlyViewed.push(req.body.recentlyViewed);
 
                 user.save(function(err){
                     if(err)

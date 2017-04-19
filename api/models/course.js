@@ -15,6 +15,7 @@ var courseSchema = new Schema({
     placement: Boolean,
     portfolio: Boolean,
     thesis: Boolean,
+    counter: {type: Number, default: 0},
     comments: [{type : Schema.Types.Object, ref: 'Comment'}]
 });
 

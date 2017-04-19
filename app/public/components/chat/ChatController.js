@@ -62,7 +62,7 @@
             };
 
             $scope.joinConversation =function (convId) {
-                if(convId == null || convId == ""){
+                if(convId == null || convId == "" || convId == undefined){
                     $scope.noUser = true;
                 }else {
                     $scope.noUser = false;

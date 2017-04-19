@@ -39,9 +39,11 @@ router.route('/')
             }
         });
     });
-router.route('/remove/:id')
+router.route('/remove/:_id')
     .get(function (req, res) {
-        Notification.findOne({'id': req.params._id}, function (err, notification) {
+        console.log("notific req.id" + req.params._id);
+        var id = req.params._id;
+        Notification.findById(id, function (err, notification) {
                 if(err) {
                     res.send(err);
                 } else {

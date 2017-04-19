@@ -12,7 +12,7 @@
             };
 
             var modalOptions = {
-                closeButtonText:'Cancel',
+                closeButtonText:'Back',
                 actionButtonText: 'OK',
                 headerText: 'Select a photo'
             };
@@ -35,7 +35,7 @@
                 angular.extend(tempModalOptions, modalOptions, customModalOptions);
 
                 if (!tempModalDefaults.controller) {
-                    tempModalDefaults.controller = function ($scope, $uibModalInstance, $http, UserService) {
+                    tempModalDefaults.controller = function ($scope, $uibModalInstance, $http, UserService, $state) {
                         $scope.modalOptions = tempModalOptions;
                         $scope.modalOptions.ok = function (result) {
                             $uibModalInstance.close(result);
@@ -52,9 +52,19 @@
                                 console.log('Error here--------' + err);
                             });
 
+                        $scope.url = null;
+
+
+                        $scope.changeBackground = function () {
+                            $scope.url = '/backgroundImages/';
+                        };
+                        $scope.changeProfile = function () {
+                            $scope.url = '/profileImages/';
+                        };
+
                         $scope.fileSelected = function (element) {
                             var file = element.files[0];
-                            var storageRef = firebase.storage().ref('users/'+ $scope.currentUser._id + '/profileImages/' + file.name);
+                            var storageRef = firebase.storage().ref('users/'+ $scope.currentUser._id + $scope.url + file.name);
                             var state = storageRef.put(file);
                             state.on('state_changed',
                                 function progress(snapshot) {
@@ -64,20 +74,40 @@
                                 },
 
                                 function complete() {
-                                    /*var imageUrl = */
-                                    $scope.currentUser.profiler = state.snapshot.downloadURL;
-                                    console.log($scope.currentUser.profiler, ': is my new profiler');
-                                    //add code to persist the imageUrl to db
-                                    $http.post('/api/users/updateUser/'+$scope.currentUser._id, $scope.currentUser)
-                                        .then(function (res) {
-                                            $scope.user = res.data;
-                                            console.log("image updated!");
-                                            $uibModalInstance.dismiss();
-                                        })
-                                        .catch(function (err) {
-                                            console.log(err);
-                                            $uibModalInstance.dismiss();
-                                        });
+                                    if($scope.url == '/profileImages/') {
+                                        $scope.currentUser.profiler = state.snapshot.downloadURL;
+                                        console.log($scope.currentUser.profiler, ': is my new profiler');
+                                    } else if($scope.url = '/backgroundImages/') {
+                                        $scope.currentUser.backgroundPhoto = state.snapshot.downloadURL;
+                                        console.log($scope.currentUser.backgroundPhoto, ': is my new background');
+                                    }
+                                        //add code to persist the imageUrl to db
+                                        $http.post('/api/users/updateUser/' + $scope.currentUser._id, $scope.currentUser)
+                                            .then(function (res) {
+                                                $scope.user = res.data;
+                                                console.log("image updated!");
+                                                $uibModalInstance.dismiss();
+                                            })
+                                            .catch(function (err) {
+                                                console.log(err);
+                                                $uibModalInstance.dismiss();
+                                            });
+                                   /* } else if(modalOptions.url = '/backgroundImages/'){
+                                        $scope.currentUser.backgroundPhoto = state.snapshot.downloadURL;
+                                        console.log($scope.currentUser.backgroundPhoto, ': is my new profiler');
+                                        //add code to persist the imageUrl to db
+                                        $http.post('/api/users/updateUser/' + $scope.currentUser._id, $scope.currentUser)
+                                            .then(function (res) {
+                                                $scope.user = res.data;
+                                                console.log("image updated!");
+                                                $uibModalInstance.dismiss();
+                                            })
+                                            .catch(function (err) {
+                                                console.log(err);
+                                                $uibModalInstance.dismiss();
+                                            });
+                                    }*/
+
                                 }
                             );
 

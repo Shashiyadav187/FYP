@@ -29,15 +29,6 @@
                     console.log('Error here--------' + err);
                 });
 
-            $scope.showResults = function(){
-                $scope.results = true;
-                $scope.coursesTab = false;
-            };
-            $scope.showCourses = function(){
-                $scope.coursesTab = true;
-                $scope.results = false;
-            };
-
             $scope.images = [
                 './assets/img/1.jpg',
                 './assets/img/2.jpg',
@@ -58,7 +49,8 @@
                         console.log(err);
                     })
             };
-            $scope.editProfilePhoto = function () {
+
+            $scope.changeBackground = function () {
                 var modalOptions = {
                     closeButtonText:'Cancel',
                     actionButtonText: 'OK',
@@ -67,72 +59,35 @@
                 profileImageModalService.showModal({}, modalOptions);
             };
 
-            /*$scope.fileSelected = function (element) {
-                var file = element.files[0];
-                var storageRef = firebase.storage().ref('users/' + '/' + $scope.user._id + '/profileImages/' + file.name);
-                var state = storageRef.put(file);
-                state.on('state_changed',
-                    function progress(snapshot) {
-                    },
+            $scope.goToSector = function (sector) {
+                console.log(sector+" ---sectorName here");
+                $state.go('app.definedCourses',{
+                    sectorName: sector
+                });
+            };
 
-                    function error(err) {
-                    },
+           $scope.removeResult = function (result) {
+               UserService.removeResult($scope.user._id, result)
+                   .then(function (res) {
+                       console.log("Remove Result Success");
+                   })
+                   .catch(function (err) {
+                       console.log("Error Removing Result");
+                   })
+           };
 
-                    function complete() {
-                        var imageUrl = state.snapshot.downloadURL;
-                        $scope.user.imageUrl = imageUrl;
-                        console.log($scope.user.imageUrl, 'imageUrl');
-                        //add code to persist the imageUrl to db
-                        if($scope.user.accountType === 'Student'){
-                            $http.post('/api/users/updateProfileImage', $scope.user )
-                                .then(function (response) {
-                                    if (response.status = 200){
-                                        if(response.data !=""){
-                                            $scope.user = response.data;
-                                            console.log("image updated!");
-                                        }
-                                    }
-                                }).catch('Didnt work');
-                        }
-                    }
-
-                );
-
-            };*/
-
-            /*
-            $scope.fileSelected = function (element) {
-                var file = element.files[0];
-                var storageRef = firebase.storage().ref('users/' + $scope.user._id + '/' + file.name);
-                var state = storageRef.put(file);
-                state.on('state_changed',
-                    function progress(snapshot) {
-                    },
-
-                    function error(err) {
-                    },
-
-                    function complete() {
-                        var imageUrl = state.snapshot.downloadURL;
-                        $scope.user.imageUrl = imageUrl;
-                        console.log($scope.user.imageUrl, 'imageUrl');
-                        //add code to persist the imageUrl to db
-                        if($scope.user.accountType === 'Student'){
-                            $http.post('/api/users/updateProfileImage', $scope.user )
-                                .then(function (response) {
-                                    if (response.status = 200){
-                                        if(response.data !=""){
-                                            $scope.user = response.data;
-                                            console.log("image updated!");
-                                        }
-                                    }
-                                }).catch('Didnt work');
-                        }
-                    }
-
-                );
-
-            };*/
+           $scope.removeCourse = function (courseId) {
+               console.log($scope.user._id);
+               console.log($scope.user._id);
+               console.log($scope.user._id);
+               UserService.removeCourse($scope.user._id, courseId)
+                   .then(function (res) {
+                       console.log("Remove Course Success");
+                   })
+                   .catch(function (err) {
+                       console.log("Error Removing Course");
+                   })
+           }
 
         }])
         .directive('tab', function() {

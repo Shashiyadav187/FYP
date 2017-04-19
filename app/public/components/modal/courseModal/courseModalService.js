@@ -12,7 +12,7 @@
             };
 
             var modalOptions = {
-                closeButtonText:'Cancel',
+                closeButtonText:'Back',
                 actionButtonText: 'OK',
                 course: 'Course Title',
                 code: 'Course Code',
@@ -25,7 +25,9 @@
                 placement: 'Placement',
                 externalLink: 'External Link',
                 duration: 'length',
-                comments: 'comments'
+                comments: 'comments',
+                views: 'views',
+                id: 'id'
             };
 
             this.showModal = function (customModalDefaults, customModalOptions) {
@@ -45,10 +47,11 @@
                 angular.extend(tempModalOptions, modalOptions, customModalOptions);
 
                 if (!tempModalDefaults.controller) {
-                    tempModalDefaults.controller = function ($scope, $uibModalInstance, UserService, CourseService, $timeout, $http, $interval) {
+                    tempModalDefaults.controller = function ($scope, $uibModalInstance, UserService, CourseService, $timeout, $http, commentModalService) {
                         $scope.modalOptions = tempModalOptions;
                         var cid = $scope.modalOptions.code;
                         console.log(cid);
+                        var sector = $scope.modalOptions.sector;
                         $scope.course = null;
 
 
@@ -89,6 +92,13 @@
                             });
                         };
 
+                        $scope.commentModal = function (c_id) {
+                            var modalsOptions = {
+                                code : c_id,
+                                sector: sector
+                            };
+                            commentModalService.showModal({}, modalsOptions);
+                        };
 
                         $scope.modalOptions.close = function () {
                             $uibModalInstance.dismiss('cancel');

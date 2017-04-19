@@ -16,6 +16,14 @@
             $scope.arrayCourses = [];
             $scope.hasSaved = false;
 
+            UserService.getCurrentUser()
+                .then(function (res) {
+                    console.log("Get user success");
+                    $scope.user = res.data.user;
+                })
+                .catch(function(err, status){
+                    console.log("Get user error: "+err+ " status: "+status);
+                });
 
             $scope.getCourses = function(){
                 CourseService.getCourses()
@@ -109,7 +117,7 @@
                     }
                 });
 
-                $scope.myFunction = function (course, i) {
+                $scope.myFunction = function (course) {
                     if(course.college == "University College Dublin"){
                         $scope.collegePhoto = "UCD";
                     }else if(course.college == "Trinity College"){
@@ -128,6 +136,23 @@
             $scope.max_points = 775;
 
             $scope.displayCourse = function (c) {
+                $http.post('/api/courses/updateCounter/' + c._id)
+                    .then(function (res) {
+                        console.log("Update counter "+ res);
+                    })
+                    .catch(function (err) {
+                        console.log("error counting");
+                    });
+
+                $http.post('/api/users/updateViewed/'+$scope.user._id,{
+                    recentlyViewed: c
+                }).then(function (res) {
+                        console.log("Added Recently Viewed"+ c.title);
+                        console.log("Res "+ res.data);
+                    })
+                    .catch(function (err) {
+                        console.log("error updating user "+ err);
+                    });
 
                 var modalOptions = {
                     closeButtonText:'Cancel',
@@ -144,7 +169,9 @@
                     placement: c.placement,
                     externalLink: c.externalLink,
                     duration: c.duration,
-                    comments: c.comments
+                    comments: c.comments,
+                    views: c.counter,
+                    id : c._id
                 };
 
                 courseModalService.showModal({}, modalOptions)
@@ -229,69 +256,60 @@
              };
              */
 
+
             $scope.saveCourseToUser = function (c) {
                 var breakout= false;
-                UserService.getCurrentUser()
-                    .then(function (res) {
-                        console.log("Get user success");
-                        $scope.user = res.data.user;
-                        if($scope.user.courses.length > 0 ){
-                            for(var i =0; i<$scope.user.courses.length; i++) {
-                                if ($scope.user.courses[i]._id == c._id) {
-                                    var modalOptions = {
-                                        actionButtonText: 'Continue',
-                                        headerText: c.title + ' has already been saved',
-                                        bodyText: 'Go to your profile page to view your saved courses'
-                                    };
+                if($scope.user.courses.length > 0 ){
+                    for(var i =0; i<$scope.user.courses.length; i++) {
+                        if ($scope.user.courses[i]._id == c._id) {
+                            var modalOptions = {
+                                actionButtonText: 'Continue',
+                                headerText: c.title + ' has already been saved',
+                                bodyText: 'Go to your profile page to view your saved courses'
+                            };
 
-                                    successModalService.showModal({}, modalOptions);
-                                    breakout = false;
-                                    break;
-                                } else {
-                                    breakout = true;
-                                }
-                            }
-                        }else{
-                            $http.post('api/users/pushCourse/' + $scope.user.email, {
-                                courses: c
-                            }).then(function (res) {
-                                console.log("post to user success " + res);
-                                var modalOptions = {
-                                    actionButtonText: 'Continue',
-                                    headerText: c.title + ' has been saved',
-                                    bodyText: 'Go to your profile page to view your saved courses'
-                                };
-
-                                successModalService.showModal({}, modalOptions);
-                            }).catch(function (data, status) {
-                                console.log("Error posting to user " + data + " status: " + status);
-                            })
+                            successModalService.showModal({}, modalOptions);
+                            breakout = false;
+                            break;
+                        } else {
+                            breakout = true;
                         }
-                        if(breakout)
-                            $http.post('api/users/pushCourse/' + $scope.user.email, {
-                                courses: c
-                            }).then(function (res) {
-                                console.log("post to user success " + res);
-                                var modalOptions = {
-                                    actionButtonText: 'Continue',
-                                    headerText: c.title + ' has been saved',
-                                    bodyText: 'Go to your profile page to view your saved courses'
-                                };
+                    }
+                }else{
+                    $http.post('api/users/pushCourse/' + $scope.user.email, {
+                        courses: c
+                    }).then(function (res) {
+                        console.log("post to user success " + res);
+                        var modalOptions = {
+                            actionButtonText: 'Continue',
+                            headerText: c.title + ' has been saved',
+                            bodyText: 'Go to your profile page to view your saved courses'
+                        };
 
-
-                                successModalService.showModal({}, modalOptions);
-                            }).catch(function (data, status) {
-                                console.log("Error posting to user " + data + " status: " + status);
-                            })
-
+                        successModalService.showModal({}, modalOptions);
+                    }).catch(function (data, status) {
+                        console.log("Error posting to user " + data + " status: " + status);
                     })
-                    .catch(function(err, status){
-                        console.log("Get user error: "+err+ " status: "+status);
+                }
+                if(breakout)
+                    $http.post('api/users/pushCourse/' + $scope.user.email, {
+                        courses: c
+                    }).then(function (res) {
+                        console.log("post to user success " + res);
+                        var modalOptions = {
+                            actionButtonText: 'Continue',
+                            headerText: c.title + ' has been saved',
+                            bodyText: 'Go to your profile page to view your saved courses'
+                        };
+
+
+                        successModalService.showModal({}, modalOptions);
+                    }).catch(function (data, status) {
+                        console.log("Error posting to user " + data + " status: " + status);
                     })
             }
 
         }])
-
         .filter('customFilter', function() {
             return function(courses, types) {
                 if (angular.isDefined(types)) {

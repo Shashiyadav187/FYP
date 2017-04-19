@@ -1,8 +1,8 @@
 (function(){
     "use strict";
 
-    App.controller('TopNavbarController', ['$scope','$state','UserService','ChatModalService','$http','$interval','successModalService',
-        function($scope, $state, UserService, ChatModalService, $http, $interval, successModalService) {
+    App.controller('TopNavbarController', ['$scope','$state','UserService','$http','$interval','successModalService',
+        function($scope, $state, UserService, $http, $interval, successModalService) {
 
             $scope.currentUser= null;
             $scope.clicked = false;
@@ -70,7 +70,7 @@
                 console.log("conversationId:"+convId);
                 $http.get('/api/conversations/remove/'+convId)
                     .then(function (res) {
-                        console.log("Delete result " + res.data);
+                        console.log("Delete conversation " + res);
                         $http.get('/api/notifications/remove/'+notId)
                             .then(function (res) {
                                 console.log("Result :", res);

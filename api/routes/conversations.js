@@ -64,9 +64,11 @@ router.route('/:_id')
             }
         )}
     );
-router.route('/remove/:id')
+router.route('/remove/:_id')
     .get(function (req, res) {
-        Conversation.findOne({'id': req.params._id}, function (err, conversation) {
+        var id = req.params._id;
+        console.log("conv req.id: "+ req.params._id);
+        Conversation.findById(id, function (err, conversation) {
             console.log("Inside conversation api");
             if(err)
                 res.send(err);

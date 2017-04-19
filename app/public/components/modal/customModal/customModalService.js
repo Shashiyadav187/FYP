@@ -12,7 +12,7 @@
             };
 
             var modalOptions = {
-                closeButtonText:'Cancel',
+                closeButtonText:'Back',
                 actionButtonText: 'OK',
                 headerText: 'Proceed?'
             };
