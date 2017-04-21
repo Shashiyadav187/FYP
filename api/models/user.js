@@ -7,7 +7,7 @@ var Course = require('./course.js');
 
 var userSchema = new Schema({
     profiler: {type: String, default: "https://www.iconexperience.com/_img/o_collection_png/green_dark_grey/512x512/plain/user.png"},
-    backgroundPhoto: {type: String, default: "http://www.planwallpaper.com/static/images/recycled_texture_background_by_sandeep_m-d6aeau9_PZ9chud.jpg"},
+    backgroundPhoto: {type: String, default: "http://www.foxyidea.com/wp-content/uploads/24.jpg"},
     facebookID: String,
     firstName:String,
     lastName: String,
@@ -15,7 +15,9 @@ var userSchema = new Schema({
     password: String,
     admin: {type: Boolean, default: false},
     results: [{type: Schema.Types.Object, ref: 'Result'}],
-    courses: [{type: Schema.Types.Object, ref: 'Course'}]
+    courses: [{type: Schema.Types.Object, ref: 'Course'}],
+    status: {type: Boolean, default: false},
+    recentlyViewed: [{type: Schema.Types.Object, ref: 'Course'}]
 });
 
 // generating a hash

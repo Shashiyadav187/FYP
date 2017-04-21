@@ -13,16 +13,27 @@
             return $http.get(baseUrl + '/current');
         };
 
-        this.getUserById = function(id){
-            return $http.get(baseUrl + '/' + id);
+        this.getById = function(id){
+            return $http.get(baseUrl + '/getUserById/' + id);
         };
 
-        this.addUser = function(user){
-            return $http.post(baseUrl + '/'+ user);
+        this.loginUser = function (username, password) {
+            return $http.post(baseUrl + '/login', username, password)
         };
+
+        this.removeResult = function (id, result) {
+            return $http.get(baseUrl + '/removeResult/' + id , result)
+        };
+        this.removeCourse = function (id, courseId) {
+            return $http.get(baseUrl + '/removeCourse/' + id +'/'+ courseId)
+        };
+
+        /*this.addUser = function(user){
+            return $http.post(baseUrl + '/'+ user);
+        };*/
 
         this.updateUser = function(user){
-            return $http.put(baseUrl, + '/' + user.id, user);
+            return $http.put(baseUrl, + '/updateUser' + user.id, user);
         };
 
         this.deleteUser = function(id){

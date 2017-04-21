@@ -5,6 +5,7 @@
         'ngAnimate',
         'ngResource',
         'ui.bootstrap',
+        'firebase',
         'ui.router',
         'ng-backstretch',
         'chart.js',
@@ -97,6 +98,38 @@
                     controller: 'ECTestController',
                     templateUrl: 'views/testTemplate.html'
                 })
+                .state('app.definedCourses',{
+                    url: '/definedCourses/:sectorName',
+                    controller: 'DefinedCoursesController',
+                    templateUrl: 'views/definedCourses.html',
+                    params:{
+                        'sectorName': ''
+                    }
+                })
+                .state('app.chat',{
+                    url: '/chat/:id',
+                    controller: 'ChatController',
+                    templateUrl: 'views/chat.html',
+                    params:{
+                        'id': ''
+                    }
+                })
+                .state('app.notifications',{
+                    url: '/notifications',
+                    controller: 'NotificationController',
+                    templateUrl: 'views/notifications.html'
+                });
+// Firebase connection
+
+            var configData = {
+                apiKey: "AIzaSyBT3-RmrTaIIMNRs9lKBPXReCIWNQQXXxU",
+                authDomain: "unisexp-a1b2d.firebaseapp.com",
+                databaseURL: "https://unisexp-a1b2d.firebaseio.com",
+                projectId: "unisexp-a1b2d",
+                storageBucket: "unisexp-a1b2d.appspot.com",
+                messagingSenderId: "175197150875"
+            };
+            firebase.initializeApp(configData);
 
 
         }])
@@ -113,7 +146,7 @@
                 $rootScope.$storage = $window.localStorage;
 
                 $rootScope.app = {
-                    name: 'UnisEx',
+                    name: 'ofCourse',
                     description: 'student website',
                     year: ((new Date()).getFullYear()),
                     version: "v0.0.1",

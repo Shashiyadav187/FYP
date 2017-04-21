@@ -9,7 +9,6 @@ var express = require('express'),
     session = require('express-session'),
     cookieParser = require('cookie-parser');
 
-
 //Create the application
 var app = express();
 
@@ -24,6 +23,9 @@ var results = require('./api/routes/results');
 var courses  = require('./api/routes/courses');
 var sectors  = require('./api/routes/sectors');
 var comments  = require('./api/routes/comments');
+var conversations  = require('./api/routes/conversations');
+var messages  = require('./api/routes/messages');
+var notifications  = require('./api/routes/notifications');
 
 app.use(express.static(__dirname + '/app'));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -41,17 +43,16 @@ app.use(flash());
 
 // configure passport
 passport.serializeUser(function(user, done) {
-    console.log('serializing ' + user);
+    /*console.log('serializing ' + user);*/
     done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
     User.getUserById(id, function(err, user) {
-        console.log('deserializing  ' +  user);
+        /*console.log('deserializing  ' +  user);*/
         done(err, user);
     });
 });
-
 
 // Connect to MongoDB
 mongoose.connect('mongodb://' + config.db.host + ':'
@@ -66,6 +67,20 @@ mongoose.connect('mongodb://' + config.db.host + ':'
         }
     }
 );
+
+// // Firebase connection
+//
+// var configData = {
+//     apiKey: "AIzaSyBT3-RmrTaIIMNRs9lKBPXReCIWNQQXXxU",
+//     authDomain: "unisexp-a1b2d.firebaseapp.com",
+//     databaseURL: "https://unisexp-a1b2d.firebaseio.com",
+//     projectId: "unisexp-a1b2d",
+//     storageBucket: "unisexp-a1b2d.appspot.com",
+//     messagingSenderId: "175197150875"
+// };
+// firebase.initializeApp(configData);
+
+// console.log("firebase: "+firebase);
 // Register web app routes
 app.use('/', web);
 
@@ -78,6 +93,9 @@ app.use('/api/results/', results);
 app.use('/api/courses/', courses);
 app.use('/api/sectors/', sectors);
 app.use('/api/comments/', comments);
+app.use('/api/conversations/', conversations);
+app.use('/api/messages/', messages);
+app.use('/api/notifications/', notifications);
 
 //Serve app
 http.createServer(app).listen(config.web.port);

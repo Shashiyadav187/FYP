@@ -12,7 +12,7 @@
             };
 
             var modalOptions = {
-                closeButtonText:'Cancel',
+                closeButtonText:'Back',
                 actionButtonText: 'OK',
                 course: 'Course Title',
                 code: 'Course Code',
@@ -25,7 +25,9 @@
                 placement: 'Placement',
                 externalLink: 'External Link',
                 duration: 'length',
-                comments: 'comments'
+                comments: 'comments',
+                views: 'views',
+                id: 'id'
             };
 
             this.showModal = function (customModalDefaults, customModalOptions) {
@@ -45,15 +47,14 @@
                 angular.extend(tempModalOptions, modalOptions, customModalOptions);
 
                 if (!tempModalDefaults.controller) {
-                    tempModalDefaults.controller = function ($scope, $uibModalInstance, UserService, CourseService, $timeout, $http, $interval) {
+                    tempModalDefaults.controller = function ($scope, $uibModalInstance, UserService, CourseService, $timeout, $http, commentModalService) {
                         $scope.modalOptions = tempModalOptions;
                         var cid = $scope.modalOptions.code;
                         console.log(cid);
+                        var sector = $scope.modalOptions.sector;
                         $scope.course = null;
 
-/*
-                        $interval(function(){
-*/
+
                         CourseService.getCurrentCourse(cid)
                             .then(function (res) {
                                 $scope.course = res.data;
@@ -61,9 +62,6 @@
                             },function errorCallback(err){
                                 console.log(err);
                             });
-/*
-                        }, 5000);
-*/
 
 
                         $scope.modalOptions.ok = function (id, comment) {
@@ -76,43 +74,32 @@
                                         user: $scope.user.firstName +' '+ $scope.user.lastName,
                                         course: id,
                                         timeStamp: Date.now()
+                                    }).then(function (res) {
+                                        console.log(res.data);
+                                        $scope.commentObject = res.data.comment;
+                                        $http.post('api/courses/addComment/'+ id,{
+                                            comments: $scope.commentObject
+                                        }).then(function (res) {
+                                            console.log("Success adding comment to course");
+                                        }).catch(function (err) {
+                                            console.log("error adding comment to course");
+                                        })
+                                    }).catch(function (err) {
+                                        console.log("error posting a comment");
                                     })
-                                        .success(function(data, status, header, config){
-                                            if(data.success){
-                                                console.log(data);
-                                            } else {
-                                                console.log("Success :)");
-                                                console.log(id+" id");
-                                                console.log($scope.user + " user");
-                                                console.log(comment+ " comment");
-                                                $http.get('api/comments')
-                                                    .then(function(response){
-                                                            var length = response.data.length-1;
-                                                            $scope.commentObject = response.data[length];
-                                                            console.log($scope.commentObject);
-
-                                                            $http.post('api/courses/addComment/'+ id,{
-                                                                comments: $scope.commentObject
-                                                            })
-                                                                .success(function(data, status, header, config){
-                                                                    if(data.success){
-                                                                        console.log(data+" error posting to course response")
-                                                                    } else {
-                                                                        console.log(data + " Success ---------------- possibly");
-                                                                        $uibModalInstance.close()
-                                                                    }
-                                                                });
-                                                        },function errorCallback(err){
-                                                            console.log(err);
-                                                        }
-                                                    );
-                                            }
-                                        });
-                                }, function errorCallback(err) {
-                                    console.log('Get user Error ' + err);
-                                    $scope.user = null;
-                                });
+                                }).catch(function (err) {
+                                console.log("error getting user: "+err);
+                            });
                         };
+
+                        $scope.commentModal = function (c_id) {
+                            var modalsOptions = {
+                                code : c_id,
+                                sector: sector
+                            };
+                            commentModalService.showModal({}, modalsOptions);
+                        };
+
                         $scope.modalOptions.close = function () {
                             $uibModalInstance.dismiss('cancel');
                         };

@@ -1,0 +1,99 @@
+<div class="container">
+    <div class="col-sm-3 contact-list">
+        <br />
+        <br />
+        <ul ng-repeat="c in relevantConversations">
+            <li>
+                <div ng-if="currentUser._id == c.user1._id">
+
+                    <div class="contact-profiler" ng-click="joinConversation(c._id)">
+                        <div class="alignment">
+                            <img ng-src="{{c.user2.profiler}}">
+                        </div>
+                        <div class="user-info">
+                            <div class="contact-name">
+                                {{c.user2.firstName}} {{c.user2.lastName}}
+                            </div>
+                            <div class="online-icon"
+                                 ng-class="{'not-online': c.user2.status  == false ,
+                            'is-online': c.user2.status == true}"></div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div ng-if="currentUser._id == c.user2._id">
+                    <div class="contact-profiler" ng-click="joinConversation(c._id)">
+                        <div class="alignment">
+                            <img ng-src="{{c.user1.profiler}}">
+                        </div>
+                        <div class="user-info">
+                            <div class="contact-name">
+                                {{c.user1.firstName}} {{c.user1.lastName}}
+                            </div>
+                            <div class="online-icon"
+                                 ng-class="{'not-online': c.user1.status  == false ,
+                            'is-online': c.user1.status == true}"></div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div ng-repeat="u in users">
+            <button class="btn btn-default" ng-click="sendInvitation(u)">Chat to {{u.lastName}}</button>
+        </div>
+    </div>
+    <div class="col-sm-8 chat-background">
+        <div class="modal-header">
+            <div class="chat-profiler">
+                <div ng-hide="noUser">
+                    <img ng-src="{{friend.profiler}}">{{friend.firstName}} {{friend.lastName}}
+                </div>
+                <div ng-show="noUser">
+                    <img ng-src="http://donatered-asset.s3.amazonaws.com/assets/default/default_user-884fcb1a70325256218e78500533affb.jpg">
+                    John Doe
+                </div>
+            </div>
+        </div>
+        <div class="repeat-scroll">
+            <div ng-show="noUser">
+                <h1>Select a User from the list to chat to</h1>
+                <h1><i style="font-size:40px;" class="material-icons">subdirectory_arrow_left</i></h1>
+            </div>
+            <div ng-hide="noUser">
+                <ul ng-repeat="message in conversation.messages | orderBy:'timestamp'" class="chat-line">
+                    <li>
+                        <div ng-if="message.senderId==currentUser._id">
+                            <div class="your-message">
+                                <!--{{message.timeStamp | date:'hh:mm'}}.-->
+                                {{message.body}}
+                                <div class="chat-image">
+                                    <img ng-src="{{currentUser.profiler}}">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div ng-if="message.receiverId==currentUser._id">
+                            <div class="friend-message">
+                                <!--{{message.timeStamp | date:'hh:mm'}}.-->
+                                <div class="chat-image">
+                                    <img ng-src="{{friend.profiler}}">
+                                </div>
+                                {{message.body}}
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <footer class="card-footer">
+            <form ng-submit="sendMessage()">
+            <input ng-model="body" class="form-control" rows="2" ng-disabled="noUser" />
+            </form>
+
+            <!--<button id="chat-button" class="btn btn-sm " ng-click="sendMessage()" ng-disabled="noUser">Send</button>-->
+        </footer>
+        <!--{{conversation}}-->
+    </div>
+</div>

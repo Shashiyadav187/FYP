@@ -56,55 +56,57 @@ router.route('/')
  }]
  });*/
 
+
+
+
 /*var sector = new Sector({
- title:"Computer Science",
- description: "Computer Science is the study of computers and computational systems. Unlike electrical and computer" +
- " engineers, computer scientists deal mostly with software and software systems; this includes their theory, design," +
- " development, and application.",
- jobLinks: [],
- searchable: "cs",
- averagePay: 0,
- jobs:[{
- title: "Network Architect",
- desc: "These professionals design, build and maintain a variety of data communication networks, from expansive" +
- " cloud infrastructures to smaller intranets",
- salary: 100240,
- sal: 7.9,
- jm: 4,
- fg: 6,
- s: 4,
- wlb: 4
- },{
- title: "Database Administrator",
- desc: "Database administrators are relied on as the guardians of data, implementing security measures to ensure" +
- " sensitive data is safe",
- salary: 81710,
- sal: 7.1,
- jm: 6,
- fg: 6,
- s: 4,
- wlb: 6
- },{
- title: "IT Manager",
- desc: "IT Managers deliver short- and long-term visions for the company's technology needs and goals.",
- salary: 131600,
- sal: 9.1,
- jm: 6,
- fg: 6,
- s: 2,
- wlb: 4
- },{
- title: "Software Developer",
- desc: "IT Managers deliver short- and long-term visions for the company's technology needs and goals.",
- salary: 98260,
- sal: 7.8,
- jm: 6,
- fg: 8,
- s: 6,
- wlb: 8
- }
- ]
- });*/
+    title:"Construction & Engineering",
+    description: "Engineering is acknowledged as a discipline that opens up opportunities and creates technology and" +
+    " products that help make our lives easier.Construction is the process of constructing a building or infrastructure.",
+    jobLinks: [],
+    searchable: "ce",
+    averagePay: 0,
+    jobs:[{
+        title : "Construction Manager",
+        desc : "A construction manager can learn a construction project from a-z from the planning stage with architects and engineers, to the budgeting stage with cost estimators, to the production stage with laborers",
+        salary : 87400,
+        sal : 7.4,
+        jm : 4,
+        fg : 6,
+        s: 2,
+        wlb : 4
+    },{
+        title : "Electrician",
+        desc : "Electricians know the ins and outs of designing lighting systems, installing street lights and intercom systems, ensuring electrical work is up to code and repairing electrical wiring",
+        salary : 51880,
+        sal : 5.7,
+        jm : 6,
+        fg : 8,
+        s : 4,
+        wlb : 4
+    },{
+        title : "Biomedical Engineer",
+        desc : "Biomedical engineering (BME) is the application of engineering principles and design concepts" +
+        " to medicine and biology for healthcare purposes",
+        salary : 86220,
+        sal : 7.3,
+        jm : 8,
+        fg : 4,
+        s: 4,
+        wlb : 6
+    },{
+        title: "Civil Engineer",
+        desc: "Civil Engineers look after the design and maintenance of public works such as roads, bridges, water " +
+        "and energy systems as well as public facilities like ports, railways and airports.",
+        salary: 82220,
+        sal: 7.2,
+        jm: 4,
+        fg: 6,
+        s: 6,
+        wlb: 4
+    }
+    ]
+});*/
 
 /*var sector = new Sector({
  title:"Computer Science",
@@ -125,10 +127,10 @@ router.route('/')
  });*/
 
 /*sector.save(function(err, res){
- if (err)
- res.send(err);
- console.log(res, 'sector created');
- });*/
+    if (err)
+        res.send(err);
+    console.log(res, 'sector construction & engineering created');
+});*/
 
 
 

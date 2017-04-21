@@ -280,7 +280,7 @@ router.route('/logout')
 
 router.route('/current')
     .get(function(req, res){
-        console.log(req.user);
+        /*console.log(req.user);*/
         res.json( { user: req.user });
     });
 
@@ -289,18 +289,9 @@ router.route('/pushResult/:email')
         User.findOne({'email': req.params.email}, function (err, user) {
             if(err)
                 res.send(err);
-
-            //console.log(JSON.stringify(req.body.results) + " : r.b.r, " + user + " : just user");
-            /*res.send(user);*/
-
             user.results.push(req.body.results);
             user.timeStamp = Date.now();
             console.log(Date.now());
-
-            //
-            /*var array = req.params.results;
-             array.push(user.result);
-             console.log(array);*/
             user.save(function(err){
                 if(err)
                     res.send(err);
@@ -316,51 +307,15 @@ router.route('/pushCourse/:email')
             if(err)
                 res.send(err);
 
-            //console.log(JSON.stringify(req.body.results) + " : r.b.r, " + user + " : just user");
-            /*res.send(user);*/
-            if(user.courses.length > 0){
-                for(var i =0; i<user.courses.length; i++) {
-                    if(user.courses[i] == req.body.course){
-                        res.json({message: 'Course Already Saved!'});
-                        res.send("Saved previously");
-                        return;
-                    } else{
-                        user.courses.push(req.body.courses);
-                        user.timeStamp = Date.now();
-                        user.save(function(err){
-                            if(err)
-                                res.send(err);
-
-                            res.json({message: 'User updated!'});
-                        })
-                    }
-                }
-            }else{
-                user.courses.push(req.body.courses);
-                user.timeStamp = Date.now();
-                user.save(function(err){
-                    if(err)
-                        res.send(err);
-
-                    res.json({message: 'User updated!'});
-                })
-
-            }
-/*
+            console.log(req.body.courses);
             user.courses.push(req.body.courses);
-            user.timeStamp = Date.now();
-            console.log(Date.now());*/
 
-            //
-            /*var array = req.params.results;
-             array.push(user.result);
-             console.log(array);*/
-          /*  user.save(function(err){
+            user.save(function(err){
                 if(err)
                     res.send(err);
 
                 res.json({message: 'User updated!'});
-            })*/
+            })
         })
     });
 
@@ -373,6 +328,89 @@ router.route('/:email')
             res.json(user);
         });
     });
+
+router.route('/getUserById/:_id')
+    .get(function(req, res) {
+        User.findOne({'_id': req.params._id}, function(err, user) {
+            if (err)
+                res.send(err);
+
+            res.json(user);
+        });
+    });
+
+router.route('/removeResult/:_id')
+    .get(function(req, res) {
+        User.findOne({'_id': req.params._id}, function(err, user) {
+            if (err)
+                res.send(err);
+            else{
+                console.log(req.body.results);
+                res.json(user);
+            }
+        });
+    });
+
+router.route('/removeCourse/:_id/:courseId')
+    .get(function(req, res) {
+        var courseId = req.params.courseId;
+        var id = req.params._id;
+        User.findById(id, function(err, user) {
+            console.log("course id: "+courseId);
+            console.log("user is : "+user.courses);
+            if (err)
+                res.send(err);
+            else {
+                for(var i = 0; i < user.courses.length; i++){
+                    if(user.courses[i]._id == courseId){
+                        user.courses[i].remove();
+                    }
+                }
+                res.json(user);
+            }
+        });
+    });
+
+router.route('/updateUser/:_id')
+    .post(function(req, res) {
+        User.findOne({'_id': req.params._id}, function(err, user) {
+            if (err)
+                res.send(err);
+            else {
+                user.profiler = req.body.profiler;
+                user.backgroundPhoto = req.body.backgroundPhoto;
+
+                user.save(function(err){
+                    if(err)
+                        res.send(err);
+
+                    res.json({message: 'User updated!'});
+                });
+            }
+
+        });
+    });
+
+router.route('/updateViewed/:_id')
+    .post(function(req, res) {
+        User.findOne({'_id': req.params._id}, function(err, user) {
+            if (err)
+                res.send(err);
+            else {
+                console.log("body of recently viewed+ "+ req.body.recentlyViewed);
+                user.recentlyViewed.push(req.body.recentlyViewed);
+
+                user.save(function(err){
+                    if(err)
+                        res.send(err);
+
+                    res.json({message: 'User updated!'});
+                });
+            }
+
+        });
+    });
+
 /*router.route('/pushCourse/:email')
  .post(function(req, res) {
  User.findOne({'email': req.params.email}, function(err, user) {

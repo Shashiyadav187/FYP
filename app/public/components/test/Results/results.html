@@ -7,24 +7,80 @@
                 chart-colors="colours" chart-click="onClick" chart-options="options"></canvas>
     </div>
 </div>
-<div class="col-sm-2"></div>
-<button ng-show="user.firstName != null" class="btn btn-default" ng-click="saveResult()">Save Result</button>
-<h1 class="results-title col-sm-4 col-sm-offset-4" >{{recommendation}}</h1>
-<div class="col-sm-4"></div>
+<h1 class="results-title col-sm-12 text-center" >{{recommendation}}</h1>
 
-<div ng-show="takeTest == true" class="btn btn-default" ng-click="takeAnotherTest()">Take another test</div>
 
-<h2 class="col-sm-10 col-sm-offset-1">About {{recommendation}}</h2>
+<div class="col-sm-6">
+    <div class="card card-default ">
+        <div class="card-block">
+            <h2 class="card-title">Jobs in {{recommendation}}</h2>
+            <div ng-repeat="sector in sectors" ng-show="sector.searchable == testType">
+                <div ng-repeat="job in sector.jobs">
+                    <div class="job-box">
+                        <div class="job-left">
+                            <div class="job-title">{{job.title}}</div>
+                            <div>{{job.desc}}</div>
+                            <div class="score">Score: {{(job.sal+job.jm+job.fg+job.wlb)/4}}</div>
+                        </div>
+                        <div class="job-right">
+                            <div class="rating-box">
+                                <div class="progress-title">
+                                    <div class="progress-title-left">Salary</div>
+                                    <div class="progress-title-right">{{job.sal}}</div>
+                                </div>
+                                <div class="progress" style="height:6px;">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width:{{job.sal*10}}%;" aria-valuenow="{{job.sal}}*10" aria-valuemin="0" aria-valuemax="10"></div>
+                                </div>
+                                <div class="progress-title">
+                                    <div class="progress-title-left">Job Market</div>
+                                    <div class="progress-title-right">{{job.jm}}</div>
+                                </div>
+                                <div class="progress" style="height:6px;">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width:{{job.jm*10}}%;" aria-valuenow="{{job.jm}}*10" aria-valuemin="0" aria-valuemax="10"></div>
+                                </div>
+                                <div class="progress-title">
+                                    <div class="progress-title-left">Future Growth</div>
+                                    <div class="progress-title-right">{{job.fg}}</div>
+                                </div>
+                                <div class="progress" style="height:6px;">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width:{{job.fg*10}}%;" aria-valuenow="{{job.fg}}*10" aria-valuemin="0" aria-valuemax="10"></div>
+                                </div>
+                                <div class="progress-title">
+                                    <div class="progress-title-left">Stress</div>
+                                    <div class="progress-title-right">{{job.s}}</div>
+                                </div>
+                                <div class="progress" style="height:6px;">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width:{{job.s*10}}%;" aria-valuenow="{{job.s}}*10" aria-valuemin="0" aria-valuemax="10"></div>
+                                </div>
+                                <div class="progress-title">
+                                    <div class="progress-title-left">Work Life Balance</div>
+                                    <div class="progress-title-right">{{job.wlb}}</div>
+                                </div>
+                                <div class="progress" style="height:6px;">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width:{{job.wlb*10}}%;" aria-valuenow="{{job.wlb}}*10" aria-valuemin="0" aria-valuemax="10"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-sm-5">
+    <div class="card card-primary">
+        <div class="card-block">
+            <h2 class="card-title">About {{recommendation}}</h2>
+            <div class="center-block">
+                <div ng-repeat="sector in sectors"  ng-show="sector.searchable == testType">
+                    {{sector.description}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-show="takeTest == true" class=" col-sm-4 btn btn-default" ng-click="takeAnotherTest()">Take a further test</div>
 
-<p class="col-sm-10 col-sm-offset-1">regjsbvjhe  ugefuewrbfjkhw uefgu ioehrgiu2 wliuwertg 4iluwg h w4iuwert erliuhiwrg we rpiwergihw wr;oihiwregh wer gq ;kifnbe wkiguhw  wrogihr  hpreg
- wepoirhwguiherg  ghio    oiuhrg  uih iu uyg uyguygky uyg uyg gyu giuguygyctryub jtydcvkybliu uyfcvhblih uyfcutg iulgvyugbub ilk
-uyvgygblvyliubgliuvgvluk uygvukgblu  ukgvuktui k oi;j powe;lfcmwe pojfopkd poewfjioefioe  jqoief oi  uiewrh iuegh erhg uh eih hk hwb
-sdf  riiu rhrhirtni bdfindfn fbi bn rtbnui brwjnbrtbgnkjdjkj bgfkjnnjkkjkj n dkjnfk jn dfk  fk jk jkjnjknjkenkjrtnui5twihwt5hiuohw
-</p>
+<button ng-show="currentUser.firstName != null" class="col-sm-4 btn btn-default" ng-click="saveResult()">Save Result</button>
 
-<h2 class="col-sm-10 col-sm-offset-1">Courses in {{recommendation}}</h2>
-
-<p class="col-sm-10 col-sm-offset-1">
-<div class="btn btn-link-1" ng-click="definedCourses()">>>Courses in {{recommendation}}</div>
-
-</p>
+<div class="col-sm-4 btn btn-link-1" ng-click="definedCourses()">>>Courses in {{recommendation}}</div>

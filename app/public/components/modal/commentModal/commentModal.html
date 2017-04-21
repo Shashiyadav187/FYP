@@ -1,0 +1,36 @@
+<div class="modal-header">
+    <h3>{{modalOptions.headerText}} {{modalOptions.code}}</h3>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div ng-repeat="comment in course.comments">
+            <div ng-if="course.comments.length < 1">
+                <h4>There are currently no reviews on this course.
+                    Why not be the first ;)</h4>
+            </div>
+            {{comment.user}} <br />
+            {{comment.text}}
+        </div>
+
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="md-form">
+                    <input type="text" placeholder="Add Review" row="2" ng-model="commentBody" />
+                </div>
+            </div>
+        <button class="btn comment-button col-md-8 col-md-offset-2"
+                ng-click="addComment(commentBody)"
+                ng-class="{'cs-comment-button':modalOptions.sector =='Computer Science',
+                         'ec-comment-button':modalOptions.sector =='Engineering and Construction',
+                         'ms-comment-button':modalOptions.sector =='Medicine and Science',
+                         'bm-comment-button':modalOptions.sector =='Business and Management',
+                         'ea-comment-button':modalOptions.sector =='Education and Arts'}">
+            Add or View Comments <b class="fa fa fa-comment"></b>
+        </button>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-default"
+            data-ng-click="modalOptions.close()">{{modalOptions.closeButtonText}}</button>
+    <button class="btn btn-primary"
+            data-ng-click="modalOptions.ok()">{{modalOptions.actionButtonText}}</button>
+</div>

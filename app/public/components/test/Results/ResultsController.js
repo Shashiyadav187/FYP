@@ -41,7 +41,7 @@
                 $scope.labels = ["Engineering", "Construction"];
             } else{
                 $scope.colours = ['#97BBCD','#66BB6A','#F7464A','#46BFBD','#FDB45C'];
-                $scope.labels = ["Computer Science", "Construction & Engineering", "Medecine & Science", "Business & Management", "Arts & Education"];
+                $scope.labels = ["Computer Science", "Construction & Engineering", "Medicine & Science", "Business & Management", "Arts & Education"];
                 $scope.data = [$scope.array[0].it, $scope.array[0].construction, $scope.array[0].healthcare, $scope.array[0].business, $scope.array[0].arts];
             }
 
@@ -65,6 +65,7 @@
 
             if($scope.winner == 'it'){
                 $scope.recommendation = "Computer Science";
+                $scope.testType = "cs";
             } else if($scope.winner == 'construction'){
                 $scope.recommendation = 'Engineering and Construction';
                 $scope.takeTest = true;
@@ -75,16 +76,22 @@
                 $scope.testType = "ms";
             } else if($scope.winner == "business"){
                 $scope.recommendation = "Business and Management";
+                $scope.testType = "bm";
             } else if($scope.winner == "arts"){
                 $scope.recommendation= "Education and Arts";
+                $scope.testType = "ea";
             } else if($scope.winner == "science"){
                 $scope.recommendation = "Science";
+                $scope.testType = "s";
             } else if($scope.winner == "medicine"){
                 $scope.recommendation = "Medicine";
+                $scope.testType = "m";
             }else if($scope.winner == "construct"){
                 $scope.recommendation = "Construction";
+                $scope.testType = "c";
             } else if($scope.winner == "engineering"){
                 $scope.recommendation = "Engineering";
+                $scope.testType = "e";
             }
             console.log($stateParams.sectorsArray, 'resultsController');
 
@@ -101,55 +108,32 @@
                     testName: 'Careers Test',
                     recommend: $scope.recommendation,
                     timeStamp: Date.now()
+                }).then(function (res) {
+                    $scope.result = res.data.result;
+                    console.log(res.data);
+                }).catch(function (err) {
+                    console.log("error: "+err)
                 })
-                    .success(function(data, status, header, config){
-                        if(data.success){
-                            console.log(data);
-                        } else {
-                            console.log("Success :)");
-                        }
-                    });
             };
 
-            $scope.getResult = function () {
-                $http({
-                    method: 'GET',
-                    url: '/api/results'
-                }).then(function successCallback(response) {
-                    var length = (response.data.length - 1);
-                    console.log("Success");
-                    //console.log("response.data[length] is:" + response.data[length]);
-                    $scope.result = response.data[length];
-                    console.log($scope.result);
-                }, function errorCallback(response) {
-                    console.log("Error");
-                    console.log(response);
-                    $scope.result = null;
-                });
-            };
 
             $scope.addRecommendationToUser = function(result, email){
                 $http.post('/api/users/pushResult/'+ JSON.parse(email), {
                     results: JSON.parse(result),
+                }).then(function (res) {
+                        console.log("Success addResToUser");
+                        var modalOptions = {
+                            actionButtonText:'Continue',
+                            headerText: 'Careers Test Results Saved'
+                        };
+
+                        successModalService.showModal({}, modalOptions)
+                            .then(function () {
+                                $state.go('app.home');
+                            });
+                    }).catch(function (err) {
+                        console.log("Error addedResToUser: "+err);
                 })
-                    .success(function(data, status, header, config){
-                        if(data.success){
-                            console.log("Failure possibly");
-                        } else {
-                            console.log("Success---------- Possibly"+data);
-
-                            var modalOptions = {
-                                actionButtonText:'Continue',
-                                headerText: 'Careers Test Results Saved'
-                            };
-
-                            successModalService.showModal({}, modalOptions)
-                                .then(function () {
-                                    $state.go('app.home');
-                                });
-                        }
-
-                    });
             };
 
             $scope.takeAnotherTest = function(){
@@ -171,10 +155,18 @@
 
                 $scope.getUser();
                 $scope.createResult();
-                $scope.getResult();
                 $timeout( function(){
                     $scope.addRecommendationToUser(JSON.stringify($scope.result), JSON.stringify($scope.user.email));
                 }, 2000);
-            }
+            };
+
+            $http.get('/api/sectors')
+                .then(function(res){
+                    $scope.sectors = res.data;
+                    console.log($scope.sectors+" sectors");
+                    console.log(res.data+" res.data")
+                }, function(err){
+                    console.log(err+" error sectors");
+                });
         }]);
 })();

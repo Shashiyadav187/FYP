@@ -1,0 +1,8 @@
+<h4 class="text-center">Notifications</h4>
+<div ng-repeat="n in relevantNotifications">
+    {{n.message}}
+    <button class="btn btn-info" ng-click="accept(n.conversationId)">Accept</button>
+    <button class="btn btn-danger" ng-click="decline(n.conversationId)">Decline</button>
+
+    {{n}}
+</div>

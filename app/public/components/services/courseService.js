@@ -5,20 +5,26 @@
 
             var baseUrl = 'https://api.unibrowse.ie/api/courses';
 
+            var uniBrowseUrl = "https://api.unibrowse.ie/api/homepage";
+
             var apiUrl = 'api/courses';
 
             this.getCourses = function(){
                 return $http.get(apiUrl, {cache: true});
             };
             this.getCourse = function (id) {
-                return $http.get(baseUrl + '/' + id, {cache: true});
+                return $http.get(apiUrl + '/' + id, {cache: true});
             };
 
             this.getCurrentCourse = function (id) {
-                return $http.get(apiUrl + '/currentCourse/' + id, {cache: true});
+                return $http.get(apiUrl + '/currentCourse/' + id);
             };
-            this.updateComments = function (id) {
-                return $http.post(apiUrl + '/' + id, {cache: true});
+            this.addComment = function (id, comment) {
+                return $http.post(apiUrl + '/addComment/' + id, comment);
+            };
+
+            this.getComment = function (id) {
+                return $http.get(baseUrl + '/' + id);
             };
 
            /* this.getCoursesBySector = function(sector){

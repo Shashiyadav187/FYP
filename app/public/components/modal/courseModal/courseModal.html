@@ -68,7 +68,7 @@
                                     Duration: </span>{{modalOptions.duration}}
                                 </div>
                                 <div class="col-sm-6">
-                                    <span>Duration: </span>{{modalOptions.duration}}
+                                    <span>Total Views: </span>{{modalOptions.views}}
                                 </div>
                             </div>
                         </div>
@@ -80,7 +80,7 @@
                     <div>View more details from this course >><a href="{{modalOptions.externalLink}}">here</a><<</div>
                 </div>
                 <div class="col-sm-12">
-                    <button class="btn comment-button col-sm-5 col-sm-offset-1"
+                    <!--<button class="btn comment-button col-sm-5 col-sm-offset-1"
                             ng-click="showReview = !showReview"
                             ng-class="{'cs-comment-button':modalOptions.sector =='Computer Science',
                          'ec-comment-button':modalOptions.sector =='Engineering and Construction',
@@ -88,17 +88,17 @@
                          'bm-comment-button':modalOptions.sector =='Business and Management',
                          'ea-comment-button':modalOptions.sector =='Education and Arts'}">
                         Add a review <b class="fa fa fa-comment-o"></b>
-                    </button>
-                    <button class="btn comment-button col-sm-5 col-sm-offset-1"
-                            ng-click="showComment = !showComment"
+                    </button>-->
+                    <button class="btn comment-button col-sm-12"
+                            ng-click="commentModal(modalOptions.code)"
                             ng-class="{'cs-comment-button':modalOptions.sector =='Computer Science',
                          'ec-comment-button':modalOptions.sector =='Engineering and Construction',
                          'ms-comment-button':modalOptions.sector =='Medicine and Science',
                          'bm-comment-button':modalOptions.sector =='Business and Management',
                          'ea-comment-button':modalOptions.sector =='Education and Arts'}">
-                        View Reviews <b class="fa fa fa-comment"></b>
+                        Add or View Comments <b class="fa fa fa-comment"></b>
                     </button>
-                    <div ng-show="showReview">
+                    <!--<div ng-show="showReview">
                         <div class="col-sm-8 col-sm-offset-2">
                             <div class="md-form">
                                 <textarea type="text" placeholder="Add Review" class="md-textarea" ng-model="commentBody"></textarea>
@@ -113,21 +113,30 @@
 
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>
     </div>
+
     <div class="modal-footer"
          ng-class="{'csColour':modalOptions.sector =='Computer Science',
                          'ecColour':modalOptions.sector =='Engineering and Construction',
                          'msColour':modalOptions.sector =='Medicine and Science',
                          'bmColour':modalOptions.sector =='Business and Management',
                          'eaColour':modalOptions.sector =='Education and Arts'}">
-        <span class="modal-center">{{modalOptions.sector}}</span>
-        <button class="btn btn-default waves-effect"
-                data-ng-click="modalOptions.close()">{{modalOptions.closeButtonText}}</button>
-        <button class="btn btn-default waves-effect"
-                data-ng-click="modalOptions.ok(modalOptions.code, commentBody )">{{modalOptions.actionButtonText}}</button>
+        <div class="total-footer">
+            <div class="footer-course-name">
+                <span class="modal-center">{{modalOptions.sector}}</span>
+            </div>
+            <div class="footer-buttons">
+                <button class="btn btn-default waves-effect btn-sm"
+                        data-ng-click="modalOptions.close()">{{modalOptions.closeButtonText}}
+                </button>
+                <button class="btn btn-default waves-effect btn-sm"
+                        data-ng-click="modalOptions.ok(modalOptions.code, commentBody )">{{modalOptions.actionButtonText}}
+                </button>
+            </div>
+        </div>
     </div>
 </div>

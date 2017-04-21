@@ -9,8 +9,10 @@
   "scripts": {},
   "license": "MIT",
   "dependencies": {
+    "angular": "1.5.8",
     "angular-chart.js": "^1.1.1",
     "angular-touch": "latest",
+    "angularfire": "^2.3.0",
     "async": "^1.5.2",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.13.0",
@@ -20,6 +22,7 @@
     "express": "^4.12.4",
     "express-jwt": "^3.4.0",
     "express-session": "^1.15.1",
+    "firebase": "3.6.7",
     "jsonwebtoken": "^7.1.6",
     "mongoose": "^4.5.3",
     "passport": "^0.2.1",

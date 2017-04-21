@@ -1,0 +1,16 @@
+<div class="modal-header">
+    <h3>{{modalOptions.headerText}}</h3>
+</div>
+<div class="modal-body">
+    <button class="btn btn-danger" ng-click="changeProfile()">Change Profile Photo</button>
+    <button class="btn btn-danger" ng-click="changeBackground()">Change Background Photo</button>
+    <p><input class="image-input" type="file" id="inputFile1" onchange="angular.element(this).scope().fileSelected(this)" ng-disabled="url == null"/></p>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-default"
+            data-ng-click="modalOptions.close()">{{modalOptions.closeButtonText}}</button>
+    <!--
+    <button class="btn btn-primary"
+            data-ng-click="modalOptions.ok()">{{modalOptions.actionButtonText}}</button>
+</div>-->

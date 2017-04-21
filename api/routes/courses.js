@@ -33,6 +33,7 @@ router.route('/')
         course.sector = req.body.sector;
         course.points = req.body.points;
         course.quickSearch = req.body.quickSearch;
+        course.counter = req.body.counter;
 
         course.save(function(err) {
             if (err) {
@@ -42,14 +43,7 @@ router.route('/')
             }
         });
     });
-/*   .get(function(req, res) {
- User.findOne({'email': req.params.email}, function(err, user) {
- if (err)
- res.send(err);
 
- res.json(user);
- });
- })*/
 router.route('/:sector')
     .get(function(req, res){
         Course.findOne({'sector': req.params.sector}, function(err, course){
@@ -60,14 +54,41 @@ router.route('/:sector')
             res.json(course)
         })
     });
+
 router.route('/currentCourse/:course_id')
     .get(function(req, res){
         Course.findOne({'course_id': req.params.course_id}, function(err, course){
+            console.log("Course here: =-====================================="+course);
             if(err)
                 res.send(err);
             res.json(course)
         })
     });
+
+router.route('/updateCounter/:_id')
+    .post(function (req, res) {
+        var id = req.params._id;
+        Course.findById(id, function (err, course) {
+            console.log("course found");
+            if(err)
+                res.send(err);
+            else{
+                if(course.counter == null || course.counter == undefined || course.counter == 0){
+                    console.log("counter created");
+                    course.counter = 1;
+                }else{
+                    console.log("counter increased");
+                    course.counter++;
+                }
+                course.save(function(err){
+                    if(err)
+                        res.send(err);
+                    res.json({message: 'Course updated!'});
+                })
+            }
+        })
+    });
+
 router.route('/pushCourse/:course_id')
     .post(function(req, res){
         Course.findOne({'course_id': req.params.course_id}, function (err, course) {
@@ -75,17 +96,14 @@ router.route('/pushCourse/:course_id')
             if(err)
                 res.send(err);
 
-            //console.log(JSON.stringify(req.body.results) + " : r.b.r, " + user + " : just user");
-            /*res.send(user);*/
-
             course.points = req.body.points;
             course.externalLink = req.body.externalLink;
             course.erasmus = req.body.erasmus;
             course.placement = req.body.placement;
             course.portfolio = req.body.portfolio;
             course.thesis = req.body.thesis;
-            console.log("here");
 
+            console.log("counter here: "+ course.counter);
             course.save(function(err){
                 if(err)
                     res.send(err);
@@ -98,7 +116,7 @@ router.route('/addComment/:course_id')
     .post(function(req, res){
         Course.findOne({'course_id': req.params.course_id}, function(err, course){
             console.log("getting in");
-                course.comments.push(req.body.comments);
+            course.comments.push(req.body.comments);
 
             course.save(function(err){
                 if(err)

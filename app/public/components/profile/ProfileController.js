@@ -1,22 +1,22 @@
 (function(){
-    'use strict';
-    App.controller('ProfileController',['$scope', '$state','UserService','$timeout','$window',
-        function($scope, $state, UserService, $timeout, $window){
+    App.controller('ProfileController',['$scope', '$state','UserService','$timeout','$window','$http','profileImageModalService',
+        function($scope, $state, UserService, $timeout, $window, $http, profileImageModalService){
 
             $scope.user = null;
             $scope.results = false;
             $scope.coursesTab = false;
 
-            /*$('#myTab a').click(function (e) {
-                e.preventDefault();
-                $(this).tab('show')
+            //dropdown
+            /*$(document).ready(function(){
+                $(".dropdown-toggle").dropdown();
             });*/
-/*
 
-            $(function () {
-                $('#myTab a:last').tab('show')
+            //pills
+            $(document).ready(function(){
+                $(".nav-tabs a").click(function(){
+                    $(this).tab('show');
+                });
             });
-*/
 
             $scope.top = "Profile Page";
 
@@ -28,15 +28,6 @@
                 }, function(err){
                     console.log('Error here--------' + err);
                 });
-
-            $scope.showResults = function(){
-                $scope.results = true;
-                $scope.coursesTab = false;
-            };
-            $scope.showCourses = function(){
-                $scope.coursesTab = true;
-                $scope.results = false;
-            };
 
             $scope.images = [
                 './assets/img/1.jpg',
@@ -58,6 +49,46 @@
                         console.log(err);
                     })
             };
+
+            $scope.changeBackground = function () {
+                var modalOptions = {
+                    closeButtonText:'Cancel',
+                    actionButtonText: 'OK',
+                    headerText: 'Select a photo'
+                };
+                profileImageModalService.showModal({}, modalOptions);
+            };
+
+            $scope.goToSector = function (sector) {
+                console.log(sector+" ---sectorName here");
+                $state.go('app.definedCourses',{
+                    sectorName: sector
+                });
+            };
+
+           $scope.removeResult = function (result) {
+               UserService.removeResult($scope.user._id, result)
+                   .then(function (res) {
+                       console.log("Remove Result Success");
+                   })
+                   .catch(function (err) {
+                       console.log("Error Removing Result");
+                   })
+           };
+
+           $scope.removeCourse = function (courseId) {
+               console.log($scope.user._id);
+               console.log($scope.user._id);
+               console.log($scope.user._id);
+               UserService.removeCourse($scope.user._id, courseId)
+                   .then(function (res) {
+                       console.log("Remove Course Success");
+                   })
+                   .catch(function (err) {
+                       console.log("Error Removing Course");
+                   })
+           }
+
         }])
         .directive('tab', function() {
             return {

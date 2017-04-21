@@ -22,6 +22,16 @@
 
             $scope.register = function(){
                 $state.go('signup');
+            };
+
+            $scope.joinChat = function () {
+                $http.get('/api/conversations/'+ $scope.conversationId)
+                    .then(function (res) {
+                        console.log("res: "+ res)
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                    })
             }
         }]);
 })();
