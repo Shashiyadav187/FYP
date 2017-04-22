@@ -11,10 +11,10 @@
                 <div class="card card-primary">
                     <div class="card-block">
                         <div class="card-title">
-                            Recently Viewed
+                            Last 7 Recently Viewed Courses
                         </div>
-                        <ul ng-repeat="viewed in user.recentlyViewed">
-                            <li style="padding:2px; text-align:center;"><h4>{{viewed.title}}</h4></li>
+                        <ul ng-repeat="viewed in user.recentlyViewed | limitTo:7">
+                            <li style="text-align:center;"><h4>{{viewed.title}}</h4></li>
                         </ul>
                     </div>
                 </div>
@@ -45,9 +45,7 @@
 
                 </div>
             </div>
-        </div>
 
-        <div class="col-sm-8">
             <div class="card card-primary">
                 <div class="card-header-pills">
                     <div class="card-block">
@@ -78,8 +76,8 @@
                                                 <td>{{result.testName}}</td>
                                                 <td>{{result.score}}</td>
                                                 <td>{{result.timeStamp | date : "hh:mm d MMM, yy" }}</td>
-                                                <td><i class="material-icons" ng-click="goToSector()">search</i></td>
-                                                <td ng-click="removeResult(result)"><i class="material-icons">remove_circle</i></td>
+                                                <td class="search-icon-profile"><i class="material-icons" ng-click="goToSector()">search</i></td>
+                                                <td ng-click="removeResult(result._id)" class="remove-icon-profile"><i class="material-icons">remove_circle</i></td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -106,8 +104,8 @@
                                                 <td>{{result.testName}}</td>
                                                 <td>{{result.score}}</td>
                                                 <td>{{result.timeStamp | date : "hh:mm d MMM, yy" }}</td>
-                                                <td><i class="material-icons" ng-click="goToSector()">search</i></td>
-                                                <td ng-click="removeResult(result)"><i class="material-icons">remove_circle</i></td>
+                                                <td class="search-icon-profile"><i class="material-icons" ng-click="goToSector()">search</i></td>
+                                                <td ng-click="removeResult(result._id)" class="remove-icon-profile"><i class="material-icons">remove_circle</i></td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -134,8 +132,8 @@
                                                 <td>{{result.testName}}</td>
                                                 <td>{{result.recommend}}</td>
                                                 <td>{{result.timeStamp | date : "hh:mm d MMM, yy" }}</td>
-                                                <td><i class="material-icons" ng-click="goToSector()">search</i></td>
-                                                <td ng-click="removeResult(result)"><i class="material-icons">remove_circle</i></td>
+                                                <td class="search-icon-profile"><i class="material-icons" ng-click="goToSector(result.recommend)">search</i></td>
+                                                <td ng-click="removeResult(result._id)" class="remove-icon-profile"><i class="material-icons">remove_circle</i></td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -146,8 +144,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-8">
             <div class="card card-primary">
                 <div class="card-header-pills">
                     <div class="card-block">
@@ -176,8 +172,8 @@
                                                 <td>{{course.title}}</td>
                                                 <td>{{course.college}}</td>
                                                 <td>{{course.points[0]}}</td>
-                                                <td class="text-center"><i class="material-icons" ng-click="goToSector(course.sector)">search</i></td>
-                                                <td ng-click="removeCourse(course._id)"><i class="material-icons">remove_circle</i></td>
+                                                <td class="text-center search-icon-profile"><i class="material-icons" ng-click="goToSector(course.sector)">search</i></td>
+                                                <td ng-click="removeCourse(course._id)" class="remove-icon-profile"><i class="material-icons">remove_circle</i></td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -188,9 +184,35 @@
                     </div>
                 </div>
             </div>
+            <div class="card card-primary">
+                <div class="card-block">
+                    <h3 class="card-title">
+                        <span class="card-name" ng-click="showStats = !showStats">
+                            <i class="fa" ng-class="{'fa-plus':!showStats, 'fa-minus':showStats}"></i>
+                        </span>
+                        Stats
+                    </h3>
+                    <div ng-if="showStats">
+                        <tabset>
+                            <tab heading="Careers Test">
+                                <h1>Sectors of Recently Viewed</h1>
+                                <canvas id="radar" class="chart chart-radar" chart-data="data"
+                                        chart-options="options" chart-labels="labels"> Spider Chart</canvas>
+                            </tab>
+                            <tab heading="Careers Test">
+                                <h1>Amount of Users that got between a certain percentage</h1>
+                                <canvas id="doughnut" class="chart chart-doughnut" chart-data="doughnutData"
+                                        chart-labels="doughnutLabels"> Middle of doughnut</canvas>
+                            </tab>
+                        </tabset>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
 <!--<div class="row">
     <div class="card card-primary">
         <div class="card-block">

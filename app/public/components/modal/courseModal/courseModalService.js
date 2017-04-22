@@ -54,6 +54,10 @@
                         var sector = $scope.modalOptions.sector;
                         $scope.course = null;
 
+                        $scope.rating = 0;
+                        $scope.onRating =function (r) {
+                            console.log("Rating : "+ r);
+                        };
 
                         CourseService.getCurrentCourse(cid)
                             .then(function (res) {
@@ -64,7 +68,7 @@
                             });
 
 
-                        $scope.modalOptions.ok = function (id, comment) {
+                       /* $scope.modalOptions.ok = function (id, comment) {
                             UserService.getCurrentUser()
                                 .then(function (res) {
                                     $scope.user = res.data.user;
@@ -90,7 +94,7 @@
                                 }).catch(function (err) {
                                 console.log("error getting user: "+err);
                             });
-                        };
+                        };*/
 
                         $scope.commentModal = function (c_id) {
                             var modalsOptions = {

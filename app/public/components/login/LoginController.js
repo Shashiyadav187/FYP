@@ -10,6 +10,10 @@
                 './assets/img/3.jpg'
             ];
 
+            $scope.home = function () {
+              $state.go('app.home');
+            };
+
             $scope.signup = function(){
                 $state.go('signup');
             };

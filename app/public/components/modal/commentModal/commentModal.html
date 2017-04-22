@@ -12,20 +12,23 @@
             {{comment.text}}
         </div>
 
-            <div class="col-sm-8 col-sm-offset-2">
-                <div class="md-form">
-                    <input type="text" placeholder="Add Review" row="2" ng-model="commentBody" />
-                </div>
+        <div class="col-sm-8 col-sm-offset-2">
+            <div class="md-form">
+                <input type="text" placeholder="Add Review" row="2" ng-model="commentBody" />
             </div>
-        <button class="btn comment-button col-md-8 col-md-offset-2"
-                ng-click="addComment(commentBody)"
-                ng-class="{'cs-comment-button':modalOptions.sector =='Computer Science',
+            <jk-rating-stars max-rating="5" rating="rating" on-rating="onRating(rating)" >
+            </jk-rating-stars>
+
+            <button class="btn comment-button"
+                    ng-click="addComment(commentBody)"
+                    ng-class="{'cs-comment-button':modalOptions.sector =='Computer Science',
                          'ec-comment-button':modalOptions.sector =='Engineering and Construction',
                          'ms-comment-button':modalOptions.sector =='Medicine and Science',
                          'bm-comment-button':modalOptions.sector =='Business and Management',
                          'ea-comment-button':modalOptions.sector =='Education and Arts'}">
-            Add or View Comments <b class="fa fa fa-comment"></b>
-        </button>
+                Add or View Comments <b class="fa fa fa-comment"></b>
+            </button>
+        </div>
     </div>
 </div>
 <div class="modal-footer">

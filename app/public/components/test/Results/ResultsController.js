@@ -25,11 +25,11 @@
             };
             $scope.array = JSON.parse($stateParams.sectorsArray);
 
-         /*   console.log($scope.array + " array");
-            console.log($scope.array[0].engineering + " array[0].e");
-            console.log($scope.array[0] + " array[0]");
-            console.log($scope.array.length + " array.length");
-*/
+            /*   console.log($scope.array + " array");
+             console.log($scope.array[0].engineering + " array[0].e");
+             console.log($scope.array[0] + " array[0]");
+             console.log($scope.array.length + " array.length");
+             */
 
             if($scope.array[0].science){
                 $scope.colours = ['#F7464A', '#f97d80'];
@@ -121,18 +121,18 @@
                 $http.post('/api/users/pushResult/'+ JSON.parse(email), {
                     results: JSON.parse(result),
                 }).then(function (res) {
-                        console.log("Success addResToUser");
-                        var modalOptions = {
-                            actionButtonText:'Continue',
-                            headerText: 'Careers Test Results Saved'
-                        };
+                    console.log("Success addResToUser");
+                    var modalOptions = {
+                        actionButtonText:'Continue',
+                        headerText: 'Careers Test Results Saved'
+                    };
 
-                        successModalService.showModal({}, modalOptions)
-                            .then(function () {
-                                $state.go('app.home');
-                            });
-                    }).catch(function (err) {
-                        console.log("Error addedResToUser: "+err);
+                    successModalService.showModal({}, modalOptions)
+                        .then(function () {
+                            $state.go('app.home');
+                        });
+                }).catch(function (err) {
+                    console.log("Error addedResToUser: "+err);
                 })
             };
 

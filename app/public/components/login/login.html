@@ -1,61 +1,56 @@
 <div autoscroll="false">
-        <div class="inner-bg">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6 col-sm-offset-3 form-box">
-                        <div class="form-top">
-                            <div class="form-top-left">
-                                <h3>UnisExperience</h3>
-                                <p>Enter your username and password to log on:</p>
-                            </div>
-                            <div class="form-top-right">
-                                <i class="fa fa-lock"></i>
-                            </div>
+    <div class="inner-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 form-box">
+                    <div class="form-top">
+                        <div class="form-top-left">
+                            <h2 class="login-name">
+                                    <span ng-click="home()">
+                                    <span class="fa fa-graduation-cap"></span>
+                                        of<span class="title-blue">Course</span>
+                                    </span>
+                            </h2>
+                            <p>Enter your username and password to log on:</p>
                         </div>
-                        <!--<% if (message.length > 0) { %>
-                        <div class="alert alert-danger"><%= message %></div>
-                        <% } %>-->
-                        <div class="form-bottom">
-                            <form method="post" action="/api/users/login" class="login-form">
-                                <div class="md-form">
-                                    <input type="text" class="form-control" name="email" id="email" required>
-                                    <label for="email">Email</label>
-                                </div>
-                                <div class="md-form">
-                                    <input type="password" class="form-control" name="password" id="password" required>
-                                    <label for="password">Password</label>
-                                </div>
-                                <button type="submit" class="btn button">Sign in!</button>
-                            </form>
-                            Not a member yet? <a href="/#/signup">Signup</a>
+                        <div class="form-top-right">
+                            <i class="fa fa-lock"></i>
                         </div>
                     </div>
-<!--
-                    <div class="col-sm-0.5 signup">H</div>
--->
-                </div>
-                <!--<div class="row">
-                    <div class="col-sm-6 col-sm-offset-3">
-                        <button class="btn button" ng-click="signup()">Sign up!</button>
-                    </div>
-                </div>-->
-                <div class="row">
-                    <div class="col-sm-6 col-sm-offset-3 social-login">
-                        <h3>...or login with:</h3>
-                        <div class="social-login-buttons">
-                            <a class="btn btn-link-2" href="/api/users/auth/facebook">
-                                <i class="fa fa-facebook"></i> Facebook
-                            </a>
-                            <a class="btn btn-link-2" href="#">
-                                <i class="fa fa-twitter"></i> Twitter
-                            </a>
-                            <a class="btn btn-link-2" href="#">
-                                <i class="fa fa-google-plus"></i> Google Plus
-                            </a>
-                        </div>
+                    <!--<% if (message.length > 0) { %>
+                    <div class="alert alert-danger"><%= message %></div>
+                    <% } %>-->
+                    <div class="form-bottom">
+                        <form method="post" action="/api/users/login" class="login-form">
+                            <div class="md-form">
+                                <input type="text" class="form-control" name="email" id="email" required>
+                                <label for="email">Email</label>
+                            </div>
+                            <div class="md-form">
+                                <input type="password" class="form-control" name="password" id="password" required>
+                                <label for="password">Password</label>
+                            </div>
+                            <button type="submit" class="btn button">Sign in!</button>
+                        </form>
+                        Not a member yet? <a href="/#/signup">Signup</a>
                     </div>
                 </div>
             </div>
+            <div class="col-sm-6 col-sm-offset-3 social-login">
+                <h3>...or login with:</h3>
+                <div class="social-login-buttons">
+                    <a class="btn btn-link-2" href="/api/users/auth/facebook">
+                        <i class="fa fa-facebook"></i> Facebook
+                    </a>
+                    <a class="btn btn-link-2" href="#">
+                        <i class="fa fa-twitter"></i> Twitter
+                    </a>
+                    <a class="btn btn-link-2" href="#">
+                        <i class="fa fa-google-plus"></i> Google Plus
+                    </a>
+                </div>
+            </div>
         </div>
+    </div>
     <div backstretch backstretch-images="images" backstretch-duration="6000" backstretch-fade="3"></div>
 </div>

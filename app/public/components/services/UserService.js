@@ -22,7 +22,7 @@
         };
 
         this.removeResult = function (id, result) {
-            return $http.get(baseUrl + '/removeResult/' + id , result)
+            return $http.get(baseUrl + '/removeResult/' + id + '/' + result)
         };
         this.removeCourse = function (id, courseId) {
             return $http.get(baseUrl + '/removeCourse/' + id +'/'+ courseId)

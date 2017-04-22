@@ -22,7 +22,7 @@
                 </div>
             </li>
             <li>
-                <div ng-if="currentUser._id == c.user2._id">
+                <div ng-if="currentUser._id == c.user2._id" style="cursor:pointer;">
                     <div class="contact-profiler" ng-click="joinConversation(c._id)">
                         <div class="alignment">
                             <img ng-src="{{c.user1.profiler}}">
@@ -39,7 +39,7 @@
                 </div>
             </li>
         </ul>
-        <div ng-repeat="u in users">
+        <div ng-hide="currentUser._id == u._id" ng-repeat="u in users">
             <button class="btn btn-default" ng-click="sendInvitation(u)">Chat to {{u.lastName}}</button>
         </div>
     </div>

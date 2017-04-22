@@ -261,7 +261,7 @@
                 var breakout= false;
                 if($scope.user.courses.length > 0 ){
                     for(var i =0; i<$scope.user.courses.length; i++) {
-                        if ($scope.user.courses[i]._id == c._id) {
+                        if ($scope.user.courses[i].title === c.title) {
                             var modalOptions = {
                                 actionButtonText: 'Continue',
                                 headerText: c.title + ' has already been saved',

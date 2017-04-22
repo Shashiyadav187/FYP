@@ -339,36 +339,32 @@ router.route('/getUserById/:_id')
         });
     });
 
-router.route('/removeResult/:_id')
+router.route('/removeResult/:_id/:resultId')
     .get(function(req, res) {
-        User.findOne({'_id': req.params._id}, function(err, user) {
-            if (err)
-                res.send(err);
-            else{
-                console.log(req.body.results);
-                res.json(user);
+        var resultId = req.params.resultId;
+        User.update({'_id': req.params._id}, {
+                $pull : {'results':{_id: resultId}}}, function (err, obj) {
+                console.log(obj);
+                if(err)
+                    res.send(err);
+                else
+                    res.send(obj);
             }
-        });
+        );
     });
 
 router.route('/removeCourse/:_id/:courseId')
     .get(function(req, res) {
         var courseId = req.params.courseId;
-        var id = req.params._id;
-        User.findById(id, function(err, user) {
-            console.log("course id: "+courseId);
-            console.log("user is : "+user.courses);
-            if (err)
-                res.send(err);
-            else {
-                for(var i = 0; i < user.courses.length; i++){
-                    if(user.courses[i]._id == courseId){
-                        user.courses[i].remove();
-                    }
-                }
-                res.json(user);
+        User.update({'_id' : req.params._id}, {
+                $pull : {'courses': {_id: courseId}}}, function(err, obj){
+                console.log(obj);
+                if (err)
+                    res.send(err);
+                else
+                    res.send(obj);
             }
-        });
+        )
     });
 
 router.route('/updateUser/:_id')
