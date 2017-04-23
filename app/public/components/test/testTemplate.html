@@ -10,16 +10,16 @@
             </div>
 
             <div class="row" ng-hide="resultsView">
-
-                <h3 ng-show="t.name== 'Spatial Reasoning'">
-                    <timer interval="1000" max-time-unit="'minute'" countdown="300" finish-callback="CountdownFinished()">{{minutes}} Mins {{sseconds}} Seconds</timer>
-                </h3>
-                <h3 ng-show="t.name== 'Careers Test'">
-                    <timer interval="1000" max-time-unit="'minute'" countdown="1200" finish-callback="CountdownFinished()">{{minutes}} Mins {{sseconds}} Seconds</timer>
-                </h3>
-                <h3 ng-show="t.name== 'Logical Number Series Test'">
-                    <timer interval="1000" max-time-unit="'minute'" countdown="1200" finish-callback="CountdownFinished()">{{minutes}} Mins {{sseconds}} Seconds</timer>
-                </h3>
+                <!--
+                                <h3 ng-show="t.name== 'Spatial Reasoning'">
+                                    <timer interval="1000" max-time-unit="'minute'" countdown="300" finish-callback="CountdownFinished()">{{minutes}} Mins {{sseconds}} Seconds</timer>
+                                </h3>
+                                <h3 ng-show="t.name== 'Careers Test'">
+                                    <timer interval="1000" max-time-unit="'minute'" countdown="1200" finish-callback="CountdownFinished()">{{minutes}} Mins {{sseconds}} Seconds</timer>
+                                </h3>
+                                <h3 ng-show="t.name== 'Logical Number Series Test'">
+                                    <timer interval="1000" max-time-unit="'minute'" countdown="1200" finish-callback="CountdownFinished()">{{minutes}} Mins {{sseconds}} Seconds</timer>
+                                </h3>-->
                 <div class="row">
                     <div class="col-xs-8">
                         <h4>Progress:</h4>
@@ -191,5 +191,16 @@
             </div>
         </div>
     </div>
-    <a class="btn btn-default" href="/#/app/testMenu">Back</a>
+    <!--TODO: Create Tests here-->
+    <div class="col-md-6">
+        <canvas id="line" class="chart chart-line" chart-data="data"
+                chart-labels="labels" chart-series="series" chart-options="options"
+                chart-dataset-override="datasetOverride" chart-click="onClick">
+        </canvas>
+    </div>
+    <div class="col-md-6">
+        <canvas id="doughnut" class="chart chart-doughnut"
+                chart-data="ddata" chart-labels="dlabels">
+        </canvas>
+    </div>
 </div>

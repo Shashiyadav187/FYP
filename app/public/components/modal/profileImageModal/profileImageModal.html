@@ -2,15 +2,17 @@
     <h3>{{modalOptions.headerText}}</h3>
 </div>
 <div class="modal-body">
-    <button class="btn btn-danger" ng-click="changeProfile()">Change Profile Photo</button>
-    <button class="btn btn-danger" ng-click="changeBackground()">Change Background Photo</button>
-    <p><input class="image-input" type="file" id="inputFile1" onchange="angular.element(this).scope().fileSelected(this)" ng-disabled="url == null"/></p>
+    <div class="col-sm-6">
+        <button class="btn btn-danger btn-mdb" ng-click="changeProfile()">Change Profile</button>
+    </div>
+    <div class="col-sm-6">
+        <button class="btn btn-danger btn-mdb" ng-click="changeBackground()">Change Background</button>
+    </div>
+    <input class="btn btn-default" type="file" id="inputfile"
+           onchange="angular.element(this).scope().fileSelected(this)" ng-disabled="url == null"/>
 </div>
 
 <div class="modal-footer">
-    <button class="btn btn-default"
+    <button class="btn btn-default btn-md"
             data-ng-click="modalOptions.close()">{{modalOptions.closeButtonText}}</button>
-    <!--
-    <button class="btn btn-primary"
-            data-ng-click="modalOptions.ok()">{{modalOptions.actionButtonText}}</button>
-</div>-->
+</div>

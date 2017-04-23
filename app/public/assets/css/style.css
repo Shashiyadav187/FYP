@@ -484,6 +484,7 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
     margin-top: 80px;
     position:relative;
     background: #F5F7FA;
+    height: 300px;
 }
 .profile-box{
     margin: 0 0 16px;
@@ -564,6 +565,38 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
     margin-top: 20px;
     background-color: rgba(243,246,248,.94);
     opacity: 1;
+}
+#inputfile{
+    border: 0 !important;
+}
+
+#doughnut{
+    width: 70% !important;
+    height: auto !important;
+    text-align:center !important;
+    margin-left: 15%
+}
+#radar{
+    margin-top: -80px;
+    bottom: -100px !important;
+    width: 80% !important;
+    height: auto !important;
+    text-align: center !important;
+    margin-left: 12%;
+    padding: 0 !important;
+    overflow: hidden;
+}
+#pie{
+    width: 70% !important;
+    height: auto !important;
+    text-align:center !important;
+    margin-left: 15%
+}
+.line-right{
+    border-right: solid 1px aqua;
+}
+.line-left{
+    border-left: solid 1px aqua;
 }
 /*----------------------------------------------- Profile Page -------------------------------------------------------------------------*/
 /*----------------------------------------------- Results Page -------------------------------------------------------------------------*/
@@ -1187,20 +1220,10 @@ textarea{
 #custom-star{
     border: 0 !important;
 }
-#doughnut{
-    width: 70% !important;
-    height: auto !important;
-    text-align:center !important;
-    margin-left: 15%
-}
-#radar{
-    margin-top: -80px;
-    bottom: -100px !important;
-    width: 80% !important;
-    height: auto !important;
-    text-align: center !important;
-    margin-left: 12%;
-    padding: 0 !important;
-    overflow: hidden;
-}
 /*----------------------------------------------- Chat Page -------------------------------------------------------------------------*/
+.slick-next{
+    background-color: red;
+}
+.slick-prev{
+    background-color: red;
+}

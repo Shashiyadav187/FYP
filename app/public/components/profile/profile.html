@@ -1,9 +1,6 @@
 <div class="profile-background">
     <img style="margin-top:100px;" ng-src="{{user.backgroundPhoto}}">
 </div>
-<!--
-<button class="btn custButton" ng-click="changeBackground()">Change background</button>
--->
 <div class="col-md-12">
     <div class="col-sm-3">
         <div class="sizing-top">
@@ -11,9 +8,9 @@
                 <div class="card card-primary">
                     <div class="card-block">
                         <div class="card-title">
-                            Last 7 Recently Viewed Courses
+                            Last 10 Recently Viewed Courses
                         </div>
-                        <ul ng-repeat="viewed in user.recentlyViewed | limitTo:7">
+                        <ul ng-repeat="viewed in user.recentlyViewed | limitTo:10 | orderBy:'-'">
                             <li style="text-align:center;"><h4>{{viewed.title}}</h4></li>
                         </ul>
                     </div>
@@ -42,7 +39,16 @@
                         <li><h3><b>{{user.firstName}} {{user.lastName}}</b></h3></li>
                         <li><h4>{{user.email}}</h4></li>
                     </ul>
-
+                    <div class="col-sm-4 line-right text-center">
+                        <h3>Average Test Score {{myAverage}}</h3>
+                    </div>
+                    <div class="col-sm-4 text-center">
+                        <h3>Recommended Sector:
+                        {{recommendedSector}}</h3>
+                    </div>
+                    <div class="col-sm-4 line-left text-center">
+                        <h3>Courses Viewed : {{user.recentlyViewed.length}}</h3>
+                    </div>
                 </div>
             </div>
 
@@ -184,6 +190,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="card card-primary">
                 <div class="card-block">
                     <h3 class="card-title">
@@ -194,95 +201,39 @@
                     </h3>
                     <div ng-if="showStats">
                         <tabset>
-                            <tab heading="Careers Test">
-                                <h1>Sectors of Recently Viewed</h1>
+                            <tab heading="Recently Viewed">
+                                <h1>Sectors of Recently Viewed Courses</h1>
                                 <canvas id="radar" class="chart chart-radar" chart-data="data"
-                                        chart-options="options" chart-labels="labels"> Spider Chart</canvas>
+                                        chart-options="options" chart-labels="labels"></canvas>
                             </tab>
-                            <tab heading="Careers Test">
-                                <h1>Amount of Users that got between a certain percentage</h1>
+                            <tab heading="All Users Scores">
+                                <h1 class="text-center">All Users Test Results</h1>
                                 <canvas id="doughnut" class="chart chart-doughnut" chart-data="doughnutData"
-                                        chart-labels="doughnutLabels"> Middle of doughnut</canvas>
+                                        chart-labels="doughnutLabels"></canvas>
+                            </tab>
+                            <tab heading="{{user.firstName}} test Results">
+                                <h1 class="text-center">{{user.firstName}}'s Test Results</h1>
+                                <canvas id="pie" class="chart chart-pie" chart-data="sdata"
+                                        chart-labels="labels"></canvas>
+                            </tab>
+                            <tab heading="{{user.firstName}}'s Progress Results">
+                                <h1 class="text-center">Users  Test Results</h1>
+                                <canvas id="line" class="chart chart-line" chart-data="lineData"
+                                        chart-labels="lineLabels"></canvas>
                             </tab>
                         </tabset>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<!--<div class="row">
-    <div class="card card-primary">
-        <div class="card-block">
-            <div class="col-sm-3 col-sm-offset-3 text-center">
-                <div class="btn btn-info" ng-click="showResults()">Results</div>
-            </div>
-            <div class="col-sm-3 text-center">
-                <div class="btn btn-info" ng-click="showCourses()">Courses</div>
-            </div>
-        </div>
-    </div>
-</div>-->
-
-<!-- <ul class="nav nav-tabs" id="myTab">
-     <li class="active"><a data-target="#home" data-toggle="tab">Home</a></li>
-     <li><a data-target="#profile">Profile</a></li>
-     <li><a data-target="#messages">Messages</a></li>
-     <li><a data-target="#settings">Settings</a></li>
- </ul>
-
- <div class="tab-content">
-     <div class="tab-pane active" id="home" data-toggle="tab">home</div>
-     <div class="tab-pane" id="profile" data-toggle="tab">profile</div>
-     <div class="tab-pane" id="messages" data-toggle="tab">messages</div>
-     <div class="tab-pane" id="settings" data-toggle="tab">settings</div>
- </div>-->
-<!--TODO: pills-->
-<!--
-<div class="container">
-    <h2>Dynamic Tabs</h2>
-    <ul class="nav nav-tabs">
-        <li class="active"><a href="#home">Home</a></li>
-        <li><a>Menu 1</a></li>
-        <li><a href="#menu2">Menu 2</a></li>
-        <li><a href="#menu3">Menu 3</a></li>
-    </ul>
-
-    <div class="tab-content">
-        <div id="home" class="tab-pane fade in active">
-            <h3>HOME</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        </div>
-        <div id="menu1" class="tab-pane fade">
-            <h3>Menu 1</h3>
-            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        </div>
-        <div id="menu2" class="tab-pane fade">
-            <h3>Menu 2</h3>
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-        </div>
-        <div id="menu3" class="tab-pane fade">
-            <h3>Menu 3</h3>
-            <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-        </div>
-    </div>
-</div>-->
-
-<!--TODO:dropdown-->
 <!--<div class="container">
-        <h2>Dropdown Example</h2>
-        <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">
-                Dropdown Example
-            </button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">HTML</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CSS</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
-                <li role="presentation" class="divider"></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
-            </ul>
-        </div><br>
-    </div>-->
+    <div class="row">
+        <div class="col-md-12">
+            <slick slides-to-show=3 slides-to-scroll=3>
+                <div ng-repeat="i in [1,2,3,4,5,6,7,8,9,10]"><h3>{{ i }}</h3></div>
+            </slick>
+        </div>
+    </div>
+</div>-->

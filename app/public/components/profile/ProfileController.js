@@ -11,11 +11,12 @@
             $scope.thirdFifth = 0;
             $scope.fourthFifth = 0;
             $scope.fifthFifth = 0;
+            $scope.averageResults = 0;
 
+            $scope.doughnutLabels = ["0-20%", "21-40", "41-60",
+                "61-80", "81-100"];
             $timeout(function () {
-                $scope.doughnutLabels = ["0-20%", "21-40", "41-60",
-                    "61-80", "81-100"];
-                $scope.doughnutData = [$scope.firstFifth, $scope.secondFifth, $scope.thirdFifth, $scope.fourthFifth, $scope.fifthFifth];
+
             }, 2000);
 
 
@@ -28,12 +29,6 @@
                     console.log(err);
                 });
 
-            /*//pills
-            $(document).ready(function(){
-                $(".nav-tabs a").click(function(){
-                    $(this).tab('show');
-                });
-            });*/
 
             UserService.getUsers()
                 .then(function (res) {
@@ -50,24 +45,36 @@
                         }else {
                             if ($scope.users[i].results[x].score >= 0 &&
                                 $scope.users[i].results[x].score <= 20){
+                                //$scope.averageResults += $scope.users[i].results[x].score;
                                 $scope.firstFifth++;
                             } else if($scope.users[i].results[x].score > 20 &&
                                 $scope.users[i].results[x].score <= 40){
+                                //$scope.averageResults += $scope.users[i].results[x].score;
                                 $scope.secondFifth++;
                             } else if($scope.users[i].results[x].score > 40 &&
                                 $scope.users[i].results[x].score <= 60){
+                                //$scope.averageResults += $scope.users[i].results[x].score;
                                 $scope.thirdFifth++;
                             } else if($scope.users[i].results[x].score > 60 &&
                                 $scope.users[i].results[x].score <= 80){
+                                //$scope.averageResults += $scope.users[i].results[x].score;
                                 $scope.fourthFifth++;
                             } else if($scope.users[i].results[x].score > 80 &&
                                 $scope.users[i].results[x].score <= 100){
+                                //$scope.averageResults += $scope.users[i].results[x].score;
                                 $scope.fifthFifth++;
                             }
                         }
                     }
+                    //console.log("Total Average: "+$scope.averageResults);
                 }
+                $scope.doughnutData = [$scope.firstFifth, $scope.secondFifth, $scope.thirdFifth, $scope.fourthFifth, $scope.fifthFifth];
+
+                /*$scope.averageResults = $scope.averageResults/
+                 console.log()*/
             }, 500);
+
+
 
             $scope.getCurrentUser = function () {
                 UserService.getCurrentUser()
@@ -80,39 +87,177 @@
             };
             $scope.getCurrentUser();
 
+            $scope.myAverage = 0;
+            $scope.lineLabels = [];
+
+            /*Date labels*/
+            $timeout(function () {
+                $scope.lineData = [];
+                for(var i = 0; i < $scope.user.results.length; i++){
+                    if($scope.user.results[i].testName == 'Careers Test'){
+
+                    } else {
+                        $scope.myAverage += $scope.user.results[i].score;
+                        $scope.lineData.push($scope.user.results[i].score);
+                        var d = new Date($scope.user.results[i].timeStamp).getDate();
+                        var m = new Date($scope.user.results[i].timeStamp).getMonth();
+                        var h = new Date($scope.user.results[i].timeStamp).getHours();
+                        var mm = new Date($scope.user.results[i].timeStamp).getUTCMinutes();
+                        var yy = new Date($scope.user.results[i].timeStamp).getFullYear();
+                        var date  = d+'/'+m+'/'+yy+'  '+h+':'+mm;
+                        //console.log("date : "+date);
+                        $scope.lineLabels.push(date);
+                    }
+                }
+                $scope.myAverage = Math.round($scope.myAverage/$scope.user.results.length, 2);
+                /*console.log("MY total average: "+$scope.myAverage);
+                 console.log("Line data: "+$scope.lineData);
+                 console.log("Line labels: "+$scope.lineLabels);*/
+            }, 500);
+
             $scope.cs = 0;
             $scope.ec = 0;
             $scope.ms = 0;
             $scope.bm = 0;
             $scope.ea = 0;
+            $scope.scs = 0;
+            $scope.sec = 0;
+            $scope.sms = 0;
+            $scope.sbm = 0;
+            $scope.sea = 0;
 
+            /*Recently Viewed*/
             $timeout(function () {
-                for(var i = 0; i< $scope.user.recentlyViewed.length; i++){
-                    switch($scope.user.recentlyViewed[i].sector){
-                        case 'Computer Science': $scope.cs++;
-                            break;
-                        case 'Engineering and Construction' : $scope.ec++;
-                            break;
-                        case 'Medicine and Science' : $scope.ms++;
-                            break;
-                        case 'Business and Management' : $scope.bm++;
-                            break;
-                        case 'Education and Arts' : $scope.ea++;
-                            break;
+                var looped = 0;
+                do{
+                    for(var i = $scope.user.recentlyViewed.length-1; i >= 0; i--) {
+                        switch ($scope.user.recentlyViewed[i].sector) {
+                            case 'Computer Science':
+                                $scope.cs++;
+                                break;
+                            case 'Engineering and Construction' :
+                                $scope.ec++;
+                                break;
+                            case 'Medicine and Science' :
+                                $scope.ms++;
+                                break;
+                            case 'Business and Management' :
+                                $scope.bm++;
+                                break;
+                            case 'Education and Arts' :
+                                $scope.ea++;
+                                break;
+                        }
+                        looped++;
                     }
-                }
+                } while(looped <= 10);
                 $scope.data = [$scope.cs, $scope.ec, $scope.ms, $scope.bm, $scope.ea];
             }, 500);
 
+            /*Sectors*/
+            $timeout(function () {
+                for (var i = 0; i < $scope.user.courses.length; i++) {
+                    switch ($scope.user.courses[i].sector) {
+                        case 'Computer Science':
+                            $scope.scs++;
+                            break;
+                        case 'Engineering and Construction' :
+                            $scope.sec++;
+                            break;
+                        case 'Medicine and Science' :
+                            $scope.sms++;
+                            break;
+                        case 'Business and Management' :
+                            $scope.sbm++;
+                            break;
+                        case 'Education and Arts' :
+                            $scope.sea++;
+                            break;
+                    }
+                }
+                $scope.sdata = [$scope.scs,$scope.sec,$scope.sms,$scope.sbm,$scope.sea]
+            }, 500);
+
+
             $scope.labels = ["Computer Science", "Construction & Engineering", "Medicine & Science", "Business & Management", "Arts & Education"];
 
+            //$scope.myRecommendation = function () {
+            $scope.sectorRecArr = [];
+            $timeout(function () {
+                var comps = $scope.scs + $scope.cs;
+                var engcons = $scope.sec + $scope.ec;
+                var meds = $scope.sms + $scope.ms;
+                var bam = $scope.sbm + $scope.bm;
+                var eda = $scope.sea + $scope.ea;
 
+                for(var i = 0; i < $scope.user.results.length; i++){
+                    switch ($scope.user.results[i].testName){
+                        case 'Careers Test':
+                            switch ($scope.user.results[i].recommend) {
+                                case 'Computer Science':
+                                    comps++;
+                                    break;
+                                case 'Engineering and Construction' :
+                                    engcons++;
+                                    break;
+                                case 'Medicine and Science' :
+                                    meds++;
+                                    break;
+                                case 'Business and Management' :
+                                    bam++;
+                                    break;
+                                case 'Education and Arts' :
+                                    eda++;
+                                    break;
+                                default:console.log("nothing found");
+                                    break;
+                            }break;
+                        case 'Spatial Reasoning':
+                            var res = $scope.user.results[i].score;
+                            if(res < 40){
+                                meds++;
+                                bam++;
+                                eda++;
+                            } else if(res >= 40 && res < 70){
+                                comps = comps+2;
+                                engcons++;
+                            }  else{
+                                comps = comps+3;
+                                engcons = engcons+2;
+                            }
+                            break;
+                        case 'Logical Number Series Test':
+                            if(res < 40){
+                                meds++;
+                                bam++;
+                                eda++;
+                            } else if(res >= 40 && res < 70){
+                                comps = comps+2;
+                                engcons++;
+                            } else{
+                                comps = comps+3;
+                                engcons = engcons+2;
+                            }
+                            break;
+                    }
+                }
+                $scope.sectorRecArr.push(comps, engcons, meds, bam, eda);
+                console.log("Array: "+$scope.sectorRecArr);
+                var largest = Math.max.apply(Math, $scope.sectorRecArr);
+                if(largest == $scope.sectorRecArr[0]){
+                    $scope.recommendedSector = 'Computer Science';
+                } else if(largest == $scope.sectorRecArr[1]){
+                    $scope.recommendedSector = 'Engineering and Construction';
+                } else if(largest == $scope.sectorRecArr[2]){
+                    $scope.recommendedSector = 'Medicine and Science';
+                } else if(largest == $scope.sectorRecArr[3]){
+                    $scope.recommendedSector = 'Business and Management';
+                } else if(largest == $scope.sectorRecArr[4]){
+                    $scope.recommendedSector = 'Education and Arts';
+                }
+            }, 700);
 
-            $scope.images = [
-                './assets/img/1.jpg',
-                './assets/img/2.jpg',
-                './assets/img/3.jpg'
-            ];
+            //};
 
             $scope.changeBackground = function () {
                 var modalOptions = {
@@ -121,6 +266,7 @@
                     headerText: 'Select a photo'
                 };
                 profileImageModalService.showModal({}, modalOptions);
+                $scope.getCurrentUser();
             };
 
             $scope.goToSector = function (sector) {
@@ -139,6 +285,7 @@
                             headerText: 'Result Successfully Removed'
                         };
                         successModalService.showModal({}, modalOptions);
+                        $scope.getCurrentUser();
                     })
                     .catch(function (err) {
                         console.log("Error Removing Result");
