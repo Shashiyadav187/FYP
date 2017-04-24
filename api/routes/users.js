@@ -386,6 +386,25 @@ router.route('/updateUser/:_id')
 
         });
     });
+router.route('/updateStatus/:_id')
+    .post(function(req, res) {
+        User.findOne({'_id': req.params._id}, function(err, user) {
+            if (err)
+                res.send(err);
+            else {
+                user.status = user.status == false;
+
+
+                user.save(function(err){
+                    if(err)
+                        res.send(err);
+
+                    res.json({message: 'User updated!'});
+                });
+            }
+
+        });
+    });
 
 router.route('/updateViewed/:_id')
     .post(function(req, res) {

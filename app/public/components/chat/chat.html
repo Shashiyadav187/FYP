@@ -1,46 +1,67 @@
 <div class="container">
     <div class="col-sm-3 contact-list">
-        <br />
-        <br />
-        <ul ng-repeat="c in relevantConversations">
-            <li>
-                <div ng-if="currentUser._id == c.user1._id">
+        <div class="col-sm-12">
+            <div class="col-sm-5">
+                <button class="btn btn-md mdb-color" ng-click="activeChats()">
+                    Active chats
+                </button>
+            </div>
+            <div class="col-sm-5">
+                <button class="btn btn-md mdb-color" ng-click="newChats()">
+                    New chat
+                </button>
+            </div>
+        </div>
+        <div class="sizing-top"></div>
+        <div class="activeChat" ng-show="activeChat" ng-hide="newChat">
 
-                    <div class="contact-profiler" ng-click="joinConversation(c._id)">
-                        <div class="alignment">
-                            <img ng-src="{{c.user2.profiler}}">
-                        </div>
-                        <div class="user-info">
-                            <div class="contact-name">
-                                {{c.user2.firstName}} {{c.user2.lastName}}
-                            </div>
-                            <div class="online-icon"
-                                 ng-class="{'not-online': c.user2.status  == false ,
+            <ul ng-repeat="c in relevantConversations">
+                <li>
+                    <div ng-if="currentUser._id == c.user1._id">
+
+                        <div class="contact-profiler" ng-click="joinConversation(c._id)">
+                            <div class="col-sm-12">
+                                <div class="alignment">
+                                    <img ng-src="{{c.user2.profiler}}">
+                                </div>
+                                <div class="user-info">
+                                    <div class="contact-name">
+                                        {{c.user2.firstName}} {{c.user2.lastName}}
+                                    </div>
+                                    <div class="online-icon"
+                                         ng-class="{'not-online': c.user2.status  == false ,
                             'is-online': c.user2.status == true}"></div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div ng-if="currentUser._id == c.user2._id" style="cursor:pointer;">
-                    <div class="contact-profiler" ng-click="joinConversation(c._id)">
-                        <div class="alignment">
-                            <img ng-src="{{c.user1.profiler}}">
-                        </div>
-                        <div class="user-info">
-                            <div class="contact-name">
-                                {{c.user1.firstName}} {{c.user1.lastName}}
+                                </div>
                             </div>
-                            <div class="online-icon"
-                                 ng-class="{'not-online': c.user1.status  == false ,
-                            'is-online': c.user1.status == true}"></div>
                         </div>
                     </div>
-                </div>
-            </li>
-        </ul>
-        <div ng-hide="currentUser._id == u._id" ng-repeat="u in users">
-            <button class="btn btn-default" ng-click="sendInvitation(u)">Chat to {{u.lastName}}</button>
+                </li>
+                <li>
+                    <div ng-if="currentUser._id == c.user2._id">
+                        <div class="col-sm-12">
+                            <div class="contact-profiler" ng-click="joinConversation(c._id)">
+                                <div class="alignment">
+                                    <img ng-src="{{c.user1.profiler}}">
+                                </div>
+                                <div class="user-info">
+                                    <div class="contact-name">
+                                        {{c.user1.firstName}} {{c.user1.lastName}}
+                                    </div>
+                                    <div class="online-icon"
+                                         ng-class="{'not-online': c.user1.status  == false ,
+                            'is-online': c.user1.status == true}"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="activeChat" ng-show="newChat" ng-hide="activeChat">
+            <input style="padding: 5px;" ng-model="searchUser" type="text" placeholder="Search for User...">
+            <div ng-hide="currentUser._id == u._id" ng-repeat="u in users | userFilter:searchUser">
+                <button class="btn btn-default" ng-click="sendInvitation(u)">Chat to {{u.lastName}}</button>
+            </div>
         </div>
     </div>
     <div class="col-sm-8 chat-background">
@@ -89,7 +110,7 @@
         </div>
         <footer class="card-footer">
             <form ng-submit="sendMessage()">
-            <input ng-model="body" class="form-control" rows="2" ng-disabled="noUser" />
+                <input ng-model="body" class="form-control" rows="2" ng-disabled="noUser" />
             </form>
 
             <!--<button id="chat-button" class="btn btn-sm " ng-click="sendMessage()" ng-disabled="noUser">Send</button>-->

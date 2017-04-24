@@ -10,6 +10,9 @@
             $scope.relevantConversations = [];
             $scope.friend = {};
             $scope.noUser = true;
+            $scope.activeChat = true;
+            $scope.newChat = false;
+            $scope.searchUser = "";
 
             UserService.getCurrentUser()
                 .then(function (res) {
@@ -73,10 +76,10 @@
                             console.log(res.data);
                             if ($scope.currentUser._id == $scope.conversation.user1._id) {
                                 $scope.friend = $scope.conversation.user2;
-                                $scope.conversation.user1.status = true;
+                                //$scope.conversation.user1.status = true;
                             } else {
                                 $scope.friend = $scope.conversation.user1;
-                                $scope.conversation.user2.status = true;
+                                //$scope.conversation.user2.status = true;
                             }
                             console.log(res);
                         })
@@ -145,17 +148,17 @@
                 }
             }
 
-            /*$interval(function () {
-                console.log($scope.conversation._id);
-                $http.get('/api/conversations/'+$scope.conversation._id)
-                    .then(function (res) {
-                        $scope.conversation = res.data;
-                        console.log("res.data in get: "+res.data);
-                    })
-                    .catch(function (err) {
-                        console.log(err);
-                    })
-            }, 5000);*/
+            $interval(function () {
+             console.log($scope.conversation._id);
+             $http.get('/api/conversations/'+$scope.conversation._id)
+             .then(function (res) {
+             $scope.conversation = res.data;
+             console.log("res.data in get: "+res.data);
+             })
+             .catch(function (err) {
+             console.log(err);
+             })
+             }, 5000);
 
             $http.get('/api/conversations/')
                 .then(function (res) {
@@ -163,10 +166,15 @@
                     console.log($scope.currentUser._id);
                     $scope.conversations = res.data;
                     for(var i =0; i<$scope.conversations.length; i++) {
-                        if ($scope.currentUser._id == $scope.conversations[i].user1._id ||
-                            $scope.currentUser._id == $scope.conversations[i].user2._id)
+                        if ($scope.currentUser._id == $scope.conversations[i].user1._id){
+                            $scope.conversations[i].user1.status = true;
                             $scope.relevantConversations.push($scope.conversations[i]);
+                        }else if($scope.currentUser._id == $scope.conversations[i].user2._id) {
+                            $scope.conversations[i].user2.status = true;
+                            $scope.relevantConversations.push($scope.conversations[i]);
+                        }
                     }
+
                     console.log($scope.relevantConversations);
                 })
                 .catch(function (err) {
@@ -197,29 +205,32 @@
                 });
             };
 
-            /* $scope.checkName = function (c) {
-             if (c.user1Id == $scope.currentUser._id) {
-             console.log("user 2 id is friend");
-             UserService.getById(c.user2Id)
-             .then(function (res) {
+            $scope.activeChats = function () {
+                $scope.activeChat = true;
+                $scope.newChat = false;
+            };
 
-             $scope.friendName.push(res.data.lastName);
-             console.log($scope.friendName);
-             })
-             .catch(function (err) {
-             console.log(err);
-             })
-             } else {
-             console.log("user 1 id is friend");
-             UserService.getById(c.user1Id)
-             .then(function (res) {
-             $scope.friendName.push(res.data.lastName);
-             console.log($scope.friendName);
-             })
-             .catch(function (err) {
-             console.log(err);
-             })
-             }
-             };*/
+            $scope.newChats = function () {
+                $scope.activeChat = false;
+                $scope.newChat  =true;
+            }
         }])
+        .filter('userFilter', function() {
+            return function(users, search) {
+                if (angular.isDefined(search)) {
+                    var filtered = [];
+                    angular.forEach(users, function (user) {
+                        if (user.firstName.toLowerCase().includes(search) || user.firstName.includes(search)) {
+                            filtered.push(user);
+                        } else if(search == ''){
+                            filtered.push(user);
+                        } else if(user.lastName.toLowerCase().includes(search) || user.lastName.includes(search)){
+                            filtered.push(user);
+                        }
+                    });
+                    return filtered;
+                }
+            };
+        })
+
 })();

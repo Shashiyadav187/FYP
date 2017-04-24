@@ -188,19 +188,20 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-6">
+                    <canvas id="line" class="chart chart-line" chart-data="data"
+                            chart-labels="labels" chart-series="series" chart-options="options"
+                            chart-dataset-override="datasetOverride" chart-click="onClick">
+                    </canvas>
+                </div>
+                <div class="col-md-6">
+                    <canvas id="doughnut" class="chart chart-doughnut"
+                            chart-data="ddata" chart-labels="dlabels">
+                    </canvas>
+                </div>
             </div>
         </div>
     </div>
     <!--TODO: Create Tests here-->
-    <div class="col-md-6">
-        <canvas id="line" class="chart chart-line" chart-data="data"
-                chart-labels="labels" chart-series="series" chart-options="options"
-                chart-dataset-override="datasetOverride" chart-click="onClick">
-        </canvas>
-    </div>
-    <div class="col-md-6">
-        <canvas id="doughnut" class="chart chart-doughnut"
-                chart-data="ddata" chart-labels="dlabels">
-        </canvas>
-    </div>
+
 </div>

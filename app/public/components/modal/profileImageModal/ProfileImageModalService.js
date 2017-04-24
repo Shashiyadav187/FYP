@@ -77,7 +77,7 @@
                                     if($scope.url == '/profileImages/') {
                                         $scope.currentUser.profiler = state.snapshot.downloadURL;
                                         console.log($scope.currentUser.profiler, ': is my new profiler');
-                                    } else if($scope.url = '/backgroundImages/') {
+                                    } else if($scope.url == '/backgroundImages/') {
                                         $scope.currentUser.backgroundPhoto = state.snapshot.downloadURL;
                                         console.log($scope.currentUser.backgroundPhoto, ': is my new background');
                                     }

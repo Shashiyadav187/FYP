@@ -38,6 +38,8 @@
                     console.log(err);
                 });
 
+            var totalResults = 0;
+
             $timeout(function () {
                 for(var i = 0;i< $scope.users.length; i++){
                     for(var x = 0; x < $scope.users[i].results.length; x++){
@@ -64,17 +66,31 @@
                                 //$scope.averageResults += $scope.users[i].results[x].score;
                                 $scope.fifthFifth++;
                             }
+                            totalResults++;
                         }
                     }
                     //console.log("Total Average: "+$scope.averageResults);
                 }
-                $scope.doughnutData = [$scope.firstFifth, $scope.secondFifth, $scope.thirdFifth, $scope.fourthFifth, $scope.fifthFifth];
+                $scope.doughnutData = [(($scope.firstFifth/totalResults)*100), (($scope.secondFifth/totalResults)*100),
+                    (($scope.thirdFifth/totalResults)*100), (($scope.fourthFifth/totalResults)*100),
+                    (($scope.fifthFifth/totalResults)*100)];
 
                 /*$scope.averageResults = $scope.averageResults/
                  console.log()*/
             }, 500);
 
-
+            $scope.options = {
+                scales: {
+                    yAxes: [{
+                        display: true,
+                        ticks: {
+                            suggestedMax: 100,    // minimum will be 0, unless there is a lower value.
+                            // OR //
+                            beginAtZero: true   // minimum value will be 0.
+                        }
+                    }]
+                }
+            };
 
             $scope.getCurrentUser = function () {
                 UserService.getCurrentUser()
@@ -129,9 +145,32 @@
             /*Recently Viewed*/
             $timeout(function () {
                 var looped = 0;
-                do{
-                    for(var i = $scope.user.recentlyViewed.length-1; i >= 0; i--) {
-                        switch ($scope.user.recentlyViewed[i].sector) {
+                if($scope.user.recentlyViewed.length >= 10) {
+                    do {
+                        for (var i = $scope.user.recentlyViewed.length - 1; i >= 0; i--) {
+                            switch ($scope.user.recentlyViewed[i].sector) {
+                                case 'Computer Science':
+                                    $scope.cs++;
+                                    break;
+                                case 'Engineering and Construction' :
+                                    $scope.ec++;
+                                    break;
+                                case 'Medicine and Science' :
+                                    $scope.ms++;
+                                    break;
+                                case 'Business and Management' :
+                                    $scope.bm++;
+                                    break;
+                                case 'Education and Arts' :
+                                    $scope.ea++;
+                                    break;
+                            }
+                            looped++;
+                        }
+                    } while (looped <= 10);
+                } else {
+                    for (var x = 0; x < $scope.user.recentlyViewed.length; x++) {
+                        switch ($scope.user.recentlyViewed[x].sector) {
                             case 'Computer Science':
                                 $scope.cs++;
                                 break;
@@ -148,9 +187,8 @@
                                 $scope.ea++;
                                 break;
                         }
-                        looped++;
                     }
-                } while(looped <= 10);
+                }
                 $scope.data = [$scope.cs, $scope.ec, $scope.ms, $scope.bm, $scope.ea];
             }, 500);
 
@@ -219,10 +257,10 @@
                                 bam++;
                                 eda++;
                             } else if(res >= 40 && res < 70){
-                                comps = comps+2;
+                                comps++;
                                 engcons++;
                             }  else{
-                                comps = comps+3;
+                                comps = comps+2;
                                 engcons = engcons+2;
                             }
                             break;
@@ -232,10 +270,10 @@
                                 bam++;
                                 eda++;
                             } else if(res >= 40 && res < 70){
-                                comps = comps+2;
+                                comps++;
                                 engcons++;
                             } else{
-                                comps = comps+3;
+                                comps = comps+2;
                                 engcons = engcons+2;
                             }
                             break;
@@ -306,6 +344,10 @@
                     .catch(function (err) {
                         console.log("Error Removing Course");
                     })
+            };
+
+            $scope.goToCourses = function () {
+                $state.go('app.courses');
             }
 
         }])

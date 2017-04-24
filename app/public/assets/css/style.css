@@ -598,6 +598,24 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
 .line-left{
     border-left: solid 1px aqua;
 }
+.results-profile.ng-hide-add{
+    animation: 0.15s fadeOutUp  ease;
+}
+.results-profile.ng-hide-remove{
+    animation: 0.5s fadeInDown ease;
+}
+.courses-profile.ng-hide-add{
+    animation: 0.15s fadeOutUp  ease;
+}
+.courses-profile.ng-hide-remove{
+    animation: 0.5s fadeInDown ease;
+}
+.stats-profile.ng-hide-add{
+    animation: 0.5s fadeOutUp  ease;
+}
+.stats-profile.ng-hide-remove {
+    animation: 0.5s fadeInDown ease;
+}
 /*----------------------------------------------- Profile Page -------------------------------------------------------------------------*/
 /*----------------------------------------------- Results Page -------------------------------------------------------------------------*/
 .results-title{
@@ -791,7 +809,7 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
 .dropdown-content {
     display: none;
     background-color: #f9f9f9;
-    width: 20px;
+    width: 200px;
     overflow: auto;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
@@ -1148,10 +1166,13 @@ textarea{
     background-color: #434753;
     height: 530px;
     right: -15px;
+    overflow: hidden;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 }
 .chat-background{
     background-color: #F1F5F8;
-    padding-left: 10px;
+    margin-left: 20px;
 }
 .chat-profiler{
     font-size: 18px;
@@ -1159,11 +1180,19 @@ textarea{
     overflow: hidden;
     padding: 0 25px 15px 25px;
     text-align: left;
+
 }
 .chat-profiler img{
     width: 80px;
     height: 80px;
     border-radius: 50%;
+}
+.contact-profiler{
+    cursor: pointer;
+    height: 50px;
+}
+.contact-profiler:hover{
+    background-color: #555964 !important;
 }
 .contact-profiler img{
     height: 40px;
@@ -1175,11 +1204,7 @@ textarea{
 .alignment{
     width:25%;
     text-align: right;
-}/*
-.contact-profiler img{
-    width: 25%;
-    text-align:right;
-}*/
+}
 .online-icon{
     height:10px;
     width:10px;
@@ -1216,14 +1241,33 @@ textarea{
 }
 #chat-button:hover{
     background-color: #d8dcdf !important;
+}/*
+.activeChat{
+    transition: all linear 0.5s;
+    height:100%;
 }
-#custom-star{
-    border: 0 !important;
+.activeChat .ng-hide{
+    height:0;
 }
+.newChat{
+    transition: all linear 0.5s;
+    height:100%;
+}
+.newChat .ng-hide{
+    height: 0;
+}*/
 /*----------------------------------------------- Chat Page -------------------------------------------------------------------------*/
 .slick-next{
     background-color: red;
 }
 .slick-prev{
     background-color: red;
+}
+.activeChat.ng-hide-add         {
+    animation:0.5s fadeOutLeft ease;
+}
+
+/* when showing the thing */
+.activeChat.ng-hide-remove      {
+    animation: 0.5s fadeInRight ease;
 }

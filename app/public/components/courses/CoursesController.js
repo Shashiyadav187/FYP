@@ -16,19 +16,23 @@
             $scope.arrayCourses = [];
             $scope.hasSaved = false;
 
-            UserService.getCurrentUser()
-                .then(function (res) {
-                    console.log("Get user success");
-                    $scope.user = res.data.user;
-                })
-                .catch(function(err, status){
-                    console.log("Get user error: "+err+ " status: "+status);
-                });
+            $scope.currUser = function () {
+                UserService.getCurrentUser()
+                    .then(function (res) {
+                        console.log("Get user success");
+                        $scope.user = res.data.user;
+                    })
+                    .catch(function (err, status) {
+                        console.log("Get user error: " + err + " status: " + status);
+                    });
+            };
+            $scope.currUser();
 
             $scope.getCourses = function(){
                 CourseService.getCourses()
                     .then(function (res) {
                         $scope.courses = res.data;
+                        //$scope.removeUnnecessaryCourses();
                         //console.log("data is "+ res.data);
                     }, function (err) {
                         console.log('Error ' + err);
@@ -36,6 +40,37 @@
                     })
             };
             $scope.getCourses();
+
+           /* var shitCourses = [];
+            $scope.removeUnnecessaryCourses = function () {
+                for(var i = 0; i < $scope.courses.length; i++){
+                    switch($scope.courses[i].sector){
+                        case 'Sociology and Social Care':
+                            shitCourses.push($scope.courses[i]);
+                            removeCourseById($scope.courses[i]._id);
+                            break;
+                        case 'Psychology and Law':
+                            shitCourses.push($scope.courses[i]);
+                            removeCourseById($scope.courses[i]._id);
+                            break;
+                        case 'History and Politics':
+                            shitCourses.push($scope.courses[i]);
+                            removeCourseById($scope.courses[i]._id);
+                            break;
+
+                    }
+                } console.log("shit courses: "+ shitCourses);
+            };*/
+
+            /*var removeCourseById = function (cid) {
+                $http.get('/api/courses/remove/'+cid)
+                    .then(function (res) {
+                        console.log("course removed: "+res);
+                    })
+                    .catch(function (err) {
+                        console.log("error removing course: ",err);
+                    })
+            };*/
 
             $scope.createCourses = function(coursesArray){
                 console.log("clicked");
@@ -139,6 +174,7 @@
                 $http.post('/api/courses/updateCounter/' + c._id)
                     .then(function (res) {
                         console.log("Update counter "+ res);
+                        $scope.getCourses();
                     })
                     .catch(function (err) {
                         console.log("error counting");
@@ -179,7 +215,9 @@
                         console.log(res+" response");
                     }, function(err){
                         console.log(err);
-                    })
+                    });
+                $scope.getCourses();
+                $scope.currUser();
             };
 
 
@@ -280,6 +318,7 @@
                         courses: c
                     }).then(function (res) {
                         console.log("post to user success " + res);
+                        $scope.currUser();
                         var modalOptions = {
                             actionButtonText: 'Continue',
                             headerText: c.title + ' has been saved',
@@ -296,6 +335,7 @@
                         courses: c
                     }).then(function (res) {
                         console.log("post to user success " + res);
+                        $scope.currUser();
                         var modalOptions = {
                             actionButtonText: 'Continue',
                             headerText: c.title + ' has been saved',
@@ -304,9 +344,11 @@
 
 
                         successModalService.showModal({}, modalOptions);
+
                     }).catch(function (data, status) {
                         console.log("Error posting to user " + data + " status: " + status);
-                    })
+                    });
+
             }
 
         }])

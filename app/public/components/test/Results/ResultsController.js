@@ -13,11 +13,9 @@
             $scope.options = {
                 responsive: true,
                 scales: {
-                    xAxes: [{
-                        stacked: false,
-                    }],
                     yAxes: [{
                         ticks: {
+                            suggestedMax : 100,
                             beginAtZero:true
                         }
                     }]

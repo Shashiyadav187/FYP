@@ -126,6 +126,21 @@ router.route('/addComment/:course_id')
             })
         })
     });
+
+router.route('/remove/:_id')
+    .get(function (req, res) {
+        var id = req.params._id;
+        console.log("conv req.id: "+ req.params._id);
+        Course.findById(id, function (err, course) {
+            console.log("Inside course api");
+            if(err)
+                res.send(err);
+            else {
+                course.remove();
+                res.send(course);
+            }
+        })
+    });
 /*
  var c1 = new Course({
  title: "Business Computing",

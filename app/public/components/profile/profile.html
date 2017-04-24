@@ -72,7 +72,7 @@
                                                 <th>Test Name</th>
                                                 <th>Score</th>
                                                 <th>Date Completed</th>
-                                                <th>Go To Sector</th>
+                                                <th>View Courses</th>
                                                 <th>Remove</th>
                                             </tr>
                                             </thead>
@@ -82,7 +82,7 @@
                                                 <td>{{result.testName}}</td>
                                                 <td>{{result.score}}</td>
                                                 <td>{{result.timeStamp | date : "hh:mm d MMM, yy" }}</td>
-                                                <td class="search-icon-profile"><i class="material-icons" ng-click="goToSector()">search</i></td>
+                                                <td class="search-icon-profile"><i class="material-icons" ng-click="goToCourses()">search</i></td>
                                                 <td ng-click="removeResult(result._id)" class="remove-icon-profile"><i class="material-icons">remove_circle</i></td>
                                             </tr>
                                             </tbody>
@@ -99,7 +99,7 @@
                                                 <th>Test Name</th>
                                                 <th>Score</th>
                                                 <th>Date Completed</th>
-                                                <th>Go To Sector</th>
+                                                <th>View Courses</th>
                                                 <th>Remove</th>
                                             </tr>
                                             </thead>
@@ -110,7 +110,7 @@
                                                 <td>{{result.testName}}</td>
                                                 <td>{{result.score}}</td>
                                                 <td>{{result.timeStamp | date : "hh:mm d MMM, yy" }}</td>
-                                                <td class="search-icon-profile"><i class="material-icons" ng-click="goToSector()">search</i></td>
+                                                <td class="search-icon-profile"><i class="material-icons" ng-click="goToCourses()">search</i></td>
                                                 <td ng-click="removeResult(result._id)" class="remove-icon-profile"><i class="material-icons">remove_circle</i></td>
                                             </tr>
                                             </tbody>
@@ -204,7 +204,7 @@
                             <tab heading="Recently Viewed">
                                 <h1>Sectors of Recently Viewed Courses</h1>
                                 <canvas id="radar" class="chart chart-radar" chart-data="data"
-                                        chart-options="options" chart-labels="labels"></canvas>
+                                        chart-labels="labels"></canvas>
                             </tab>
                             <tab heading="All Users Scores">
                                 <h1 class="text-center">All Users Test Results</h1>
@@ -219,7 +219,7 @@
                             <tab heading="{{user.firstName}}'s Progress Results">
                                 <h1 class="text-center">Users  Test Results</h1>
                                 <canvas id="line" class="chart chart-line" chart-data="lineData"
-                                        chart-labels="lineLabels"></canvas>
+                                        chart-options="options" chart-labels="lineLabels"></canvas>
                             </tab>
                         </tabset>
                     </div>
