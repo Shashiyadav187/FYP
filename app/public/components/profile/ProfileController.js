@@ -40,45 +40,6 @@
 
             var totalResults = 0;
 
-            $timeout(function () {
-                for(var i = 0;i< $scope.users.length; i++){
-                    for(var x = 0; x < $scope.users[i].results.length; x++){
-                        if($scope.users[i].results[x].testName == 'Careers Test'){
-                        }else {
-                            if ($scope.users[i].results[x].score >= 0 &&
-                                $scope.users[i].results[x].score <= 20){
-                                //$scope.averageResults += $scope.users[i].results[x].score;
-                                $scope.firstFifth++;
-                            } else if($scope.users[i].results[x].score > 20 &&
-                                $scope.users[i].results[x].score <= 40){
-                                //$scope.averageResults += $scope.users[i].results[x].score;
-                                $scope.secondFifth++;
-                            } else if($scope.users[i].results[x].score > 40 &&
-                                $scope.users[i].results[x].score <= 60){
-                                //$scope.averageResults += $scope.users[i].results[x].score;
-                                $scope.thirdFifth++;
-                            } else if($scope.users[i].results[x].score > 60 &&
-                                $scope.users[i].results[x].score <= 80){
-                                //$scope.averageResults += $scope.users[i].results[x].score;
-                                $scope.fourthFifth++;
-                            } else if($scope.users[i].results[x].score > 80 &&
-                                $scope.users[i].results[x].score <= 100){
-                                //$scope.averageResults += $scope.users[i].results[x].score;
-                                $scope.fifthFifth++;
-                            }
-                            totalResults++;
-                        }
-                    }
-                    //console.log("Total Average: "+$scope.averageResults);
-                }
-                $scope.doughnutData = [(($scope.firstFifth/totalResults)*100), (($scope.secondFifth/totalResults)*100),
-                    (($scope.thirdFifth/totalResults)*100), (($scope.fourthFifth/totalResults)*100),
-                    (($scope.fifthFifth/totalResults)*100)];
-
-                /*$scope.averageResults = $scope.averageResults/
-                 console.log()*/
-            }, 500);
-
             $scope.options = {
                 scales: {
                     yAxes: [{
@@ -105,6 +66,7 @@
 
             $scope.myAverage = 0;
             $scope.lineLabels = [];
+            var resultsLength = 0;
 
             /*Date labels*/
             $timeout(function () {
@@ -113,6 +75,7 @@
                     if($scope.user.results[i].testName == 'Careers Test'){
 
                     } else {
+                        resultsLength++;
                         $scope.myAverage += $scope.user.results[i].score;
                         $scope.lineData.push($scope.user.results[i].score);
                         var d = new Date($scope.user.results[i].timeStamp).getDate();
@@ -125,7 +88,7 @@
                         $scope.lineLabels.push(date);
                     }
                 }
-                $scope.myAverage = Math.round($scope.myAverage/$scope.user.results.length, 2);
+                $scope.myAverage = Math.round($scope.myAverage/resultsLength, 2);
                 /*console.log("MY total average: "+$scope.myAverage);
                  console.log("Line data: "+$scope.lineData);
                  console.log("Line labels: "+$scope.lineLabels);*/
@@ -216,6 +179,52 @@
                 $scope.sdata = [$scope.scs,$scope.sec,$scope.sms,$scope.sbm,$scope.sea]
             }, 500);
 
+            $scope.myLogicalAverage = 0;
+            $scope.totalLogicalAverage = 0;
+            $scope.mySpatialAverage = 0;
+            $scope.totalSpatialAverage = 0;
+            var myLogC = 0;
+            var tLogC = 0;
+            var mySpaC = 0;
+            var tSpaC = 0;
+
+            $timeout(function () {
+                for(var i = 0;i< $scope.users.length; i++){
+                    for(var x = 0; x < $scope.users[i].results.length; x++){
+                        if($scope.users[i]._id == $scope.user._id){
+                            if($scope.users[i].results[x].testName == 'Logical Number Series Test'){
+                                $scope.myLogicalAverage += $scope.users[i].results[x].score;
+                                myLogC++;
+                                console.log("Added to my numerical");
+                            }else if($scope.users[i].results[x].testName == 'Spatial Reasoning'){
+                                $scope.mySpatialAverage += $scope.users[i].results[x].score;
+                                mySpaC++;
+                                console.log("Added to my spatial");
+                            } else{
+                                console.log("not numerical reasoning or spatial in my");
+                            }
+                        }else {
+                            if($scope.users[i].results[x].testName == 'Logical Number Series Test'){
+                                $scope.totalLogicalAverage += $scope.users[i].results[x].score;
+                                tLogC++;
+                                console.log("Added to total numerical");
+                            }else if($scope.users[i].results[x].testName == 'Spatial Reasoning'){
+                                $scope.totalSpatialAverage += $scope.users[i].results[x].score;
+                                tSpaC++;
+                                console.log("Added to total spatial");
+                            } else{
+                                console.log("not numerical reasoning or spatial in total");
+                            }
+                        }
+                    }
+                    //console.log("Total Average: "+$scope.averageResults);
+                }
+                $scope.averageData = [$scope.myLogicalAverage/myLogC, $scope.totalLogicalAverage/tLogC,
+                    $scope.mySpatialAverage/mySpaC, $scope.totalSpatialAverage/tSpaC ];
+            }, 500);
+
+            $scope.averageLabels = ["Average Spatial Test Score", "My Average Spatial Score", "Average Numerical Test Score",
+                "My Average Numerical Score"];
 
             $scope.labels = ["Computer Science", "Construction & Engineering", "Medicine & Science", "Business & Management", "Arts & Education"];
 
@@ -344,6 +353,12 @@
                     .catch(function (err) {
                         console.log("Error Removing Course");
                     })
+            };
+
+            $scope.goToCourse = function (id) {
+                $state.go('app.singleCourse', {
+                    id : JSON.stringify(id)
+                })
             };
 
             $scope.goToCourses = function () {

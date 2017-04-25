@@ -237,26 +237,16 @@ button:focus {
 }
 .middle-about p{
     color:white;
-    font-size: 19px;
-}
-.middle-about p .body-text{
-    padding-top:3px;
-    font-size: 14px !important;
-}
-.course-filler{
-
+    font-size: 25px;
+    font-weight: 400 !important;
 }
 .middle-about{
     background-color: #262431;
-    height: 400px;
+    height: 460px;
     width: 100%;
     max-height: 100%;
-}
-.middle-about{
-    background-color: #262431;
-    height: 400px;
-    width: 100%;
-    max-height: 100%;
+    padding: 60px 0;
+    letter-spacing: .025em ;
 }
 .top-content{
     height:15px;
@@ -264,8 +254,15 @@ button:focus {
 .border-left{
     border-left:3px solid #2F96E8;
 }
+.border-right{
+    border-right:3px solid #2F96E8;
+}
 .border-middle-left{
     border-left:3px solid #de995e;
+}
+.letters{
+    font-size: 20px;
+    font-weight:300 !important;
 }
 /*----------------------------------------------- Main Menu -------------------------------------------------------------------------*/
 /*----------------------------------------------- Login Page ------------------------------------------------------------------------*/
@@ -706,6 +703,57 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
     max-height: 100%;
     cursor:pointer;
 }
+.second-courses-box-first{
+    box-shadow: 0 0 0 1px rgba(0,0,0,.1), 0 2px 3px rgba(0,0,0,.2);
+}
+.second-courses-box{
+    border-top:1px solid white;
+    margin-top: -13px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    color: #84878a;
+    display: flex;
+    flex-direction: column;
+    height: 50px;
+    max-height: 100%;
+    cursor:pointer;
+}
+.single-course-title{
+    font-size: 22px;
+    padding: 10px 0 10px 10px;
+}
+.single-line{
+    width: 100%
+}
+.top-left{
+    padding-left:10px;
+    padding-top:5px;
+    font-size: 17px;
+    width:50%;
+    display: inline-block;
+}
+.top-right{
+    text-align: right;
+    cursor:pointer;
+    width: 45%;
+    display: inline-block;
+}
+.comment-date{
+    font-size: 12px;
+    padding-left: 10px;
+}
+.commentBody{
+    padding: 10px 10px 10px 25px;
+}
+.viewed{
+    padding-top:5px;
+    font-size: 15px;
+    font-weight: 300 !important;
+    padding-left: 15px;
+}
+.viewed .eye-icon{
+    padding-top: 5px;
+    padding-right: 10px;
+}
 .courses-top {
     overflow: visible;
     padding: 0 25px 10px 25px;
@@ -737,12 +785,38 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
 .courses-middle{
     height:80px;
     padding: 5px 0 0 5px;
-    font-size: 20px;
+    font-size: 18px;
     width:100%;
 }
 .middle-left{
     width:60%;
     float: left;
+}
+.single-middle-left{
+    width:60%;
+    float: left;
+    font-size: 30px !important;
+    color: white !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.025em;
+    text-align: center !important;
+    padding-top: 25px;
+    padding-left: 5px;
+}
+.single-middle-right{
+    width: 40%;
+    float:left;
+    text-align: center;
+}
+.single-middle-right img{
+    height: 100px !important;
+    padding-left: 25px;
+    margin-top: 20px;
+}
+.course-sector{
+    font-size: 25px;
+    text-align: center;
+    padding-top: 3%
 }
 .middle-right{
     width: 40%;
@@ -752,7 +826,7 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
 .courses-middle-bottom{
     height:80px;
     padding: 10px 5px;
-    font-size: 20px;
+    font-size: 18px;
     color: black;
     background-color: #f1f1f1;
     overflow:hidden;
@@ -883,6 +957,26 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
     color:white;
 }
 .eaColour{
+    background-color: #FDB45C;
+    color:white;
+}
+.second-csColour{
+    background-color: #97BBCD;
+    color:white;
+}
+.second-ecColour{
+    background-color: #66BB6A;
+    color:white;
+}
+.second-msColour{
+    background-color: #F7464A;
+    color:white;
+}
+.second-bmColour{
+    background-color: #46BFBD;
+    color:white;
+}
+.second-eaColour{
     background-color: #FDB45C;
     color:white;
 }
@@ -1200,16 +1294,19 @@ textarea{
     border-radius: 50%;
     color: white;
     float: left;
+    margin-left: 10px;
+    margin-top: 6px;
 }
 .alignment{
     width:25%;
     text-align: right;
 }
 .online-icon{
-    height:10px;
-    width:10px;
+    height:50px;
+    width:50px;
     border-radius:50%;
     margin-left: 5px;
+    z-index: 0;
 }
 .is-online{
     background-color: #62BF6E;

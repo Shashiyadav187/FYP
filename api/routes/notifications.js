@@ -74,4 +74,23 @@ router.route('/findByUser/:id')
         )
     });
 
+router.route('/updateSeen/:_id')
+    .post(function (req, res) {
+        Notification.findOne({'_id' : req.params._id}, function (err, notification) {
+            if(err)
+                res.send(err);
+            else{
+                notification.seen = true;
+                notification.save(function(err) {
+                    if(err)
+                        res.send(err);
+                    else
+                        res.send(notification);
+
+                })
+            }
+        })
+    });
+
+
 module.exports = router;

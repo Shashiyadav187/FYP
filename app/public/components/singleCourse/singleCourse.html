@@ -1,0 +1,128 @@
+<!--
+<div class="title-bar" ng-class="{'csColour':sectorName =='Computer Science',
+                         'ecColour':sectorName =='Engineering and Construction',
+                         'msColour':sectorName =='Medicine and Science',
+                         'bmColour':sectorName =='Business and Management',
+                         'eaColour':sectorName =='Education and Arts'}">{{sectorName}}</div>
+
+<div class="col-sm-10">&lt;!&ndash; filter:searchBar |filter:ageFilter | customFilter:types | &ndash;&gt;
+    <div class="col-sm-3 text-center">
+        <div class="courses-box-first">
+            <div class="courses-box"
+                 ng-class="{'csColour':course.sector =='Computer Science',
+                         'ecColour':course.sector =='Engineering and Construction',
+                         'msColour':course.sector =='Medicine and Science',
+                         'bmColour':course.sector =='Business and Management',
+                         'eaColour':course.sector =='Education and Arts'}">
+                <div class="courses-top">
+                    <div class="courses-top-left">
+                        {{course.course_id}}
+
+                    </div>
+                    <div class="courses-top-middle">
+                        {{course.points[0]}}
+                    </div>
+                    <div class="courses-top-right">
+                        <i class="material-icons" data-ng-click="saveCourseToUser(course)">bookmark</i>
+                    </div>
+                </div>
+                <div ng-click="displayCourse(course)" >
+                    <div class="courses-middle bgIcon"
+                         ng-class="{'ditIcon': course.college == 'Dublin Institute of Technology',
+                                            'ucdIcon': course.college == 'University College Dublin',
+                                            'tcdIcon': course.college == 'Trinity College'}">
+                        <div class="middle-left">{{course.college}}</div>
+                        <div class="middle-right">
+                            <img src="../.././assets/img/dit-logo.png">
+                        </div>
+                    </div>
+                    <div class="courses-middle-bottom">
+                        {{course.title}}
+                    </div>
+                    <div class="courses-bottom text-center">
+                        <div>
+                            {{course.sector}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+<div class="container" style="padding-top:20px;">
+    <div class="col-sm-4">
+        <div class="courses-box-first">
+            <div class="courses-box" ng-class="{'csColour':course.sector =='Computer Science',
+                         'ecColour':course.sector =='Engineering and Construction',
+                         'msColour':course.sector =='Medicine and Science',
+                         'bmColour':course.sector =='Business and Management',
+                         'eaColour':course.sector =='Education and Arts'}">
+                <div class="courses-middle bgIcon" style="height:150px;"
+                     ng-class="{'ditIcon': course.college == 'Dublin Institute of Technology',
+                        'ucdIcon': course.college == 'University College Dublin',
+                        'tcdIcon': course.college == 'Trinity College'}">
+                    <div class="single-middle-left">{{course.college}}</div>
+                    <div class="single-middle-right">
+                        <img src="../.././assets/img/dit-logo.png">
+                    </div>
+                </div>
+                <div class="course-sector">
+                    {{course.sector}}
+                </div>
+            </div>
+        </div>
+        <div class="second-courses-box-first">
+            <div class="second-courses-box" ng-class="{'csColour':course.sector =='Computer Science',
+                         'mecColour':course.sector =='Engineering and Construction',
+                         'msColour':course.sector =='Medicine and Science',
+                         'bmColour':course.sector =='Business and Management',
+                         'eaColour':course.sector =='Education and Arts'}">
+                <div class="viewed">
+                    <span class="eye-icon">
+                        <i class="material-icons">remove_red_eye</i>
+                        </span>Viewed {{course.counter}} times
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-7">
+        <div class="card card-primary">
+            <div class="card-block">
+                <div class="card-title">
+                    {{course.title}}
+                </div>
+            </div>
+        </div>
+        <div class="card card-primary">
+            <div class="card-block">
+                <div class="single-course-title">
+                    Comments
+                </div>
+                <div ng-repeat="c in course.comments">
+                    <div class="single-line">
+                        <div class="top-left">
+                            {{c.user.firstName}} {{c.user.lastName}}
+                        </div>
+
+                        <div class="top-right">
+                            Start a chat<i class="material-icons">chat_bubble</i>
+                        </div>
+                    </div>
+                    <div class="comment-date">
+                        {{c.timeStamp | date : "d MMM yy, hh:mm " }}
+                    </div>
+                    <div class="commentBody">
+                        {{c.text}}
+                    </div>
+                </div>
+                <div class="comment-area">
+                    Add a review
+                    <input type="text" ng-model="textBody">
+                    <button class="btn btn-info" ng-click="addComment(textBody)">Submit</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

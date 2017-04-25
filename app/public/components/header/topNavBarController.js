@@ -23,7 +23,6 @@
                 UserService.getCurrentUser()
                     .then(function (res) {
                         $scope.currentUser = res.data.user;
-                        $scope.getConv();
                     }, function (err) {
                         console.log('Get user Error ' + err);
                         $scope.currentUser = null;
@@ -45,6 +44,7 @@
                     .then(function (res) {
                         console.log("Success logout",res);
                         $scope.updateStatus();
+                        $scope.updateConversationStatus();
                         $state.go('login');
                     })
                     .catch(function (err) {
@@ -52,58 +52,49 @@
                     })
             };
 
-            $scope.getConv = function () {
-                $http.get('/api/conversations/loopThrough/this/' + $scope.currentUser._id)
-                    .then(function (res) {
-                        console.log('loop test ', res)
-                    })
-                    .catch(function (err) {
-                        console.log("error ", err);
-                    });
-            }
-            /*$interval(function () {
-                if ($scope.currentUser.firstName != null) {
-                if($scope.currentUser.status == false){
-                    $scope.updateStatus();
-                    }
-                    console.log("update status+ "+$scope.currentUser.status);
-                }
-            }, 7000);
-
             $scope.updateStatus = function () {
                 $http.post('/api/users/updateStatus/'+$scope.currentUser._id)
                     .then(function (res) {
                         console.log("status updated: "+res);
-                        $scope.updateConversationStatus();
                     })
                     .catch(function (err) {
                         console.log("error updating: "+err);
                     })
             };
 
-            $scope.updateConversationStatus = function () {
-              $http.get('/api/conversations')
-                  .then(function (res) {
-                      console.log("status updated: "+res);
-                      $scope.conversations = res.data.data;
-                      for(var i = 0; i< $scope.conversations.length; i++){
-                          $http.post('/api/conversations/updateStatus/'+$scope.conversations[i]._id)
-                              .then(function (res) {
+            /*$scope.updateConversationStatus = function () {
+                $http.get('/api/conversations')
+                    .then(function (res) {
+                        console.log("status updated: "+res);
+                        $scope.conversations = res.data;
+                        for(var i = 0; i< $scope.conversations.length; i++){
+                            $http.post('/api/conversations/updateStatus/'+$scope.conversations[i]._id+'/'+$scope.currentUser._id)
+                                .then(function (res) {
+                                    console.log("success "+ res);
+                                })
+                                .catch(function (err) {
+                                    console.log("success "+ err);
 
-                              })
-                              .catch(function () {
+                                })
+                        }
 
-                              })
-                      }
-
-                  })
-                  .catch(function (err) {
-                      console.log("error updating: "+err);
-                  })
-            };*/
-
-            $scope.accept = function (convId) {
+                    })
+                    .catch(function (err) {
+                        console.log("error updating: "+err);
+                    })
+            };
+*/
+            $scope.accept = function (convId, notId) {
                 console.log("conversationId:"+convId);
+                console.log("notId:"+notId);
+                $http.post('/api/notifications/updateSeen/'+notId)
+                    .then(function (res) {
+                        console.log("Notification changed to seen");
+                        $scope.unseenNotifications.pop();
+                    })
+                    .catch(function (err) {
+                        console.log("changing to seen error");
+                    });
                 $state.go('app.chat',{
                     id: convId
                 });
@@ -133,16 +124,29 @@
                     })
             };
 
+            $scope.unseenNotifications = [];
 
             /*$interval(function () {
-                $http.get('/api/notifications/findByUser/'+$scope.currentUser._id)
-                    .then(function (res) {
-                        $scope.notifications = res.data;
-                        console.log("notifications:" +res.data)
-                    })
-                    .catch(function (err) {
-                        console.log("error " + err);
-                    });
+                if ($scope.currentUser != null || $scope.currentUser != undefined) {
+                    if($scope.currentUser.status == false){
+                        $scope.updateStatus();
+                        $scope.updateConversationStatus();
+                    }
+                    console.log("update status+ "+$scope.currentUser.status);
+                    $http.get('/api/notifications/findByUser/'+$scope.currentUser._id)
+                        .then(function (res) {
+                            $scope.notifications = res.data;
+                            for(var i= 0; i < $scope.notifications.length; i++) {
+                                if ($scope.notifications[i].seen == false) {
+                                    $scope.unseenNotifications.push($scope.notifications[i]);
+                                }
+                            }
+                            console.log("notifications:" +res.data)
+                        })
+                        .catch(function (err) {
+                            console.log("error " + err);
+                        });
+                }
             }, 7000);*/
 
         }]);

@@ -101,9 +101,17 @@
                 .state('app.definedCourses',{
                     url: '/definedCourses/:sectorName',
                     controller: 'DefinedCoursesController',
-                    templateUrl: 'views/definedCourses.html',
+                    templateUrl: 'views/definedCourse.html',
                     params:{
                         'sectorName': ''
+                    }
+                })
+                .state('app.singleCourse',{
+                    url: '/singleCourse/:id',
+                    controller: 'SingleCourseController',
+                    templateUrl: 'views/singleCourse.html',
+                    params:{
+                        'id': ''
                     }
                 })
                 .state('app.chat',{

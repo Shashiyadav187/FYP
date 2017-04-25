@@ -22,9 +22,6 @@
             $scope.user = null;
             $scope.continue= false;
 
-            $scope.CountdownFinished = function () {
-
-            };
             $scope.getTest = function () {
                 $http({
                     method: 'GET',
@@ -99,6 +96,7 @@
                     }
                 }
                 $scope.percentage = ($scope.numCorrectAnswers/$scope.tests[testIndex].questions[0].question.length) * 100;
+                $scope.getGraphResults();
                 return $scope.numCorrectAnswers + $scope.percentage;
             };
 
@@ -189,15 +187,58 @@
             };
             $scope.getUser();
 
-            $scope.addResultToUser = function(result, email){
-
-            };
-
             $scope.finish = function () {
                 $state.go('app.home');
             };
 
-            $scope.dlabels = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
+            UserService.getUsers()
+                .then(function (res) {
+                    $scope.users = res.data;
+                    console.log($scope.users+" users");
+                    //$scope.getGraphResults();
+                }).catch(function (err) {
+                console.log(err+" err");
+            });
+
+            $scope.firstFifth = 0;
+            $scope.secondFifth = 0;
+            $scope.thirdFifth = 0;
+            $scope.fourthFifth = 0;
+            $scope.fifthFifth = 0;
+
+            $scope.getGraphResults= function () {
+                for(var i = 0;i< $scope.users.length; i++){
+                    for(var x = 0; x < $scope.users[i].results.length; x++){
+                        if($scope.users[i].results[x].testName == 'Spatial Reasoning'){
+                            if ($scope.users[i].results[x].score >= 0 &&
+                                $scope.users[i].results[x].score <= 20){
+                                $scope.firstFifth++;
+                            } else if($scope.users[i].results[x].score > 20 &&
+                                $scope.users[i].results[x].score <= 40){
+                                $scope.secondFifth++;
+                            } else if($scope.users[i].results[x].score > 40 &&
+                                $scope.users[i].results[x].score <= 60){
+                                $scope.thirdFifth++;
+                            } else if($scope.users[i].results[x].score > 60 &&
+                                $scope.users[i].results[x].score <= 80){
+                                $scope.fourthFifth++;
+                            } else if($scope.users[i].results[x].score > 80 &&
+                                $scope.users[i].results[x].score <= 100){
+                                $scope.fifthFifth++;
+                            }
+                        }else {
+                            console.log("not spatial reasoning")
+                        }
+                    }
+                    //console.log("Total Average: "+$scope.averageResults);
+                }
+                $scope.ddata = [$scope.firstFifth, $scope.secondFifth, $scope.thirdFifth, $scope.fourthFifth,
+                    $scope.fifthFifth];
+            };
+
+            $scope.dlabels = ["0-20%", "21-40", "41-60",
+                "61-80", "81-100"];
+            //$scope.dlabels = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
             $scope.ddata = [300, 500, 100];
 
             $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];

@@ -13,7 +13,7 @@
                 return $http.get(apiUrl, {cache: true});
             };
             this.getCourse = function (id) {
-                return $http.get(apiUrl + '/' + id, {cache: true});
+                return $http.get(apiUrl + '/byId/' + id, {cache: true});
             };
 
             this.getCurrentCourse = function (id) {
@@ -30,6 +30,7 @@
            /* this.getCoursesBySector = function(sector){
                 return $http.get(apiUrl + '/' + sector, {cache: true});
             };*/
+
 
             /*this.updateCourses = function(course){
                 return $http.post(baseUrl + '/' + course);

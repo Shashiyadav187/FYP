@@ -54,6 +54,14 @@ router.route('/:sector')
             res.json(course)
         })
     });
+router.route('/byId/:_id')
+    .get(function(req, res){
+        Course.findOne({'_id': req.params._id}, function(err, course){
+            if(err)
+                res.send(err);
+            res.json(course)
+        })
+    });
 
 router.route('/currentCourse/:course_id')
     .get(function(req, res){

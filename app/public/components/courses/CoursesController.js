@@ -190,34 +190,12 @@
                         console.log("error updating user "+ err);
                     });
 
-                var modalOptions = {
-                    closeButtonText:'Cancel',
-                    actionButtonText: 'OK',
-                    image: '',
-                    course: c.title,
-                    code: c.course_id,
-                    college: c.college,
-                    points: c.points,
-                    sector: c.sector,
-                    thesis: c.thesis,
-                    portfolio: c.portfolio,
-                    erasmus: c.erasmus,
-                    placement: c.placement,
-                    externalLink: c.externalLink,
-                    duration: c.duration,
-                    comments: c.comments,
-                    views: c.counter,
-                    id : c._id
-                };
-
-                courseModalService.showModal({}, modalOptions)
-                    .then(function(res){
-                        console.log(res+" response");
-                    }, function(err){
-                        console.log(err);
-                    });
                 $scope.getCourses();
                 $scope.currUser();
+
+                $state.go('app.singleCourse',{
+                    id : JSON.stringify(c._id)
+                });
             };
 
 

@@ -9,20 +9,18 @@
             <li ng-show="currentUser.firstName!=null" class="nav-btn-custom">
                 <div class="dropdown1">
                     <a class="dropbtn1">
-                        <span ng-class="{ 'fa-stack has-badge': notifications.length > 0 }" data-count="{{notifications.length}}">
+                        <span ng-class="{ 'fa-stack has-badge': unseenNotifications.length > 0 }" data-count="{{unseenNotifications.length}}">
                           <i class="fa fa-comments fa-stack-2x fa-inverse"></i>
                         </span>
-
-                        <!--<span class="fa fa-comments fa-2x"></span>-->
                     </a>
                     <div class="dropdown-content1">
-                        <div ng-repeat="n in notifications">
+                        <div ng-repeat="n in notifications | orderBy: '-'">
                             <div ng-if="notifications.length < 1">
                                 You will receive your notifications here
                             </div>
                             <a>{{n.message}}
-                                <div class="btn-group-xs">
-                                    <button class="btn btn-info btn-xs" ng-click="accept(n.conversationId)">Accept</button>
+                                <div ng-show="n.seen == false" class="btn-group-xs">
+                                    <button class="btn btn-info btn-xs" ng-click="accept(n.conversationId, n._id)">Accept</button>
                                     <button class="btn btn-danger btn-xs" ng-click="decline(n.conversationId, n._id)">Decline</button>
                                 </div>
                             </a>

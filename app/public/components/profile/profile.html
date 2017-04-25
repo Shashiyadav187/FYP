@@ -1,5 +1,5 @@
 <div class="profile-background">
-    <img style="margin-top:100px;" ng-src="{{user.backgroundPhoto}}">
+    <img style="margin-top:100px; object-fit: cover;" ng-src="{{user.backgroundPhoto}}">
 </div>
 <div class="col-md-12">
     <div class="col-sm-3">
@@ -11,7 +11,7 @@
                             Last 10 Recently Viewed Courses
                         </div>
                         <ul ng-repeat="viewed in user.recentlyViewed | limitTo:10 | orderBy:'-'">
-                            <li style="text-align:center;"><h4>{{viewed.title}}</h4></li>
+                            <li style="text-align:center;cursor:pointer;"><h4 ng-click="goToCourse(viewed._id)">{{viewed.title}}</h4></li>
                         </ul>
                     </div>
                 </div>
@@ -169,7 +169,7 @@
                                                 <th>Course Name</th>
                                                 <th>College</th>
                                                 <th>Points</th>
-                                                <th>Go To Sector</th>
+                                                <th>Go To Course</th>
                                                 <th>Remove</th>
                                             </tr>
                                             </thead>
@@ -178,7 +178,7 @@
                                                 <td>{{course.title}}</td>
                                                 <td>{{course.college}}</td>
                                                 <td>{{course.points[0]}}</td>
-                                                <td class="text-center search-icon-profile"><i class="material-icons" ng-click="goToSector(course.sector)">search</i></td>
+                                                <td class="text-center search-icon-profile"><i class="material-icons" ng-click="goToCourse(course._id)">search</i></td>
                                                 <td ng-click="removeCourse(course._id)" class="remove-icon-profile"><i class="material-icons">remove_circle</i></td>
                                             </tr>
                                             </tbody>
@@ -206,15 +206,15 @@
                                 <canvas id="radar" class="chart chart-radar" chart-data="data"
                                         chart-labels="labels"></canvas>
                             </tab>
-                            <tab heading="All Users Scores">
-                                <h1 class="text-center">All Users Test Results</h1>
-                                <canvas id="doughnut" class="chart chart-doughnut" chart-data="doughnutData"
-                                        chart-labels="doughnutLabels"></canvas>
+                            <tab heading="{{user.firstName}}'s Test Results">
+                                <h1 class="text-center">{{user.firstName}}'s Test Results</h1>
+                                <canvas id="doughnut" class="chart chart-doughnut" chart-data="sdata"
+                                        chart-labels="labels"></canvas>
                             </tab>
                             <tab heading="{{user.firstName}} test Results">
-                                <h1 class="text-center">{{user.firstName}}'s Test Results</h1>
-                                <canvas id="pie" class="chart chart-pie" chart-data="sdata"
-                                        chart-labels="labels"></canvas>
+                                <h1 class="text-center">Compare Averages</h1>
+                                <canvas chart-options="options" class="chart chart-bar" chart-data="averageData"
+                                        chart-labels="averageLabels"></canvas>
                             </tab>
                             <tab heading="{{user.firstName}}'s Progress Results">
                                 <h1 class="text-center">Users  Test Results</h1>

@@ -386,6 +386,7 @@ router.route('/updateUser/:_id')
 
         });
     });
+
 router.route('/updateStatus/:_id')
     .post(function(req, res) {
         User.findOne({'_id': req.params._id}, function(err, user) {
@@ -393,8 +394,6 @@ router.route('/updateStatus/:_id')
                 res.send(err);
             else {
                 user.status = user.status == false;
-
-
                 user.save(function(err){
                     if(err)
                         res.send(err);

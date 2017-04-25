@@ -53,13 +53,16 @@
                             });
 
                         $scope.url = null;
+                        $scope.title = "";
 
 
                         $scope.changeBackground = function () {
                             $scope.url = '/backgroundImages/';
+                            $scope.title = "Background";
                         };
                         $scope.changeProfile = function () {
                             $scope.url = '/profileImages/';
+                            $scope.title = "Profile";
                         };
 
                         $scope.fileSelected = function (element) {

@@ -101,6 +101,50 @@
                         console.log(err);
                     });
             };
+
+            UserService.getUsers()
+                .then(function (res) {
+                    $scope.users = res.data;
+                    console.log($scope.users+" users");
+                    $scope.createRadarGraph();
+                }).catch(function (err) {
+                console.log(err+" err");
+            });
+
+            $scope.scs = 0;
+            $scope.sec = 0;
+            $scope.sms = 0;
+            $scope.sbm = 0;
+            $scope.sea = 0;
+
+            $scope.createRadarGraph = function () {
+                for (var i = 0; i < $scope.users.length; i++) {
+                    for (var x = 0; x < $scope.users[i].results.length; x++) {
+                        if($scope.users[i].results[x].testName =='Careers Test') { console.log("found ct");
+                            switch ($scope.users[i].results[x].recommend) {
+                                case 'Computer Science':
+                                    $scope.scs++;
+                                    break;
+                                case 'Engineering and Construction' :
+                                    $scope.sec++;
+                                    break;
+                                case 'Medicine and Science' :
+                                    $scope.sms++;
+                                    break;
+                                case 'Business and Management' :
+                                    $scope.sbm++;
+                                    break;
+                                case 'Education and Arts' :
+                                    $scope.sea++;
+                                    break;
+                            }
+                        }
+                    }
+                }
+                $scope.sdata = [$scope.scs,$scope.sec,$scope.sms,$scope.sbm,$scope.sea]
+            };
+            $scope.slabels = ["Computer Science", "Construction & Engineering", "Medicine & Science", "Business & Management", "Arts & Education"];
+
             $scope.createResult = function(){
                 $http.post('/api/results', {
                     testName: 'Careers Test',

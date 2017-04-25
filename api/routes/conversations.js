@@ -78,45 +78,29 @@ router.route('/remove/:_id')
             }
         })
     });
-router.route('/loopThrough/this/:_id')
-    .get(function (req, res) {
-        var id = req.params._id;
-        console.log("id: "+id);
-        Conversation.find({},function (err, conversation) {
-            if(err)
-                res.send(err);
-            else {
-                for (var i = 0; i < conversation.length; i++) {
-                    if(conversation[i].user1._id == id){
-                        conversation[i].user1.status = !conversation[i].user1.status;
-                        console.log("convId: "+ conversation[i]._id);
-                        console.log("status: "+ conversation[i].user1.status);
-                        conversation[i].save();
-                    } else if(conversation[i].user2._id == id){
-                        conversation[i].user2.status = !conversation[i].user2.status;
-                        console.log("convId: "+ conversation[i]._id);
-                        console.log("status: "+ conversation[i].user2.status);
-                        conversation[i].save();
-                    }
-                    //console.log("conversation: " + conversation._id);
-                }
-                res.send(conversation);
-            }
-        })
-    });
-/*router.route('/updateStatus/:_id')
+
+/*router.route('/updateStatus/:_id/:userId')
     .post(function(req, res) {
-        var id = req.params._id;
-        Conversation.findById(id, function(err, conversation) {
+        var userId = req.params.userId;
+        Conversation.findOne({'_id': req.params._id}, function(err, conversation) {
             if (err)
                 res.send(err);
             else {
-                conversation.
+                if(conversation.user1._id == userId){
+                    conversation.user1.status = conversation.user1.status == false;
+                    conversation.markModified('user1.status');
+                } else if(conversation.user2._id == userId){
+                    conversation.user2.status = conversation.user2.status == false;
+                    conversation.markModified('user2.status');
+                } else{
+                    console.log("No user found");
+                }
+
                 conversation.save(function(err){
                     if(err)
                         res.send(err);
 
-                    res.json({message: 'User updated!'});
+                    res.json({message: 'Conversation updated!'});
                 });
             }
 

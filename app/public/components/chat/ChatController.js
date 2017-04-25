@@ -1,7 +1,7 @@
 (function(){
     'use strict';
-    App.controller('ChatController',['$scope', 'UserService','$stateParams','$http','$interval',
-        function ($scope, UserService, $stateParams, $http, $interval) {
+    App.controller('ChatController',['$scope', 'UserService','$stateParams','$http','$interval','successModalService',
+        function ($scope, UserService, $stateParams, $http, $interval, successModalService) {
 
             var id = $stateParams.id;
             console.log("conversation Id "+id);
@@ -54,6 +54,11 @@
                         seen: false
                     }).then(function (res) {
                         console.log("Success "+res);
+                        var modalOptions = {
+                            actionButtonText: 'Continue',
+                            headerText: 'Chat Invitation Sent to ' + user.firstName
+                        };
+                        successModalService.showModal({}, modalOptions);
                     }).catch(function (err) {
                         console.log("Failed: "+err);
                     });
@@ -76,10 +81,8 @@
                             console.log(res.data);
                             if ($scope.currentUser._id == $scope.conversation.user1._id) {
                                 $scope.friend = $scope.conversation.user2;
-                                //$scope.conversation.user1.status = true;
                             } else {
                                 $scope.friend = $scope.conversation.user1;
-                                //$scope.conversation.user2.status = true;
                             }
                             console.log(res);
                         })
@@ -148,7 +151,7 @@
                 }
             }
 
-            $interval(function () {
+            /*$interval(function () {
              console.log($scope.conversation._id);
              $http.get('/api/conversations/'+$scope.conversation._id)
              .then(function (res) {
@@ -158,7 +161,7 @@
              .catch(function (err) {
              console.log(err);
              })
-             }, 5000);
+             }, 5000);*/
 
             $http.get('/api/conversations/')
                 .then(function (res) {
