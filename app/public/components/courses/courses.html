@@ -78,13 +78,16 @@
                             <div class="courses-top-left">
                                 {{course.course_id}}
                             </div>
-                            <div class="courses-top-middle">
+                            <div ng-hide="user == null" class="courses-top-middle">
                                 {{course.points[0]}}
                             </div>
-                            <div class="courses-top-right">
+                            <div ng-hide="user == null" class="courses-top-right">
                                 <i class="fa" data-ng-click="saveCourseToUser(course)"
                                 ng-class="{'fa-bookmark': hasSaved == true,
                                            'fa-bookmark-o': hasSaved == false}"></i>
+                            </div>
+                            <div ng-show="user == null" class="courses-top-right">
+                                {{course.points[0]}}
                             </div>
                         </div>
                         <div ng-click="displayCourse(course)" >
@@ -94,7 +97,9 @@
                         'tcdIcon': course.college == 'Trinity College'}">
                                 <div class="middle-left">{{course.college}}</div>
                                 <div class="middle-right">
-                                    <img src="../.././assets/img/dit-logo.png">
+                                    <img ng-show="course.college == 'Dublin Institute of Technology'" src="../.././assets/img/dit-logo.png">
+                                    <img ng-show="course.college == 'University College Dublin'" src="../.././assets/img/ucd-logo.png">
+                                    <img ng-show="course.college == 'Trinity College'" src="../.././assets/img/tcd-logo.png">
                                 </div>
                             </div>
                             <div class="courses-middle-bottom">

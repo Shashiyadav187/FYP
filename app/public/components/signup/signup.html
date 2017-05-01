@@ -1,30 +1,47 @@
-
 <div class="inner-bg">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <div class="well well-md">
-                    <form method="post" action="/api/users/signup">
-                        <div class="form-group">
-                            <label class="control-label">First Name</label>
-                            <input type="text" ng-model="user.firstName" name="firstName" class="form-control" required/>
+            <div class="col-md-8 col-md-offset-3">
+                <div class="sizing-top"></div>
+                <div class="card">
+                    <div class="card-block"
+                         style="z-index:100 !important;background:whitesmoke !important;opacity:0.7 !important; padding: 20px;">
+                        <div class="form-top-left-signup">
+                            <h2 class="login-name">
+                                    <span ng-click="home()">
+                                    <span class="fa fa-graduation-cap"></span>
+                                        of<span class="title-blue">Course</span>
+                                    </span>
+                            </h2>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label">Last Name</label>
-                            <input type="text"ng-model="user.lastName" name="lastName" class="form-control" required/>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Email</label>
-                            <input type="text" ng-model="user.email" name="email" class="form-control" required/>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Password</label>
-                            <input type="password" ng-model="user.password" name="password" class="form-control" />
-                        </div>
-                        <button type="submit" class="btn btn-warning">Sign up</button>
-                    </form>
-                    <hr>
-                    <p>Already have an account? <a href="/#/login">Login</a></p>
+                        <form method="post" action="/api/users/signup" class="login-form">
+                            <span class="col-sm-6">
+                            <div class="md-form">
+                                <input type="text" class="form-control" name="firstName" id="firstName" required>
+                                <label for="firstName">First Name</label>
+                            </div>
+                            <div class="md-form">
+                                <input type="text" class="form-control" name="email" id="email" required>
+                                <label for="email">Email</label>
+                            </div>
+                            </span>
+                            <span class="col-sm-6">
+                            <div class="md-form">
+                                <input type="text" class="form-control" name="lastName" id="lastName" required>
+                                <label for="lastName">Last Name</label>
+                            </div>
+                                </span>
+                            <span class="col-sm-6">
+                                <div class="md-form">
+                                <input type="password" class="form-control" name="password" id="password5" required>
+                                <label for="password5">Password</label>
+                            </div>
+                                </span>
+                            <button type="submit" class="col-sm-12 btn button">Sign in!</button>
+                        </form>
+                        <hr>
+                        <p>Already have an account? <a href="/#/login">Login</a></p>
+                    </div>
                 </div>
             </div>
         </div>

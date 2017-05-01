@@ -4,6 +4,11 @@
     App.controller('SignupController', ['$scope','$http','$state',
         function($scope, $http, $state){
 
+            $scope.edType = null;
+            $scope.home = function () {
+                $state.go('app.home');
+            };
+
             $scope.createUser = function(){
                 $http.post('/api/users', {
                     firstName: $scope.user.firstName,

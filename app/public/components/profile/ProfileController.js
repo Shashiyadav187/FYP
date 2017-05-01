@@ -15,10 +15,6 @@
 
             $scope.doughnutLabels = ["0-20%", "21-40", "41-60",
                 "61-80", "81-100"];
-            $timeout(function () {
-
-            }, 2000);
-
 
 
             TestService.getTests()
@@ -65,19 +61,21 @@
             $scope.getCurrentUser();
 
             $scope.myAverage = 0;
-            $scope.lineLabels = [];
+            $scope.spLineLabels = [];
+            $scope.numLineLabels = [];
             var resultsLength = 0;
 
             /*Date labels*/
             $timeout(function () {
-                $scope.lineData = [];
+                $scope.spLineData = [];
+                $scope.numLineData = [];
                 for(var i = 0; i < $scope.user.results.length; i++){
                     if($scope.user.results[i].testName == 'Careers Test'){
 
-                    } else {
+                    } else if($scope.user.results[i].testName == 'Spatial Reasoning'){
                         resultsLength++;
                         $scope.myAverage += $scope.user.results[i].score;
-                        $scope.lineData.push($scope.user.results[i].score);
+                        $scope.spLineData.push($scope.user.results[i].score);
                         var d = new Date($scope.user.results[i].timeStamp).getDate();
                         var m = new Date($scope.user.results[i].timeStamp).getMonth();
                         var h = new Date($scope.user.results[i].timeStamp).getHours();
@@ -85,7 +83,19 @@
                         var yy = new Date($scope.user.results[i].timeStamp).getFullYear();
                         var date  = d+'/'+m+'/'+yy+'  '+h+':'+mm;
                         //console.log("date : "+date);
-                        $scope.lineLabels.push(date);
+                        $scope.spLineLabels.push(date);
+                    } else if($scope.user.results[i].testName == 'Logical Number Series Test'){
+                        resultsLength++;
+                        $scope.myAverage += $scope.user.results[i].score;
+                        $scope.numLineData.push($scope.user.results[i].score);
+                        var dn = new Date($scope.user.results[i].timeStamp).getDate();
+                        var mn= new Date($scope.user.results[i].timeStamp).getMonth();
+                        var hn = new Date($scope.user.results[i].timeStamp).getHours();
+                        var mmn = new Date($scope.user.results[i].timeStamp).getUTCMinutes();
+                        var yyn = new Date($scope.user.results[i].timeStamp).getFullYear();
+                        var daten = dn+'/'+mn+'/'+yyn+'  '+hn+':'+mmn;
+                        //console.log("date : "+date);
+                        $scope.numLineLabels.push(daten);
                     }
                 }
                 $scope.myAverage = Math.round($scope.myAverage/resultsLength, 2);
@@ -188,6 +198,7 @@
             var mySpaC = 0;
             var tSpaC = 0;
 
+            //Compare users to my results
             $timeout(function () {
                 for(var i = 0;i< $scope.users.length; i++){
                     for(var x = 0; x < $scope.users[i].results.length; x++){
@@ -223,8 +234,8 @@
                     $scope.mySpatialAverage/mySpaC, $scope.totalSpatialAverage/tSpaC ];
             }, 500);
 
-            $scope.averageLabels = ["Average Spatial Test Score", "My Average Spatial Score", "Average Numerical Test Score",
-                "My Average Numerical Score"];
+            $scope.averageLabels = ["My Average Logical", "Average Logical", "My Average Spatial",
+                "Average Spatial"];
 
             $scope.labels = ["Computer Science", "Construction & Engineering", "Medicine & Science", "Business & Management", "Arts & Education"];
 

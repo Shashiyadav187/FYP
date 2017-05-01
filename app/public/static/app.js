@@ -101,7 +101,7 @@
                 .state('app.definedCourses',{
                     url: '/definedCourses/:sectorName',
                     controller: 'DefinedCoursesController',
-                    templateUrl: 'views/definedCourse.html',
+                    templateUrl: 'views/definedCourses.html',
                     params:{
                         'sectorName': ''
                     }

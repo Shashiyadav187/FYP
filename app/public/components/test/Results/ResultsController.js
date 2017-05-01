@@ -145,6 +145,14 @@
             };
             $scope.slabels = ["Computer Science", "Construction & Engineering", "Medicine & Science", "Business & Management", "Arts & Education"];
 
+            $scope.radarOptions = {
+                scale: {
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }
+            };
+
             $scope.createResult = function(){
                 $http.post('/api/results', {
                     testName: 'Careers Test',

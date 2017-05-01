@@ -17,7 +17,6 @@
             UserService.getCurrentUser()
                 .then(function (res) {
                     $scope.currentUser = res.data.user;
-                    //$scope.currentUser.status = true;
                     console.log($scope.currentUser);
                 }, function (err) {
                     console.log('Get user Error ' + err);
@@ -32,41 +31,87 @@
                 console.log(err+" err");
             });
 
-
             $scope.sendInvitation =function (user) {
-                //console.log(user._id+" _id");
-                $http.post('/api/conversations/', {
-                    user1: $scope.currentUser,
-                    user2: user,
-                    timeStamp: Date.now()
-                }).then(function (res) {
-                    console.log("result conv: " + res.data.data.conversation);
-                    console.log("result: " + res.data.data);
-                    $scope.conversation = res.data.data;
-                    console.log("Post Conversation: "+ $scope.conversation);
-                    $http.post('/api/notifications/',{
-                        senderId: $scope.currentUser._id,
-                        receiverId: user._id,
-                        conversationId : $scope.conversation._id,
-                        timeStamp: Date.now(),
-                        message: $scope.currentUser.firstName+" "+
-                        $scope.currentUser.lastName+" has sent you a chat request",
-                        seen: false
+                $scope.friend = user;
+                var loop = false;
+                if($scope.relevantConversations.length > 0){
+                    for (var i = 0; i < $scope.relevantConversations.length; i++) {
+                        if (user.email == $scope.relevantConversations[i].user1.email || user.email == $scope.relevantConversations[i].user2.email) {
+                            $scope.joinConversation($scope.relevantConversations[i]._id);
+                            $scope.activeChat();
+                            loop = false;
+                            break;
+                        } else {
+                            loop = true;
+                        }
+                    }
+                }else {
+                    $http.post('/api/conversations/', {
+                        user1: $scope.currentUser,
+                        user2: user,
+                        timeStamp: Date.now()
                     }).then(function (res) {
-                        console.log("Success "+res);
-                        var modalOptions = {
-                            actionButtonText: 'Continue',
-                            headerText: 'Chat Invitation Sent to ' + user.firstName
-                        };
-                        successModalService.showModal({}, modalOptions);
+                        console.log("result conv: " + res.data.data.conversation);
+                        console.log("result: " + res.data.data);
+                        $scope.conversation = res.data.data;
+                        console.log("Post Conversation: " + $scope.conversation);
+                        $http.post('/api/notifications/', {
+                            senderId: $scope.currentUser._id,
+                            receiverId: user._id,
+                            conversationId: $scope.conversation._id,
+                            timeStamp: Date.now(),
+                            message: $scope.currentUser.firstName + " " +
+                            $scope.currentUser.lastName + " has sent you a chat request",
+                            seen: false
+                        }).then(function (res) {
+                            console.log("Success " + res);
+                            var modalOptions = {
+                                actionButtonText: 'Continue',
+                                headerText: 'Chat Invitation Sent to ' + user.firstName
+                            };
+                            successModalService.showModal({}, modalOptions);
+                        }).catch(function (err) {
+                            console.log("Failed: " + err);
+                        });
+                        console.log($scope.conversation._id);
                     }).catch(function (err) {
-                        console.log("Failed: "+err);
+                        console.log("err: " + err);
+                        //$scope.conversation = null;
                     });
-                    console.log($scope.conversation._id);
-                }).catch(function (err) {
-                    console.log("err: " + err);
-                    //$scope.conversation = null;
-                });
+                }
+                if(loop) {
+                    $http.post('/api/conversations/', {
+                        user1: $scope.currentUser,
+                        user2: user,
+                        timeStamp: Date.now()
+                    }).then(function (res) {
+                        console.log("result: " + res.data.data);
+                        $scope.conversation = res.data.data;
+                        console.log("Post Conversation: " + $scope.conversation);
+                        $http.post('/api/notifications/', {
+                            senderId: $scope.currentUser._id,
+                            receiverId: user._id,
+                            conversationId: $scope.conversation._id,
+                            timeStamp: Date.now(),
+                            message: $scope.currentUser.firstName + " " +
+                            $scope.currentUser.lastName + " has sent you a chat request",
+                            seen: false
+                        }).then(function (res) {
+                            console.log("Success " + res);
+                            var modalOptions = {
+                                actionButtonText: 'Continue',
+                                headerText: 'Chat Invitation Sent to ' + user.firstName
+                            };
+                            successModalService.showModal({}, modalOptions);
+                        }).catch(function (err) {
+                            console.log("Failed: " + err);
+                        });
+                        console.log($scope.conversation._id);
+                    }).catch(function (err) {
+                        console.log("err: " + err);
+                        //$scope.conversation = null;
+                    });
+                }
             };
 
             $scope.joinConversation =function (convId) {
@@ -98,7 +143,7 @@
                 $scope.joinConversation(id);
             }
 
-            $scope.chatTo = function (user) {
+            /*$scope.chatTo = function (user) {
                 $scope.friend = user;
                 var loop = false;
                 if($scope.relevantConversations.length > 0){
@@ -142,7 +187,7 @@
                     });
                     console.log($scope.conversation);
                 }
-            };
+            };*/
 
             if($scope.noUser){
                 $scope.disabled = true;
@@ -152,16 +197,16 @@
             }
 
             /*$interval(function () {
-             console.log($scope.conversation._id);
-             $http.get('/api/conversations/'+$scope.conversation._id)
-             .then(function (res) {
-             $scope.conversation = res.data;
-             console.log("res.data in get: "+res.data);
-             })
-             .catch(function (err) {
-             console.log(err);
-             })
-             }, 5000);*/
+                console.log($scope.conversation._id);
+                $http.get('/api/conversations/'+$scope.conversation._id)
+                    .then(function (res) {
+                        $scope.conversation = res.data;
+                        console.log("res.data in get: "+res.data);
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                    })
+            }, 5000);*/
 
             $http.get('/api/conversations/')
                 .then(function (res) {
@@ -170,10 +215,10 @@
                     $scope.conversations = res.data;
                     for(var i =0; i<$scope.conversations.length; i++) {
                         if ($scope.currentUser._id == $scope.conversations[i].user1._id){
-                            $scope.conversations[i].user1.status = true;
+                            //$scope.conversations[i].user1.status = true;
                             $scope.relevantConversations.push($scope.conversations[i]);
                         }else if($scope.currentUser._id == $scope.conversations[i].user2._id) {
-                            $scope.conversations[i].user2.status = true;
+                            //$scope.conversations[i].user2.status = true;
                             $scope.relevantConversations.push($scope.conversations[i]);
                         }
                     }

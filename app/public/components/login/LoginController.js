@@ -18,6 +18,7 @@
                 $state.go('signup');
             };
 
+
             /*$scope.login = function (email, password) {
                 console.log("login clicked", email, password);
                 $http.post('/api/users/login', email, password)

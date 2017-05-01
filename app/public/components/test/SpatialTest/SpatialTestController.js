@@ -7,7 +7,7 @@
             $scope.testName = 'Spatial Reasoning';
             $scope.tests = null;
             $scope.question_index = 0;
-           // $scope.optionIndex = 0;
+            // $scope.optionIndex = 0;
             $scope.finished = false;
             $scope.error = false;
             $scope.numQuestionsAnswered = 0;
@@ -129,48 +129,48 @@
                     timeStamp: Date.now()
                 })
                     .success(function(data, status, header, config){
-                        if(data.success){
-                            console.log("Error create result "+data);
-                        } else {
-                            console.log("Success  create Result:)");
-                            $http({
-                                method: 'GET',
-                                url: '/api/results'
-                            }).then(function successCallback(response) {
-                                var length = (response.data.length - 1);
-                                console.log("Success get result");
-                                //console.log("response.data[length] is:" + response.data[length]);
-                                $scope.result = response.data[length];
-                                console.log($scope.user);
-                                console.log($scope.result);
-                                $http.post('/api/users/pushResult/'+ $scope.user.email, {
-                                    results: $scope.result,
-                                })
-                                    .success(function(data, status, header, config){
-                                        if(data.success){
-                                            //console.log(data);
-                                            console.log("Failure post result tp user");
-                                        } else {
-                                            console.log("Success post to user with data: "+data);
-                                            var modalOptions = {
-                                                actionButtonText:'Continue',
-                                                headerText: 'Careers Test Results Saved'
-                                            };
+                            if(data.success){
+                                console.log("Error create result "+data);
+                            } else {
+                                console.log("Success  create Result:)");
+                                $http({
+                                    method: 'GET',
+                                    url: '/api/results'
+                                }).then(function successCallback(response) {
+                                    var length = (response.data.length - 1);
+                                    console.log("Success get result");
+                                    //console.log("response.data[length] is:" + response.data[length]);
+                                    $scope.result = response.data[length];
+                                    console.log($scope.user);
+                                    console.log($scope.result);
+                                    $http.post('/api/users/pushResult/'+ $scope.user.email, {
+                                        results: $scope.result,
+                                    })
+                                        .success(function(data, status, header, config){
+                                            if(data.success){
+                                                //console.log(data);
+                                                console.log("Failure post result tp user");
+                                            } else {
+                                                console.log("Success post to user with data: "+data);
+                                                var modalOptions = {
+                                                    actionButtonText:'Continue',
+                                                    headerText: 'Spatial Test Results Saved'
+                                                };
 
-                                            successModalService.showModal({}, modalOptions)
-                                                .then(function () {
-                                                    $state.go('app.home');
-                                                });
-                                        }
+                                                successModalService.showModal({}, modalOptions)
+                                                    .then(function () {
+                                                        $state.go('app.home');
+                                                    });
+                                            }
 
-                                    });
-                            }, function errorCallback(response) {
-                                console.log("Error get result");
-                                console.log(response);
-                                $scope.result = null;
-                            });
+                                        });
+                                }, function errorCallback(response) {
+                                    console.log("Error get result");
+                                    console.log(response);
+                                    $scope.result = null;
+                                });
+                            }
                         }
-                    }
                     );
             };
 
@@ -205,6 +205,19 @@
             $scope.thirdFifth = 0;
             $scope.fourthFifth = 0;
             $scope.fifthFifth = 0;
+            $scope.mySpatialAverage = 0;
+            var spatialLength = 0;
+            var totalAverage = 0;
+            var totalSpatialLength = 0;
+            /*$scope.getMyResults = function () {
+                for(var x = 0; x < $scope.currentUser.results.length; x++){
+                    if($scope.currentUser.results[x].testName == 'Spatial Reasoning') {
+                        $scope.mySpatialAverage += $scope.currentUser.results[x].score;
+                        console.log("Added to my spatial");
+                        spatialLength++;
+                    }
+                }
+            };*/
 
             $scope.getGraphResults= function () {
                 for(var i = 0;i< $scope.users.length; i++){
@@ -226,47 +239,40 @@
                                 $scope.users[i].results[x].score <= 100){
                                 $scope.fifthFifth++;
                             }
+                            totalSpatialLength++;
+                            totalAverage += $scope.users[i].results[x].score;
                         }else {
                             console.log("not spatial reasoning")
                         }
                     }
                     //console.log("Total Average: "+$scope.averageResults);
                 }
+                for(var y = 0; y < $scope.currentUser.results.length; y++){
+                    if($scope.currentUser.results[y].testName == 'Spatial Reasoning') {
+                        $scope.mySpatialAverage += $scope.currentUser.results[y].score;
+                        console.log("Added to my spatial");
+                        spatialLength++;
+                    }
+                }
+                $scope.bardata = [($scope.mySpatialAverage/spatialLength) , (totalAverage/totalSpatialLength)];
                 $scope.ddata = [$scope.firstFifth, $scope.secondFifth, $scope.thirdFifth, $scope.fourthFifth,
                     $scope.fifthFifth];
             };
 
             $scope.dlabels = ["0-20%", "21-40", "41-60",
                 "61-80", "81-100"];
-            //$scope.dlabels = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
-            $scope.ddata = [300, 500, 100];
 
-            $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
-            $scope.series = ['Series A', 'Series B'];
-            $scope.data = [
-                [65, 59, 80, 81, 56, 55, 40],
-                [28, 48, 40, 19, 86, 27, 90]
-            ];
-            $scope.onClick = function (points, evt) {
-                console.log(points, evt);
-            };
-            $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }];
+            $scope.barlabels = ["My Average", "Total Average"];
+
             $scope.options = {
+                responsive: true,
                 scales: {
-                    yAxes: [
-                        {
-                            id: 'y-axis-1',
-                            type: 'linear',
-                            display: true,
-                            position: 'left'
-                        },
-                        {
-                            id: 'y-axis-2',
-                            type: 'linear',
-                            display: true,
-                            position: 'right'
+                    yAxes: [{
+                        ticks: {
+                            suggestedMax : 100,
+                            beginAtZero:true
                         }
-                    ]
+                    }]
                 }
             };
 

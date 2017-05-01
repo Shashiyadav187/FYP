@@ -212,14 +212,19 @@
                                         chart-labels="labels"></canvas>
                             </tab>
                             <tab heading="{{user.firstName}} test Results">
-                                <h1 class="text-center">Compare Averages</h1>
+                                <h1 class="text-center">Compare Average Test Scores</h1>
                                 <canvas chart-options="options" class="chart chart-bar" chart-data="averageData"
                                         chart-labels="averageLabels"></canvas>
                             </tab>
-                            <tab heading="{{user.firstName}}'s Progress Results">
-                                <h1 class="text-center">Users  Test Results</h1>
-                                <canvas id="line" class="chart chart-line" chart-data="lineData"
-                                        chart-options="options" chart-labels="lineLabels"></canvas>
+                            <tab heading="Spatial Progress">
+                                <h1 class="text-center">{{user.firstName}}  Test Results</h1>
+                                <canvas id="line1" class="chart chart-line" chart-data="spLineData"
+                                        chart-options="options" chart-labels="spLineLabels"></canvas>
+                            </tab>
+                            <tab heading="Logical Progress">
+                                <h1 class="text-center">{{user.firstName}}  Test Results</h1>
+                                <canvas id="line2" class="chart chart-line" chart-data="numLineData"
+                                        chart-options="options" chart-labels="numLineLabels"></canvas>
                             </tab>
                         </tabset>
                     </div>
@@ -228,12 +233,3 @@
         </div>
     </div>
 </div>
-<!--<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <slick slides-to-show=3 slides-to-scroll=3>
-                <div ng-repeat="i in [1,2,3,4,5,6,7,8,9,10]"><h3>{{ i }}</h3></div>
-            </slick>
-        </div>
-    </div>
-</div>-->

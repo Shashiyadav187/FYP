@@ -21,6 +21,7 @@
             $scope.user = null;
             $scope.continue= false;
             $scope.na = false;
+            $scope.pass = false;
 
             $scope.CountdownFinished = function () {
                 $scope.na = true;
@@ -100,6 +101,11 @@
                     }
                 }
                 $scope.percentage = ($scope.numCorrectAnswers/$scope.tests[testIndex].questions[0].question.length) * 100;
+                if($scope.percentage >= 70){
+                    $scope.pass = true;
+                } else{
+                    $scope.pass = false;
+                }
                 $scope.getGraphResults();
                 return $scope.numCorrectAnswers + $scope.percentage;
             };
@@ -206,6 +212,10 @@
             $scope.thirdFifth = 0;
             $scope.fourthFifth = 0;
             $scope.fifthFifth = 0;
+            $scope.mySpatialAverage = 0;
+            var spatialLength = 0;
+            var totalAverage = 0;
+            var totalSpatialLength = 0;
 
             $scope.getGraphResults= function () {
                 for(var i = 0;i< $scope.users.length; i++){
@@ -227,18 +237,43 @@
                                 $scope.users[i].results[x].score <= 100){
                                 $scope.fifthFifth++;
                             }
+                            totalSpatialLength++;
+                            totalAverage += $scope.users[i].results[x].score;
                         }else {
                             console.log("not numerical reasoning")
                         }
+
                     }
                     //console.log("Total Average: "+$scope.averageResults);
                 }
+                for(var y = 0; y < $scope.currentUser.results.length; y++){
+                    if($scope.currentUser.results[y].testName == 'Spatial Reasoning') {
+                        $scope.mySpatialAverage += $scope.currentUser.results[y].score;
+                        console.log("Added to my spatial");
+                        spatialLength++;
+                    }
+                }
+                $scope.bardata = [($scope.mySpatialAverage/spatialLength) , (totalAverage/totalSpatialLength)];
                 $scope.ddata = [$scope.firstFifth, $scope.secondFifth, $scope.thirdFifth, $scope.fourthFifth,
                     $scope.fifthFifth];
             };
 
             $scope.dlabels = ["0-20%", "21-40", "41-60",
                 "61-80", "81-100"];
+
+            $scope.barlabels = ["My Average", "Total Average"];
+
+            $scope.options = {
+                responsive: true,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            suggestedMax : 100,
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            };
 
             $scope.finish = function () {
                 $state.go('app.home');

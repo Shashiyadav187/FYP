@@ -1,9 +1,16 @@
 (function(){
     "use strict";
 
-    App.controller('homeController', ['$scope','$state','$http',
-        function($scope, $state, $http) {
+    App.controller('homeController', ['$scope','$state','$http','UserService',
+        function($scope, $state, $http, UserService) {
 
+            UserService.getCurrentUser()
+                .then(function (res) {
+                    $scope.currentUser = res.data.user;
+                })
+                .catch(function (err) {
+                    console.log("err");
+                });
 
             $scope.loginLink = function() {
                 $state.go('login');
@@ -22,6 +29,10 @@
 
             $scope.register = function(){
                 $state.go('signup');
+            };
+
+            $scope.viewCourses = function () {
+                $state.go('app.courses');
             };
 
             $scope.joinChat = function () {

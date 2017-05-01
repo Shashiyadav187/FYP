@@ -1,3 +1,9 @@
+html{
+    height: 100%;
+}
+body{
+    height: 100%;
+}
 .middle{
     margin-top:20%;
     height: 200px;
@@ -155,7 +161,6 @@ button:focus {
     height: 600px;
     opacity: 0.8;
     overflow: hidden;
-    cursor: pointer;
     left: 0;
 }
 .infront{
@@ -177,7 +182,6 @@ button:focus {
     background: rgba(0, 0, 0, 0.75);
 }
 #bannerSignup.blue {
-    width: 301px;
     border: 1px solid #2990ea;
     border-radius: 44px;
     color: #fff;
@@ -186,7 +190,7 @@ button:focus {
     transition: .75s cubic-bezier(0.19,1,.22,1);
 }
 #bannerSignup {
-    margin-right: 100px;
+    margin-right: 40px;
     display: block;
     font-size: 24px;
     font-weight: 400;
@@ -196,6 +200,7 @@ button:focus {
     line-height: 59px;
     text-align: center;
     margin-top: -100px;
+    margin-left: 40px
 }
 #bannerSignup:hover {
     transform: scale(1.1);
@@ -338,7 +343,7 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
 
 .inner-bg {
     overflow: hidden;
-    height:100%;
+    height:200%;
 }
 
 .form-box {
@@ -360,6 +365,11 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
     padding-top: 25px;
 }
 .form-top-left h3 { margin-top: 0; }
+.form-top-left-signup{
+    width: 75%;
+    padding-top: 25px;
+}
+.form-top-left-signup h3{margin-top: 0; }
 .form-top-right {
     float: left;
     width: 25%;
@@ -721,6 +731,9 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
     font-size: 22px;
     padding: 10px 0 10px 10px;
 }
+.course-details-header{
+    padding-left: 10px;padding-top: 10px;
+}
 .single-line{
     width: 100%
 }
@@ -939,7 +952,8 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
     display: block;
     transition: 1s fade;
 }
-
+.top-right .material-icons:hover{
+}
 .csColour{
     background-color: #97BBCD;
     color:white;
@@ -1120,7 +1134,7 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
     font-size: 15px;
 }
 .ec-comment-button{
-    color: #66BB6A ;
+    color: #66BB6A !important;
     border: 2px solid #66BB6A;
 }
 .ec-comment-button:hover{
@@ -1128,7 +1142,7 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
     background-color: #66BB6A;
 }
 .ms-comment-button{
-    color: #F7464A;
+    color: #F7464A !important;
     border: 2px solid #F7464A;
 }
 .ms-comment-button:hover{
@@ -1136,7 +1150,7 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
     background-color: #F7464A;
 }
 .cs-comment-button{
-    color: #97BBCD;
+    color: #97BBCD!important;
     border: 2px solid #97BBCD;
 }
 .cs-comment-button:hover{
@@ -1144,7 +1158,7 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
     background-color: #97BBCD;
 }
 .bm-comment-button{
-    color: #46BFBD;
+    color: #46BFBD !important;
     border: 2px solid #46BFBD;
 }
 .bm-comment-button:hover{
@@ -1152,7 +1166,7 @@ button.btn.button:active:focus, button.btn.active:focus { outline: 0; opacity: 0
     background-color: #46BFBD;
 }
 .ea-comment-button{
-    color: #FDB45C;
+    color: #FDB45C !important;
     border: 2px solid #FDB45C;
 }
 .ea-comment-button:hover{

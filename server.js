@@ -28,9 +28,12 @@ var messages  = require('./api/routes/messages');
 var notifications  = require('./api/routes/notifications');
 
 app.use(express.static(__dirname + '/app'));
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({limit : '50mb'}));
+app.use(bodyParser.urlencoded({
+    limit: '50mb',
+    extended: true,
+    parameterLimit : 50000 }));
 app.use(cookieParser());
-app.use(bodyParser.json());
 app.use(session({
     secret: 'Blah',
     saveUninitialized: true,
@@ -68,19 +71,6 @@ mongoose.connect('mongodb://' + config.db.host + ':'
     }
 );
 
-// // Firebase connection
-//
-// var configData = {
-//     apiKey: "AIzaSyBT3-RmrTaIIMNRs9lKBPXReCIWNQQXXxU",
-//     authDomain: "unisexp-a1b2d.firebaseapp.com",
-//     databaseURL: "https://unisexp-a1b2d.firebaseio.com",
-//     projectId: "unisexp-a1b2d",
-//     storageBucket: "unisexp-a1b2d.appspot.com",
-//     messagingSenderId: "175197150875"
-// };
-// firebase.initializeApp(configData);
-
-// console.log("firebase: "+firebase);
 // Register web app routes
 app.use('/', web);
 

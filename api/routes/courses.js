@@ -120,10 +120,12 @@ router.route('/pushCourse/:course_id')
             })
         })
     });
-router.route('/addComment/:course_id')
+router.route('/addComment/:_id')
     .post(function(req, res){
-        Course.findOne({'course_id': req.params.course_id}, function(err, course){
+        Course.findById({'_id': req.params._id}, function(err, course){
             console.log("getting in");
+            console.log("Course: "+ course);
+            console.log("Course: "+ req.body.comments);
             course.comments.push(req.body.comments);
 
             course.save(function(err){

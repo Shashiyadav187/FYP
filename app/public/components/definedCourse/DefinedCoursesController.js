@@ -82,49 +82,31 @@
             $scope.max_points = 775;
 
             $scope.displayCourse = function (c) {
-
-                var modalOptions = {
-                    closeButtonText:'Cancel',
-                    actionButtonText: 'OK',
-                    image: '',
-                    course: c.title,
-                    code: c.course_id,
-                    college: c.college,
-                    points: c.points,
-                    sector: c.sector,
-                    thesis: c.thesis,
-                    portfolio: c.portfolio,
-                    erasmus: c.erasmus,
-                    placement: c.placement,
-                    externalLink: c.externalLink,
-                    duration: c.duration
-                };
-
-                courseModalService.showModal({}, modalOptions)
-            };
-
-            $scope.saveCourseToUser = function (c) {
-                UserService.getCurrentUser()
+                $http.post('/api/courses/updateCounter/' + c._id)
                     .then(function (res) {
-                        console.log("Get user success");
-                        $scope.user = res.data.user;
-
-                        $http.post('api/users/pushCourse/'+$scope.user.email,{
-                            courses: c
-                        }).success(function(data){
-                            console.log("post to user success "+data);
-                            var modalOptions = {
-                                actionButtonText:'Continue',
-                                headerText: c.title+' has been saved to your profile'
-                            };
-
-                            successModalService.showModal({}, modalOptions);
-                        }).error(function (data, status) {
-                            console.log("Error posting to user "+data);
-                        })
-                    }, function(err){
-                        console.log("Get user error: "+err+ " status: "+status);
+                        console.log("Update counter "+ res);
+                        $scope.getCourses();
                     })
+                    .catch(function (err) {
+                        console.log("error counting");
+                    });
+
+                $http.post('/api/users/updateViewed/'+$scope.user._id,{
+                    recentlyViewed: c
+                }).then(function (res) {
+                    console.log("Added Recently Viewed"+ c.title);
+                    console.log("Res "+ res.data);
+                })
+                    .catch(function (err) {
+                        console.log("error updating user "+ err);
+                    });
+
+                $scope.getCourses();
+                $scope.currUser();
+
+                $state.go('app.singleCourse',{
+                    id : JSON.stringify(c._id)
+                });
             }
 
         }])

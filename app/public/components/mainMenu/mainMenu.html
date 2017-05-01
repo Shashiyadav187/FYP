@@ -1,11 +1,14 @@
 <div id="bg">
-    <img src="../.././assets/img/laptop.in.use.png" ng-click="testMenu()">
+    <img src="../.././assets/img/laptop.in.use.png">
 </div>
 <div class="main-menu-title">Unsure about what course to do? of<strong class="title-blue">Course</strong> you are
 </div>
 <div class=" col-sm-4 col-sm-offset-4 infront ">
-    <a id="bannerSignup" class="blue" title="Signup" ng-click="register()">
+    <a ng-show="currentUser == null" id="bannerSignup" class="blue" title="Signup" ng-click="register()">
         Get Started
+    </a>
+    <a ng-show="currentUser != null" id="bannerSignup" class="blue" title="Signup" ng-click="viewCourses()">
+        View Courses
     </a>
 </div>
 <div class="middle-about" style="letter-spacing: .025em;">

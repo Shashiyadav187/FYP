@@ -41,38 +41,7 @@
             };
             $scope.getCourses();
 
-           /* var shitCourses = [];
-            $scope.removeUnnecessaryCourses = function () {
-                for(var i = 0; i < $scope.courses.length; i++){
-                    switch($scope.courses[i].sector){
-                        case 'Sociology and Social Care':
-                            shitCourses.push($scope.courses[i]);
-                            removeCourseById($scope.courses[i]._id);
-                            break;
-                        case 'Psychology and Law':
-                            shitCourses.push($scope.courses[i]);
-                            removeCourseById($scope.courses[i]._id);
-                            break;
-                        case 'History and Politics':
-                            shitCourses.push($scope.courses[i]);
-                            removeCourseById($scope.courses[i]._id);
-                            break;
-
-                    }
-                } console.log("shit courses: "+ shitCourses);
-            };*/
-
-            /*var removeCourseById = function (cid) {
-                $http.get('/api/courses/remove/'+cid)
-                    .then(function (res) {
-                        console.log("course removed: "+res);
-                    })
-                    .catch(function (err) {
-                        console.log("error removing course: ",err);
-                    })
-            };*/
-
-            $scope.createCourses = function(coursesArray){
+            /*$scope.createCourses = function(coursesArray){
                 console.log("clicked");
                 console.log(coursesArray.courses.length);
                 for(var i = 0; i<coursesArray.courses.length; i++){
@@ -111,7 +80,7 @@
                         }
                     } else {
                         console.log("Not found college error");
-                    }}};
+                    }}};*/
 
             $scope.collegeFunction = function () {
                 angular.element(document.querySelector('#collegeDropdown').classList.toggle('show'));
@@ -171,28 +140,30 @@
             $scope.max_points = 775;
 
             $scope.displayCourse = function (c) {
-                $http.post('/api/courses/updateCounter/' + c._id)
-                    .then(function (res) {
-                        console.log("Update counter "+ res);
-                        $scope.getCourses();
+                if($scope.user != null) {
+                    $http.post('/api/courses/updateCounter/' + c._id)
+                        .then(function (res) {
+                            console.log("Update counter " + res);
+                            $scope.getCourses();
+                        })
+                        .catch(function (err) {
+                            console.log("error counting");
+                        });
+
+                    $http.post('/api/users/updateViewed/' + $scope.user._id, {
+                        recentlyViewed: c
+                    }).then(function (res) {
+                        console.log("Added Recently Viewed" + c.title);
+                        console.log("Res " + res.data);
                     })
-                    .catch(function (err) {
-                        console.log("error counting");
-                    });
+                        .catch(function (err) {
+                            console.log("error updating user " + err);
+                        });
 
-                $http.post('/api/users/updateViewed/'+$scope.user._id,{
-                    recentlyViewed: c
-                }).then(function (res) {
-                        console.log("Added Recently Viewed"+ c.title);
-                        console.log("Res "+ res.data);
-                    })
-                    .catch(function (err) {
-                        console.log("error updating user "+ err);
-                    });
 
-                $scope.getCourses();
-                $scope.currUser();
-
+                    $scope.getCourses();
+                    $scope.currUser();
+                }
                 $state.go('app.singleCourse',{
                     id : JSON.stringify(c._id)
                 });

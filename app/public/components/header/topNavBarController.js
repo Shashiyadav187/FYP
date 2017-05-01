@@ -62,7 +62,7 @@
                     })
             };
 
-            /*$scope.updateConversationStatus = function () {
+            $scope.updateConversationStatus = function () {
                 $http.get('/api/conversations')
                     .then(function (res) {
                         console.log("status updated: "+res);
@@ -83,14 +83,12 @@
                         console.log("error updating: "+err);
                     })
             };
-*/
             $scope.accept = function (convId, notId) {
                 console.log("conversationId:"+convId);
                 console.log("notId:"+notId);
                 $http.post('/api/notifications/updateSeen/'+notId)
                     .then(function (res) {
                         console.log("Notification changed to seen");
-                        $scope.unseenNotifications.pop();
                     })
                     .catch(function (err) {
                         console.log("changing to seen error");
@@ -125,6 +123,7 @@
             };
 
             $scope.unseenNotifications = [];
+            $scope.notsLength = 0;
 
             /*$interval(function () {
                 if ($scope.currentUser != null || $scope.currentUser != undefined) {
@@ -136,9 +135,10 @@
                     $http.get('/api/notifications/findByUser/'+$scope.currentUser._id)
                         .then(function (res) {
                             $scope.notifications = res.data;
+                            $scope.notsLength = $scope.notifications.length;
                             for(var i= 0; i < $scope.notifications.length; i++) {
-                                if ($scope.notifications[i].seen == false) {
-                                    $scope.unseenNotifications.push($scope.notifications[i]);
+                                if ($scope.notifications[i].seen == true) {
+                                   $scope.notsLength -= 1;
                                 }
                             }
                             console.log("notifications:" +res.data)
